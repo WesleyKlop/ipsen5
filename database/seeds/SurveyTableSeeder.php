@@ -1,5 +1,7 @@
 <?php
 
+use App\Proposition;
+use App\Survey;
 use Illuminate\Database\Seeder;
 
 class SurveyTableSeeder extends Seeder
@@ -11,6 +13,8 @@ class SurveyTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Survey::class, 5)->create();
+        factory(Survey::class, 5)->create()->each(function (Survey $survey) {
+            $survey->propositions()->saveMany(factory(Proposition::class, 8)->make());
+        });
     }
 }

@@ -8,6 +8,7 @@ class Proposition extends Model
 {
     protected $table = 'proposition';
     protected $keyType = 'uuid';
+    public $timestamps = false;
     protected $fillable = [
         'id',
         'survey_id',
