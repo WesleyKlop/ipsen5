@@ -13,4 +13,14 @@ class Survey extends Model
         'id',
         'name',
     ];
+
+    public function candidates()
+    {
+        return $this->hasMany(Candidate::class);
+    }
+
+    public function voters()
+    {
+        return $this->hasManyThrough(Voter::class, SurveyCode::class, 'survey_id', 'code', 'id', 'code');
+    }
 }
