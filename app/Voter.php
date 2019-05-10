@@ -15,4 +15,9 @@ class Voter extends Authenticatable
         'survey_id',
         'username',
     ];
+
+    public function survey()
+    {
+        return $this->belongsTo(Survey::class);
+    }
 }
