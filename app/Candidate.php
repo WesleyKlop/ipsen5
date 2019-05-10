@@ -16,4 +16,9 @@ class Candidate extends Authenticatable
         'name',
         'bio',
     ];
+
+    public function survey()
+    {
+        return $this->belongsTo(Survey::class, 'survey_id');
+    }
 }

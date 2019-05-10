@@ -9,7 +9,6 @@ $factory->define(Candidate::class, function (Faker $faker) {
     return [
         'id' => $faker->uuid,
         'url' => $faker->uuid,
-        'survey_id' => $faker->uuid,
         'name' => $faker->name,
         'bio' => $faker->text,
     ];

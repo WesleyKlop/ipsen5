@@ -15,10 +15,4 @@ class Admin extends Authenticatable
         'password',
         'type',
     ];
-    protected $casts = [
-        'id' => 'string',
-        'username' => 'string',
-        'password' => 'string',
-        'type' => 'string',
-    ];
 }

@@ -11,7 +11,8 @@ class CandidateTableSeeder extends Seeder
      */
     public function run()
     {
-        $candidates = factory(App\Candidate::class, 1)->make();
+        $candidates = factory(App\Candidate::class, 10)->make();
+        $surveys = \App\Survey::all()->pluck('id');
         DB::table('users')->insert($candidates->map(function (\App\Candidate $candidate) {
             return ['id' => $candidate->id];
         })->toArray());
@@ -22,10 +23,10 @@ class CandidateTableSeeder extends Seeder
                 'bio' => $candidate->bio,
             ];
         })->toArray());
-        DB::table('candidate')->insert($candidates->map(function (\App\Candidate $candidate) {
+        DB::table('candidate')->insert($candidates->map(function (\App\Candidate $candidate) use ($surveys) {
             return [
                 'url' => $candidate->url,
-                'survey_id' => $candidate->survey_id,
+                'survey_id' => $surveys->random(),
                 'user_id' => $candidate->id,
             ];
         })->toArray());

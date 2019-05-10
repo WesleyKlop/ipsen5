@@ -21,8 +21,8 @@ class CreateUserViews extends Migration
            created_at,
            updated_at,
            remember_token
-    FROM tasksman.users
-             JOIN tasksman.login ON user_id = users.id");
+    FROM users
+             JOIN login ON user_id = users.id");
         DB::statement("CREATE VIEW voters AS
     SELECT id,
            voter.code,
@@ -31,9 +31,9 @@ class CreateUserViews extends Migration
            created_at,
            updated_at,
            remember_token
-    FROM tasksman.users
-             JOIN tasksman.voter ON user_id = id
-             JOIN tasksman.survey_code ON voter.code = survey_code.code;");
+    FROM users
+             JOIN voter ON user_id = id
+             JOIN survey_code ON voter.code = survey_code.code;");
         DB::statement("CREATE VIEW candidates AS
     SELECT id,
            url,
@@ -43,9 +43,9 @@ class CreateUserViews extends Migration
            created_at,
            updated_at,
            remember_token
-    FROM tasksman.users
-             JOIN tasksman.candidate ON users.id = candidate.user_id
-             JOIN tasksman.profile ON users.id = profile.user_id;
+    FROM users
+             JOIN candidate ON users.id = candidate.user_id
+             JOIN profile ON users.id = profile.user_id;
         ");
     }
 

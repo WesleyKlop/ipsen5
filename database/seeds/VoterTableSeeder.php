@@ -12,6 +12,5 @@ class VoterTableSeeder extends Seeder
     public function run()
     {
         $voters = factory(App\Voter::class, 25)->make();
-        var_dump($voters);
     }
 }

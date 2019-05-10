@@ -15,10 +15,4 @@ class Voter extends Authenticatable
         'survey_id',
         'username',
     ];
-    protected $casts = [
-        'id' => 'string',
-        'code' => 'string',
-        'survey_id' => 'string',
-        'username' => 'string',
-    ];
 }
