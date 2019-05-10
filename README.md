@@ -45,11 +45,8 @@ We use [Git Flow] to try and force everyone to keep to a certain workflow. When 
 ```bash
 git flow feature start my-feature-name
 ```
-When you've done some commits you can do the following to finish your feature:
-```bash
-git flow feature finish my-feature-name
-```
-Releases will be done by the repository owner, every sprint.
+When you've done some commits you can create a pull request on [/WesleyKlop/ipsen5/pull](https://github.com/WesleyKlop/ipsen5/pull/)  
+Releases will be done every sprint by the repository owner.
 
 [Git Flow]: https://nl.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
 [Laravel]: https://laravel.com/docs/5.8/
