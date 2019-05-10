@@ -1,0 +1,21 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Proposition extends Model
+{
+    protected $table = 'proposition';
+    protected $keyType = 'uuid';
+    protected $fillable = [
+        'id',
+        'survey_id',
+        'proposition',
+    ];
+
+    public function survey()
+    {
+        return $this->belongsTo(Survey::class);
+    }
+}
