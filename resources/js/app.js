@@ -12,3 +12,6 @@ import Example from './components/Example'
 // Kick-start the page!
 render(<Example rating={'geweldig'}/>, document.getElementById('app'))
 
+if ('hot' in module) {
+    module.hot.accept()
+}
