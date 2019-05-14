@@ -10,7 +10,7 @@ use Faker\Generator as Faker;
 $factory->define(SurveyCode::class, function (Faker $faker) {
     $admin = Admin::all()->random();
     return [
-        'code' => $faker->numerify('######'),
+        'code' => $faker->numerify('1#####'),
         'username' => $admin->username,
         'user_id' => $admin->user_id,
         'survey_id' => Survey::all()->random()->id,
