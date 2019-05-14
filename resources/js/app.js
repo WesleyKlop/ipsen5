@@ -7,10 +7,10 @@
 import './bootstrap'
 import React from 'react'
 import { render } from 'react-dom'
-import Example from './components/Example'
+import App from './containers/App'
 
 // Kick-start the page!
-render(<Example rating={'geweldig'}/>, document.getElementById('app'))
+render(<App/>, document.getElementById('app'))
 
 if ('hot' in module) {
     module.hot.accept()
