@@ -1,5 +1,7 @@
 <?php
 
+use App\Eloquent\Candidate;
+use App\Eloquent\Profile;
 use Illuminate\Database\Seeder;
 
 class CandidateTableSeeder extends Seeder
@@ -11,24 +13,8 @@ class CandidateTableSeeder extends Seeder
      */
     public function run()
     {
-        $candidates = factory(App\Candidate::class, 10)->make();
-        $surveys = \App\Survey::all()->pluck('id');
-        DB::table('users')->insert($candidates->map(function (\App\Candidate $candidate) {
-            return ['id' => $candidate->id];
-        })->toArray());
-        DB::table('profile')->insert($candidates->map(function (\App\Candidate $candidate) {
-            return [
-                'user_id' => $candidate->id,
-                'name' => $candidate->name,
-                'bio' => $candidate->bio,
-            ];
-        })->toArray());
-        DB::table('candidate')->insert($candidates->map(function (\App\Candidate $candidate) use ($surveys) {
-            return [
-                'url' => $candidate->url,
-                'survey_id' => $surveys->random(),
-                'user_id' => $candidate->id,
-            ];
-        })->toArray());
+        factory(Candidate::class, 10)->create()->each(function (Candidate $candidate) {
+            $candidate->profile()->save(factory(Profile::class)->make());
+        });
     }
 }

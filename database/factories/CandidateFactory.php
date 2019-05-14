@@ -2,14 +2,15 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Candidate;
+use App\Eloquent\Candidate;
+use App\Eloquent\Survey;
+use App\Eloquent\User;
 use Faker\Generator as Faker;
 
 $factory->define(Candidate::class, function (Faker $faker) {
     return [
-        'id' => $faker->uuid,
+        'user_id' => factory(User::class)->create()->id,
+        'survey_id' => Survey::all()->random()->id,
         'url' => $faker->uuid,
-        'name' => $faker->name,
-        'bio' => $faker->text,
     ];
 });

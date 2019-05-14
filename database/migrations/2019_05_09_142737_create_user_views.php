@@ -56,8 +56,8 @@ class CreateUserViews extends Migration
      */
     public function down()
     {
-        DB::statement("DROP VIEW voters");
-        DB::statement("DROP VIEW admins");
-        DB::statement("DROP VIEW candidates");
+        DB::statement("DROP VIEW IF EXISTS voters");
+        DB::statement("DROP VIEW IF EXISTS admins");
+        DB::statement("DROP VIEW IF EXISTS candidates");
     }
 }

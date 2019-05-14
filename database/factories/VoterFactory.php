@@ -2,13 +2,14 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Voter;
+use App\Eloquent\SurveyCode;
+use App\Eloquent\User;
+use App\Eloquent\Voter;
 use Faker\Generator as Faker;
 
 $factory->define(Voter::class, function (Faker $faker) {
     return [
-        'id' => $faker->uuid,
-        'code' => $faker->numberBetween(100000, 999999),
-        'username' => $faker->userName,
+        'user_id' => factory(User::class)->create()->id,
+        'code' => SurveyCode::all()->random()->code,
     ];
 });

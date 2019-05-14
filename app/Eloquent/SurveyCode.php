@@ -1,17 +1,20 @@
 <?php
 
-namespace App;
+namespace App\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
 
 class SurveyCode extends Model
 {
     protected $table = 'survey_code';
+    protected $primaryKey = 'code';
+    public $timestamps = false;
     protected $fillable = [
         'code',
         'username',
         'user_id',
         'survey_id',
+        'expire',
     ];
 
     public function survey()
@@ -21,7 +24,7 @@ class SurveyCode extends Model
 
     public function admin()
     {
-        return $this->belongsTo(Admin::class);
+        return $this->belongsTo(Admin::class, 'user_id', 'user_id');
     }
 
     public function voters()

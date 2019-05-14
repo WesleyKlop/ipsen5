@@ -2,12 +2,12 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Eloquent\Survey;
+use App\Eloquent\Proposition;
 use Faker\Generator as Faker;
 
-$factory->define(Survey::class, function (Faker $faker) {
+$factory->define(Proposition::class, function (Faker $faker) {
     return [
         'id' => $faker->uuid,
-        'name' => $faker->numerify('Survey ##'),
+        'proposition' => $faker->realText(),
     ];
 });

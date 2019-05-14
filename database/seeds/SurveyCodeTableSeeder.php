@@ -1,9 +1,9 @@
 <?php
 
-use App\Eloquent\Admin;
+use App\Eloquent\SurveyCode;
 use Illuminate\Database\Seeder;
 
-class AdminTableSeeder extends Seeder
+class SurveyCodeTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class AdminTableSeeder extends Seeder
      */
     public function run()
     {
-        $admins = factory(Admin::class, 25)->create();
+        factory(SurveyCode::class, 5)->create();
     }
 }
