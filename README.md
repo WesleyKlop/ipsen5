@@ -7,6 +7,8 @@ This is the repository for StemApp 2.0
 * [Laravel]
 * [React]
 * [Postgres]
+* [Composer]
+* [Yarn]
 
 ## Getting started
 
@@ -15,17 +17,20 @@ Clone the repository somewhere:
 ```bash
 git clone git@github.com:WesleyKlop/ipsen5.git && cd ipsen5
 ```
-Install the needed dependencies using composer and NPM(though I would recommend using yarn)
+Install the needed dependencies using composer and yarn(alternative to npm)
 ```bash
 composer install
-npm install # or yarn install
+yarn install
 ```
 You can now run the application (see homestead/valet documentation or use `php artisan serve`)  
 While developing the frontend react part of the application you should run this to compile your code:
 ```bash
-npm watch 
+yarn watch 
 ```
-// TODO@Wesley: Setup hot reloading
+If you want a better frontend development experience without having to manually reload, you should use this:
+```bash
+yarn hot
+```
 
 ## Database
 Laravel includes db migrations, so if you're using a local test db you can run the following pieces of code:
@@ -52,5 +57,7 @@ Releases will be done every sprint by the repository owner.
 [Laravel]: https://laravel.com/docs/5.8/
 [React]: https://reactjs.org/
 [Postgres]: https://www.postgresql.org/
+[Composer]: https://getcomposer.org/
+[Yarn]: https://yarnpkg.com/
 [valet]: https://laravel.com/docs/5.8/valet
 [homestead]: https://laravel.com/docs/5.8/homestead

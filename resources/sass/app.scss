@@ -1,8 +1,15 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
+@import './Example';
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// Global styles
+body {
+    font-family: $base-font;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    font-weight: 300;
+    color: $primary-font-color;
+    background: $background-color;
+    height: 100vh;
+}

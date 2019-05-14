@@ -2,18 +2,18 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+$base-font: 'Oswald', sans-serif;
+$base-font-size: 1rem;
+$base-line-height: 1.6;
 
-// Colors
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66d9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
+// Colors TODO(amahoola): Fix colors, namely background
+$primary-font-color: rgba(0, 0, 0, .78);
+$city-council-color: #522871;
+$second-house-color: #c7da31;
+$accent-color: #e03894;
+$water-schappen-color: #3bc2d4;
+$first-house-color: #fec809;
+$european-parliament-color: #e22948;
+$primary-color: #20436f;
+$background-color: linear-gradient(to bottom, #ffffff, #000000);
+
