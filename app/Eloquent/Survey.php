@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,5 +22,10 @@ class Survey extends Model
     public function voters()
     {
         return $this->hasManyThrough(Voter::class, SurveyCode::class, 'survey_id', 'code', 'id', 'code');
+    }
+
+    public function surveyCodes()
+    {
+        return $this->hasMany(SurveyCode::class);
     }
 }
