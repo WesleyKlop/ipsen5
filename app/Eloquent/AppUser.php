@@ -9,6 +9,7 @@ abstract class AppUser extends Authenticatable
 {
     protected $keyType = 'uuid';
     protected $primaryKey = 'user_id';
+    public $timestamps = false;
 
     protected $fillable = ['user_id'];
 

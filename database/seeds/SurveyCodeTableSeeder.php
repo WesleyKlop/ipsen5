@@ -1,9 +1,9 @@
 <?php
 
-use App\Eloquent\Survey;
+use App\Eloquent\SurveyCode;
 use Illuminate\Database\Seeder;
 
-class SurveyTableSeeder extends Seeder
+class SurveyCodeTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class SurveyTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Survey::class, 5)->create();
+        factory(SurveyCode::class, 5)->create();
     }
 }

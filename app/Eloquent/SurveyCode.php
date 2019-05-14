@@ -8,11 +8,13 @@ class SurveyCode extends Model
 {
     protected $table = 'survey_code';
     protected $primaryKey = 'code';
+    public $timestamps = false;
     protected $fillable = [
         'code',
         'username',
         'user_id',
         'survey_id',
+        'expire',
     ];
 
     public function survey()

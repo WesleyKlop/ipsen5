@@ -2,12 +2,13 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Eloquent\Survey;
+use App\Eloquent\User;
+use Carbon\Carbon;
 use Faker\Generator as Faker;
 
-$factory->define(Survey::class, function (Faker $faker) {
+$factory->define(User::class, function (Faker $faker) {
     return [
         'id' => $faker->uuid,
-        'name' => $faker->numerify('Survey ##'),
+        'created_at' => Carbon::now(),
     ];
 });
