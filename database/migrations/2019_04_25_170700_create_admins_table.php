@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVoterTable extends Migration
+class CreateAdminsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateVoterTable extends Migration
      */
     public function up()
     {
-        Schema::create('voter', function (Blueprint $table) {
-            $table->string('code', 6);
+        Schema::create('admins', function (Blueprint $table) {
+            $table->string('username', 32);
             $table->uuid('user_id');
+            $table->string('password');
+            $table->string('type');
 
-            $table->primary(['code', 'user_id']);
-            $table->foreign('code')->references('code')->on('survey_code');
+            $table->primary(['username', 'user_id']);
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
@@ -30,6 +31,6 @@ class CreateVoterTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('voter');
+        Schema::dropIfExists('admins');
     }
 }

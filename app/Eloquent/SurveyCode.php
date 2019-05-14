@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class SurveyCode extends Model
 {
-    protected $table = 'survey_code';
     protected $primaryKey = 'code';
     public $timestamps = false;
     protected $fillable = [

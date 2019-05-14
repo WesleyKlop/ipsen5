@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePropositionTable extends Migration
+class CreateCandidatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreatePropositionTable extends Migration
      */
     public function up()
     {
-        Schema::create('proposition', function (Blueprint $table) {
-            $table->uuid('id');
+        Schema::create('candidates', function (Blueprint $table) {
+            $table->string('url')->primary();
             $table->uuid('survey_id');
-            $table->string('proposition');
+            $table->uuid('user_id');
 
-            $table->primary(['id', 'survey_id']);
-            $table->foreign('survey_id')->references('id')->on('survey');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('survey_id')->references('id')->on('surveys');
         });
     }
 
@@ -30,6 +30,6 @@ class CreatePropositionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('proposition');
+        Schema::dropIfExists('candidates');
     }
 }

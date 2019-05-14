@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RemoveOldTables extends Migration
+class CreateSurveysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +13,12 @@ class RemoveOldTables extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('tasks');
-        Schema::dropIfExists('projects');
+        Schema::create('surveys', function (Blueprint $table) {
+            $table->uuid('id');
+            $table->string('name');
+
+            $table->primary('id');
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class RemoveOldTables extends Migration
      */
     public function down()
     {
-        // No down
+        Schema::dropIfExists('surveys');
     }
 }

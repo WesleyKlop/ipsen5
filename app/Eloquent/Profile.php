@@ -8,7 +8,6 @@ class Profile extends Model
 {
     public $timestamps = false;
     protected $primaryKey = 'user_id';
-    protected $table = 'profile';
     protected $keyType = 'uuid';
     protected $fillable = [
         'user_id',
