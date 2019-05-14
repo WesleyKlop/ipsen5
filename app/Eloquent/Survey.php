@@ -28,4 +28,9 @@ class Survey extends Model
     {
         return $this->hasMany(SurveyCode::class);
     }
+
+    public function propositions()
+    {
+        return $this->hasMany(Proposition::class);
+    }
 }
