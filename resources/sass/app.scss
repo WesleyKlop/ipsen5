@@ -1,6 +1,7 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
-@import './Example';
+@import 'Header';
+@import "VoterMainPage";
 @import 'variables';
 
 // Global styles
@@ -12,4 +13,11 @@ body {
     color: $primary-font-color;
     background: $background-color;
     height: 100vh;
+}
+
+// Reset that shit
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
