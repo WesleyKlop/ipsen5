@@ -1,0 +1,28 @@
+language: php
+
+php: 7.1.8
+
+sudo: required
+
+services:
+  - postgresql
+
+before_script:
+  - cp .env.travis .env
+
+  - composer self-update
+  - composer install --no-interaction
+
+  - php artisan key:generate
+  - psql -c 'create database travis_ci_test;' -U postgres
+
+  - sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
+  - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  - sudo apt-get update -qq
+  - sudo apt-get install -y -qq yarn
+
+  - yarn install
+
+script:
+  - php artisan migrate:fresh --seed
+  - vendor/bin/phpunit
