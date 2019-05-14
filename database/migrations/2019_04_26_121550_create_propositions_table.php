@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSurveyTable extends Migration
+class CreatePropositionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateSurveyTable extends Migration
      */
     public function up()
     {
-        Schema::create('survey', function (Blueprint $table) {
+        Schema::create('propositions', function (Blueprint $table) {
             $table->uuid('id');
-            $table->string('name');
+            $table->uuid('survey_id');
+            $table->string('proposition');
 
-            $table->primary('id');
+            $table->primary(['id', 'survey_id']);
+            $table->foreign('survey_id')->references('id')->on('surveys');
         });
     }
 
@@ -28,6 +30,6 @@ class CreateSurveyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('survey');
+        Schema::dropIfExists('propositions');
     }
 }

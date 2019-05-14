@@ -13,14 +13,14 @@ class CreateAnswerTable extends Migration
      */
     public function up()
     {
-        Schema::create('answer', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->uuid('proposition_id');
             $table->uuid('survey_id');
             $table->uuid('user_id');
             $table->boolean('answer');
 
             $table->primary(['proposition_id', 'survey_id', 'user_id']);
-            $table->foreign(['proposition_id', 'survey_id'])->references(['id', 'survey_id'])->on('proposition');
+            $table->foreign(['proposition_id', 'survey_id'])->references(['id', 'survey_id'])->on('propositions');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
@@ -32,6 +32,6 @@ class CreateAnswerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('answer');
+        Schema::dropIfExists('answers');
     }
 }

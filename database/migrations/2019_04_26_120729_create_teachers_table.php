@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLoginTable extends Migration
+class CreateTeachersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateLoginTable extends Migration
      */
     public function up()
     {
-        Schema::create('login', function (Blueprint $table) {
+        Schema::create('teachers', function (Blueprint $table) {
             $table->string('username', 32);
             $table->uuid('user_id');
-            $table->string('password');
-            $table->string('type');
+            $table->uuid('survey_id');
 
             $table->primary(['username', 'user_id']);
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign(['user_id', 'username'])->references(['user_id', 'username'])->on('admins');
+            $table->foreign('survey_id')->references('id')->on('surveys');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateLoginTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('login');
+        Schema::dropIfExists('teachers');
     }
 }
