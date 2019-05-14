@@ -2,11 +2,16 @@ language: php
 
 php: 7.1.8
 
+services:
+  - postgresql
+
 before_script:
   - cp .env.travis .env
   - composer self-update
   - composer install --no-interaction
   - php artisan key:generate
+  - psql -c 'create database travis_ci_test;' -U postgres
 
 script:
+  - php artisan migrate:fresh --seed
   - vendor/bin/phpunit
