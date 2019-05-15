@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Eloquent\AppUser;
 use App\Eloquent\Candidate;
+use App\Eloquent\Voter;
 use App\Guard\JwtGuard;
 use Firebase\JWT\JWT;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -30,14 +32,22 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Auth::viaRequest('jwt', function (Request $request) {
-            $token = $request->bearerToken();
-            if (is_null($token)) {
+            $bearer = $request->bearerToken();
+            if (is_null($bearer)) {
                 return null;
             }
-            $userId = JWT::decode($token, env('APP_KEY'), ['HS256'])
-                ->sub
-                ->user_id;
-            return Candidate::where('user_id', $userId)->first();
+            $token = JWT::decode($bearer, env('APP_KEY'), ['HS256']);
+            return $this->getVoterOrCandidate($token->sub);
         });
+    }
+
+    private function getVoterOrCandidate(\stdClass $sub): ?AppUser
+    {
+        switch ($sub->type) {
+            case 'voter':
+                return Voter::where('user_id', $sub->uid)->first();
+            case 'candidate':
+                return Candidate::where('user_id', $sub->uid)->first();
+        }
     }
 }
