@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
 use App\Eloquent\SurveyCode;
 use App\Eloquent\Voter;
@@ -15,9 +17,14 @@ class VoterLoginController extends Controller
         $code = SurveyCode::findOrFail($request->code);
         $user = User::create(["id" => Uuid::uuid4()]);
 
-        // @NOTE (14-05-2019 DutchGhost):
-        // This should be `"code" => $code->code`?
         $voter = Voter::create(["user_id" => $user->id, "code" => $code->code]);
-        return $voter->user_id;
+
+        return JWT::encode([
+            'iss' => env('APP_URL'),
+            'aud' => env('APP_URL'),
+            'iat' => Carbon::now()->timestamp,
+            'exp' => Carbon::now()->addMonth()->timestamp,
+            'sub' => $voter,
+        ], env('APP_KEY'));
     }
 }
