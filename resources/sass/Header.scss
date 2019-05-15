@@ -1,9 +1,16 @@
-.logo {
-  max-width: 250px;
-  padding: 0 10px;
-  margin: 25px auto;
+@import "variables";
+
+.app-header {
+  justify-self: flex-start;
 }
 
-.logo img {
-  width: 100%;
+.logo {
+  width: 250px;
+  height: 82px;
+  padding: 25px 10px;
+  margin: 0 auto;
+
+  img {
+    width: 100%;
+  }
 }

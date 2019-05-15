@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import VoterMainPage from '../routes/VoterMainPage'
 import InfoPage from '../routes/InfoPage'
 import PropositionPage from '../routes/PropositionPage'
@@ -11,6 +11,7 @@ import Header from '../components/Header'
 const App = () => (
     <>
         <Header/>
+        <div style={{flex: "1"}} />
         <BrowserRouter>
             <Switch>
                 <Route path="/info" component={InfoPage}/>
@@ -22,6 +23,7 @@ const App = () => (
                 <Route path="/" exact component={VoterMainPage}/>
             </Switch>
         </BrowserRouter>
+        <div style={{flex: "2"}} />
     </>
 )
 

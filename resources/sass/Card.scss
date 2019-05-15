@@ -1,0 +1,51 @@
+@import "variables";
+
+.card {
+  flex: 0 0 10px;
+  background: $water-schappen-color;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  max-width: 350px;
+  min-width: 300px;
+  width: 80vw;
+}
+
+.card .header {
+  background: $accent-color;
+  text-transform: uppercase;
+  padding: 5px;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.card .triangle {
+  z-index: 1;
+  background: #E03894;
+  transform: rotate(45deg);
+  position: relative;
+  width: 30px;
+  height: 30px;
+  left: 20px;
+  top: -15px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.card .body {
+  padding: 15px;
+}
+
+.card .body .input {
+  width: calc(100% - 20px);
+}
+
+.card .buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.yellow {
+  background: yellow!important;
+}

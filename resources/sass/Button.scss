@@ -1,0 +1,24 @@
+@import "variables";
+
+.button {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  background: $accent-color;
+  color: white;
+  border: 1px solid $accent-color;
+  padding: 10px 15px;
+  min-width: 84px;
+  transition: 0.3s;
+}
+
+.button:hover {
+  background: $accent-color-light;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.25);
+  border-color: $accent-color-light;
+}
+
+.button:active {
+  background: $accent-color-dark;
+  border-color: $accent-color-dark;
+  transition: 0s;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+}
