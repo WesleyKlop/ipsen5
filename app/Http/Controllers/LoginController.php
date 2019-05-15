@@ -9,6 +9,7 @@ use App\Eloquent\Voter;
 use Carbon\Carbon;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Uuid;
 
 class LoginController extends Controller
 {
@@ -28,7 +29,7 @@ class LoginController extends Controller
 
         $voter = Voter::create(["user_id" => $user->id, "code" => $code->code]);
 
-        return $this->generateAuthJwt(self::TYPE_VOTER, $voter->userId);
+        return $this->generateAuthJwt(self::TYPE_VOTER, $voter->user_id);
     }
 
     private function generateAuthJwt(string $type, string $userId): string
