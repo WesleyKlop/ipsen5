@@ -9,7 +9,8 @@
     <title>StemApp 2.0 - Login</title>
     <!-- Styles -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    {{--<link href="{{ mix('css/app.css') }}" rel="stylesheet">--}}
+    <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
+    <script async defer src="{{ mix('js/admin.js') }}"></script>
     <link rel="manifest" href="/manifest.json">
 </head>
 <body>
@@ -18,7 +19,10 @@
     @csrf
     <input type="text" name="username" autocomplete="username"/>
     <input type="password" name="password" autocomplete="current-password"/>
-    <input type="submit"/>
+    <button class="mdc-button">
+        <span class="mdc-button__label">Button</span>
+    </button>
+    {{--<input type="submit"/>--}}
 </form>
 </body>
 </html>
