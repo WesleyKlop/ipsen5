@@ -2,7 +2,9 @@ import React from 'react'
 
 const Header = () => (
     <header className="app-header">
-        Logo
+        <div className="logo">
+            <img src="images/logo_shadow.png" />
+        </div>
     </header>
 )
 
