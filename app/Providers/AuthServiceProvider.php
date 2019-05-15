@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Gate;
+use App\Eloquent\Candidate;
+use App\Guard\JwtGuard;
+use Firebase\JWT\JWT;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +29,15 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Auth::viaRequest('jwt', function (Request $request) {
+            $token = $request->bearerToken();
+            if (is_null($token)) {
+                return null;
+            }
+            $userId = JWT::decode($token, env('APP_KEY'), ['HS256'])
+                ->sub
+                ->user_id;
+            return Candidate::where('user_id', $userId)->first();
+        });
     }
 }
