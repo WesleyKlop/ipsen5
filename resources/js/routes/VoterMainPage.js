@@ -21,12 +21,14 @@ class VoterMainPage extends React.Component {
                     Login met code
                 </CardHeader>
                 <CardBody>
-                    <input className="input" type="tel" pattern="[0-9]{6}" required autoComplete="off"
-                           placeholder="Je code"
-                           maxLength="6" value={this.state.loginCode} onChange={this.handleChange}/>
-                    <CardButtons>
-                        <Button onClick={this.loginVoter} className="block">Deelnemen</Button>
-                    </CardButtons>
+                    <form>
+                        <input className="input" type="tel" pattern="[0-9]{6}" required autoComplete="off"
+                               placeholder="Je code"
+                               maxLength="6" value={this.state.loginCode} onChange={this.handleChange}/>
+                        <CardButtons>
+                            <Button onClick={this.loginVoter} className="block">Deelnemen</Button>
+                        </CardButtons>
+                    </form>
                 </CardBody>
             </Card>
         )
@@ -36,9 +38,21 @@ class VoterMainPage extends React.Component {
         this.setState({loginCode: event.target.value})
     )
 
-    loginVoter = () => (
-        console.log(this.state.loginCode)
-    )
+    loginVoter = (e) => {
+        e.preventDefault()
+        fetch("/api/voter/login", {
+            method: "POST",
+            headers: {
+                'Accept': 'text/plain',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                code: this.state.loginCode
+            })
+        })
+            .then(res => res.text())
+            .then(res => console.log(res))
+    }
 }
 
 export default VoterMainPage
