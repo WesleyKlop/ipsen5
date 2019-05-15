@@ -4,7 +4,6 @@ namespace App\Eloquent;
 
 class Voter extends AppUser
 {
-    protected $guard = 'voter';
     protected $fillable = [
         'code',
         'user_id',
