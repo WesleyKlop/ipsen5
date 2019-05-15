@@ -12,11 +12,9 @@
 */
 
 // Login Route. Entry point for candidates
-Route::get('/candidate/{candidateId}', 'CandidateController@login');
-
+Route::get('/candidate/{candidateId}', 'LoginController@loginCandidate');
+Route::post('/voter/login', 'LoginController@loginVoter');
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('/candidate', 'CandidateController@show');
+    Route::get('/me', 'LoginController@show');
 });
-
-Route::post('/user/login', 'VoterLoginController');
