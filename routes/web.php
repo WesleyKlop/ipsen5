@@ -11,4 +11,9 @@
 |
 */
 
+// Admin routes
+Route::get('/admin/login', 'AdminLoginController@showLoginForm');
+Route::post('/admin/login', 'AdminLoginController@login');
+
+// Fallback route for react routing
 Route::view('/{path?}', 'app');
