@@ -17,7 +17,7 @@ class VoterMainPage extends React.Component {
     render() {
         return (
             <Card>
-                <CardHeader className="yellow">
+                <CardHeader>
                     Login met code
                 </CardHeader>
                 <CardBody>
