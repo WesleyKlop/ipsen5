@@ -19,4 +19,9 @@ class Candidate extends AppUser
     {
         return $this->hasOne(Profile::class, 'user_id');
     }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class, 'user_id');
+    }
 }
