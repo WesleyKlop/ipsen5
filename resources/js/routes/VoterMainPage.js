@@ -13,19 +13,23 @@ class VoterMainPage extends React.Component {
 
     render() {
         return (
-            <Card>
-                <CardHeader>
-                    Login met code
-                </CardHeader>
-                <CardBody>
-                    <form onSubmit={this.loginVoter}>
-                        <CodeInput value={this.state.loginCode} onChange={this.handleChange}/>
-                        <CardButtons>
-                            <Button className="block">Deelnemen</Button>
-                        </CardButtons>
-                    </form>
-                </CardBody>
-            </Card>
+            <>
+                <div style={{ flex: '1' }}/>
+                <Card>
+                    <CardHeader>
+                        Login met code
+                    </CardHeader>
+                    <CardBody>
+                        <form onSubmit={this.loginVoter}>
+                            <CodeInput value={this.state.loginCode} onChange={this.handleChange}/>
+                            <CardButtons>
+                                <Button className="block">Deelnemen</Button>
+                            </CardButtons>
+                        </form>
+                    </CardBody>
+                </Card>
+                <div style={{ flex: '2' }}/>
+            </>
         )
     }
 
