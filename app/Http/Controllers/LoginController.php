@@ -32,9 +32,9 @@ class LoginController extends Controller
         return $this->generateAuthJwt(self::TYPE_VOTER, $voter->user_id);
     }
 
-    private function generateAuthJwt(string $type, string $userId): string
+    private function generateAuthJwt(string $type, string $userId): array
     {
-        return JWT::encode([
+        $jwt = JWT::encode([
             'iss' => env('APP_URL'),
             'aud' => env('APP_URL'),
             'iat' => Carbon::now()->timestamp,
@@ -44,6 +44,9 @@ class LoginController extends Controller
                 'uid' => $userId,
             ],
         ], env('APP_KEY'));
+        return [
+            'jwt' => $jwt,
+        ];
     }
 
     public function show(Request $request)
