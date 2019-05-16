@@ -2,6 +2,8 @@
 
 .button {
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: $base-font;
+    font-size: $base-font-size;
     background: $accent-color;
     color: white;
     border: 1px solid $accent-color;
