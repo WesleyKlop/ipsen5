@@ -4,6 +4,8 @@ namespace App\Eloquent;
 
 class Voter extends AppUser
 {
+    use AnswersPropositions;
+
     protected $guard = 'voter';
     protected $fillable = [
         'code',
