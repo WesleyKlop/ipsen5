@@ -20,3 +20,7 @@ $european-parliament-color: #e22948;
 $primary-color: #20436f;
 $background-color: linear-gradient(to bottom, #1a1a29, #4e4e59, #0f0f1e);
 
+:root {
+    --second-house-color: #{$second-house-color};
+    --accent-color: #{$accent-color-light};
+}
