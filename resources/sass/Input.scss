@@ -1,0 +1,30 @@
+@import "variables";
+
+.input {
+    border: 0;
+    padding: 12px 10px 10px;
+    background-color: $body-bg;
+    font-size: $base-font-size;
+    font-family: $base-font;
+}
+
+.input__wrapper {
+    background-color: $body-bg;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.input__underline {
+    width: 100%;
+    height: 2px;
+    background-color: $accent-color;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 250ms ease;
+}
+
+.input:focus {
+    outline: none;
+    & + .input__underline {
+        transform: scaleX(1);
+    }
+}

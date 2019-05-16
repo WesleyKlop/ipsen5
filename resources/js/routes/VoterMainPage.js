@@ -1,56 +1,55 @@
 import React from 'react'
-import Card from "../components/card/Card";
-import CardHeader from "../components/card/CardHeader";
-import CardBody from "../components/card/CardBody";
-import CardButtons from "../components/card/CardButtons";
-import Button from "../components/card/Button";
+import Card from '../components/card/Card'
+import CardHeader from '../components/card/CardHeader'
+import CardBody from '../components/card/CardBody'
+import CardButtons from '../components/card/CardButtons'
+import Button from '../components/card/Button'
+import CodeInput from '../components/CodeInput'
 
 class VoterMainPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            loginCode: ""
-        }
-        this.handleChange = this.handleChange.bind(this);
+    state = {
+        loginCode: '',
     }
 
     render() {
         return (
-            <Card>
-                <CardHeader>
-                    Login met code
-                </CardHeader>
-                <CardBody>
-                    <form>
-                        <input className="input" type="tel" pattern="[0-9]{6}" required autoComplete="off"
-                               placeholder="Je code"
-                               maxLength="6" value={this.state.loginCode} onChange={this.handleChange}/>
-                        <CardButtons>
-                            <Button onClick={this.loginVoter} className="block">Deelnemen</Button>
-                        </CardButtons>
-                    </form>
-                </CardBody>
-            </Card>
+            <>
+                <div style={{ flex: '1' }}/>
+                <Card>
+                    <CardHeader>
+                        Login met code
+                    </CardHeader>
+                    <CardBody>
+                        <form onSubmit={this.loginVoter}>
+                            <CodeInput value={this.state.loginCode} onChange={this.handleChange}/>
+                            <CardButtons>
+                                <Button className="block">Deelnemen</Button>
+                            </CardButtons>
+                        </form>
+                    </CardBody>
+                </Card>
+                <div style={{ flex: '2' }}/>
+            </>
         )
     }
 
     handleChange = (event) => (
-        this.setState({loginCode: event.target.value})
+        this.setState({ loginCode: event.currentTarget.value })
     )
 
     loginVoter = (e) => {
         e.preventDefault()
-        fetch("/api/voter/login", {
-            method: "POST",
+        fetch('/api/voter/login', {
+            method: 'POST',
             headers: {
-                'Accept': 'text/plain',
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                code: this.state.loginCode
-            })
+                code: this.state.loginCode,
+            }),
         })
-            .then(res => res.text())
+            .then(res => res.ok ? res.text() : Promise.reject('invalid code'))
             .then(res => console.log(res))
     }
 }
