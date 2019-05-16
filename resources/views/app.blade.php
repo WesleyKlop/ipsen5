@@ -9,7 +9,7 @@
     <title>StemApp 2.0</title>
     <!-- Styles -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    {{--<link href="{{ mix('css/app.css') }}" rel="stylesheet">--}}
     <link rel="manifest" href="/manifest.json">
 </head>
 <body>

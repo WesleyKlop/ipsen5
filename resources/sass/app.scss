@@ -6,6 +6,7 @@
 @import 'variables';
 @import "Card";
 @import "Button";
+@import 'Input';
 
 // Global styles
 body {
@@ -30,12 +31,6 @@ html, body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-
-.input {
-    border: 0;
-    padding: 10px;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .block {
