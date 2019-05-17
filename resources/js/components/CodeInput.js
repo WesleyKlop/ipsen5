@@ -9,7 +9,7 @@ const CodeInput = ({ value, onChange }) => {
     }
     return (
         <div className="input__wrapper">
-            <input className={classnames('input', { dirty })} type="tel" pattern="[0-9]{6}" required autoComplete="off" placeholder="Je code" value={value} onChange={onValueChange}/>
+            <input className={classnames('input', { dirty })} type="tel" pattern="[0-9]{6}" maxLength="6" required autoComplete="off" placeholder="Je code" value={value} onChange={onValueChange}/>
             <div className="input__underline"/>
         </div>
     )
