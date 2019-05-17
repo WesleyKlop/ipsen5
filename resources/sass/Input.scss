@@ -22,16 +22,9 @@
         }
     }
 
-    &:focus + .input__underline,
-    &:valid + .input__underline,
-    &:invalid + .input__underline,
-    &:not(:focus):valid + .input__underline,
-    &:not(:focus):invalid + .input__underline {
+    &.dirty + .input__underline,
+    &:focus + .input__underline {
         transform: scaleX(1);
-    }
-
-    &:empty:invalid:not(:focus) + .input__underline {
-        transform: scaleX(0);
     }
 }
 

@@ -10,7 +10,7 @@ class VoterMainPage extends React.Component {
     state = {
         loginCode: '',
         loginCodeValid: false,
-        errorMessage: 'Well that sucks',
+        errorMessage: '',
     }
 
     handleMessageClose = () => this.setState({ errorMessage: '' })
