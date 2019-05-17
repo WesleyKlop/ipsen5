@@ -8,6 +8,7 @@
     min-width: 300px;
     width: 80vw;
     position: relative;
+    color: white;
 
     & .header {
         position: relative;
@@ -76,9 +77,12 @@
     & .body {
         padding: 15px;
 
-
         & .input {
             width: 100%;
+        }
+
+        & p {
+            margin: 0;
         }
     }
 
@@ -86,5 +90,9 @@
         display: flex;
         justify-content: space-between;
         margin-top: 15px;
+
+        & a {
+            text-decoration: none;
+        }
     }
 }

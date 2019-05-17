@@ -24,7 +24,7 @@ class VoterMainPage extends React.Component {
                         Login met code
                     </CardHeader>
                     <CardBody>
-                        <form onSubmit={this.loginVoter}>
+                        <form onSubmit={this.getJWT}>
                             <CodeInput value={this.state.loginCode} onChange={this.handleChange}/>
                             <CardButtons>
                                 <Button className="block" disabled={!this.state.loginCodeValid}>Deelnemen</Button>
@@ -44,7 +44,7 @@ class VoterMainPage extends React.Component {
         })
     )
 
-    loginVoter = (e) => {
+    getJWT = (e) => {
         e.preventDefault()
         fetch('/api/voter/login', {
             method: 'POST',
@@ -56,9 +56,14 @@ class VoterMainPage extends React.Component {
                 code: this.state.loginCode,
             }),
         })
-            .then(res => res.ok ? res.text() : Promise.reject('invalid code'))
-            .then(res => console.log(res))
+            .then(result => result.ok ? result.text() : Promise.reject('invalid code'))
+            .then(result => this.loginVoter(result))
             .catch(errorMessage => this.setState({ errorMessage }))
+    }
+
+    loginVoter = (jwt) => {
+        sessionStorage.setItem('jwt', jwt)
+        this.props.history.push('/info')
     }
 }
 
