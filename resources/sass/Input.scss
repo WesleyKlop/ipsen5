@@ -12,10 +12,6 @@
 
     &:focus {
         outline: none;
-
-        & + .input__underline {
-            transform: scaleX(1);
-        }
     }
 
     &:invalid {
@@ -24,6 +20,18 @@
         & + .input__underline {
             background-color: $european-parliament-color;
         }
+    }
+
+    &:focus + .input__underline,
+    &:valid + .input__underline,
+    &:invalid + .input__underline,
+    &:not(:focus):valid + .input__underline,
+    &:not(:focus):invalid + .input__underline {
+        transform: scaleX(1);
+    }
+
+    &:empty:invalid:not(:focus) + .input__underline {
+        transform: scaleX(0);
     }
 }
 

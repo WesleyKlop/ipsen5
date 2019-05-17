@@ -10,14 +10,17 @@ class VoterMainPage extends React.Component {
     state = {
         loginCode: '',
         loginCodeValid: false,
+        errorMessage: 'Well that sucks',
     }
+
+    handleMessageClose = () => this.setState({ errorMessage: '' })
 
     render() {
         return (
             <>
                 <div style={{ flex: '1' }}/>
                 <Card>
-                    <CardHeader>
+                    <CardHeader message={this.state.errorMessage} onMessageClose={this.handleMessageClose}>
                         Login met code
                     </CardHeader>
                     <CardBody>
@@ -54,8 +57,8 @@ class VoterMainPage extends React.Component {
             }),
         })
             .then(res => res.ok ? res.text() : Promise.reject('invalid code'))
-            // TODO: Show dialog if code is invalid.
-            .then(res => console.log(res), reason => console.log(reason))
+            .then(res => console.log(res))
+            .catch(errorMessage => this.setState({ errorMessage }))
     }
 }
 
