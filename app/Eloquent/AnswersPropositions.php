@@ -5,6 +5,8 @@ namespace App\Eloquent;
 
 
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Collection;
+use Ramsey\Uuid\Uuid;
 
 trait AnswersPropositions
 {
@@ -30,8 +32,15 @@ trait AnswersPropositions
         return $this->survey->propositions;
     }
 
-    public function submitAnswers($answers)
+    public function submitAnswers(Collection $answers)
     {
-        dd($answers);
+        $this->answers()->saveMany($answers->map(function(array $answer) {
+            return Answer::make([
+                'id' => Uuid::uuid4(),
+                'proposition_id'=> $answer['proposition_id'],
+                'survey_id' => $this->survey->id,
+                'answer' => $answer['answer']
+            ]);
+        }));
     }
 }

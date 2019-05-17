@@ -21,4 +21,8 @@ class Voter extends AppUser
     {
         return $this->hasMany(Answer::class, 'user_id');
     }
+
+    public function survey() {
+        return $this->surveyCode->survey();
+    }
 }
