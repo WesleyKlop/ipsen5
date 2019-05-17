@@ -2,6 +2,13 @@
 
 namespace App\Eloquent;
 
+/**
+ * Class Candidate
+ * @package App\Eloquent
+ * @property string $url
+ * @property string $survey_id
+ * @property string $user_id
+ */
 class Candidate extends AppUser
 {
     use AnswersPropositions;

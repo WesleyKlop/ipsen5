@@ -4,6 +4,14 @@ namespace App\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Answer
+ * @package App\Eloquent
+ * @property string $proposition_id
+ * @property string $survey_id
+ * @property string $user_id
+ * @property bool $answer
+ */
 class Answer extends Model
 {
     protected $keyType = 'uuid';
