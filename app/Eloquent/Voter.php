@@ -22,7 +22,8 @@ class Voter extends AppUser
         return $this->hasMany(Answer::class, 'user_id');
     }
 
-    public function survey() {
-        return $this->surveyCode->survey();
+    public function survey()
+    {
+        return $this->hasOneThrough(Survey::class, SurveyCode::class, 'code', 'id', 'code', 'survey_id');
     }
 }
