@@ -25,6 +25,8 @@ class Candidate extends AppUser
 
     public function answers()
     {
-        return $this->hasMany(Answer::class, 'user_id');
+        return $this
+            ->hasMany(Answer::class, 'user_id')
+            ->where('survey_id', $this->survey_id);
     }
 }
