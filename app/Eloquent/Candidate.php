@@ -4,6 +4,9 @@ namespace App\Eloquent;
 
 class Candidate extends AppUser
 {
+    use AnswersPropositions;
+
+    protected $guard = 'candidate';
     protected $fillable = [
         'url',
         'survey_id',
