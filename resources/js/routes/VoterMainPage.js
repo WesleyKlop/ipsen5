@@ -9,21 +9,25 @@ import CodeInput from '../components/CodeInput'
 class VoterMainPage extends React.Component {
     state = {
         loginCode: '',
+        loginCodeValid: false,
+        errorMessage: '',
     }
+
+    handleMessageClose = () => this.setState({ errorMessage: '' })
 
     render() {
         return (
             <>
                 <div style={{ flex: '1' }}/>
                 <Card>
-                    <CardHeader>
+                    <CardHeader message={this.state.errorMessage} onMessageClose={this.handleMessageClose}>
                         Login met code
                     </CardHeader>
                     <CardBody>
                         <form onSubmit={this.loginVoter}>
                             <CodeInput value={this.state.loginCode} onChange={this.handleChange}/>
                             <CardButtons>
-                                <Button className="block">Deelnemen</Button>
+                                <Button className="block" disabled={!this.state.loginCodeValid}>Deelnemen</Button>
                             </CardButtons>
                         </form>
                     </CardBody>
@@ -34,7 +38,10 @@ class VoterMainPage extends React.Component {
     }
 
     handleChange = (event) => (
-        this.setState({ loginCode: event.currentTarget.value })
+        this.setState({
+            loginCode: event.currentTarget.value,
+            loginCodeValid: event.currentTarget.validity.valid,
+        })
     )
 
     loginVoter = (e) => {
@@ -51,6 +58,7 @@ class VoterMainPage extends React.Component {
         })
             .then(res => res.ok ? res.text() : Promise.reject('invalid code'))
             .then(res => console.log(res))
+            .catch(errorMessage => this.setState({ errorMessage }))
     }
 }
 

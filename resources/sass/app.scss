@@ -10,6 +10,10 @@
 @import 'Spinner';
 
 // Global styles
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: $base-font;
     font-size: $base-font-size;
@@ -21,7 +25,6 @@ body {
 
 // Reset that shit
 html, body {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
