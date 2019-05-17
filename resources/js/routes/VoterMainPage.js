@@ -9,6 +9,7 @@ import CodeInput from '../components/CodeInput'
 class VoterMainPage extends React.Component {
     state = {
         loginCode: '',
+        loginCodeValid: false,
     }
 
     render() {
@@ -23,7 +24,7 @@ class VoterMainPage extends React.Component {
                         <form onSubmit={this.loginVoter}>
                             <CodeInput value={this.state.loginCode} onChange={this.handleChange}/>
                             <CardButtons>
-                                <Button className="block">Deelnemen</Button>
+                                <Button className="block" disabled={!this.state.loginCodeValid}>Deelnemen</Button>
                             </CardButtons>
                         </form>
                     </CardBody>
@@ -34,7 +35,10 @@ class VoterMainPage extends React.Component {
     }
 
     handleChange = (event) => (
-        this.setState({ loginCode: event.currentTarget.value })
+        this.setState({
+            loginCode: event.currentTarget.value,
+            loginCodeValid: event.currentTarget.validity.valid,
+        })
     )
 
     loginVoter = (e) => {
@@ -50,7 +54,8 @@ class VoterMainPage extends React.Component {
             }),
         })
             .then(res => res.ok ? res.text() : Promise.reject('invalid code'))
-            .then(res => console.log(res))
+            // TODO: Show dialog if code is invalid.
+            .then(res => console.log(res), reason => console.log(reason))
     }
 }
 

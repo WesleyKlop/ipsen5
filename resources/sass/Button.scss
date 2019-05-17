@@ -6,21 +6,22 @@
     font-size: $base-font-size;
     background: $accent-color;
     color: white;
-    border: 1px solid $accent-color;
-    padding: 11px 15px;
+    border: none;
+    padding: 0;
     min-width: 84px;
     transition: 0.3s;
+    line-height: 37px;
+    text-transform: uppercase;
+
+    &:hover {
+        background: $accent-color-light;
+        box-shadow: 0 6px 6px rgba(0, 0, 0, 0.25);
+    }
+
+    &:active {
+        background: $accent-color-dark;
+        transition: 0s;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+    }
 }
 
-.button:hover {
-    background: $accent-color-light;
-    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.25);
-    border-color: $accent-color-light;
-}
-
-.button:active {
-    background: $accent-color-dark;
-    border-color: $accent-color-dark;
-    transition: 0s;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
-}
