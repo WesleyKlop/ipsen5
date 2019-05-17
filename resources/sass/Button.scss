@@ -12,6 +12,7 @@
     transition: 0.3s;
     line-height: 37px;
     text-transform: uppercase;
+    outline: none;
 
     &:hover {
         background: $accent-color-light;
