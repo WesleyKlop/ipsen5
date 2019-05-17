@@ -4,7 +4,6 @@ namespace App\Eloquent;
 
 class Candidate extends AppUser
 {
-    protected $guard = 'candidate';
     protected $fillable = [
         'url',
         'survey_id',
@@ -19,5 +18,10 @@ class Candidate extends AppUser
     public function profile()
     {
         return $this->hasOne(Profile::class, 'user_id');
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class, 'user_id');
     }
 }
