@@ -14,6 +14,7 @@
 // Global styles
 * {
     box-sizing: border-box;
+    margin: 0;
 }
 
 body {
@@ -27,12 +28,7 @@ body {
 
 // Reset that shit
 html, body {
-    margin: 0;
     padding: 0;
-}
-
-p {
-    margin: 0;
 }
 
 #app {
