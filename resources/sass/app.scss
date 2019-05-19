@@ -29,6 +29,10 @@ html, body {
     padding: 0;
 }
 
+p {
+    margin: 0;
+}
+
 #app {
     display: flex;
     flex-flow: column nowrap;
