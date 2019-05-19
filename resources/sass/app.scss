@@ -1,5 +1,7 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Oswald');
+// Normalize
+@import '~normalize-scss/sass/normalize';
 // Components
 @import 'Header';
 @import 'variables';
@@ -45,4 +47,3 @@ p {
     display: block;
     width: 100%;
 }
-

@@ -4,6 +4,13 @@ namespace App\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Proposition
+ * @package App\Eloquent
+ * @property string $id
+ * @property string $survey_id
+ * @property string $proposition
+ */
 class Proposition extends Model
 {
     protected $keyType = 'uuid';

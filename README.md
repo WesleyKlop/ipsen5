@@ -1,6 +1,8 @@
 StemApp 2.0
 ===========
 
+[![Build Status](https://travis-ci.com/WesleyKlop/ipsen5.svg?token=4MypM7sW23T4Q7Go7dyF&branch=develop)](https://travis-ci.com/WesleyKlop/ipsen5)
+
 This is the repository for StemApp 2.0
 
 ## Tech

@@ -4,6 +4,13 @@ namespace App\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Profile
+ * @package App\Eloquent
+ * @property string $user_id
+ * @property string $name
+ * @property string $bio
+ */
 class Profile extends Model
 {
     public $timestamps = false;

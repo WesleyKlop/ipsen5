@@ -2,6 +2,12 @@
 
 namespace App\Eloquent;
 
+/**
+ * Class Voter
+ * @package App\Eloquent
+ * @property string $code
+ * @property string $user_id
+ */
 class Voter extends AppUser
 {
     use AnswersPropositions;
