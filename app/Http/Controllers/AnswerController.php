@@ -10,4 +10,8 @@ class AnswerController extends Controller
 
         return $request->user()->submitAnswers($answers);
     }
+
+    function show(Request $request) {
+        return $request->user()->getAnswers($request->proposition_id);
+    }
 }

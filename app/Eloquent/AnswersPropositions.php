@@ -4,6 +4,7 @@
 namespace App\Eloquent;
 
 
+use App\Exceptions\AlreadyAnsweredException;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Ramsey\Uuid\Uuid;
@@ -23,7 +24,7 @@ trait AnswersPropositions
                     ->where('survey_id', '=', $survey->id)
                     ->where('user_id', '=', $this->user_id);
             })
-//            ->orderByRaw('random()')
+//            ->orderByRaw('random()')Ø
             ->first();
     }
 
@@ -40,7 +41,9 @@ trait AnswersPropositions
                 ->where('survey_id', $this->survey->id)
                 ->where('user_id', $this->user_id)
                 ->exists()) {
-                throw new \Exception("Dit mag niet");
+                //throw new \Exception("Dit mag niet");
+                throw new AlreadyAnsweredException("We're sorry, but you already answered this question.\
+                Only one answer per question is allowed. Please continue with the next question");
             }
 
             return Answer::make([
