@@ -15,14 +15,26 @@
 </head>
 <body>
 
-<form action="/admin/login" method="post">
-    @csrf
-    <input type="text" name="username" autocomplete="username"/>
-    <input type="password" name="password" autocomplete="current-password"/>
-    <button class="mdc-button">
-        <span class="mdc-button__label">Button</span>
-    </button>
-    {{--<input type="submit"/>--}}
-</form>
+<div class="mdc-card logincard">
+    <form action="/admin/login" method="post" class="flex-container">
+        @csrf
+        <div class="mdc-text-field username-mdc">
+            <input type="text" name="username" autocomplete="username" class="mdc-text-field__input"/>
+            <label class="mdc-floating-label inputlabel">Gebruikersnaam</label>
+            <div class="mdc-line-ripple"></div>
+        </div>
+
+        <div class="mdc-text-field password-mdc">
+            <input type="password" name="password" autocomplete="current-password" class="mdc-text-field__input"/>
+            <label class="mdc-floating-label inputlabel">Wachtwoord</label>
+            <div class="mdc-line-ripple"></div>
+        </div>
+
+        <button class="mdc-button">
+            <span class="mdc-button__label">Button</span>
+        </button>
+        {{--<input type="submit"/>--}}
+    </form>
+</div>
 </body>
 </html>

@@ -1,4 +1,8 @@
+// Material design components
 @import "~@material/button/mdc-button";
+@import "~@material/card/mdc-card";
+@import "~@material/textfield/mdc-text-field";
+
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
 @import 'variables';
@@ -12,4 +16,24 @@ body {
     color: $primary-font-color;
     background: $admin-background-color;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.logincard {
+    margin: auto;
+    flex-direction: column;
+}
+
+.mdc-text-field.mdc-text-field--focused {
+    @include mdc-text-field-label-color($admin-login-text-color);
+    @include mdc-text-field-line-ripple-color($admin-login-text-color);
+}
+
+.mdc-text-field:not(.mdc-text-field--focused){
+    @include mdc-text-field-line-ripple-color($admin-login-text-color);
+}
+
+.flex-container{
+    flex-direction: column;
 }
