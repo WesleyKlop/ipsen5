@@ -1,37 +1,59 @@
 import React from 'react'
-import ProgressBar from '../components/ProgressBar'
-import Spinner from '../components/Spinner'
 import Spacer from '../components/Spacer'
-import Card from "../components/card/Card";
-import CardHeader from "../components/card/CardHeader";
-import CardBody from "../components/card/CardBody";
-import CardButtons from "../components/card/CardButtons";
-import Button from "../components/Button";
-import {FaCheck, FaTimes} from "react-icons/fa";
+import Auth from "../Auth";
+import PropositionList from "../components/PropositionList";
 
-const PropositionPage = () => (
-    <>
-        <Spacer/>
-        {/*<div style={{ width: '100%', flex: '1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>*/}
-        {/*    <Spinner/>*/}
-        {/*</div>*/}
-        <Card>
-            <CardHeader>
-                Beantwoord de stelling
-            </CardHeader>
-            <CardBody flex height={300}>
-                <h2>Europa</h2>
-                <p>Stelling hier.</p>
+class PropositionPage extends React.Component {
+    state = {
+        propositions: [],
+        isLoaded: false,
+        errorMessage: '',
+    }
+
+    propositionId;
+
+    handleMessageClose = () => this.setState({errorMessage: ''})
+
+    componentDidMount = () => {
+        // Clear error message before sending of another request
+        this.setState({errorMessage: ''})
+        fetch('/api/survey/proposition', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + Auth.getJWT(),
+            },
+        })
+            .then(result => result.ok ? result.json() : Promise.reject('invalid'))
+            .then(propositions => {
+                this.setState({propositions})
+                this.state.isLoaded = true
+                console.log(this.state)
+            })
+            .catch(errorMessage => this.setState({errorMessage}))
+    }
+
+    render = () => {
+        return (
+            <>
                 <Spacer/>
-                <CardButtons>
-                    <Button success><FaCheck/> Eens</Button>
-                    <Button><FaTimes/> Oneend</Button>
-                </CardButtons>
-            </CardBody>
-        </Card>
-        <Spacer size={2}/>
-        <ProgressBar/>
-    </>
-)
+                {/*<div*/}
+                {/*    style={{*/}
+                {/*        width: '100%',*/}
+                {/*        flex: '1',*/}
+                {/*        display: 'flex',*/}
+                {/*        alignItems: 'center',*/}
+                {/*        justifyContent: 'center'*/}
+                {/*    }}>*/}
+                {/*    <Spinner/>*/}
+                {/*</div>*/}
+                <PropositionList proposition={this.props.match.params.propositionId}
+                                 propositions={this.state.propositions}/>
+                <Spacer size={2}/>
+            </>
+        )
+    }
+}
 
 export default PropositionPage
