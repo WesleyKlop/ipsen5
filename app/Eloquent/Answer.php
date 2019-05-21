@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Answer extends Model
 {
+
     protected $keyType = 'uuid';
     protected $fillable = [
         'id',
