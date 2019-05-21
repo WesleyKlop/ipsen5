@@ -90,6 +90,7 @@
         display: flex;
         justify-content: space-between;
         margin-top: 15px;
+        grid-area: buttons;
 
         & a {
             text-decoration: none;

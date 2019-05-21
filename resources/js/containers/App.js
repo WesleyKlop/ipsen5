@@ -10,7 +10,7 @@ import Header from '../components/Header'
 import CandidateMainPage from '../routes/CandidateMainPage'
 import PageNotFoundPage from '../routes/PageNotFoundPage'
 import PrivateRoute from '../components/PrivateRoute'
-
+import CandidateProfilePage from '../routes/CandidateProfilePage'
 
 const App = () => (
     <>
@@ -19,6 +19,7 @@ const App = () => (
             <Switch>
                 <PrivateRoute path="/info" component={InfoPage}/>
                 <Route path="/candidate/:loginCode" component={CandidateMainPage}/>
+                <PrivateRoute path="/profile" component={CandidateProfilePage}/>
                 <PrivateRoute path="/proposition/:propositionId" component={PropositionPage}/>
                 <PrivateRoute path="/feedback" component={FeedbackPage}/>
                 <PrivateRoute path="/results" component={VoterResultsPage}/>
