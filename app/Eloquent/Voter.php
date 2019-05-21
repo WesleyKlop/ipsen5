@@ -2,7 +2,8 @@
 
 namespace App\Eloquent;
 
-use mysql_xdevapi\Exception;
+
+use Exception;
 
 /**
  * Class Voter
@@ -39,36 +40,35 @@ class Voter extends AppUser
     {
         /*
          * 1. Get a list of all answers of this user.
-         * 2. For every candidate:
-         *      3. Count all the matches with the current user,
-         *         also storing what percentage they match in.
-         * 4. sort by max count
-         * 5. return the top 5
+         * 2. For each candidate of the survey:
+         *      2.1. For each answer of the user
+         *              2.1.1 Fetch the proposition from the candidate that matches the answer's proposition_id
+         *      2.2. Test for a match on the answer
+         *      2.3 Count the number of matches
+         *      2.4 Return a nice structure containing the number of matches, the match percentage, and the candidate's id
+         * 3. Do a descending sort by the number of matches (highest number of matches comes up front)
+         * 4 Return the first 5.
          */
         $user_answers = $this->answers;
-        $proposition_id = $user_answers->first()->proposition_id;
         $num_propositions = $this->survey->propositions->count();
         return $this
             ->survey
             ->candidates
-            ->map(function ($candidate) use ($user_answers, $num_propositions, $proposition_id) {
+            ->map(function ($candidate) use ($user_answers, $num_propositions) {
                 $number_of_matches = $user_answers
-                    ->zip($candidate->answers->where('proposition_id', $proposition_id))
-                    /*
-                     * @NOTE:
-                     * Actually this filter *could* be removed,
-                     * but you never know if a candidate answered
-                     * all the questions of the survey. If he didn't,
-                     * we get some null cases.
-                     */
-                    ->filter(function ($answers) {
-                        return $answers[0] != null && $answers[1] != null;
+                    ->map(function ($answer) use($candidate) {
+                        return [
+                            "voter_answer" => $answer,
+                            "candidate_answer" => $candidate->answers
+                                ->where('proposition_id', $answer->proposition_id)
+                                ->first()
+                        ];
                     })
                     ->filter(function ($answers) {
-                        if ($answers[0]->proposition_id != $answers[1]->proposition_id) {
+                        if ($answers['voter_answer']->proposition_id != $answers['candidate_answer']->proposition_id) {
                             throw new Exception("Proposition id's did not match!");
                         }
-                        return $answers[0]->answer == $answers[1]->answer;
+                        return $answers['voter_answer'] == $answers['candidate_answer']->answer;
                     })
                     ->count();
 
