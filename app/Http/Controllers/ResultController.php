@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 class ResultController extends Controller
 {
     public function show(Request $request) {
-        return $request->user()->getMatches();
-        //return Voter::where('user_id',"150a899d-ac01-35ea-a49a-63d85bbe8e56")->first()->getMatches();
+        //return $request->user()->getMatches();
+       // return Voter::where('user_id', "f2fe9d70-dfad-3c44-94e7-0a8dbf286680")->first()->getMatches();
+
+        return Voter::where('user_id', "84213f43-700c-3050-9702-77065ccf35df")->first()->getMatches();
     }
 }

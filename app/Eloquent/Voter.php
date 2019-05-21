@@ -2,6 +2,8 @@
 
 namespace App\Eloquent;
 
+use mysql_xdevapi\Exception;
+
 /**
  * Class Voter
  * @package App\Eloquent
@@ -43,20 +45,33 @@ class Voter extends AppUser
          * 4. sort by max count
          * 5. return the top 5
          */
-        $user_answers = $this->answers->sortBy('id');
+        $user_answers = $this->answers;
+        $proposition_id = $user_answers->first()->proposition_id;
         $num_propositions = $this->survey->propositions->count();
         return $this
             ->survey
             ->candidates
-            ->map(function ($candidate) use ($user_answers, $num_propositions) {
-                $number_of_matches = $candidate
-                    ->answers
-                    ->sortBy('id')
-                    ->zip($user_answers)
-                    ->filter(function ($elem) {
-                        return $elem[0]->answer == $elem[1]->answer;
+            ->map(function ($candidate) use ($user_answers, $num_propositions, $proposition_id) {
+                $number_of_matches = $user_answers
+                    ->zip($candidate->answers->where('proposition_id', $proposition_id))
+                    /*
+                     * @NOTE:
+                     * Actually this filter *could* be removed,
+                     * but you never know if a candidate answered
+                     * all the questions of the survey. If he didn't,
+                     * we get some null cases.
+                     */
+                    ->filter(function ($answers) {
+                        return $answers[0] != null && $answers[1] != null;
+                    })
+                    ->filter(function ($answers) {
+                        if ($answers[0]->proposition_id != $answers[1]->proposition_id) {
+                            throw new Exception("Proposition id's did not match!");
+                        }
+                        return $answers[0]->answer == $answers[1]->answer;
                     })
                     ->count();
+
                 return [
                     'matched' => $number_of_matches,
                     'percentage' => (($number_of_matches / $num_propositions) * 100),
