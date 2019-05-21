@@ -19,4 +19,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/me', 'LoginController@show');
     Route::get('/survey', 'SurveyController@show');
     Route::get('/survey/proposition', 'PropositionController@show');
+    Route::get('/voter/results', 'ResultController@show');
 });
