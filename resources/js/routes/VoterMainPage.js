@@ -57,7 +57,7 @@ class VoterMainPage extends React.Component {
                 code: this.state.loginCode,
             }),
         })
-            .then(result => result.ok ? result.text() : Promise.reject('invalid code'))
+            .then(result => result.ok ? result.json() : Promise.reject('invalid code'))
             .then(result => this.loginVoter(result))
             .catch(errorMessage => this.setState({ errorMessage }))
     }
