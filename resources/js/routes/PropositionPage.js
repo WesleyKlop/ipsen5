@@ -19,9 +19,10 @@ const PropositionPage = () => (
             <CardHeader>
                 Beantwoord de stelling
             </CardHeader>
-            <CardBody>
+            <CardBody flex height={300}>
                 <h2>Europa</h2>
                 <p>Stelling hier.</p>
+                <Spacer/>
                 <CardButtons>
                     <Button success><FaCheck/> Eens</Button>
                     <Button><FaTimes/> Oneend</Button>
