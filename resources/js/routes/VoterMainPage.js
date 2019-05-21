@@ -6,6 +6,7 @@ import CardButtons from '../components/card/CardButtons'
 import Button from '../components/Button'
 import CodeInput from '../components/CodeInput'
 import Spacer from '../components/Spacer'
+import Auth from "../Auth";
 
 class VoterMainPage extends React.Component {
     state = {
@@ -59,13 +60,13 @@ class VoterMainPage extends React.Component {
                 code: this.state.loginCode,
             }),
         })
-            .then(result => result.ok ? result.text() : Promise.reject('invalid code'))
+            .then(result => result.ok ? result.json() : Promise.reject('invalid code'))
             .then(result => this.loginVoter(result))
             .catch(errorMessage => this.setState({ errorMessage }))
     }
 
     loginVoter = (jwt) => {
-        sessionStorage.setItem('jwt', jwt)
+        Auth.authenticate(jwt)
         this.props.history.push('/info')
     }
 }
