@@ -3,11 +3,10 @@ import Card from "../components/card/Card";
 import CardHeader from "../components/card/CardHeader";
 import CardBody from "../components/card/CardBody";
 import CardButtons from "../components/card/CardButtons";
-import {Link} from "react-router-dom";
 import Button from "../components/card/Button";
+import Slider from "../components/Slider";
 
 class FeedbackPage extends React.Component {
-
 
     render() {
         return (
@@ -20,9 +19,9 @@ class FeedbackPage extends React.Component {
                     <CardBody>
                         <h2>Over de pijling</h2>
                         <p>U bent klaar met de peiling! Geef de peiling een beoordeling om door te gaan</p>
-                        <slider/>
+                        <Slider value={50} />
                         <CardButtons>
-                            <Button className="block">Resultaten bekijken</Button>
+                            <Button className="block" >Resultaten bekijken</Button>
                         </CardButtons>
                     </CardBody>
                 </Card>
@@ -30,6 +29,5 @@ class FeedbackPage extends React.Component {
             </>
         )
     }
-    
 }
 export default FeedbackPage
