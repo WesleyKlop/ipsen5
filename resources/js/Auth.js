@@ -1,13 +1,8 @@
 const Auth = {
-    isAuthenticated: false,
-    authenticate(jwt) {
-        sessionStorage.setItem('jwt', jwt)
-        this.isAuthenticated = true
-    },
-    signout() {
-        sessionStorage.removeItem('jwt')
-        this.isAuthenticated = false
-    }
+    getJWT: () => sessionStorage.getItem('jwt'),
+    isAuthenticated: () => Auth.getJWT() !== null,
+    authenticate: (jwt) => sessionStorage.setItem('jwt', jwt['jwt']),
+    signout: () => sessionStorage.removeItem('jwt')
 }
 
 export default Auth
