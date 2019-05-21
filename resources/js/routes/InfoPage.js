@@ -4,6 +4,7 @@ import CardBody from '../components/card/CardBody'
 import CardButtons from '../components/card/CardButtons'
 import Card from '../components/card/Card'
 import LinkButton from '../components/LinkButton'
+import Spacer from '../components/Spacer'
 
 
 class InfoPage extends React.Component {
@@ -11,7 +12,7 @@ class InfoPage extends React.Component {
     render() {
         return (
             <>
-                <div style={{ flex: '1' }}/>
+                <Spacer/>
                 <Card>
                     <CardHeader>
                         Uitleg
@@ -25,7 +26,7 @@ class InfoPage extends React.Component {
                         </CardButtons>
                     </CardBody>
                 </Card>
-                <div style={{ flex: '2' }}/>
+                <Spacer size={2}/>
             </>
         )
     }

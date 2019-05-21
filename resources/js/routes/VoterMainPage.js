@@ -5,6 +5,7 @@ import CardBody from '../components/card/CardBody'
 import CardButtons from '../components/card/CardButtons'
 import Button from '../components/Button'
 import CodeInput from '../components/CodeInput'
+import Spacer from '../components/Spacer'
 
 class VoterMainPage extends React.Component {
     state = {
@@ -18,7 +19,7 @@ class VoterMainPage extends React.Component {
     render() {
         return (
             <>
-                <div style={{ flex: '1' }}/>
+                <Spacer/>
                 <Card>
                     <CardHeader message={this.state.errorMessage} onMessageClose={this.handleMessageClose}>
                         Login met code
@@ -32,7 +33,7 @@ class VoterMainPage extends React.Component {
                         </form>
                     </CardBody>
                 </Card>
-                <div style={{ flex: '2' }}/>
+                <Spacer size={2}/>
             </>
         )
     }

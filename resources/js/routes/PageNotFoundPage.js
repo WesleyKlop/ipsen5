@@ -4,10 +4,11 @@ import CardBody from '../components/card/CardBody'
 import CardHeader from '../components/card/CardHeader'
 import CardButtons from '../components/card/CardButtons'
 import LinkButton from '../components/LinkButton'
+import Spacer from '../components/Spacer'
 
 const PageNotFoundPage = () => (
     <>
-        <div style={{ flex: '1' }}/>
+        <Spacer/>
         <Card>
             <CardHeader>
                 Pagina niet gevonden
@@ -21,7 +22,7 @@ const PageNotFoundPage = () => (
                 </CardButtons>
             </CardBody>
         </Card>
-        <div style={{ flex: '2' }}/>
+        <Spacer size={2}/>
     </>
 )
 
