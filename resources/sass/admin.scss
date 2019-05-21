@@ -3,7 +3,7 @@
 @import "~@material/card/mdc-card";
 @import "~@material/textfield/mdc-text-field";
 @import "~@material/typography/mdc-typography";
-@import "~@material/icon-button/mdc-icon-button";
+@import "~@material/textfield/icon/mdc-text-field-icon";
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
@@ -30,8 +30,8 @@ body {
 }
 
 .logo{
-  max-width: 200px;
-  max-height: 66px;
+  max-width: 250px;
+  max-height: 125px;
   padding: 15px;
 }
 
@@ -53,6 +53,9 @@ body {
 .caption {
   color: $admin-subtitle-color;
   margin: 0 0 0 3px;
+}
+
+.show-pw-button{
 }
 
 .mdc-text-field.mdc-text-field--focused {

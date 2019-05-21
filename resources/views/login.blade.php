@@ -12,28 +12,28 @@
     <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
     <script async defer src="{{ mix('js/admin.js') }}"></script>
     <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
     <div class="content-wrapper">
-        <img src="/images/logo_shadow.png" class="logo">
+        <img src="/images/logo_shadow_admin.png" class="logo">
         <div class="mdc-card">
             <form action="/admin/login" method="post" class="login-container">
                 @csrf
                 <div class="mdc-text-field mdc-username">
                     <input type="text" name="username" autocomplete="username" class="mdc-text-field__input"/>
                     <div class="mdc-line-ripple"></div>
-                    <label class="mdc-floating-label inputlabel">Gebruikersnaam</label>
+                    <label class="mdc-floating-label">Gebruikersnaam</label>
                 </div>
 
-                <div class="mdc-text-field mdc-password">
+                <div class="mdc-text-field mdc-password mdc-text-field--with-trailing-icon">
+                    <i class="material-icons mdc-text-field__icon" role="button">remove_red_eye</i>
                     <input type="password" name="password" autocomplete="current-password" class="mdc-text-field__input"/>
-                    <label class="mdc-floating-label inputlabel">Wachtwoord</label>
+                    <label class="mdc-floating-label">Wachtwoord</label>
                     <div class="mdc-line-ripple"></div>
                 </div>
 
                 <label class="mdc-typography--caption caption">Minimaal 8 karakters</label>
-
-
 
                 <button class="mdc-button mdc-button--raised">
                     <span class="mdc-button__label">Inloggen</span>
