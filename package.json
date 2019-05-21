@@ -30,7 +30,9 @@
         "@material/auto-init": "^1.0.0",
         "@material/button": "^2.1.1",
         "@material/card": "^2.1.1",
+        "@material/icon-button": "^2.1.1",
         "@material/textfield": "^2.1.1",
+        "@material/typography": "^1.0.0",
         "react-router-dom": "^5.0.0"
     }
 }

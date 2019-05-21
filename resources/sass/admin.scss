@@ -2,6 +2,8 @@
 @import "~@material/button/mdc-button";
 @import "~@material/card/mdc-card";
 @import "~@material/textfield/mdc-text-field";
+@import "~@material/typography/mdc-typography";
+@import "~@material/icon-button/mdc-icon-button";
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
@@ -9,31 +11,65 @@
 
 // Global styles
 body {
-    font-family: $base-font;
-    font-size: $base-font-size;
-    line-height: $base-line-height;
-    font-weight: 300;
-    color: $primary-font-color;
-    background: $admin-background-color;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
+  font-family: $base-font;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  font-weight: 300;
+  color: $primary-font-color;
+  background: $admin-background-color;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 
-.logincard {
-    margin: auto;
-    flex-direction: column;
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo{
+  max-width: 200px;
+  max-height: 66px;
+  padding: 15px;
+}
+
+.login-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+.mdc-username{
+  margin: 15px 0;
+}
+
+.mdc-password{
+  margin: 15px 0 2px 0;
+}
+
+.caption {
+  color: $admin-subtitle-color;
+  margin: 0 0 0 3px;
 }
 
 .mdc-text-field.mdc-text-field--focused {
-    @include mdc-text-field-label-color($admin-login-text-color);
-    @include mdc-text-field-line-ripple-color($admin-login-text-color);
+  @include mdc-text-field-label-color($admin-login-text-color);
+  @include mdc-text-field-line-ripple-color($admin-login-text-color);
 }
 
 .mdc-text-field:not(.mdc-text-field--focused){
-    @include mdc-text-field-line-ripple-color($admin-login-text-color);
+  @include mdc-text-field-line-ripple-color($admin-login-text-color);
 }
 
-.flex-container{
-    flex-direction: column;
+.mdc-button--raised{
+  margin: 15px 0;
+  @include mdc-button-outline-color($admin-login-text-color);
+  @include mdc-button-container-fill-color($admin-login-text-color);
+}
+
+.mdc-button:not(.mdc-button--raised){
+  @include mdc-button-ink-color($admin-login-text-color);
 }
