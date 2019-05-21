@@ -5,6 +5,7 @@ import CardBody from '../components/card/CardBody'
 import CardButtons from '../components/card/CardButtons'
 import Button from '../components/card/Button'
 import CodeInput from '../components/CodeInput'
+import Auth from "../Auth";
 
 class VoterMainPage extends React.Component {
     state = {
@@ -62,7 +63,7 @@ class VoterMainPage extends React.Component {
     }
 
     loginVoter = (jwt) => {
-        sessionStorage.setItem('jwt', jwt)
+        Auth.authenticate(jwt)
         this.props.history.push('/info')
     }
 }
