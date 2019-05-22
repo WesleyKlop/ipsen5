@@ -14,6 +14,7 @@ class Survey extends Model
 {
     public $timestamps = false;
     protected $keyType = 'uuid';
+    protected $with = ['propositions'];
     protected $fillable = [
         'id',
         'name',
