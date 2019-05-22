@@ -4,7 +4,7 @@ import CardHeader from '../components/card/CardHeader'
 import CardBody from '../components/card/CardBody'
 import CardButtons from '../components/card/CardButtons'
 import { Link } from 'react-router-dom'
-import Button from '../components/card/Button'
+import Button from '../components/Button'
 import Auth from '../Auth'
 
 const CandidateMainPage = ({ match }) => {

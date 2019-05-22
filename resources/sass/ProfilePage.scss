@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 3fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas: 'pf fn' 'pf ln' 'prt prt' 'bio bio' 'bio bio' 'buttons buttons';
+    grid-template-areas: 'pf fn' 'pf ln' 'prt fct' 'bio bio' 'bio bio' 'buttons buttons';
     grid-column-gap: 8px;
     grid-row-gap: 8px;
 }
@@ -26,4 +26,8 @@
 
 .profile-page__bio {
     grid-area: bio
+}
+
+.profile-page-fct {
+    grid-area: fct;
 }

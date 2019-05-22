@@ -11,7 +11,7 @@
 |
 */
 
-// Login Route. Entry point for candidates
+// Login Routes. Entry points for candidates and voters
 Route::get('/candidate/{candidateId}', 'LoginController@loginCandidate');
 Route::post('/voter/login', 'LoginController@loginVoter');
 
@@ -21,4 +21,19 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/survey/proposition', 'PropositionController@show');
     Route::post('/answer', 'AnswerController@submit');
     Route::get('/answer', 'AnswerController@show');
+
+    Route::post('/profile', function (\Illuminate\Http\Request $request) {
+        //TODO(WesleyKlop): Validation
+        $request->file('profile_picture')->storeAs(
+            'profiles', $request->user()->user_id
+        );
+        $request->user()->profile->update($request->only([
+            'first_name',
+            'last_name',
+            'bio',
+            'party',
+            'function',
+        ]));
+        return $request->user;
+    });
 });
