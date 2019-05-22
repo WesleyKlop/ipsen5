@@ -3,7 +3,7 @@ import React from "react";
 
 class Slider extends React.Component {
     state = {
-        value: '50'
+        value: '10'
     }
 
     onValueChange = e => {
@@ -11,7 +11,6 @@ class Slider extends React.Component {
         this.setState({value: e.currentTarget.value})
         // this.setState('100')
     }
-
 
     render() {
         return (
@@ -21,10 +20,9 @@ class Slider extends React.Component {
                     type="range"
                     min="0" max="100"
                     value={this.state.value}
-                    // onChange={this.onValueChange}
-                    // onChange={value => this.setState({value}, this.onValueChange)}
                     onChange={this.onValueChange}
-                    step="1"/>
+                    step="1"
+                    />
             </div>
         )
     }

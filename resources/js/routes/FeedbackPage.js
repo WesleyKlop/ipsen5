@@ -8,6 +8,7 @@ import Slider from "../components/Slider";
 
 class FeedbackPage extends React.Component {
 
+
     render() {
         return (
             <>
@@ -19,7 +20,8 @@ class FeedbackPage extends React.Component {
                     <CardBody>
                         <h2>Over de pijling</h2>
                         <p>U bent klaar met de peiling! Geef de peiling een beoordeling om door te gaan</p>
-                        <Slider value={50} />
+                        <Slider />
+                        {/*<div className="half-circle"/>*/}
                         <CardButtons>
                             <Button className="block" >Resultaten bekijken</Button>
                         </CardButtons>
