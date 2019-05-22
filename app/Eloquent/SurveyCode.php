@@ -4,6 +4,15 @@ namespace App\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class SurveyCode
+ * @package App\Eloquent
+ * @property string $code
+ * @property string $username
+ * @property string $user_id
+ * @property string $survey_id
+ * @property \DateTimeInterface $expire
+ */
 class SurveyCode extends Model
 {
     protected $primaryKey = 'code';

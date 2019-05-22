@@ -4,6 +4,12 @@ namespace App\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Survey
+ * @package App\Eloquent
+ * @property string $id
+ * @property string $name
+ */
 class Survey extends Model
 {
     public $timestamps = false;

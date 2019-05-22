@@ -1,0 +1,33 @@
+@import "variables";
+
+.button {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: $base-font;
+    font-size: $base-font-size;
+    background: $accent-color;
+    color: white;
+    border: none;
+    padding: 0;
+    min-width: 84px;
+    transition: 0.3s;
+    line-height: 37px;
+    text-transform: uppercase;
+    outline: none;
+    text-decoration: none;
+
+    &:not(:disabled):hover {
+        background: $accent-color-light;
+        box-shadow: 0 6px 6px rgba(0, 0, 0, 0.25);
+    }
+
+    &:active {
+        background: $accent-color-dark;
+        transition: 0s;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+    }
+
+    &:disabled {
+        opacity: 0.5;
+    }
+}
+

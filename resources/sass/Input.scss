@@ -1,0 +1,43 @@
+@import "variables";
+
+.input {
+    border: 0;
+    padding: 0 10px;
+    border-top: 2px solid $body-bg;
+    height: 35px;
+    line-height: 35px;
+    background-color: $body-bg;
+    font-size: $base-font-size;
+    font-family: $base-font;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:invalid {
+        box-shadow: none;
+
+        & + .input__underline {
+            background-color: $european-parliament-color;
+        }
+    }
+
+    &.dirty + .input__underline,
+    &:focus + .input__underline {
+        transform: scaleX(1);
+    }
+}
+
+.input__wrapper {
+    background-color: $body-bg;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.input__underline {
+    width: 100%;
+    height: 2px;
+    background-color: $second-house-color;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 250ms ease;
+}

@@ -2,7 +2,8 @@
 $body-bg: #f8fafc;
 
 // Typography
-$base-font: 'Oswald', sans-serif;
+$header-font: 'Oswald', sans-serif;
+$base-font: 'Helvetica', sans-serif;
 $base-font-size: 1rem;
 $base-line-height: 1.6;
 
@@ -11,12 +12,18 @@ $primary-font-color: rgba(0, 0, 0, .78);
 $city-council-color: #522871;
 $second-house-color: #c7da31;
 $accent-color: #e03894;
+$accent-color-dark: #c13776;
+$accent-color-light: #ff42ab;
 $water-schappen-color: #3bc2d4;
 $first-house-color: #fec809;
 $european-parliament-color: #e22948;
 $primary-color: #20436f;
-$background-color: linear-gradient(to bottom, #1A1A29, #4e4e59, #0F0F1E);
+$background-color: linear-gradient(to bottom, #1a1a29, #4e4e59, #0f0f1e);
 $admin-background-color: #e5e5e5;
 $admin-login-text-color: #00bcd4;
 $admin-subtitle-color: #757575;
 
+:root {
+    --second-house-color: #{$second-house-color};
+    --accent-color: #{$accent-color-light};
+}

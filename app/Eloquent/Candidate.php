@@ -2,8 +2,17 @@
 
 namespace App\Eloquent;
 
+/**
+ * Class Candidate
+ * @package App\Eloquent
+ * @property string $url
+ * @property string $survey_id
+ * @property string $user_id
+ */
 class Candidate extends AppUser
 {
+    use AnswersPropositions;
+
     protected $guard = 'candidate';
     protected $fillable = [
         'url',
@@ -19,5 +28,12 @@ class Candidate extends AppUser
     public function profile()
     {
         return $this->hasOne(Profile::class, 'user_id');
+    }
+
+    public function answers()
+    {
+        return $this
+            ->hasMany(Answer::class, 'user_id')
+            ->where('survey_id', $this->survey_id);
     }
 }

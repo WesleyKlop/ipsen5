@@ -1,9 +1,22 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
-@import './Example';
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+// Normalize
+@import '~normalize-scss/sass/normalize';
+// Components
+@import 'Header';
 @import 'variables';
+@import "Card";
+@import "Button";
+@import 'Input';
+@import 'ProgressBar';
+@import 'Spinner';
 
 // Global styles
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
 body {
     font-family: $base-font;
     font-size: $base-font-size;
@@ -11,5 +24,22 @@ body {
     font-weight: 300;
     color: $primary-font-color;
     background: $background-color;
+}
+
+// Reset that shit
+html, body {
+    padding: 0;
+}
+
+#app {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
+}
+
+.block {
+    display: block;
+    width: 100%;
 }

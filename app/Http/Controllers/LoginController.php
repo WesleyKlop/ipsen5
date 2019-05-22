@@ -13,13 +13,11 @@ use Ramsey\Uuid\Uuid;
 
 class LoginController extends Controller
 {
-    private const TYPE_VOTER = 'voter';
-    private const TYPE_CANDIDATE = 'candidate';
 
     public function loginCandidate(?string $candidateId)
     {
         $candidate = Candidate::where('url', $candidateId)->firstOrFail();
-        return $this->generateAuthJwt(self::TYPE_CANDIDATE, $candidate->user_id);
+        return $this->generateAuthJwt(User::TYPE_CANDIDATE, $candidate->user_id);
     }
 
     public function loginVoter(Request $request)
@@ -29,12 +27,12 @@ class LoginController extends Controller
 
         $voter = Voter::create(["user_id" => $user->id, "code" => $code->code]);
 
-        return $this->generateAuthJwt(self::TYPE_VOTER, $voter->user_id);
+        return $this->generateAuthJwt(User::TYPE_VOTER, $voter->user_id);
     }
 
-    private function generateAuthJwt(string $type, string $userId): string
+    private function generateAuthJwt(string $type, string $userId): array
     {
-        return JWT::encode([
+        $jwt = JWT::encode([
             'iss' => env('APP_URL'),
             'aud' => env('APP_URL'),
             'iat' => Carbon::now()->timestamp,
@@ -44,6 +42,9 @@ class LoginController extends Controller
                 'uid' => $userId,
             ],
         ], env('APP_KEY'));
+        return [
+            'jwt' => $jwt,
+        ];
     }
 
     public function show(Request $request)

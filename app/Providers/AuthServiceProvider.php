@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Eloquent\AppUser;
 use App\Eloquent\Candidate;
+use App\Eloquent\User;
 use App\Eloquent\Voter;
 use App\Guard\JwtGuard;
 use Firebase\JWT\JWT;
@@ -44,9 +45,9 @@ class AuthServiceProvider extends ServiceProvider
     private function getVoterOrCandidate(\stdClass $sub): ?AppUser
     {
         switch ($sub->type) {
-            case 'voter':
+            case User::TYPE_VOTER:
                 return Voter::where('user_id', $sub->uid)->first();
-            case 'candidate':
+            case User::TYPE_CANDIDATE:
                 return Candidate::where('user_id', $sub->uid)->first();
         }
     }
