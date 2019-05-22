@@ -1,8 +1,8 @@
 import React from 'react'
 import Spacer from '../components/Spacer'
 import Auth from "../Auth";
-import PropositionList from "../components/PropositionList";
 import Spinner from "../components/Spinner";
+import Proposition from "../components/Proposition";
 
 class PropositionPage extends React.Component {
     state = {
@@ -10,35 +10,14 @@ class PropositionPage extends React.Component {
         survey: '',
         isLoaded: false,
         errorMessage: '',
+        answers: [],
     }
-
-    propositionId;
 
     handleMessageClose = () => this.setState({errorMessage: ''})
 
     componentDidMount = () => {
-        // Clear error message before sending of another request
         this.setState({errorMessage: ''})
         this.getSurvey()
-        this.getPropositions()
-    }
-
-    getPropositions = () => {
-        fetch('/api/survey/proposition', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + Auth.getJWT(),
-            },
-        })
-            .then(result => result.ok ? result.json() : Promise.reject('invalid'))
-            .then(propositions => {
-                this.setState({propositions})
-                const isLoaded = true;
-                this.setState({isLoaded})
-            })
-            .catch(errorMessage => this.setState({errorMessage}))
     }
 
     getSurvey = () => {
@@ -51,19 +30,43 @@ class PropositionPage extends React.Component {
             },
         })
             .then(result => result.ok ? result.json() : Promise.reject('invalid'))
-            .then(survey => this.setState({survey}))
-            .catch(errorMessage => this.setState({errorMessage}))
+            .then(result => this.setState({survey: result.name, propositions: result.propositions, isLoaded: true}))
+            .catch(errorMessage => this.setState({errorMessage, isLoaded: true}))
+    }
+
+    onChoose = (e) => {
+        const propositionNr = parseInt(this.props.match.params.propositionNr, 10)
+        const {propositions} = this.state
+        const answer = e.target.value === 'true'
+
+        this.setState(prevState => ({
+            ...prevState,
+            answers: prevState.answers.concat([{
+                proposition_id: propositions[propositionNr].id,
+                answer
+            }])
+        }), () => {
+            const {answers, propositions} = this.state
+            if (answers.length < propositions.length)
+                this.props.history.push((answers.length).toString())
+            else
+                this.props.history.push("/feedback")
+        })
     }
 
     render = () => {
         return (
             <>
                 <Spacer/>
-                {!this.state.isLoaded
-                    ? <Spinner/>
-                    : <PropositionList proposition={this.props.match.params.propositionId}
-                                       survey={this.state.survey}
-                                       propositions={this.state.propositions}/>}
+                {
+                    !this.state.isLoaded
+                        ? <Spinner/>
+                        : <Proposition
+                            onChoose={this.onChoose}
+                            proposition={this.state.propositions[this.props.match.params.propositionNr].proposition}
+                            survey={this.state.survey}
+                        />
+                }
                 <Spacer size={2}/>
             </>
         )

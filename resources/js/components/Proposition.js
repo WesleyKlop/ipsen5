@@ -7,18 +7,18 @@ import Button from "./Button";
 import Card from "./card/Card";
 import {FaCheck, FaTimes} from "react-icons/fa";
 
-const Proposition = ({survey, proposition, ...props}) => (
+const Proposition = ({survey, proposition, onChoose, ...props}) => (
     <Card>
         <CardHeader {...props}>
             Beantwoord de stelling
         </CardHeader>
         <CardBody flex height={300}>
-            <h2>{survey && survey.name}</h2>
-            <p>{proposition && proposition.proposition}</p>
+            <h2>{survey}</h2>
+            <p>{proposition}</p>
             <Spacer/>
             <CardButtons>
-                <Button success><FaCheck/> Eens</Button>
-                <Button><FaTimes/> Oneens</Button>
+                <Button success onClick={onChoose} value={true}><FaCheck/> Eens</Button>
+                <Button onClick={onChoose} value={false}><FaTimes/> Oneens</Button>
             </CardButtons>
         </CardBody>
     </Card>
