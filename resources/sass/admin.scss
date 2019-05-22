@@ -20,6 +20,7 @@ body {
   height: 100vh;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 
 .content-wrapper {
@@ -30,8 +31,8 @@ body {
 }
 
 .logo{
-  max-width: 250px;
-  max-height: 125px;
+  max-width: 200px;
+  max-height: 100px;
   padding: 15px;
 }
 
@@ -42,12 +43,13 @@ body {
   padding: 20px;
 }
 
-.mdc-username{
+.textfield-username{
   margin: 15px 0;
 }
 
-.mdc-password{
+.textfield-password{
   margin: 15px 0 2px 0;
+  @include mdc-text-field-icon-color(#BCBCBC);
 }
 
 .caption {
@@ -55,7 +57,16 @@ body {
   margin: 0 0 0 3px;
 }
 
-.show-pw-button{
+.hide-button:focus{
+  outline: 0;
+}
+
+.mdc-text-field__icon.hide-button:hover{
+  color: #A5A5A5
+}
+
+.mdc-text-field__icon.hide-button:active{
+  color: $admin-subtitle-color;
 }
 
 .mdc-text-field.mdc-text-field--focused {

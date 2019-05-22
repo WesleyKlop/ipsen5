@@ -10,7 +10,7 @@
     <!-- Styles -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
-    <script async defer src="{{ mix('js/admin.js') }}"></script>
+    <script defer src="{{ mix('js/admin.js') }}"></script>
     <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
@@ -20,15 +20,15 @@
         <div class="mdc-card">
             <form action="/admin/login" method="post" class="login-container">
                 @csrf
-                <div class="mdc-text-field mdc-username">
+                <div class="mdc-text-field textfield-username">
                     <input type="text" name="username" autocomplete="username" class="mdc-text-field__input"/>
                     <div class="mdc-line-ripple"></div>
                     <label class="mdc-floating-label">Gebruikersnaam</label>
                 </div>
 
-                <div class="mdc-text-field mdc-password mdc-text-field--with-trailing-icon">
-                    <i class="material-icons mdc-text-field__icon" role="button">remove_red_eye</i>
-                    <input type="password" name="password" autocomplete="current-password" class="mdc-text-field__input"/>
+                <div class="mdc-text-field mdc-text-field--with-trailing-icon textfield-password">
+                    <i class="material-icons mdc-text-field__icon hide-button" id="pw-eye" tabindex="0" role="button">remove_red_eye</i>
+                    <input type="password" name="password" id="pw-field" autocomplete="current-password" class="mdc-text-field__input"/>
                     <label class="mdc-floating-label">Wachtwoord</label>
                     <div class="mdc-line-ripple"></div>
                 </div>
