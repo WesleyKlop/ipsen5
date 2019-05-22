@@ -29,7 +29,7 @@ class PropositionPage extends React.Component {
                 'Authorization': 'Bearer ' + Auth.getJWT(),
             },
         })
-            .then(result => result.ok ? result.json() : Promise.reject('invalid'))
+            .then(result => result.ok ? result.json() : Promise.reject('Onjuiste gebruiker'))
             .then(result => this.setState({survey: result.name, propositions: result.propositions, isLoaded: true}))
             .catch(errorMessage => this.setState({errorMessage, isLoaded: true}))
     }
@@ -50,8 +50,28 @@ class PropositionPage extends React.Component {
             if (answers.length < propositions.length)
                 this.props.history.push((answers.length).toString())
             else
-                this.props.history.push("/feedback")
+                this.saveAnswers()
         })
+    }
+
+    saveAnswers = () => {
+        console.log(JSON.stringify(this.state.answers))
+        fetch('/api/answer', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + Auth.getJWT(),
+            },
+            body: JSON.stringify(this.state.answers)
+        })
+            .then(result => result.ok ? result : Promise.reject('mhh'))
+            .then(this.goToFeedback)
+            .catch(errorMessage => this.setState({errorMessage}))
+    }
+
+    goToFeedback = () => {
+        this.props.history.push("/feedback")
     }
 
     render = () => {
