@@ -20,8 +20,19 @@ class FeedbackPage extends React.Component {
                     <CardBody>
                         <h2>Over de pijling</h2>
                         <p>U bent klaar met de peiling! Geef de peiling een beoordeling om door te gaan</p>
-                        <Slider />
+                        {/*<Slider />*/}
                         {/*<div className="half-circle"/>*/}
+                        <div id="wrapper">
+                            <svg id="meter">
+                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    {/*<stop offset="0%" style="stop-color:rgb(255,255,0);stop-opacity:1" />*/}
+                                    {/*<stop offset="100%" style="stop-color:rgb(255,0,0);stop-opacity:1" />*/}
+                                    <circle id="low" r="150" cx="50%" cy="50%" stroke="black"
+                                            strokeWidth="60" strokeDasharray="471, 943" fill="none">
+                                    </circle>
+                                </linearGradient>
+                            </svg>
+                        </div>
                         <CardButtons>
                             <Button className="block" >Resultaten bekijken</Button>
                         </CardButtons>

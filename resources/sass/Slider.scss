@@ -31,28 +31,49 @@
 //    cursor: pointer; /* Cursor on hover */
 //}
 
-.slider::-moz-range-thumb {
-    //border-radius: 20px;
-    width: 20px; /* Set a specific slider handle width */
-    //height: 400px; /* Slider handle height */
-    height: 100%; /* Slider handle height */
-    background: black;
-    cursor: pointer; /* Cursor on hover */
-    margin-top: 0px;
-}
-
+//.slider::-moz-range-thumb {
+//    //border-radius: 20px;
+//    width: 20px; /* Set a specific slider handle width */
+//    //height: 400px; /* Slider handle height */
+//    height: 100%; /* Slider handle height */
+//    background: black;
+//    cursor: pointer; /* Cursor on hover */
+//    margin-top: 0px;
+//}
+//
 .half-circle {
     width: 200px;
     height: 100px; /* as the half of the width */
-    background-color: transparent;
+    margin-top: 10px;
     border-top-left-radius: 110px;  /* 100px of height + 10px of border */
     border-top-right-radius: 110px; /* 100px of height + 10px of border */
     border: 30px solid gold;
-    //border-left-color: $accent-color-light;
     //border-right-color: $second-house-color;
     //border-color: linear-gradient(to right, $accent-color-light, $second-house-color);
     //border-color: solid linear-gradient(to right, $accent-color-light, $second-house-color);
     border-bottom: 0;
 }
 
+#wrapper{
+    width: 100%;
+    height: 400px;
+    //height: 100%;
+    //color: linear-gradient(to right, $accent-color-light, $second-house-color);
 
+
+}
+
+#meter{
+    width: 100%;
+    height: 100%;
+    margin-top: 50px;
+    transform: rotateX(180deg);
+    background: transparent;
+    //color: red;
+    //color: linear-gradient(to right, $accent-color-light, $second-house-color);
+}
+
+.circle {
+    fill: none;
+
+}
