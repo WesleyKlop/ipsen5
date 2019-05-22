@@ -6,6 +6,7 @@ import CardButtons from "./card/CardButtons";
 import Button from "./Button";
 import Card from "./card/Card";
 import {FaCheck, FaTimes} from "react-icons/fa";
+import LinkButton from "./LinkButton";
 
 const Proposition = ({category, proposition, ...props}) => (
     <Card>
@@ -14,11 +15,11 @@ const Proposition = ({category, proposition, ...props}) => (
         </CardHeader>
         <CardBody flex height={300}>
             <h2>{category}</h2>
-            <p>{JSON.stringify(proposition)}</p>
+            <p>{proposition && proposition.proposition}</p>
             <Spacer/>
             <CardButtons>
                 <Button success><FaCheck/> Eens</Button>
-                <Button><FaTimes/> Oneens</Button>
+                <LinkButton to="2"><FaTimes/> Oneens</LinkButton>
             </CardButtons>
         </CardBody>
     </Card>
