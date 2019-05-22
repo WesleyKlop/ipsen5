@@ -23,24 +23,26 @@ class FeedbackPage extends React.Component {
                         {/*<Slider />*/}
                         {/*<div className="half-circle"/>*/}
                         <div id="wrapper">
-                            <svg id="meter">
-                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    {/*<stop offset="0%" style="stop-color:rgb(255,255,0);stop-opacity:1" />*/}
-                                    {/*<stop offset="100%" style="stop-color:rgb(255,0,0);stop-opacity:1" />*/}
-                                    <circle id="low" r="150" cx="50%" cy="50%" stroke="black"
-                                            strokeWidth="60" strokeDasharray="471, 943" fill="none">
+                            <svg id="meter" viewBox="0 0 60 30">
+                                <defs>
+                                    <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stopColor="#e03894"/>
+                                        <stop offset="100%" stopColor="#c7da31"/>
+                                    </linearGradient>
+                                </defs>
+                                    <circle id="low" r="25" cx="30" cy="30"
+                                            strokeWidth="5" fill="none" stroke="url(#linear)">
                                     </circle>
-                                </linearGradient>
                             </svg>
                         </div>
                         <CardButtons>
-                            <Button className="block" >Resultaten bekijken</Button>
+                            <Button className="block">Resultaten bekijken</Button>
                         </CardButtons>
                     </CardBody>
                 </Card>
                 <div style={{flex: '2'}}/>
             </>
-        )
+    )
     }
-}
-export default FeedbackPage
+    }
+    export default FeedbackPage

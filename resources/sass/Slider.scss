@@ -1,79 +1,9 @@
-@import "variables";
-.slider {
-    -webkit-appearance: none;  /* Override default CSS styles */
-    appearance: none;
-    height: 100px;
-    width:200px;
-    background: linear-gradient(to right, $accent-color-light, $second-house-color);
-    //background: $second-house-color;
-    outline: none; /* Remove outline */
-    opacity: 0.8; /* Set transparency (for mouse-over effects on hover) */
-    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-    transition: opacity .2s;
-    border-radius: 200px 200px 0 0;
-    -moz-border-radius: 90px 90px 0 0;
-    -webkit-border-radius: 90px 90px 0 0;
-    display: block;
-    margin: auto;
-
-}
-
-/* Mouse-over effects */
-.slider:hover {
-    opacity: 1; /* Fully shown on mouse-over */
-}
-
-/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-//.slider::-webkit-slider-thumb {
-//    width: 4000px; /* Set a specific slider handle width */
-//    height: 4000px; /* Slider handle height */
-//    background: #4CAF50;
-//    cursor: pointer; /* Cursor on hover */
-//}
-
-//.slider::-moz-range-thumb {
-//    //border-radius: 20px;
-//    width: 20px; /* Set a specific slider handle width */
-//    //height: 400px; /* Slider handle height */
-//    height: 100%; /* Slider handle height */
-//    background: black;
-//    cursor: pointer; /* Cursor on hover */
-//    margin-top: 0px;
-//}
-//
-.half-circle {
-    width: 200px;
-    height: 100px; /* as the half of the width */
-    margin-top: 10px;
-    border-top-left-radius: 110px;  /* 100px of height + 10px of border */
-    border-top-right-radius: 110px; /* 100px of height + 10px of border */
-    border: 30px solid gold;
-    //border-right-color: $second-house-color;
-    //border-color: linear-gradient(to right, $accent-color-light, $second-house-color);
-    //border-color: solid linear-gradient(to right, $accent-color-light, $second-house-color);
-    border-bottom: 0;
-}
-
-#wrapper{
+#wrapper {
     width: 100%;
-    height: 400px;
-    //height: 100%;
-    //color: linear-gradient(to right, $accent-color-light, $second-house-color);
+    margin: 20px auto;
 
-
-}
-
-#meter{
-    width: 100%;
-    height: 100%;
-    margin-top: 50px;
-    transform: rotateX(180deg);
-    background: transparent;
-    //color: red;
-    //color: linear-gradient(to right, $accent-color-light, $second-house-color);
-}
-
-.circle {
-    fill: none;
-
+    & #meter {
+        width: 100%;
+        background: transparent;
+    }
 }
