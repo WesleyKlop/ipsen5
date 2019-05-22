@@ -55,7 +55,6 @@ class PropositionPage extends React.Component {
     }
 
     saveAnswers = () => {
-        console.log(JSON.stringify(this.state.answers))
         fetch('/api/answer', {
             method: 'POST',
             headers: {
@@ -65,7 +64,8 @@ class PropositionPage extends React.Component {
             },
             body: JSON.stringify(this.state.answers)
         })
-            .then(result => result.ok ? result : Promise.reject('mhh'))
+        // TODO: Vang dit beter af.
+            .then(result => result.ok ? result : Promise.reject('Er ging iets mis'))
             .then(this.goToFeedback)
             .catch(errorMessage => this.setState({errorMessage}))
     }
