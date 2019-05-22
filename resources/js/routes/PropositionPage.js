@@ -2,6 +2,7 @@ import React from 'react'
 import Spacer from '../components/Spacer'
 import Auth from "../Auth";
 import PropositionList from "../components/PropositionList";
+import Spinner from "../components/Spinner";
 
 class PropositionPage extends React.Component {
     state = {
@@ -28,7 +29,8 @@ class PropositionPage extends React.Component {
             .then(result => result.ok ? result.json() : Promise.reject('invalid'))
             .then(propositions => {
                 this.setState({propositions})
-                this.state.isLoaded = true
+                const isLoaded = true;
+                this.setState({isLoaded})
                 console.log(this.state)
             })
             .catch(errorMessage => this.setState({errorMessage}))
@@ -38,18 +40,10 @@ class PropositionPage extends React.Component {
         return (
             <>
                 <Spacer/>
-                {/*<div*/}
-                {/*    style={{*/}
-                {/*        width: '100%',*/}
-                {/*        flex: '1',*/}
-                {/*        display: 'flex',*/}
-                {/*        alignItems: 'center',*/}
-                {/*        justifyContent: 'center'*/}
-                {/*    }}>*/}
-                {/*    <Spinner/>*/}
-                {/*</div>*/}
-                <PropositionList proposition={this.props.match.params.propositionId}
-                                 propositions={this.state.propositions}/>
+                {!this.state.isLoaded
+                    ? <Spinner/>
+                    : <PropositionList proposition={this.props.match.params.propositionId}
+                                       propositions={this.state.propositions}/>}
                 <Spacer size={2}/>
             </>
         )
