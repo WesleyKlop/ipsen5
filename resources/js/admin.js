@@ -3,9 +3,12 @@ import {MDCTextField} from "@material/textfield/component";
 
 autoInit();
 
-//Instantiate textfields so the animation works
-const Usernamefield = new MDCTextField(document.querySelector('.textfield-username'));
-const Passwordfield = new MDCTextField(document.querySelector('.textfield-password'));
+//Instantiate & initialize textfields so the animation works
+const usernameField = new MDCTextField(document.querySelector('.textfield-username'));
+const passwordField = new MDCTextField(document.querySelector('.textfield-password'));
+usernameField.initialize();
+passwordField.initialize();
+
 
 //Eventlistener to hide/unhide the password
 document.getElementById('pw-eye').addEventListener("mousedown", toggleHide);
