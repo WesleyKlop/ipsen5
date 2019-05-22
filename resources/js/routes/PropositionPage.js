@@ -7,6 +7,7 @@ import Spinner from "../components/Spinner";
 class PropositionPage extends React.Component {
     state = {
         propositions: [],
+        survey: '',
         isLoaded: false,
         errorMessage: '',
     }
@@ -18,6 +19,11 @@ class PropositionPage extends React.Component {
     componentDidMount = () => {
         // Clear error message before sending of another request
         this.setState({errorMessage: ''})
+        this.getSurvey()
+        this.getPropositions()
+    }
+
+    getPropositions = () => {
         fetch('/api/survey/proposition', {
             method: 'GET',
             headers: {
@@ -31,8 +37,21 @@ class PropositionPage extends React.Component {
                 this.setState({propositions})
                 const isLoaded = true;
                 this.setState({isLoaded})
-                console.log(this.state)
             })
+            .catch(errorMessage => this.setState({errorMessage}))
+    }
+
+    getSurvey = () => {
+        fetch('/api/survey', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + Auth.getJWT(),
+            },
+        })
+            .then(result => result.ok ? result.json() : Promise.reject('invalid'))
+            .then(survey => this.setState({survey}))
             .catch(errorMessage => this.setState({errorMessage}))
     }
 
@@ -43,6 +62,7 @@ class PropositionPage extends React.Component {
                 {!this.state.isLoaded
                     ? <Spinner/>
                     : <PropositionList proposition={this.props.match.params.propositionId}
+                                       survey={this.state.survey}
                                        propositions={this.state.propositions}/>}
                 <Spacer size={2}/>
             </>
