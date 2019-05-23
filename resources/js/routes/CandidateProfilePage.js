@@ -7,12 +7,11 @@ import Button from '../components/Button'
 import Input from '../components/Input'
 import ImageInput from '../components/ImageInput'
 import TextArea from '../components/TextArea'
-import * as PropTypes from 'prop-types'
 import Spacer from '../components/Spacer'
 import Spinner from '../components/Spinner'
 import ApiClient from '../ApiClient'
 
-class CandidateMainPage extends Component {
+class CandidateProfilePage extends Component {
     state = {
         isLoading: false,
     }
@@ -25,7 +24,9 @@ class CandidateMainPage extends Component {
                 this.setState({ isLoading: false })
                 return res
             })
-            .then(res => console.log(res))
+            .then(() => {
+                this.props.history.push('/proposition/0')
+            })
             .catch(err => console.error(err))
     }
 
@@ -41,7 +42,7 @@ class CandidateMainPage extends Component {
                             <div style={{ margin: 'auto' }}>
                                 <Spinner/>
                             </div> :
-                            <form className="profile-page__container" method="POST" onSubmit={this.handleSubmit} onChange={e => console.log(e)}>
+                            <form className="profile-page__container" method="POST" onSubmit={this.handleSubmit}>
                                 <ImageInput name="profile_picture" className="profile-page__pf" required capture/>
                                 <Input name="first_name" placeholder="Voornaam" className="profile-page__fn" autoComplete="given-name" required/>
                                 <Input name="last_name" placeholder="Achternaam" className="profile-page__ln" autoComplete="family-name" required/>
@@ -61,6 +62,4 @@ class CandidateMainPage extends Component {
     }
 }
 
-CandidateMainPage.propTypes = { match: PropTypes.any }
-
-export default CandidateMainPage
+export default CandidateProfilePage
