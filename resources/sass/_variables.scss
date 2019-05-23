@@ -11,6 +11,8 @@ $base-line-height: 1.6;
 $primary-font-color: rgba(0, 0, 0, .78);
 $city-council-color: #522871;
 $second-house-color: #c7da31;
+$second-house-color-dark: #a2b530;
+$second-house-color-light: #d9ec32;
 $accent-color: #e03894;
 $accent-color-dark: #c13776;
 $accent-color-light: #ff42ab;
@@ -19,6 +21,9 @@ $first-house-color: #fec809;
 $european-parliament-color: #e22948;
 $primary-color: #20436f;
 $background-color: linear-gradient(to bottom, #1a1a29, #4e4e59, #0f0f1e);
+$admin-background-color: #e5e5e5;
+$admin-login-text-color: #00bcd4;
+$admin-subtitle-color: #757575;
 
 :root {
     --second-house-color: #{$second-house-color};

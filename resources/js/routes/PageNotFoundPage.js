@@ -18,7 +18,7 @@ const PageNotFoundPage = () => (
                     De pagina die u probeert te zoeken is niet gevonden. Ga naar de inlogpagina om de peiling te starten.
                 </p>
                 <CardButtons>
-                    <LinkButton to="/">Login</LinkButton>
+                    <LinkButton block to="/">Login</LinkButton>
                 </CardButtons>
             </CardBody>
         </Card>

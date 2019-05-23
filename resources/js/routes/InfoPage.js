@@ -22,7 +22,7 @@ class InfoPage extends React.Component {
                         <p>U zult een aantal stellingen krijgen die met eens of oneens te beantwoorden zijn.
                             Zodra u een optie kiest gaat u door naar de volgende stelling. Veel succes!</p>
                         <CardButtons>
-                            <LinkButton block to="/proposition">Begin</LinkButton>
+                            <LinkButton block to="/proposition/0">Begin</LinkButton>
                         </CardButtons>
                     </CardBody>
                 </Card>
