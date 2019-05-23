@@ -18,7 +18,7 @@ const App = () => (
             <Switch>
                 <PrivateRoute path="/info" component={InfoPage}/>
                 {/*<Route path="/thank-you" component={CandidateThankYouPage} />*/}
-                <PrivateRoute path="/proposition/:propositionId" component={PropositionPage}/>
+                <PrivateRoute path="/proposition/:propositionNr" component={PropositionPage}/>
                 <PrivateRoute path="/feedback" component={FeedbackPage}/>
                 <PrivateRoute path="/results" component={VoterResultsPage}/>
                 <PrivateRoute path="/email" component={EmailPage}/>
