@@ -23,9 +23,15 @@
         "react-dom": "^16.2.0",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
-        "sass-loader": "^7.1.0"
+        "sass-loader": "^7.1.0",
+        "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@material/auto-init": "^1.0.0",
+        "@material/button": "^2.1.1",
+        "@material/card": "^2.1.1",
+        "@material/textfield": "^2.1.1",
+        "@material/typography": "^1.0.0",
         "classnames": "^2.2.6",
         "normalize-scss": "^7.0.1",
         "react-icons": "^3.7.0",
