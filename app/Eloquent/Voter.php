@@ -65,6 +65,10 @@ class Voter extends AppUser
                         ];
                     })
                     ->filter(function ($answers) {
+                        //dd($answers);
+                        if ($answers['voter_answer'] == null || $answers['candidate_answer'] == null) {
+                            return false;
+                        }
                         if ($answers['voter_answer']->proposition_id != $answers['candidate_answer']->proposition_id) {
                             throw new Exception("Proposition id's did not match!");
                         }
