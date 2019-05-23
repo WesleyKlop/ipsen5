@@ -22,18 +22,5 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/answer', 'AnswerController@submit');
     Route::get('/answer', 'AnswerController@show');
 
-    Route::post('/profile', function (\Illuminate\Http\Request $request) {
-        //TODO(WesleyKlop): Validation
-        $request->file('profile_picture')->storeAs(
-            'profiles', $request->user()->user_id
-        );
-        $request->user()->profile->update($request->only([
-            'first_name',
-            'last_name',
-            'bio',
-            'party',
-            'function',
-        ]));
-        return $request->user;
-    });
+    Route::post('/profile', 'ProfileController@submit');
 });
