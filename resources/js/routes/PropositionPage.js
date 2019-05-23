@@ -1,13 +1,15 @@
 import React from 'react'
+import ProgressBar from '../components/ProgressBar'
+import Spinner from '../components/Spinner'
 import Spacer from '../components/Spacer'
 import Auth from "../Auth";
-import Spinner from "../components/Spinner";
 import Proposition from "../components/Proposition";
 
 class PropositionPage extends React.Component {
     state = {
         propositions: [],
         survey: '',
+        progressBar: 10,
         isLoaded: false,
         errorMessage: '',
         answers: [],
@@ -47,10 +49,12 @@ class PropositionPage extends React.Component {
             }])
         }), () => {
             const {answers, propositions} = this.state
-            if (answers.length < propositions.length)
+            if (answers.length < propositions.length) {
+                this.setState({progressBar: answers.length / propositions.length * 100 + 10})
                 this.props.history.push((answers.length).toString())
-            else
+            } else {
                 this.saveAnswers()
+            }
         })
     }
 
@@ -88,6 +92,7 @@ class PropositionPage extends React.Component {
                         />
                 }
                 <Spacer size={2}/>
+                <ProgressBar progress={this.state.progressBar}/>
             </>
         )
     }
