@@ -14,6 +14,7 @@ class Candidate extends AppUser
     use AnswersPropositions;
 
     protected $guard = 'candidate';
+    protected $with = ['profile'];
     protected $fillable = [
         'url',
         'survey_id',

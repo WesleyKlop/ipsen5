@@ -15,12 +15,11 @@ class CreateSurveyCodesTable extends Migration
     {
         Schema::create('survey_codes', function (Blueprint $table) {
             $table->string('code', 6)->primary();
-            $table->string('username', 32);
             $table->uuid('user_id');
             $table->uuid('survey_id');
             $table->timestampTz('expire');
 
-            $table->foreign(['user_id', 'username'])->references(['user_id', 'username'])->on('admins');
+            $table->foreign(['user_id'])->references(['user_id'])->on('admins');
             $table->foreign('survey_id')->references('id')->on('surveys');
         });
     }

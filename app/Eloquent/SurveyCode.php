@@ -2,6 +2,7 @@
 
 namespace App\Eloquent;
 
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $username
  * @property string $user_id
  * @property string $survey_id
- * @property \DateTimeInterface $expire
+ * @property DateTimeInterface $expire
  */
 class SurveyCode extends Model
 {
@@ -19,7 +20,6 @@ class SurveyCode extends Model
     public $timestamps = false;
     protected $fillable = [
         'code',
-        'username',
         'user_id',
         'survey_id',
         'expire',

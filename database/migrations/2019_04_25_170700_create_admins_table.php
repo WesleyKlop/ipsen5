@@ -14,12 +14,12 @@ class CreateAdminsTable extends Migration
     public function up()
     {
         Schema::create('admins', function (Blueprint $table) {
-            $table->string('username', 32);
+            $table->text('username');
             $table->uuid('user_id');
             $table->string('password');
             $table->string('type');
 
-            $table->primary(['username', 'user_id']);
+            $table->primary('user_id');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
