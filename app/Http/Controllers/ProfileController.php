@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Eloquent\Candidate;
 use Illuminate\Http\Request;
+use Storage;
 
 class ProfileController extends Controller
 {
@@ -22,11 +23,26 @@ class ProfileController extends Controller
 
         // Handle Uploaded file. Saved as /profile/$userId.$extension
         $imageFile = $request->file('profile_picture');
-        $imageFileName = $candidate->user_id . '.' . ($imageFile->guessExtension() ?? '.jpg');
+        $extension = $imageFile->guessExtension() ?? '.jpg';
+        $imageFileName = $candidate->user_id . '.' . ($extension);
         $result = $imageFile->storeAs('public/profiles', $imageFileName);
 
         // Update User profile
-        $candidate->profile->update($profile);
+        $candidate->profile->update([
+            'first_name' => $profile['first_name'],
+            'last_name' => $profile['last_name'],
+            'bio' => $profile['bio'],
+            'party' => $profile['party'],
+            'function' => $profile['function'],
+            'image_extension' => $extension,
+        ]);
         return ['candidate' => $candidate, 'fileResult' => $result];
+    }
+
+    public function show(?string $candidateId) {
+        $files = array_filter(Storage::files('public/profiles', function ($fname) use ($candidateId) {
+            return strpos($fname, $candidateId) !== false;
+        }));
+        return $files;
     }
 }

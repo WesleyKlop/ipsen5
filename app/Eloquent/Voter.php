@@ -4,6 +4,7 @@ namespace App\Eloquent;
 
 
 use Exception;
+use Storage;
 
 /**
  * Class Voter
@@ -76,10 +77,14 @@ class Voter extends AppUser
                     })
                     ->count();
 
+                $profile = $candidate->profile;
+
                 return [
                     'matched' => $number_of_matches,
                     'percentage' => (($number_of_matches / $num_propositions) * 100),
                     'candidate_id' => $candidate->user_id,
+                    'profile' => $profile,
+                    'image' => Storage::url('public/profiles/'. $candidate->user_id . '.' . $profile->image_extension) ?? null,
                 ];
             })
             ->sortByDesc('matched')

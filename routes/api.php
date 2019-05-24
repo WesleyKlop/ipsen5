@@ -21,7 +21,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/survey/proposition', 'PropositionController@show');
     Route::post('/answer', 'AnswerController@submit');
     Route::get('/answer', 'AnswerController@show');
-
     Route::post('/profile', 'ProfileController@submit');
+    Route::get('/candidate/{candidateId}/profile', 'ProfileController@show');
     Route::get('/voter/results', 'ResultController@show');
 });
