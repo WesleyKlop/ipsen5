@@ -15,6 +15,7 @@ mix
     .react('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .js('resources/js/admin.js', 'public/js')
+    .sass('resources/sass/panel.scss', 'public/css')
     .sass('resources/sass/admin.scss', 'public/css', {
         includePaths: [path.resolve(__dirname, 'node_modules')],
     })

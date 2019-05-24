@@ -15,5 +15,10 @@
 Route::get('/admin/login', 'AdminLoginController@showLoginForm');
 Route::post('/admin/login', 'AdminLoginController@login');
 
+//TODO: Replace function with proper controller.
+Route::get('/admin', function() {
+    return view('panel');
+});
+
 // Fallback route for react routing
 Route::view('/{path?}', 'app')->where('path', '.*');
