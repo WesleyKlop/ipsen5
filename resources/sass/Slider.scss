@@ -6,4 +6,12 @@
         width: 100%;
         background: transparent;
     }
+
+    & .low {
+        drop-shadow: 0 4px 4px #333;
+    }
+}
+
+#pointer {
+    cursor: pointer;
 }
