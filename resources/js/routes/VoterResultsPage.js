@@ -13,31 +13,27 @@ class VoterResultsPage extends React.Component {
             <>
                 <div style={{ flex: '0.2', }}/>
                 <Card style={{ background: 'transparent', 'box-shadow': 'none' }}>
-                    <CardHeader>
+                    <CardHeader style={{'width': '550px', 'maxWidth': '550px', 'margin-left': '-110px'}}>
                         Top 5 politici
                     </CardHeader>
-                        <h2 style={{color: '#522871'}}>
-                            {this.state.results.map(candidate =>
+                        {this.state.results.map(candidate =>
                                 <div>
-                                    <Card>
-                                        {/*<div style = {{align: "left"}}>*/}
-                                        {/*    <img src = {candidate.image} width = "150" height = "100"></img>*/}
-                                        {/*</div>*/}
-                                        <div style={{'text-align': 'center'}}>
+                                    <Card style={{'maxWidth': '550px', 'margin-left': '-100px'}}>
+                                        <div className="voter-result-page__container">
 
-                                            <img src = {candidate.image} width = "150" height = "100"></img>
-                                            <p>{candidate.profile.first_name}</p>
-                                            <p style={{color: '#522871'}}>{candidate.percentage} %</p>
-                                            <p>{candidate.profile.function}</p>
+                                            <img src = {candidate.image} className="voter-result-page__pf" ></img>
+                                            <p className="voter-result-page__fn">{candidate.profile.first_name}</p>
+                                            <p className="voter-result-page__ln">{candidate.profile.last_name}</p>
+                                            <p className="voter-result-page__prc">{candidate.percentage} %</p>
+                                            <p className="voter-result-page__fnc"> {candidate.profile.function}</p>
                                         </div>
                                     </Card>
                                     <br></br>
                                 </div>
                             )}
-                        </h2>
 
                 </Card>
-                <div style={{ flex: '2' }}/>
+                {/*<div style={{ flex: '2' }}/>*/}
             </>
         )
     }
