@@ -3,6 +3,7 @@
 namespace App\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
+use Storage;
 
 /**
  * Class Profile
@@ -23,6 +24,7 @@ class Profile extends Model
         'function',
         'party',
         'bio',
+        'image_extension'
     ];
 
     public function user()
