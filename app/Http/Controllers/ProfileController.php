@@ -38,11 +38,4 @@ class ProfileController extends Controller
         ]);
         return ['candidate' => $candidate, 'fileResult' => $result];
     }
-
-    public function show(?string $candidateId) {
-        $files = array_filter(Storage::files('public/profiles', function ($fname) use ($candidateId) {
-            return strpos($fname, $candidateId) !== false;
-        }));
-        return $files;
-    }
 }

@@ -1,9 +1,8 @@
 import React from 'react'
-import Auth from "../Auth";
 import CardHeader from "../components/card/CardHeader";
-
 import Card from "../components/card/Card";
-import CardBody from '../components/card/CardBody'
+import ApiClient from '../ApiClient'
+
 class VoterResultsPage extends React.Component {
     state = {
         results: [],
@@ -42,14 +41,7 @@ class VoterResultsPage extends React.Component {
     }
 
     componentDidMount() {
-        fetch('/api/voter/results', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Authorization': 'Bearer ' + Auth.getJWT(),
-            },
-        })
-            .then(result => result.ok ? result.json() : Promise.reject('couldnt fetch'))
+        ApiClient.request('voter/results')
             .then(result => this.setResults(result))
             .catch(error => console.log(error));
     }
