@@ -17,16 +17,6 @@ class AdminLoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('login');
+        return view('auth.login');
     }
-
-    public function username()
-    {
-        return 'username';
-    }
-
-//    public function doLogin(Request $request) {
-//        $credentials = $request->only('username', 'password');
-//        dd($credentials);
-//    }
 }
