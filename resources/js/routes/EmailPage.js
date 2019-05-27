@@ -2,9 +2,9 @@ import React from 'react'
 import Card from "../components/card/Card";
 import CardHeader from "../components/card/CardHeader";
 import CardBody from "../components/card/CardBody";
-import Button from "../components/card/Button";
 import CardButtons from "../components/card/CardButtons";
 import EmailInput from "../components/EmailInput";
+import Button from "../components/Button";
 
 class EmailPage extends React.Component {
     state = {

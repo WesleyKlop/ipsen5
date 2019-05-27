@@ -3,8 +3,8 @@ import Card from "../components/card/Card";
 import CardHeader from "../components/card/CardHeader";
 import CardBody from "../components/card/CardBody";
 import CardButtons from "../components/card/CardButtons";
-import Button from "../components/card/Button";
 import Slider from "../components/Slider";
+import Button from "../components/Button";
 
 
 class FeedbackPage extends React.Component {
