@@ -18,7 +18,10 @@ class Profile extends Model
     protected $keyType = 'uuid';
     protected $fillable = [
         'user_id',
-        'name',
+        'first_name',
+        'last_name',
+        'function',
+        'party',
         'bio',
     ];
 

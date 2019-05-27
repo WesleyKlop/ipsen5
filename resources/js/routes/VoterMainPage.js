@@ -3,8 +3,10 @@ import Card from '../components/card/Card'
 import CardHeader from '../components/card/CardHeader'
 import CardBody from '../components/card/CardBody'
 import CardButtons from '../components/card/CardButtons'
-import Button from '../components/card/Button'
+import Button from '../components/Button'
 import CodeInput from '../components/CodeInput'
+import Spacer from '../components/Spacer'
+import Auth from "../Auth";
 
 class VoterMainPage extends React.Component {
     state = {
@@ -18,7 +20,7 @@ class VoterMainPage extends React.Component {
     render() {
         return (
             <>
-                <div style={{ flex: '1' }}/>
+                <Spacer/>
                 <Card>
                     <CardHeader message={this.state.errorMessage} onMessageClose={this.handleMessageClose}>
                         Login met code
@@ -32,7 +34,7 @@ class VoterMainPage extends React.Component {
                         </form>
                     </CardBody>
                 </Card>
-                <div style={{ flex: '2' }}/>
+                <Spacer size={2}/>
             </>
         )
     }
@@ -46,6 +48,8 @@ class VoterMainPage extends React.Component {
 
     getJWT = (e) => {
         e.preventDefault()
+        // Clear error message before sending of another request
+        this.setState({ errorMessage: '' })
         fetch('/api/voter/login', {
             method: 'POST',
             headers: {
@@ -56,13 +60,13 @@ class VoterMainPage extends React.Component {
                 code: this.state.loginCode,
             }),
         })
-            .then(result => result.ok ? result.text() : Promise.reject('invalid code'))
+            .then(result => result.ok ? result.json() : Promise.reject('invalid code'))
             .then(result => this.loginVoter(result))
             .catch(errorMessage => this.setState({ errorMessage }))
     }
 
     loginVoter = (jwt) => {
-        sessionStorage.setItem('jwt', jwt)
+        Auth.authenticate(jwt)
         this.props.history.push('/info')
     }
 }

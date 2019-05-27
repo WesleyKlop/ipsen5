@@ -1,14 +1,13 @@
 @import "variables";
 
-.input {
+.input, .textarea {
     border: 0;
     padding: 0 10px;
     border-top: 2px solid $body-bg;
-    height: 35px;
-    line-height: 35px;
     background-color: $body-bg;
     font-size: $base-font-size;
     font-family: $base-font;
+    width: 100%;
 
     &:focus {
         outline: none;
@@ -28,9 +27,21 @@
     }
 }
 
+.input {
+    height: 35px;
+    line-height: 35px;
+}
+
+.textarea {
+    height: calc(100% - 2px);
+    resize: none;
+    line-height: $base-line-height;
+}
+
 .input__wrapper {
     background-color: $body-bg;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    position: relative;
 }
 
 .input__underline {
@@ -40,4 +51,6 @@
     transform: scaleX(0);
     transform-origin: center;
     transition: transform 250ms ease;
+    bottom: 0;
+    position: absolute;
 }

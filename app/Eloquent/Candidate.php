@@ -14,6 +14,7 @@ class Candidate extends AppUser
     use AnswersPropositions;
 
     protected $guard = 'candidate';
+    protected $with = ['profile'];
     protected $fillable = [
         'url',
         'survey_id',
@@ -32,6 +33,8 @@ class Candidate extends AppUser
 
     public function answers()
     {
-        return $this->hasMany(Answer::class, 'user_id');
+        return $this
+            ->hasMany(Answer::class, 'user_id')
+            ->where('survey_id', $this->survey_id);
     }
 }

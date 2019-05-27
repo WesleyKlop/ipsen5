@@ -7,12 +7,13 @@
     background: $accent-color;
     color: white;
     border: none;
-    padding: 0;
+    padding: 0 10px;
     min-width: 84px;
     transition: 0.3s;
     line-height: 37px;
     text-transform: uppercase;
     outline: none;
+    text-decoration: none;
 
     &:not(:disabled):hover {
         background: $accent-color-light;
@@ -27,6 +28,22 @@
 
     &:disabled {
         opacity: 0.5;
+    }
+
+    & svg {
+        vertical-align: middle;
+    }
+
+    &.success {
+        background: $second-house-color;
+
+        &:not(:disabled):hover {
+            background: $second-house-color-light;
+        }
+
+        &:active {
+            background: $second-house-color-dark;
+        }
     }
 }
 

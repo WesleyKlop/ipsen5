@@ -14,12 +14,11 @@ class CreateTeachersTable extends Migration
     public function up()
     {
         Schema::create('teachers', function (Blueprint $table) {
-            $table->string('username', 32);
             $table->uuid('user_id');
             $table->uuid('survey_id');
 
-            $table->primary(['username', 'user_id']);
-            $table->foreign(['user_id', 'username'])->references(['user_id', 'username'])->on('admins');
+            $table->primary('user_id');
+            $table->foreign('user_id')->references('user_id')->on('admins');
             $table->foreign('survey_id')->references('id')->on('surveys');
         });
     }
