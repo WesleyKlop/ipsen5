@@ -21,8 +21,21 @@
        <div class="mdc-top-app-bar__row">
          <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
              <span class="mdc-top-app-bar__title">Europese Peiling</span>
-             <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">sort</a>
-             <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">more_vert</a>
+             <div class="mdc-text-field mdc-text-field--with-leading-icon mdc-text-field--outlined search-field">
+                 <i class="material-icons mdc-text-field__icon hide-button" id="pw-eye" tabindex="0" role="button">search</i>
+                 <input class="mdc-text-field__input">
+                 <div class="mdc-notched-outline">
+                     <div class="mdc-notched-outline__leading"></div>
+                     <div class="mdc-notched-outline__notch">
+                         <label class="mdc-floating-label">Zoek...</label>
+                     </div>
+                     <div class="mdc-notched-outline__trailing"></div>
+                 </div>
+             </div>
+             <div>
+                <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">sort</a>
+                <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">more_vert</a>
+             </div>
          </section>
        </div>
     </header>

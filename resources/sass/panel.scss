@@ -26,11 +26,27 @@ body {
 }
 
 .mdc-top-app-bar{
+  height: 10%;
   width: 80%;
   border: 0;
+  justify-content: center;
   @include mdc-top-app-bar-fill-color($admin-header-color);
   @include mdc-top-app-bar-icon-ink-color($primary-font-color);
   @include mdc-top-app-bar-ink-color($primary-font-color);
+}
+
+.mdc-text-field.mdc-text-field--focused {
+  @include mdc-text-field-label-color($stemapp-blue);
+  @include mdc-text-field-line-ripple-color($stemapp-blue);
+  @include mdc-text-field-outline-color($stemapp-blue);
+}
+
+.mdc-text-field:not(.mdc-text-field--focused){
+  @include mdc-text-field-line-ripple-color($stemapp-blue);
+}
+
+.mdc-top-app-bar__section {
+  justify-content: space-between;
 }
 
 .mdc-drawer{
