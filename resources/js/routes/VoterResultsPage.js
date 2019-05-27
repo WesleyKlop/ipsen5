@@ -50,7 +50,6 @@ class VoterResultsPage extends React.Component {
         this.setState({
             results
         });
-        console.log(this.state)
     }
 }
 
