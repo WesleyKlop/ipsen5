@@ -1,6 +1,7 @@
 //Material design components
 @import "~@material/drawer/mdc-drawer";
 @import "~@material/list/mdc-list";
+@import "~@material/top-app-bar/mdc-top-app-bar";
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
@@ -15,6 +16,51 @@ body {
   color: $primary-font-color;
   background: $admin-background-color;
   height: 100vh;
+  margin: 0;
+}
+
+.mdc-drawer{
+  width: 300px;
+  padding: 0;
+  margin: 0;
+  @include mdc-drawer-item-activated-text-ink-color($stemapp-blue);
+  @include mdc-drawer-item-activated-icon-ink-color($stemapp-blue);
+  @include mdc-drawer-activated-overlay-color($stemapp-light-blue);
+}
+
+.mdc-drawer .mdc-list-item:hover {
+  background-color: $stemapp-blue-selected;
+  color: $stemapp-blue;
+
+  i {
+    color: $stemapp-blue;
+  }
+}
+
+.logo{
+  max-width: 200px;
+  position: absolute;
+  bottom: 80px;
+  left: 50px;
+}
+
+.mdc-drawer__header{
+  position: relative;
+  padding: 0;
+}
+
+.mdc-drawer .mdc-drawer__title {
+  position: absolute;
+  bottom: 50px;
+  left: 16px;
+  color: $admin-title-color;
+}
+
+.mdc-drawer .mdc-drawer__subtitle {
+  position: absolute;
+  bottom: 25px;
+  left: 16px;
+  color: $admin-subtitle-color;
 }
 
 

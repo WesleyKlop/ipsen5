@@ -22,8 +22,12 @@ $european-parliament-color: #e22948;
 $primary-color: #20436f;
 $background-color: linear-gradient(to bottom, #1a1a29, #4e4e59, #0f0f1e);
 $admin-background-color: #e5e5e5;
-$admin-login-text-color: #00bcd4;
-$admin-subtitle-color: #757575;
+$stemapp-blue: #00bcd4;
+$stemapp-light-blue: #88dfea;
+$stemapp-blue-selected: #e3f7fa;
+$admin-subtitle-login: #757575;
+$admin-title-color: #e7e7e8;
+$admin-subtitle-color: #a0a0a6;
 
 :root {
     --second-house-color: #{$second-house-color};

@@ -53,7 +53,7 @@ body {
 }
 
 .caption {
-  color: $admin-subtitle-color;
+  color: $admin-subtitle-login;
   margin: 0 0 0 3px;
 }
 
@@ -66,24 +66,24 @@ body {
 }
 
 .mdc-text-field__icon.hide-button:active{
-  color: $admin-subtitle-color;
+  color: $admin-subtitle-login;
 }
 
 .mdc-text-field.mdc-text-field--focused {
-  @include mdc-text-field-label-color($admin-login-text-color);
-  @include mdc-text-field-line-ripple-color($admin-login-text-color);
+  @include mdc-text-field-label-color($stemapp-blue);
+  @include mdc-text-field-line-ripple-color($stemapp-blue);
 }
 
 .mdc-text-field:not(.mdc-text-field--focused){
-  @include mdc-text-field-line-ripple-color($admin-login-text-color);
+  @include mdc-text-field-line-ripple-color($stemapp-blue);
 }
 
 .mdc-button--raised{
   margin: 15px 0;
-  @include mdc-button-outline-color($admin-login-text-color);
-  @include mdc-button-container-fill-color($admin-login-text-color);
+  @include mdc-button-outline-color($stemapp-blue);
+  @include mdc-button-container-fill-color($stemapp-blue);
 }
 
 .mdc-button:not(.mdc-button--raised){
-  @include mdc-button-ink-color($admin-login-text-color);
+  @include mdc-button-ink-color($stemapp-blue);
 }

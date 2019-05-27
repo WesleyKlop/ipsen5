@@ -10,7 +10,7 @@
     <!-- Styles -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="{{ mix('css/panel.css') }}" rel="stylesheet">
-    <script defer src="{{ mix('js/admin.js') }}"></script>
+    <script defer src="{{ mix('js/adminPanel.js') }}"></script>
     <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
@@ -18,6 +18,8 @@
 
 <aside class="mdc-drawer">
     <div class="mdc-drawer__header">
+        <img src="/images/logo_background_admin_panel.svg"/>
+        <img class="logo" src="/images/logo_shadow.png"/>
         <h3 class="mdc-drawer__title">Beheerder</h3>
         <h6 class="mdc-drawer__subtitle">beheerder@fzes.nl</h6>
     </div>
@@ -46,7 +48,6 @@
         </nav>
     </div>
 </aside>
-
 
 </body>
 </html>

@@ -897,6 +897,21 @@
   dependencies:
     "@material/feature-targeting" "^0.44.1"
 
+"@material/top-app-bar@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@material/top-app-bar/-/top-app-bar-2.1.1.tgz#490499f29ffa899dc70cbec834ae98cdf3806057"
+  integrity sha512-i32LkVeMXSH8xmZ2h746Dpovhw+iHCQNYRl7ugLBSshnTmoOD3IZsCnSTRtFuGjjW/8X/kDY3aCxpfpRyHLKzg==
+  dependencies:
+    "@material/animation" "^1.0.0"
+    "@material/base" "^1.0.0"
+    "@material/elevation" "^1.1.0"
+    "@material/ripple" "^2.1.1"
+    "@material/rtl" "^0.42.0"
+    "@material/shape" "^1.1.1"
+    "@material/theme" "^1.1.0"
+    "@material/typography" "^1.0.0"
+    tslib "^1.9.3"
+
 "@material/typography@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@material/typography/-/typography-1.0.0.tgz#327ecfcac5ee3af8a3a102f3f125a761202f4189"
