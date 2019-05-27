@@ -56,13 +56,20 @@ class Voter extends AppUser
             ->survey
             ->candidates
             ->map(function ($candidate) use ($user_answers, $num_propositions) {
+                // fetch all answers of the candidate,
+                // so they're in memory,
+                // and we don't have to fetch each answer from the db
+                $candidate_answers = $candidate->answers->all();
+
                 $number_of_matches = $user_answers
-                    ->map(function ($answer) use($candidate) {
+                    ->map(function ($answer) use($candidate_answers) {
+
                         return [
                             "voter_answer" => $answer,
-                            "candidate_answer" => $candidate->answers
-                                ->where('proposition_id', $answer->proposition_id)
-                                ->first()
+                            "candidate_answer" => $candidate_answers[array_search($answer->proposition_id, array_column($candidate_answers, 'proposition_id'))]
+                                //$candidate->answers
+                                //->where('proposition_id', $answer->proposition_id)
+                                //->first()
                         ];
                     })
                     ->filter(function ($answers) {

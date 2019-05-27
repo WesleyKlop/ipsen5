@@ -13,12 +13,12 @@ class VoterResultsPage extends React.Component {
             <>
                 <div style={{ flex: '0.2', }}/>
                 <Card style={{ background: 'transparent', 'box-shadow': 'none' }}>
-                    <CardHeader style={{'width': '550px', 'maxWidth': '550px', 'margin-left': '-110px'}}>
-                        Top 5 politici
+                    <CardHeader style={{'width': '550px', 'maxWidth': '550px', 'margin-left': '-110px', 'height': '100px'}}>
+                        <h1>Top 5 politici</h1>
                     </CardHeader>
                         {this.state.results.map(candidate =>
                                 <div>
-                                    <Card style={{'maxWidth': '550px', 'margin-left': '-100px'}}>
+                                    <Card style={{'width': '550px', 'maxWidth': '550px', 'margin-left': '-100px'}}>
                                         <div className="voter-result-page__container">
 
                                             <img src = {candidate.image} className="voter-result-page__pf" ></img>
@@ -33,7 +33,10 @@ class VoterResultsPage extends React.Component {
                             )}
 
                 </Card>
-                {/*<div style={{ flex: '2' }}/>*/}
+                {/*@NOTE:*/}
+                {/*    This somehow makes the page looks fine?*/}
+                {/* */}
+                <div style={{ flex: '2' }}/>
             </>
         )
     }
