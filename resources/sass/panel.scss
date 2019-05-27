@@ -2,6 +2,7 @@
 @import "~@material/drawer/mdc-drawer";
 @import "~@material/list/mdc-list";
 @import "~@material/top-app-bar/mdc-top-app-bar";
+@import "~@material/textfield/mdc-text-field";
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
@@ -19,8 +20,21 @@ body {
   margin: 0;
 }
 
+.headerwrapper{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.mdc-top-app-bar{
+  width: 80%;
+  border: 0;
+  @include mdc-top-app-bar-fill-color($admin-header-color);
+  @include mdc-top-app-bar-icon-ink-color($primary-font-color);
+  @include mdc-top-app-bar-ink-color($primary-font-color);
+}
+
 .mdc-drawer{
-  width: 300px;
+  width: 20%;
   padding: 0;
   margin: 0;
   @include mdc-drawer-item-activated-text-ink-color($stemapp-blue);

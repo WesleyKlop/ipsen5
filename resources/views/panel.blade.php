@@ -16,6 +16,18 @@
 </head>
 <body>
 
+<div class="headerwrapper">
+    <header class="mdc-top-app-bar">
+       <div class="mdc-top-app-bar__row">
+         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+             <span class="mdc-top-app-bar__title">Europese Peiling</span>
+             <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">sort</a>
+             <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">more_vert</a>
+         </section>
+       </div>
+    </header>
+</div>
+
 <aside class="mdc-drawer">
     <div class="mdc-drawer__header">
         <img src="/images/logo_background_admin_panel.svg"/>
