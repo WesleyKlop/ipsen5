@@ -30,6 +30,7 @@
         "@material/auto-init": "^1.0.0",
         "@material/button": "^2.1.1",
         "@material/card": "^2.1.1",
+        "@material/drawer": "^2.1.1",
         "@material/textfield": "^2.1.1",
         "@material/typography": "^1.0.0",
         "classnames": "^2.2.6",

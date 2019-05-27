@@ -1,3 +1,7 @@
+//Material design components
+@import "~@material/drawer/mdc-drawer";
+@import "~@material/list/mdc-list";
+
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
 @import 'variables';
@@ -12,3 +16,5 @@ body {
   background: $admin-background-color;
   height: 100vh;
 }
+
+
