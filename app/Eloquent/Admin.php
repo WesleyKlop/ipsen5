@@ -18,4 +18,11 @@ class Admin extends AppUser
         'password',
         'type',
     ];
+
+    public function isInTrial() {
+        if($this->type === 'admin') {
+            return false;
+        }
+        return $this->hasOne(Trial::class)->exists();
+    }
 }
