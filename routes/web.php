@@ -15,8 +15,10 @@
 Route::get('/admin/login', 'AdminLoginController@showLoginForm');
 Route::post('/admin/login', 'AdminLoginController@login');
 
+Route::get('/admin/manage-survey', 'ManageSurveyController@showManageSurvey');
+
 // Fallback route for react routing
 Route::view('/{path?}', 'app')->where('path', '.*');
 
-//Route::get('/admin/survey', 'ManageSurveyController@showManageSurvey');
-Route::view('/admin/survey', 'manage-survey');
+
+//Route::view('/admin/survey', 'manage-survey');

@@ -803,6 +803,21 @@
     "@material/theme" "^1.1.0"
     tslib "^1.9.3"
 
+"@material/list@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@material/list/-/list-2.1.1.tgz#fac8fc886d72c33ffb0f91abbc2483570cda4674"
+  integrity sha512-yZFNLQ6+nTGTJsVuqbYh9gSC+aUh3hC/0aJZzAjVCCY0qSi1vWDHcYdgmgDr4THznlcPr9TxAi6IBiJ/fHXjZg==
+  dependencies:
+    "@material/base" "^1.0.0"
+    "@material/dom" "^1.1.0"
+    "@material/feature-targeting" "^0.44.1"
+    "@material/ripple" "^2.1.1"
+    "@material/rtl" "^0.42.0"
+    "@material/shape" "^1.1.1"
+    "@material/theme" "^1.1.0"
+    "@material/typography" "^1.0.0"
+    tslib "^1.9.3"
+
 "@material/notched-outline@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@material/notched-outline/-/notched-outline-1.1.1.tgz#a79c8aa3c5662b676bb46741658f434afa38f0da"

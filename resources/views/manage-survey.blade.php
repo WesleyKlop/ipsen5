@@ -9,24 +9,34 @@
     <title>StemApp 2.0 - manage survey</title>
     <!-- Styles -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="{{ mix('css/manage-survey.css') }}" rel="stylesheet">
-    <script defer src="{{ mix('js/survey.js') }}"></script>
+    <link href="{{ mix('css/ManageSurvey.css') }}" rel="stylesheet">
+    <script defer src="{{ mix('js/admin.js') }}"></script>
     <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-<div class="mdc-card">
-    <ul class="mdc-list">
-        <li class="mdc-list-item" tabindex="0">
-            <span class="mdc-list-item__text">Single-line item</span>
-        </li>
-        <li class="mdc-list-item">
-            <span class="mdc-list-item__text">Single-line item</span>
-        </li>
-        <li class="mdc-list-item">
-            <span class="mdc-list-item__text">Single-line item</span>
-        </li>
-    </ul>
+<div class="manage-survey-wrapper">
+    <div class="mdc-card--outlined">
+        <h2>Stellingen</h2>
+        <div class="manage-survey-row">
+            <p>survey stelling hier bla bla bal</p>
+        </div>
+        <div class="manage-survey-row">
+            <p>survey stelling hier bla bla bal</p>
+        </div>
+        <div class="manage-survey-row">
+            <p>survey stelling hier bla bla bal</p>
+        </div>
+
+        <div class="mdc-text-field mdc-text-field--fullwidth">
+            <input class="mdc-text-field__input"
+                   type="text"
+                   placeholder="Nieuwe stelling"
+                   aria-label="Full-Width Text Field">
+            <div class="mdc-line-ripple"></div>
+        </div>
+    </div>
 </div>
+
 </body>
 </html>

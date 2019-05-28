@@ -18,3 +18,6 @@ mix
     .sass('resources/sass/admin.scss', 'public/css', {
         includePaths: [path.resolve(__dirname, 'node_modules')],
     })
+    .sass('resources/sass/ManageSurvey.scss', 'public/css', {
+        includePaths: [path.resolve(__dirname, 'node_modules')],
+    })
