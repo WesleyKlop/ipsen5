@@ -17,24 +17,20 @@
 <body>
 <div class="manage-survey-wrapper">
     <div class="mdc-card--outlined">
-        <h2>Stellingen</h2>
+        <h2>Peilingen</h2>
+        @foreach($surveys as $survey)
         <div class="manage-survey-row">
-            <p>survey stelling hier bla bla bal</p>
+                <td>{{$survey->name}}</td>
         </div>
-        <div class="manage-survey-row">
-            <p>survey stelling hier bla bla bal</p>
-        </div>
-        <div class="manage-survey-row">
-            <p>survey stelling hier bla bla bal</p>
-        </div>
-
-        <div class="mdc-text-field mdc-text-field--fullwidth">
+        @endforeach
+        <div class="mdc-text-field mdc-text-field--fullwidth new-survey-input">
+            <i class="" id="pw-eye" tabindex="0" role="button">remove_red_eye</i>
             <input class="mdc-text-field__input"
                    type="text"
-                   placeholder="Nieuwe stelling"
-                   aria-label="Full-Width Text Field">
+                   placeholder="Nieuwe peiling">
             <div class="mdc-line-ripple"></div>
         </div>
+        <p>{{$surveys -> count()}}</p>
     </div>
 </div>
 

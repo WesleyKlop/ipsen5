@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Eloquent\Survey;
+
 class ManageSurveyController extends Controller{
 
     public function showManageSurvey() {
-        return view('manage-survey');
+        $surveys = Survey::get();
+
+        return view('manage-survey') -> with('surveys', $surveys);
     }
 }

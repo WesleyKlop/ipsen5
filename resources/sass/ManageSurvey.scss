@@ -36,9 +36,11 @@ h2 {
     .manage-survey-row {
         padding-left: 20px;
     }
-
     .mdc-text-field {
         padding-left: 20px;
+    }
+    .mdc-text-field__input{
+        background: lightgray;
         width: 90%;
     }
         @include mdc-text-field-line-ripple-color($second-house-color);
