@@ -32,12 +32,16 @@ h2 {
     .manage-survey-row {
         padding-left: 20px;
         background: lightblue;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        border: 1px solid;
+        //text-align: center;
 
         .material-icons {
-            display: inline-block;
-            text-align: right;
-            position: center;
-
+            cursor: pointer;
+            font-size: 36px;
+            background: red;
         }
     }
 
