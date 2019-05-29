@@ -28,7 +28,7 @@ body {
 
 .mdc-top-app-bar{
   height: 10%;
-  width: 80%;
+  width: 80vw;
   border: 0;
   justify-content: center;
   @include mdc-top-app-bar-fill-color($admin-header-color);
@@ -67,7 +67,7 @@ body {
 }
 
 .mdc-drawer {
-  width: 20%;
+  width: 20vw;
   padding: 0;
   margin: 0;
   @include mdc-drawer-item-activated-text-ink-color($stemapp-blue);
