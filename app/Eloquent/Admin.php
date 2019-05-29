@@ -20,9 +20,17 @@ class Admin extends AppUser
     ];
 
     public function isInTrial() {
-        if($this->type === 'admin') {
+        if($this->type !== 'admin') {
             return false;
         }
         return $this->hasOne(Trial::class)->exists();
+    }
+
+    public function removeFromTrial() {
+        if($this->type !== 'admin') {
+            return;
+        }
+
+        Trail::findOrFail($this)->delete();
     }
 }
