@@ -20,8 +20,8 @@
         <h2>Peilingen</h2>
         @foreach($surveys as $survey)
         <div class="manage-survey-row">
-            <p>{{$survey->name}}
-            <i class="material-icons mdc-text-field__icon">more_vert</i></p>
+            <p>{{$survey->name}}</p>
+            <i class="material-icons mdc-text-field__icon">more_vert</i>
         </div>
         @endforeach
         <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--with-trailing-icon new-survey-input">
