@@ -10,7 +10,7 @@
     <!-- Styles -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="{{ mix('css/ManageSurvey.css') }}" rel="stylesheet">
-    <script defer src="{{ mix('js/admin.js') }}"></script>
+    <script defer src="{{ mix('js/ManageSurvey.js') }}"></script>
     <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
@@ -20,17 +20,18 @@
         <h2>Peilingen</h2>
         @foreach($surveys as $survey)
         <div class="manage-survey-row">
-                <td>{{$survey->name}}</td>
+            <p>{{$survey->name}}
+            <i class="material-icons mdc-text-field__icon">more_vert</i></p>
         </div>
         @endforeach
-        <div class="mdc-text-field mdc-text-field--fullwidth new-survey-input">
-            <i class="" id="pw-eye" tabindex="0" role="button">remove_red_eye</i>
+        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--with-trailing-icon new-survey-input">
+            <i class="material-icons mdc-text-field__icon" tabindex="0">add_circle</i>
             <input class="mdc-text-field__input"
                    type="text"
                    placeholder="Nieuwe peiling">
             <div class="mdc-line-ripple"></div>
         </div>
-        <p>{{$surveys -> count()}}</p>
+            <p>{{$surveys -> count()}} / @verbatim{{$maxNumberOfSurveys}}@endverbatim</p>
     </div>
 </div>
 

@@ -19,10 +19,6 @@ body {
     overflow: hidden;
 
 }
-.mdc-line-ripple {
-    color: $second-house-color;
-}
-
 h2 {
     padding: 20px;
 }
@@ -35,14 +31,22 @@ h2 {
 
     .manage-survey-row {
         padding-left: 20px;
-    }
-    .mdc-text-field {
-        padding-left: 20px;
-    }
-    .mdc-text-field__input{
-        background: lightgray;
-        width: 90%;
-    }
-        @include mdc-text-field-line-ripple-color($second-house-color);
+        background: lightblue;
 
+        .material-icons {
+            display: inline-block;
+            text-align: right;
+            position: center;
+
+        }
+    }
+
+    .mdc-text-field{
+        @include mdc-text-field-line-ripple-color($admin-login-text-color);
+    }
+
+    .mdc-text-field:not(.mdc-text-field--focused){
+        @include mdc-text-field-line-ripple-color($admin-login-text-color);
+    }
 }
+
