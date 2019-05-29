@@ -31,6 +31,7 @@
         "@material/button": "^2.1.1",
         "@material/card": "^2.1.1",
         "@material/drawer": "^2.1.1",
+        "@material/icon-button": "^2.3.0",
         "@material/textfield": "^2.1.1",
         "@material/top-app-bar": "^2.1.1",
         "@material/typography": "^1.0.0",

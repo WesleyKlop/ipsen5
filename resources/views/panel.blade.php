@@ -47,6 +47,7 @@
         <img class="logo" src="/images/logo_shadow.png"/>
         <h3 class="mdc-drawer__title">Beheerder</h3>
         <h6 class="mdc-drawer__subtitle">beheerder@fzes.nl</h6>
+        <button class="mdc-icon-button material-icons">arrow_drop_down</button>
     </div>
     <div class="mdc-drawer__content">
         <nav class="mdc-list">

@@ -3,6 +3,7 @@
 @import "~@material/list/mdc-list";
 @import "~@material/top-app-bar/mdc-top-app-bar";
 @import "~@material/textfield/mdc-text-field";
+@import "~@material/icon-button/mdc-icon-button";
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
@@ -35,6 +36,10 @@ body {
   @include mdc-top-app-bar-ink-color($primary-font-color);
 }
 
+.mdc-text-field{
+  width: 40%;
+}
+
 .mdc-text-field.mdc-text-field--focused {
   @include mdc-text-field-label-color($stemapp-blue);
   @include mdc-text-field-line-ripple-color($stemapp-blue);
@@ -49,24 +54,6 @@ body {
   justify-content: space-between;
 }
 
-.mdc-drawer{
-  width: 20%;
-  padding: 0;
-  margin: 0;
-  @include mdc-drawer-item-activated-text-ink-color($stemapp-blue);
-  @include mdc-drawer-item-activated-icon-ink-color($stemapp-blue);
-  @include mdc-drawer-activated-overlay-color($stemapp-light-blue);
-}
-
-.mdc-drawer .mdc-list-item:hover {
-  background-color: $stemapp-blue-selected;
-  color: $stemapp-blue;
-
-  i {
-    color: $stemapp-blue;
-  }
-}
-
 .logo{
   max-width: 200px;
   position: absolute;
@@ -79,18 +66,43 @@ body {
   padding: 0;
 }
 
-.mdc-drawer .mdc-drawer__title {
-  position: absolute;
-  bottom: 50px;
-  left: 16px;
-  color: $admin-title-color;
-}
+.mdc-drawer {
+  width: 20%;
+  padding: 0;
+  margin: 0;
+  @include mdc-drawer-item-activated-text-ink-color($stemapp-blue);
+  @include mdc-drawer-item-activated-icon-ink-color($stemapp-blue);
+  @include mdc-drawer-activated-overlay-color($stemapp-light-blue);
 
-.mdc-drawer .mdc-drawer__subtitle {
-  position: absolute;
-  bottom: 25px;
-  left: 16px;
-  color: $admin-subtitle-color;
-}
+  .mdc-drawer__title {
+    position: absolute;
+    bottom: 50px;
+    left: 16px;
+    color: $admin-title-color;
+  }
 
+  .mdc-drawer__subtitle {
+    position: absolute;
+    bottom: 25px;
+    left: 16px;
+    color: $admin-subtitle-color;
+  }
+
+  .mdc-icon-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: $admin-subtitle-color;
+  }
+
+  .mdc-list-item:hover {
+    background-color: $stemapp-blue-selected;
+    color: $stemapp-blue;
+
+    i {
+      color: $stemapp-blue;
+    }
+  }
+
+}
 
