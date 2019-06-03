@@ -29,44 +29,37 @@ h2 {
     height: auto;
     border-radius: 5px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
+    a {
+        cursor: pointer;
+        color: black;
+        text-decoration: none;
+    }
 
     .manage-survey-row {
-        //background: lightblue;
-        //border: 1px solid;
         padding-left: 20px;
         display: flex;
         justify-content: space-between;
         flex-direction: row;
 
         .material-icons {
-            //background: red;
             cursor: pointer;
-            font-size: 36px;
-            padding: 10px;
+            font-size: 42px;
+            padding-right: 40px;
+            color: #BCBCBC;
         }
     }
 
     .mdc-text-field{
-        padding-left: 10px;
-        .mdc-text-field__input {
-            //border: 1px solid;
-            display: flex;
-            width: 90%;
-            padding-left: 10px;
-            border-bottom: 4px, solid, $admin-login-text-color;
-            //@include mdc-line-ripple-color($admin-login-text-color);
-            //@include mdc-text-field-line-ripple-color($admin-login-text-color);
-        }
-        .material-icons {
-            //background: red;
-            cursor: pointer;
-            font-size: 36px;
-            padding-top: 50px;
-        }
+        width: 93%;
     }
+}
 
-    //.mdc-text-field:not(.mdc-text-field--focused){
-    //    @include mdc-text-field-line-ripple-color($admin-login-text-color);
-    //}
+.mdc-text-field.mdc-text-field--focused {
+    @include mdc-text-field-label-color($admin-login-text-color);
+    @include mdc-text-field-line-ripple-color($admin-login-text-color);
+}
+
+.mdc-text-field:not(.mdc-text-field--focused){
+    @include mdc-text-field-line-ripple-color($admin-login-text-color);
 }
 
