@@ -29,9 +29,9 @@
             <input class="mdc-text-field__input"
                    type="text"
                    placeholder="Nieuwe peiling">
-            <div class="mdc-line-ripple"></div>
+{{--            <div class="mdc-line-ripple"></div>--}}
         </div>
-            <p>{{$surveys -> count()}} / @verbatim{{$maxNumberOfSurveys}}@endverbatim</p>
+            <p>{{$surveys -> count()}} / {{$maxNumberOfSurveys}}</p>
     </div>
 </div>
 

@@ -16,12 +16,6 @@ body {
     display: flex;
     justify-content: center;
     overflow: hidden;
-    .material-icons {
-        //background: red;
-        cursor: pointer;
-        font-size: 36px;
-        padding: 10px;
-    }
 }
 h2 {
     padding: 20px;
@@ -34,7 +28,7 @@ h2 {
     width: 90%;
     height: auto;
     border-radius: 5px;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
 
     .manage-survey-row {
         //background: lightblue;
@@ -43,21 +37,36 @@ h2 {
         display: flex;
         justify-content: space-between;
         flex-direction: row;
+
+        .material-icons {
+            //background: red;
+            cursor: pointer;
+            font-size: 36px;
+            padding: 10px;
+        }
     }
 
     .mdc-text-field{
-        @include mdc-text-field-line-ripple-color($admin-login-text-color);
         padding-left: 10px;
         .mdc-text-field__input {
             //border: 1px solid;
             display: flex;
             width: 90%;
-            padding: 10px;
+            padding-left: 10px;
+            border-bottom: 4px, solid, $admin-login-text-color;
+            //@include mdc-line-ripple-color($admin-login-text-color);
+            //@include mdc-text-field-line-ripple-color($admin-login-text-color);
+        }
+        .material-icons {
+            //background: red;
+            cursor: pointer;
+            font-size: 36px;
+            padding-top: 50px;
         }
     }
 
-    .mdc-text-field:not(.mdc-text-field--focused){
-        @include mdc-text-field-line-ripple-color($admin-login-text-color);
-    }
+    //.mdc-text-field:not(.mdc-text-field--focused){
+    //    @include mdc-text-field-line-ripple-color($admin-login-text-color);
+    //}
 }
 

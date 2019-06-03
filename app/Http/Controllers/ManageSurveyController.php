@@ -10,6 +10,6 @@ class ManageSurveyController extends Controller{
     public function showManageSurvey() {
         $surveys = Survey::get();
 
-        return view('manage-survey') -> with('surveys', $surveys);
+        return view('manage-survey', self::maxNumberOfSurveys) -> with('surveys', $surveys);
     }
 }
