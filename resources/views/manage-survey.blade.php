@@ -19,10 +19,10 @@
     <div class="mdc-card--outlined">
         <h2>Peilingen</h2>
         @foreach($surveys as $survey)
-        <div class="manage-survey-row">
-            <a href="{{url()->current().'/'.$survey->id}}">{{$survey->name}}</a>
-            <i class="material-icons mdc-text-field__icon" tabindex="0" role="button">more_vert</i>
-        </div>
+            <div class="manage-survey-row">
+                <a href="{{url()->current().'/'.$survey->id}}">{{$survey->name}}</a>
+                <i class="material-icons mdc-text-field__icon" tabindex="0" role="button">more_vert</i>
+            </div>
             <br>
         @endforeach
 {{--        <br>--}}
@@ -35,7 +35,7 @@
             </div>
             <i class="material-icons mdc-text-field__icon add-survey-icon" tabindex="0" role="button" >add_circle</i>
         </div>
-            <p>{{$surveys -> count()}} / max number of surveys here</p>
+            <p>TOTO set this in upper right corner of input field ->{{$surveys -> count()}} / 50</p>
     </div>
 </div>
 </body>
