@@ -19,19 +19,23 @@
     <div class="mdc-card--outlined">
         <h2>Peilingen</h2>
         @foreach($surveys as $survey)
-        <div class="manage-survey-row">
-            <p>{{$survey->name}}
-            <i class="material-icons mdc-text-field__icon">more_vert</i></p>
-        </div>
+            <div class="manage-survey-row">
+                <a href="{{url()->current().'/'.$survey->id}}">{{$survey->name}}</a>
+                <i class="material-icons mdc-text-field__icon" tabindex="0" role="button">more_vert</i>
+            </div>
+            <br>
         @endforeach
-        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--with-trailing-icon new-survey-input">
-            <i class="material-icons mdc-text-field__icon" tabindex="0">add_circle</i>
-            <input class="mdc-text-field__input"
-                   type="text"
-                   placeholder="Nieuwe peiling">
-            <div class="mdc-line-ripple"></div>
+{{--        <br>--}}
+        <div class="manage-survey-row">
+            <div class="mdc-text-field  new-survey-input">
+                <input class="mdc-text-field__input"
+                       type="text">
+                <label for="my-input" class="mdc-floating-label">Nieuwe peiling</label>
+                <div class="mdc-line-ripple"></div>
+            </div>
+            <i class="material-icons mdc-text-field__icon add-survey-icon" tabindex="0" role="button" >add_circle</i>
         </div>
-            <p>{{$surveys -> count()}} / @verbatim{{$maxNumberOfSurveys}}@endverbatim</p>
+            <p>TOTO set this in upper right corner of input field ->{{$surveys -> count()}} / 50</p>
     </div>
 </div>
 </body>

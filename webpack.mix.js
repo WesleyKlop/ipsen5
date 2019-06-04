@@ -26,3 +26,7 @@ mix
     .sass('resources/sass/ManageSurvey.scss', 'public/css', {
         includePaths: [path.resolve(__dirname, 'node_modules')],
     })
+    .js('resources/js/Survey.js', 'public/js')
+    .sass('resources/sass/Survey.scss', 'public/css', {
+        includePaths: [path.resolve(__dirname, 'node_modules')],
+    })

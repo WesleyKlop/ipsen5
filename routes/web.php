@@ -21,6 +21,7 @@ Route::get('/admin', function() {
 });
 
 Route::get('/admin/manage-survey', 'ManageSurveyController@showManageSurvey');
+Route::get('/admin/manage-survey/{id}', 'ManageSurveyController@showSurvey');
 
 // Fallback route for react routing
 Route::view('/{path?}', 'app')->where('path', '.*');
