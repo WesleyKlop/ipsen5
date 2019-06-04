@@ -19,4 +19,9 @@ class AdminLoginController extends Controller
     {
         return view('auth.login');
     }
+
+    public function username()
+    {
+        return 'username';
+    }
 }

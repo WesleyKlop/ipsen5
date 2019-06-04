@@ -1,24 +1,13 @@
-import autoInit from '@material/auto-init'
-import {MDCTextField} from "@material/textfield/component";
+import './admin/bootstrap'
 
-autoInit();
+// hide / unhide password
+const pwField = document.querySelector('#pw-field')
+const toggleButton = document.querySelector('#pw-eye')
 
-//Instantiate & initialize textfields so the animation works
-const usernameField = new MDCTextField(document.querySelector('.textfield-username'));
-const passwordField = new MDCTextField(document.querySelector('.textfield-password'));
-usernameField.initialize();
-passwordField.initialize();
+const showPassword = () => pwField.type = 'text'
+const hidePassword = () => pwField.type = 'password'
 
-
-//Eventlistener to hide/unhide the password
-document.getElementById('pw-eye').addEventListener("mousedown", toggleHide);
-document.getElementById('pw-eye').addEventListener("mouseup", toggleHide);
-
-function toggleHide() {
-    let element = document.getElementById('pw-field');
-    if (element.type === "password") {
-        element.type = "text";
-    } else {
-        element.type = "password";
-    }
-}
+toggleButton.addEventListener('pointerdown', showPassword);
+['pointerup', 'pointercancel', 'pointerleave'].forEach(eventType =>
+    toggleButton.addEventListener(eventType, hidePassword),
+)
