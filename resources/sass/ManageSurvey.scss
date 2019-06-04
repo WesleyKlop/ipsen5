@@ -7,15 +7,7 @@
 @import 'variables';
 
 body {
-    font-family: $base-font;
-    font-size: $base-font-size;
-    line-height: $base-line-height;
-    font-weight: 300;
-    color: $primary-font-color;
-    background: $admin-background-color;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
+
 }
 h2 {
     padding: 20px;
@@ -24,9 +16,16 @@ h2 {
 .material-icons.md-inactive { color: rgba(0, 0, 0, 0.26); }
 
 .manage-survey-wrapper {
-    background: $body-bg;
-    width: 90%;
-    height: auto;
+
+    font-family: $base-font;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    font-weight: 300;
+    color: $primary-font-color;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    background: $body-bg;    height: auto;
     border-radius: 5px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
     a {
@@ -43,11 +42,15 @@ h2 {
 
         .material-icons {
             cursor: pointer;
-            font-size: 42px;
+            font-size: 30px;
             padding-right: 40px;
             color: #BCBCBC;
             margin-top: auto;
             margin-bottom: auto;
+        }
+
+        .add-survey-icon{
+            font-size: 42px;
         }
     }
 
@@ -57,11 +60,11 @@ h2 {
 }
 
 .mdc-text-field.mdc-text-field--focused {
-    @include mdc-text-field-label-color($admin-login-text-color);
-    @include mdc-text-field-line-ripple-color($admin-login-text-color);
+    @include mdc-text-field-label-color($stemapp-blue);
+    @include mdc-text-field-line-ripple-color($stemapp-blue);
 }
 
 .mdc-text-field:not(.mdc-text-field--focused){
-    @include mdc-text-field-line-ripple-color($admin-login-text-color);
+    @include mdc-text-field-line-ripple-color($stemapp-blue);
 }
 

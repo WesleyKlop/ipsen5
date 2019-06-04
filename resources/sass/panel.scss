@@ -21,17 +21,17 @@ body {
   margin: 0;
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
 }
 
 .right-side{
-  width: 80%;
   display: flex;
   flex-direction: column;
+  width: 90%;
 }
 
 .mdc-top-app-bar{
-  height: 10%;
-  width: 80%;
+  height: 75px;
   border: 0;
   justify-content: center;
 
@@ -42,17 +42,12 @@ body {
 }
 
 .page-content{
-  padding-top: 10%;
-  padding-left: 10px;
-
-  p {
-    margin: 0;
-  }
+  padding: 100px 25px 25px 25px;
 }
 
 //Left side of admin panel
 .mdc-drawer {
-  width: 20%;
+  width: 300px;
   padding: 0;
   margin: 0;
   @include mdc-drawer-item-activated-text-ink-color($stemapp-blue);
