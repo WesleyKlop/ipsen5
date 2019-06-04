@@ -19,23 +19,81 @@ body {
   background: $admin-background-color;
   height: 100vh;
   margin: 0;
+  display: flex;
+  flex-direction: row;
 }
 
-.headerwrapper{
+.right-side{
+  width: 80%;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
 }
 
 .mdc-top-app-bar{
   height: 10%;
-  width: 80vw;
+  width: 80%;
   border: 0;
   justify-content: center;
+
+  //Mixins for styling
   @include mdc-top-app-bar-fill-color($admin-header-color);
   @include mdc-top-app-bar-icon-ink-color($primary-font-color);
   @include mdc-top-app-bar-ink-color($primary-font-color);
 }
 
+//Left side of admin panel
+.mdc-drawer {
+  width: 20%;
+  padding: 0;
+  margin: 0;
+  @include mdc-drawer-item-activated-text-ink-color($stemapp-blue);
+  @include mdc-drawer-item-activated-icon-ink-color($stemapp-blue);
+  @include mdc-drawer-activated-overlay-color($stemapp-light-blue);
+
+  .mdc-drawer__header{
+    position: relative;
+    padding: 0;
+
+    .logo{
+      max-width: 200px;
+      position: absolute;
+      bottom: 80px;
+      left: 50px;
+    }
+
+    .mdc-drawer__title {
+      position: absolute;
+      bottom: 50px;
+      left: 16px;
+      color: $admin-title-color;
+    }
+
+    .mdc-drawer__subtitle {
+      position: absolute;
+      bottom: 25px;
+      left: 16px;
+      color: $admin-subtitle-color;
+    }
+
+    .mdc-icon-button {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      color: $admin-subtitle-color;
+    }
+  }
+
+  .mdc-list-item:hover {
+    background-color: $stemapp-blue-selected;
+    color: $stemapp-blue;
+
+    i {
+      color: $stemapp-blue;
+    }
+  }
+}
+
+//Styling within header bar
 .mdc-text-field{
   width: 40%;
 }
@@ -52,57 +110,5 @@ body {
 
 .mdc-top-app-bar__section {
   justify-content: space-between;
-}
-
-.logo{
-  max-width: 200px;
-  position: absolute;
-  bottom: 80px;
-  left: 50px;
-}
-
-.mdc-drawer__header{
-  position: relative;
-  padding: 0;
-}
-
-.mdc-drawer {
-  width: 20vw;
-  padding: 0;
-  margin: 0;
-  @include mdc-drawer-item-activated-text-ink-color($stemapp-blue);
-  @include mdc-drawer-item-activated-icon-ink-color($stemapp-blue);
-  @include mdc-drawer-activated-overlay-color($stemapp-light-blue);
-
-  .mdc-drawer__title {
-    position: absolute;
-    bottom: 50px;
-    left: 16px;
-    color: $admin-title-color;
-  }
-
-  .mdc-drawer__subtitle {
-    position: absolute;
-    bottom: 25px;
-    left: 16px;
-    color: $admin-subtitle-color;
-  }
-
-  .mdc-icon-button {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    color: $admin-subtitle-color;
-  }
-
-  .mdc-list-item:hover {
-    background-color: $stemapp-blue-selected;
-    color: $stemapp-blue;
-
-    i {
-      color: $stemapp-blue;
-    }
-  }
-
 }
 
