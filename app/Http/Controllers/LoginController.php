@@ -6,6 +6,7 @@ use App\Eloquent\Candidate;
 use App\Eloquent\SurveyCode;
 use App\Eloquent\User;
 use App\Eloquent\Voter;
+use App\Exceptions\SurveyExpiredException;
 use Carbon\Carbon;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
@@ -23,6 +24,11 @@ class LoginController extends Controller
     public function loginVoter(Request $request)
     {
         $code = SurveyCode::findOrFail($request->code);
+
+        if ($code->expired()) {
+            throw new SurveyExpiredException("This survey expired.");
+        }
+
         $user = User::create(["id" => Uuid::uuid4()]);
 
         $voter = Voter::create(["user_id" => $user->id, "code" => $code->code]);
