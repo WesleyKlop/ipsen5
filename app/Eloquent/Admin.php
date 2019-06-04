@@ -44,6 +44,6 @@ class Admin extends AppUser
             return;
         }
 
-        Trail::create(['teacher_id' => $this->user_id]);
+        Trial::create(['teacher_id' => $this->user_id]);
     }
 }
