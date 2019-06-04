@@ -2,6 +2,7 @@ StemApp 2.0
 ===========
 
 [![Build Status](https://travis-ci.com/WesleyKlop/ipsen5.svg?token=4MypM7sW23T4Q7Go7dyF&branch=develop)](https://travis-ci.com/WesleyKlop/ipsen5)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=WesleyKlop/ipsen5&identifier=185783686)](https://dependabot.com)
 
 This is the repository for StemApp 2.0
 
