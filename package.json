@@ -29,7 +29,7 @@
     "dependencies": {
         "@material/auto-init": "^1.0.0",
         "@material/button": "^2.1.1",
-        "@material/card": "^2.1.1",
+        "@material/card": "^2.3.0",
         "@material/textfield": "^2.1.1",
         "@material/theme": "^1.1.0",
         "@material/typography": "^1.0.0",
