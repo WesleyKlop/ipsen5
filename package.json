@@ -31,6 +31,7 @@
         "@material/button": "^2.1.1",
         "@material/card": "^2.1.1",
         "@material/textfield": "^2.1.1",
+        "@material/theme": "^1.1.0",
         "@material/typography": "^1.0.0",
         "classnames": "^2.2.6",
         "normalize-scss": "^7.0.1",

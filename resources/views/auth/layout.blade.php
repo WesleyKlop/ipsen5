@@ -17,17 +17,21 @@
 <body>
 <div class="content-wrapper">
     <img src="/images/logo_shadow_admin.png" class="logo" alt="logo">
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
     @section('content')
     @show
 </div>
+<script type="application/javascript">
+    // hide / unhide password
+    const pwField = document.querySelector('#pw-field')
+    const toggleButton = document.querySelector('#pw-eye')
+
+    const showPassword = () => pwField.type = 'text'
+    const hidePassword = () => pwField.type = 'password'
+
+    toggleButton.addEventListener('pointerdown', showPassword);
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(eventType =>
+        toggleButton.addEventListener(eventType, hidePassword),
+    )
+</script>
 </body>
 </html>
