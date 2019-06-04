@@ -46,11 +46,11 @@ h2 {
     }
 
     .mdc-text-field{
-        @include mdc-text-field-line-ripple-color($admin-login-text-color);
+        @include mdc-text-field-line-ripple-color($stemapp-blue);
     }
 
     .mdc-text-field:not(.mdc-text-field--focused){
-        @include mdc-text-field-line-ripple-color($admin-login-text-color);
+        @include mdc-text-field-line-ripple-color($stemapp-blue);
     }
 }
 

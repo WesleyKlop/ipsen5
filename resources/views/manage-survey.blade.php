@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+@extends('panel')
+@section('content')
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,6 +34,5 @@
             <p>{{$surveys -> count()}} / @verbatim{{$maxNumberOfSurveys}}@endverbatim</p>
     </div>
 </div>
-
 </body>
-</html>
+@endsection

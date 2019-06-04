@@ -30,7 +30,7 @@ body {
 }
 
 .mdc-top-app-bar{
-  //height: 10%;
+  height: 10%;
   width: 80%;
   border: 0;
   justify-content: center;
@@ -42,8 +42,12 @@ body {
 }
 
 .page-content{
-  padding-top: 5%;
+  padding-top: 10%;
   padding-left: 10px;
+
+  p {
+    margin: 0;
+  }
 }
 
 //Left side of admin panel
