@@ -3,6 +3,8 @@ import CardHeader from "../components/card/CardHeader";
 import Card from "../components/card/Card";
 import ApiClient from '../ApiClient'
 import Spacer from "../components/Spacer";
+import LinkButton from "../components/LinkButton";
+import EmailPage from "./EmailPage";
 
 class VoterResultsPage extends React.Component {
     state = {
@@ -34,6 +36,7 @@ class VoterResultsPage extends React.Component {
                         </div>
                     )}
                 </Card>
+                <LinkButton to={'/email'}>Resultaten E-mailen</LinkButton>
                 <Spacer/>
             </>
         )
