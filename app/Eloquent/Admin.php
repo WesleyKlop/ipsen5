@@ -39,7 +39,7 @@ class Admin extends AppUser
         Trial::where('teacher_id', $this->user_id)->delete();
     }
 
-    public function addToTrail() {
+    public function addToTrial() {
         if (!$this->isTeacher()) {
             return;
         }
