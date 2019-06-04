@@ -1,5 +1,5 @@
 @extends('panel')
 
-@section('main_content')
+@section('content')
     <p>This is content.</p>
-@stop
+@endsection

@@ -75,8 +75,8 @@
     </header>
 
     <div class="page-content">
-        <p>Text goes here!</p>
-        {{--        @yield('main_content')--}}
+        @section('content')
+        @show
     </div>
 </div>
 </body>
