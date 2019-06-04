@@ -65,6 +65,6 @@ class AdminRegisterController extends Controller
      */
     protected function registered(Request $request, Admin $user)
     {
-        // Should create some kind of hook to initialize trial and stuff, but should we do that here?
+        $user->addToTrial();
     }
 }
