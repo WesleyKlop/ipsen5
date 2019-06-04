@@ -14,8 +14,8 @@ class CreateTrialsTable extends Migration
     public function up()
     {
         Schema::create('trials', function (Blueprint $table) {
-            $table->uuid('admin_id');
-            $table->foreign('admin_id')->references('id')->on('users');
+            $table->uuid('teacher_id');
+            $table->foreign('teacher_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

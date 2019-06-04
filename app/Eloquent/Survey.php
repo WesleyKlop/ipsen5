@@ -2,7 +2,9 @@
 
 namespace App\Eloquent;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Class Survey
@@ -38,5 +40,17 @@ class Survey extends Model
     public function propositions()
     {
         return $this->hasMany(Proposition::class);
+    }
+
+    public function addTeacher(Admin $teacher) {
+
+        $teacher->removeFromTrial();
+
+        SurveyCode::create([
+            "code" => Uuid::uuid4(),
+            "username" => $teacher->username,
+            "survey_id" => $this->id,
+            "expire" => Carbon::new()->addMonth()->timestamp,
+        ]);
     }
 }

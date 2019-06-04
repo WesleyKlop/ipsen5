@@ -20,17 +20,26 @@ class Admin extends AppUser
     ];
 
     public function isInTrial() {
-        if($this->type !== 'admin') {
+        if($this->type !== 'teacher') {
             return false;
         }
-        return $this->hasOne(Trial::class)->exists();
+
+        return Trial::where('teacher_id', $this->user_id)->exists();
     }
 
     public function removeFromTrial() {
-        if($this->type !== 'admin') {
+        if($this->type !== 'teacher') {
             return;
         }
 
-        Trail::findOrFail($this)->delete();
+        Trial::where('teacher_id', $this->user_id)->delete();
+    }
+
+    public function addToTrail() {
+        if ($this->type !== 'teacher') {
+            return;
+        }
+
+        Trail::make(['teacher_id' => $this->user_id]);
     }
 }
