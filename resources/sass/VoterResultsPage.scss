@@ -1,0 +1,31 @@
+.voter-result-page__container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 2fr 2fr 2fr;
+    grid-template-areas: 'pf fn ln' 'pf prc prc' 'pf fnc fnc';
+    grid-column-gap: 2px;
+    grid-row-gap: 2px;
+    font-size: 30px;
+}
+
+.voter-result-page__pf {
+    grid-area: pf;
+    width: 150px;
+    height: 100%;
+}
+
+.voter-result-page__fn {
+    grid-area: fn;
+}
+
+.voter-result-page__ln {
+    grid-area: ln;
+}
+
+.voter-result-page__prc {
+    grid-area: prc;
+    color: #522871
+}
+.voter-result-page__fnc {
+    grid-area: fnc;
+}

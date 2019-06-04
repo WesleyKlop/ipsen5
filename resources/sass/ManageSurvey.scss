@@ -1,0 +1,56 @@
+@import "~@material/card/mdc-card";
+@import "~@material/textfield/mdc-text-field";
+@import "~@material/textfield/icon/mdc-text-field-icon";
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
+@import 'variables';
+
+body {
+    font-family: $base-font;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    font-weight: 300;
+    color: $primary-font-color;
+    background: $admin-background-color;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+
+}
+h2 {
+    padding: 20px;
+}
+.manage-survey-wrapper {
+    background: $body-bg;
+    width: 90%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+    .manage-survey-row {
+        padding-left: 20px;
+        background: lightblue;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        border: 1px solid;
+        //text-align: center;
+
+        .material-icons {
+            cursor: pointer;
+            font-size: 36px;
+            background: red;
+        }
+    }
+
+    .mdc-text-field{
+        @include mdc-text-field-line-ripple-color($admin-login-text-color);
+    }
+
+    .mdc-text-field:not(.mdc-text-field--focused){
+        @include mdc-text-field-line-ripple-color($admin-login-text-color);
+    }
+}
+
