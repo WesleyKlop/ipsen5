@@ -19,8 +19,12 @@ class Admin extends AppUser
         'type',
     ];
 
+    public function isTeacher() {
+        return $this->type == 'teacher';
+    }
+
     public function isInTrial() {
-        if($this->type !== 'teacher') {
+        if(!$this->isTeacher()) {
             return false;
         }
 
@@ -28,7 +32,7 @@ class Admin extends AppUser
     }
 
     public function removeFromTrial() {
-        if($this->type !== 'teacher') {
+        if(!$this->isTeacher()) {
             return;
         }
 
@@ -36,7 +40,7 @@ class Admin extends AppUser
     }
 
     public function addToTrail() {
-        if ($this->type !== 'teacher') {
+        if (!$this->isTeacher()) {
             return;
         }
 
