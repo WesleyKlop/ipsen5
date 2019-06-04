@@ -1,31 +1,36 @@
+@import 'variables';
+
 .voter-result-page__container {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 2fr 2fr 2fr;
-    grid-template-areas: 'pf fn ln' 'pf prc prc' 'pf fnc fnc';
-    grid-column-gap: 2px;
-    grid-row-gap: 2px;
+    grid-template-columns: 75px 1fr;
+    grid-template-rows: 20px 35px 20px;
+    grid-template-areas: 'picture name' 'picture percentage' 'picture function';
+    grid-column-gap: 5px;
+    font-size: 12px;
+}
+
+.voter-result-page__picture {
+    grid-area: picture;
+    width: 75px;
+    height: 75px;
+    background-size: 75px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.voter-result-page__name {
+    grid-area: name;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.voter-result-page__percentage {
+    grid-area: percentage;
+    color: $city-council-color;
     font-size: 30px;
+    font-weight: bold;
 }
 
-.voter-result-page__pf {
-    grid-area: pf;
-    width: 150px;
-    height: 100%;
-}
-
-.voter-result-page__fn {
-    grid-area: fn;
-}
-
-.voter-result-page__ln {
-    grid-area: ln;
-}
-
-.voter-result-page__prc {
-    grid-area: prc;
-    color: #522871
-}
-.voter-result-page__fnc {
-    grid-area: fnc;
+.voter-result-page__function {
+    grid-area: function;
 }
