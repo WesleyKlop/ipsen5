@@ -23,4 +23,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/answer', 'AnswerController@show');
     Route::post('/profile', 'ProfileController@submit');
     Route::get('/voter/results', 'ResultController@show');
+    Route::post('/voter/email', 'EmailController@send');
 });

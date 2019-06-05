@@ -39,4 +39,8 @@ class Answer extends Model
     {
         return $this->belongsTo(Survey::class);
     }
+
+    public function isTrue() {
+        return $this->answer;
+    }
 }
