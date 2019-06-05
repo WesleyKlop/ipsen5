@@ -19,8 +19,11 @@ Route::post('/admin/register', 'AdminRegisterController@register');
 
 //TODO: Replace function with proper controller.
 Route::get('/admin', function() {
-    return view('panel');
+    return view('content');
 });
+
+Route::get('/admin/manage-survey', 'ManageSurveyController@showManageSurvey');
+Route::get('/admin/manage-survey/{id}', 'ManageSurveyController@showSurvey');
 
 // Fallback route for react routing
 Route::view('/{path?}', 'app')->where('path', '.*');
