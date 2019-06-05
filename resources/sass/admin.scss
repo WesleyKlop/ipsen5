@@ -1,89 +1,51 @@
+@import 'variables';
 // Material design components
 @import "~@material/button/mdc-button";
 @import "~@material/card/mdc-card";
 @import "~@material/textfield/mdc-text-field";
 @import "~@material/typography/mdc-typography";
 @import "~@material/textfield/icon/mdc-text-field-icon";
-
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
-@import 'variables';
 
 // Global styles
 body {
-  font-family: $base-font;
-  font-size: $base-font-size;
-  line-height: $base-line-height;
-  font-weight: 300;
-  color: $primary-font-color;
-  background: $admin-background-color;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
+    font-family: $base-font;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    font-weight: 300;
+    color: $primary-font-color;
+    background: $admin-background-color;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .content-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.logo{
-  max-width: 200px;
-  max-height: 100px;
-  padding: 15px;
+.logo {
+    max-width: 200px;
+    max-height: 100px;
+    padding: 15px;
 }
 
-.login-container{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 20px;
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 250px;
+    width: 350px;
+    max-width: 100vw;
+    padding: 20px;
 }
 
-.textfield-username{
-  margin: 15px 0;
+.hide-button:focus {
+    outline: 0;
 }
 
-.textfield-password{
-  margin: 15px 0 2px 0;
-  @include mdc-text-field-icon-color(#BCBCBC);
-}
-
-.caption {
-  color: $admin-subtitle-login;
-  margin: 0 0 0 3px;
-}
-
-.hide-button:focus{
-  outline: 0;
-}
-
-.mdc-text-field__icon.hide-button:hover{
-  color: #A5A5A5
-}
-
-.mdc-text-field__icon.hide-button:active{
-  color: $admin-subtitle-login;
-}
-
-.mdc-text-field.mdc-text-field--focused {
-  @include mdc-text-field-label-color($stemapp-blue);
-  @include mdc-text-field-line-ripple-color($stemapp-blue);
-}
-
-.mdc-text-field:not(.mdc-text-field--focused){
-  @include mdc-text-field-line-ripple-color($stemapp-blue);
-}
-
-.mdc-button--raised{
-  margin: 15px 0;
-  @include mdc-button-outline-color($stemapp-blue);
-  @include mdc-button-container-fill-color($stemapp-blue);
-}
-
-.mdc-button:not(.mdc-button--raised){
-  @include mdc-button-ink-color($stemapp-blue);
-}

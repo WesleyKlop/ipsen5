@@ -22,15 +22,14 @@ $european-parliament-color: #e22948;
 $primary-color: #20436f;
 $background-color: linear-gradient(to bottom, #1a1a29, #4e4e59, #0f0f1e);
 $admin-background-color: #e5e5e5;
-$stemapp-blue: #00bcd4;
-$stemapp-light-blue: #88dfea;
-$stemapp-blue-selected: #e3f7fa;
-$admin-subtitle-login: #757575;
-$admin-title-color: #e7e7e8;
-$admin-subtitle-color: #a0a0a6;
-$admin-header-color: #ffffff;
 
 :root {
     --second-house-color: #{$second-house-color};
     --accent-color: #{$accent-color-light};
 }
+
+// Configure MDC
+$mdc-theme-primary: $water-schappen-color;
+$mdc-theme-secondary: $accent-color;
+$mdc-theme-on-primary: rgba(255, 255, 255, 0.87);
+$mdc-theme-on-secondary: rgba(0, 0, 0, .87);
