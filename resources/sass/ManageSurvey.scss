@@ -1,6 +1,9 @@
 @import "~@material/card/mdc-card";
 @import "~@material/textfield/mdc-text-field";
 @import "~@material/textfield/icon/mdc-text-field-icon";
+@import "~@material/list/mdc-list";
+@import "~@material/menu-surface/mdc-menu-surface";
+@import "~@material/menu/mdc-menu";
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
@@ -21,6 +24,10 @@ h2 {
     padding: 20px;
 }
 
+button {
+    background: white;
+    border: none;
+}
 .material-icons.md-inactive { color: rgba(0, 0, 0, 0.26); }
 
 .manage-survey-wrapper {

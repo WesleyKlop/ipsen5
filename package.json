@@ -31,12 +31,14 @@
         "@material/button": "^2.1.1",
         "@material/card": "^2.1.1",
         "@material/list": "^2.1.1",
+        "@material/menu": "^2.3.0",
         "@material/textfield": "^2.1.1",
         "@material/typography": "^1.0.0",
         "classnames": "^2.2.6",
         "ngrok": "^3.1.1",
         "normalize-scss": "^7.0.1",
         "react-icons": "^3.7.0",
-        "react-router-dom": "^5.0.0"
+        "react-router-dom": "^5.0.0",
+        "repl": "^0.1.3"
     }
 }

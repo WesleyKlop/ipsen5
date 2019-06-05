@@ -21,21 +21,35 @@
         @foreach($surveys as $survey)
             <div class="manage-survey-row">
                 <a href="{{url()->current().'/'.$survey->id}}">{{$survey->name}}</a>
-                <i class="material-icons mdc-text-field__icon" tabindex="0" role="button">more_vert</i>
+                <i class="material-icons mdc-text-field__icon" id="more_vert" role="button" tabindex="0">more_vert</i>
+                <div class="mdc-menu mdc-menu-surface mdc-menu-surface--anchor" id="demo-menu">
+                    <ul class="mdc-list mdc-menu__selection-group" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="1">
+                        <li class="mdc-list-item" role="menuitem">
+                            <span class="mdc-list-item__graphic mdc-menu__selection-group-icon"></span>
+                            <span class="mdc-list-item__text">Verwijderen</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <br>
         @endforeach
-{{--        <br>--}}
-        <div class="manage-survey-row">
-            <div class="mdc-text-field  new-survey-input">
-                <input class="mdc-text-field__input"
-                       type="text">
-                <label for="my-input" class="mdc-floating-label">Nieuwe peiling</label>
-                <div class="mdc-line-ripple"></div>
+        <br>
+        <form method="POST" action="/admin/manage-survey">
+            @csrf
+            <div class="manage-survey-row">
+                <div class="mdc-text-field  new-survey-input">
+                        <input class="mdc-text-field__input" type="text" name="newSurveyName">
+                    <label for="my-input" class="mdc-floating-label">Nieuwe peiling</label>
+                    <div class="mdc-line-ripple"></div>
+                </div>
+                <i class="material-icons mdc-text-field__icon add-survey-icon" id="add_circle" tabindex="0" role="button" hidden="false" type="submit"> add_circle</i>
             </div>
-            <i class="material-icons mdc-text-field__icon add-survey-icon" tabindex="0" role="button" >add_circle</i>
+        </form>
+
+        <p>TOTO set this in upper right corner of input field ->{{$surveys -> count()}} / 50</p>
+        <div>
+
         </div>
-            <p>TOTO set this in upper right corner of input field ->{{$surveys -> count()}} / 50</p>
     </div>
 </div>
 </body>

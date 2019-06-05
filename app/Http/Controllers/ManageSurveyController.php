@@ -16,4 +16,16 @@ class ManageSurveyController extends Controller{
         $survey = Survey::find($id);
         return view('survey') ->with('survey', $survey);
     }
+
+    public function createSurvey(Request $request) {
+
+//        $newSurveyName = $request->input('newSurveyName');
+
+//        $validated = $request->validate([
+//            'newSurveyName'    => 'required|string|unique:posts|min:5|max:100',
+//        ]);
+
+
+//        $post = Post::create($newSurveyName);
+    }
 }
