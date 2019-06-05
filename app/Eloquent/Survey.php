@@ -42,7 +42,8 @@ class Survey extends Model
         return $this->hasMany(Proposition::class);
     }
 
-    public function addTeacher(Admin $teacher) {
+    public function addTeacher(Admin $teacher)
+    {
 
         $teacher->removeFromTrial();
 
@@ -52,5 +53,10 @@ class Survey extends Model
             "survey_id" => $this->id,
             "expire" => Carbon::new()->addMonth()->timestamp,
         ]);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
     }
 }
