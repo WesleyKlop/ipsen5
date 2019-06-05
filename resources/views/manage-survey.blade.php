@@ -44,7 +44,9 @@
                     <label for="my-input" class="mdc-floating-label">Nieuwe peiling</label>
                     <div class="mdc-line-ripple"></div>
                 </div>
-                <i class="material-icons mdc-text-field__icon add-survey-icon" id="add_circle" tabindex="0" role="button" hidden="false" type="submit"> add_circle</i>
+                <button type="submit">
+                    <i class="material-icons mdc-text-field__icon add-survey-icon" id="add_circle" tabindex="0"hidden="false"> add_circle</i>
+                </button>
             </div>
         </form>
         <p>TOTO set this in upper right corner of input field ->{{$surveys -> count()}} / 50</p>

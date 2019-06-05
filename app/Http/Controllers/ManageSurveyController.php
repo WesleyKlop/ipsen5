@@ -31,7 +31,7 @@ class ManageSurveyController extends Controller{
             $survey = new Survey();
             $survey->name = $request->input('name');
             $survey->id = Str::uuid($survey->name);
-            $survey->save();
+//            $survey->save();
             return Redirect::to(url()->current().'/'.$survey->id) ->with('survey', $survey);
         } else {
             print('validation failed');
