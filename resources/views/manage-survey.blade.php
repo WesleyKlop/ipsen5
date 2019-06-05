@@ -40,7 +40,7 @@
             @csrf
             <div class="manage-survey-row">
                 <div class="mdc-text-field  new-survey-input">
-                        <input class="mdc-text-field__input" type="text" name="newSurveyName">
+                        <input class="mdc-text-field__input" type="text" name="name">
                     <label for="my-input" class="mdc-floating-label">Nieuwe peiling</label>
                     <div class="mdc-line-ripple"></div>
                 </div>
