@@ -24,5 +24,10 @@
                     <li>Oneens</li>
                 @endif
             @endforeach
+
+            @foreach($answers['propositions'] as $answer)
+                {{$answer}}
+                <br><br><br>
+            @endforeach
     </body>
 </html>

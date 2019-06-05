@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Http\Controllers\AnswerController;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -21,8 +22,9 @@ class VoterResult extends Mailable
      */
     public function __construct(Voter $voter)
     {
+            $controller = new AnswerController();
             $this->voter = $voter;
-
+            $this->answers = $controller->getPropositionWithAnswers($voter)[0]['propositions'];
             //$this->answers = $this->voter->answersWithQuestions();
     }
 
