@@ -21,14 +21,16 @@
         @foreach($surveys as $survey)
             <div class="manage-survey-row">
                 <a href="{{url()->current().'/'.$survey->id}}">{{$survey->name}}</a>
-                <i class="material-icons mdc-text-field__icon" id="more_vert" role="button" tabindex="0">more_vert</i>
-                <div class="mdc-menu mdc-menu-surface mdc-menu-surface--anchor" id="demo-menu">
-                    <ul class="mdc-list mdc-menu__selection-group" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="1">
-                        <li class="mdc-list-item" role="menuitem">
-                            <span class="mdc-list-item__graphic mdc-menu__selection-group-icon"></span>
-                            <span class="mdc-list-item__text">Verwijderen</span>
-                        </li>
-                    </ul>
+                <div class="mdc-menu-surface--anchor">
+                    <i class="material-icons mdc-text-field__icon" id="more_vert" role="button" tabindex="0">more_vert</i>
+                    <div class="mdc-menu mdc-menu-surface" id="demo-menu">
+                        <ul class="mdc-list mdc-menu__selection-group" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="1">
+                            <li class="mdc-list-item" role="menuitem">
+                                <span class="mdc-list-item__graphic mdc-menu__selection-group-icon"></span>
+                                <span class="mdc-list-item__text">Verwijderen</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <br>
