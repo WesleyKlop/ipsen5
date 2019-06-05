@@ -45,7 +45,6 @@
                 <i class="material-icons mdc-text-field__icon add-survey-icon" id="add_circle" tabindex="0" role="button" hidden="false" type="submit"> add_circle</i>
             </div>
         </form>
-
         <p>TOTO set this in upper right corner of input field ->{{$surveys -> count()}} / 50</p>
         <div>
 

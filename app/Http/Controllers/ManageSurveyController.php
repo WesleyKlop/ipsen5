@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Http\Request;
 use App\Eloquent\Survey;
+
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 class ManageSurveyController extends Controller{
 
@@ -19,13 +22,17 @@ class ManageSurveyController extends Controller{
 
     public function createSurvey(Request $request) {
 
-//        $newSurveyName = $request->input('newSurveyName');
-
 //        $validated = $request->validate([
-//            'newSurveyName'    => 'required|string|unique:posts|min:5|max:100',
+//            'newSurveyName' => 'required|string|unique:posts|min:5|max:100'
 //        ]);
 
-
-//        $post = Post::create($newSurveyName);
+        if(true) {
+            $survey = new Survey();
+            $survey->name = $request->input('newSurveyName');
+            $survey->id = Str::uuid($survey->name);
+            $survey->save();
+            return Redirect::to(url()->current().'/'.$survey->id) ->with('survey', $survey);
+        }
     }
+
 }
