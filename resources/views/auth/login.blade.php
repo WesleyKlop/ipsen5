@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="mdc-card">
-        @include('auth.errors')
         <form action="{{ action('AdminLoginController@login') }}" method="post" class="login-container">
             @csrf
 

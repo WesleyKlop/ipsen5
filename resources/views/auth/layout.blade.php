@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-<div class="content-wrapper">
+<div class="login-wrapper">
     <img src="/images/logo_shadow_admin.png" class="logo" alt="logo">
     @section('content')
     @show

@@ -1,4 +1,4 @@
-@extends('panel')
+@extends('admin.layout')
 @section('content')
 <head>
     <meta charset="utf-8">
