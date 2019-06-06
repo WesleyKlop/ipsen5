@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="login-wrapper">
-    <img src="/images/logo_shadow_admin.png" class="logo" alt="logo">
+    <img src="/images/logo_shadow_admin.png" class="login-logo" alt="logo">
     @section('content')
     @show
 </div>
