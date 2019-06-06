@@ -16,7 +16,6 @@
 </head>
 <body>
 <h1>DIT IS SURVEY {{$survey->name}}</h1>
-{{--<h1>Survey id {{$survey->id}}</h1>--}}
 <div class="propositions-card-wrapper">
     <div class="mdc-card--outlined">
         <h2>Stellingen</h2>
@@ -27,7 +26,7 @@
             </div>
         @endforeach
         //TODO deze action uitwerken
-        <form method="post" action="ManageSurveyController@addProposition">
+        <form method="post" action="{{action('SurveyController@addProposition', $survey->id)}}">
             @csrf
             <div class="proposition-row">
                 <div class="mdc-text-field  new-proposition-input">
