@@ -11,7 +11,11 @@ const Input = ({ onChange, className, ...props }) => {
     }
     return (
         <div className={classnames('input__wrapper', className)}>
-            <input className={classnames('input', { dirty })} {...props} onChange={onValueChange}/>
+            <input
+                className={classnames('input', { dirty })}
+                {...props}
+                onChange={onValueChange}
+            />
             <div className="input__underline"/>
         </div>
     )

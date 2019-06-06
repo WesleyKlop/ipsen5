@@ -18,29 +18,42 @@ class EmailPage extends React.Component {
             <>
                 <div style={{ flex: '1' }}/>
                 <Card>
-                    <CardHeader message={this.state.errorMessage} onMessageClose={this.dismissErrorMessage}>
+                    <CardHeader
+                        message={this.state.errorMessage}
+                        onMessageClose={this.dismissErrorMessage}
+                    >
                         Resultaten E-mailen
                     </CardHeader>
                     <CardBody>
                         <EmailInput value={this.state.email} onChange={this.handleChange}/>
                         <CardButtons>
-                            <Button className="block"  disabled={!this.state.emailValid} onClick={this.sendEmail} >Verstuur</Button>
+                            <Button
+                                className="block"
+                                disabled={!this.state.emailValid}
+                                onClick={this.sendEmail}
+                            >
+                                Verstuur
+                            </Button>
                         </CardButtons>
                     </CardBody>
                 </Card>
                 <div style={{ flex: '2' }}/>
             </>
+        )
+    }
 
-        )}
-    handleChange = (event) => {
+    handleChange = event => {
         event.preventDefault()
         this.setState({
             email: event.currentTarget.value,
-            emailValid: (event.currentTarget.value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) !== null)
+            emailValid:
+                event.currentTarget.value.match(
+                    /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i,
+                ) !== null,
         })
     }
 
-    sendEmail = (event) => {
+    sendEmail = event => {
         event.preventDefault()
         console.log(this.state.email)
     }

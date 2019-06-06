@@ -1,10 +1,9 @@
 import React from 'react'
-import CardHeader from "../components/card/CardHeader";
-import Card from "../components/card/Card";
+import CardHeader from '../components/card/CardHeader'
+import Card from '../components/card/Card'
 import ApiClient from '../ApiClient'
-import Spacer from "../components/Spacer";
-import LinkButton from "../components/LinkButton";
-import EmailPage from "./EmailPage";
+import Spacer from '../components/Spacer'
+import LinkButton from '../components/LinkButton'
 
 class VoterResultsPage extends React.Component {
     state = {
@@ -15,26 +14,33 @@ class VoterResultsPage extends React.Component {
         return (
             <>
                 <Spacer/>
-                <Card style={{background: 'transparent', boxShadow: 'none'}}>
+                <Card style={{ background: 'transparent', boxShadow: 'none' }}>
                     <CardHeader>
                         <h1>Top 5 politici</h1>
                     </CardHeader>
-                    {this.state.results.map(candidate =>
+                    {this.state.results.map(candidate => (
                         <div key={candidate.candidate_id}>
                             <Card>
                                 <div className="voter-result-page__container">
-                                    <div className="voter-result-page__picture"
-                                         style={{backgroundImage: 'URL(' + candidate.image + ')'}}/>
+                                    <div
+                                        className="voter-result-page__picture"
+                                        style={{ backgroundImage: 'URL(' + candidate.image + ')' }}
+                                    />
                                     <span className="voter-result-page__name">
-                                        {candidate.profile.first_name} {candidate.profile.last_name}
-                                    </span>
-                                    <span className="voter-result-page__percentage">{candidate.percentage} %</span>
-                                    <span className="voter-result-page__function"> {candidate.profile.function} {candidate.profile.party}</span>
+                    {candidate.profile.first_name} {candidate.profile.last_name}
+                  </span>
+                                    <span className="voter-result-page__percentage">
+                    {candidate.percentage} %
+                  </span>
+                                    <span className="voter-result-page__function">
+                    {' '}
+                                        {candidate.profile.function} {candidate.profile.party}
+                  </span>
                                 </div>
                             </Card>
                             <br/>
                         </div>
-                    )}
+                    ))}
                 </Card>
                 <LinkButton to={'/email'}>Resultaten E-mailen</LinkButton>
                 <Spacer/>
@@ -45,13 +51,13 @@ class VoterResultsPage extends React.Component {
     componentDidMount() {
         ApiClient.request('voter/results')
             .then(result => this.setResults(result))
-            .catch(error => console.log(error));
+            .catch(error => console.log(error))
     }
 
-    setResults = (results) => {
+    setResults = results => {
         this.setState({
-            results
-        });
+            results,
+        })
     }
 }
 
