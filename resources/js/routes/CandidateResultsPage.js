@@ -4,10 +4,9 @@ import Card from "../components/card/Card";
 import ApiClient from '../ApiClient'
 import Spacer from "../components/Spacer";
 import LinkButton from "../components/LinkButton";
-import EmailPage from "./EmailPage";
 import CardBody from "../components/card/CardBody";
-import Auth from "../Auth";
 import CardFooter from "../components/card/CardFooter";
+import {FaCheck, FaTimes} from "react-icons/fa";
 
 class CandidateResultsPage extends React.Component {
     state = {
@@ -31,8 +30,16 @@ class CandidateResultsPage extends React.Component {
                                         <CardBody>
                                             {proposition.proposition}
                                         </CardBody>
-                                        <CardFooter className={proposition.answers.answer ? 'agree' : 'disagree'}>
-                                            <p>{proposition.answers.answer ? 'eens' : 'oneens'}</p>
+                                        <CardFooter className={proposition.answers[0].answer ? 'agree' : 'disagree'}>
+                                            <p>{proposition.answers[0].answer ? (
+                                                <>
+                                                    <FaCheck/> eens
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <FaTimes/> oneens
+                                                </>
+                                            )}</p>
                                         </CardFooter>
                                     </Card>
                                     <br/>
@@ -41,7 +48,8 @@ class CandidateResultsPage extends React.Component {
                         </div>
                     )}
                 </Card>
-                <LinkButton to={'/email'}>Resultaten E-mailen</LinkButton><br/>
+                <LinkButton to={'/email'}>Resultaten E-mailen</LinkButton>
+                <br/>
                 <LinkButton to={'/profile'}>Profiel aanpassen</LinkButton>
                 <Spacer/>
             </>
@@ -49,14 +57,12 @@ class CandidateResultsPage extends React.Component {
     }
 
     componentDidMount() {
-        console.log(Auth.isAuthorized('voter'))
         ApiClient.request('answer')
             .then(result => this.setResults(result))
             .catch(error => console.log(error))
     }
 
     setResults = (results) => {
-        console.log(results)
         this.setState({
             results
         })
