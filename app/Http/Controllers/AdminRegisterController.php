@@ -49,11 +49,11 @@ class AdminRegisterController extends Controller
     protected function create(array $data)
     {
         $user = User::create([
-            "id" => Str::uuid(),
+            'id' => Str::uuid(),
         ]);
 
         return Admin::create([
-            "user_id" => $user->id,
+            'user_id' => $user->id,
             'type' => 'teacher',
             'username' => $data['username'],
             'password' => Hash::make($data['password']),
