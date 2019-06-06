@@ -17,21 +17,22 @@ class SurveyController extends Controller
     public function showSurvey($id)
     {
         $survey = Survey::find($id);
-        return view('survey') ->with('survey', $survey);
+        return view('admin.survey')->with('survey', $survey);
     }
 
-    public function addProposition(Request $request) {
+    public function addProposition(Request $request)
+    {
 
-        $validated = $request->validate ([
+        $validated = $request->validate([
             'proposition' => 'required|string|min:3|max:255',
         ]);
 
-        if($validated) {
-            $proposition = new Proposition();
-            $proposition->proposition = $request->input('proposition_name');
-            $proposition->id = Str::uuid();
-            $proposition->survey_id = $request->segment(3);
-            $proposition->save();
+        if ($validated) {
+            Proposition::create([
+                'id' => Str::uuid(),
+                'proposition' => $request->input('proposition_name'),
+                'survey_id' => $request->segment(3),
+            ]);
         }
         return redirect($request->url());
     }

@@ -9,6 +9,8 @@
 @import "~@material/list/mdc-list";
 @import "~@material/top-app-bar/mdc-top-app-bar";
 @import "~@material/icon-button/mdc-icon-button";
+@import "~@material/menu/mdc-menu";
+@import "~@material/menu-surface/mdc-menu-surface";
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
 
@@ -102,4 +104,30 @@ body {
 
 .page-content {
     padding: 0 18px;
+}
+
+.card__title {
+    padding: 16px;
+    margin: 0;
+}
+
+.card__actions {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+
+    .input-row {
+        flex: 1;
+    }
+    .mdc-text-field {
+        width: 100%;
+    }
+    .mdc-icon-button {
+        $size: 36px;
+        align-self: flex-start;
+        font-size: $size;
+        // 12px padding
+        width: $size + 24px;
+        height: $size + 24px;
+    }
 }

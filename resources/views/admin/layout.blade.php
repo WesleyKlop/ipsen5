@@ -74,6 +74,7 @@
 
     <div class="page-content">
         <div class="mdc-top-app-bar--fixed-adjust"></div>
+        <div style="height: 16px;"></div>
         @section('content')
         @show
     </div>

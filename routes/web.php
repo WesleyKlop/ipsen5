@@ -23,11 +23,11 @@ Route::middleware('auth:web')->group(function () {
         return view('admin.content');
     });
 
-    Route::get('/admin/manage-survey', 'SurveyOverviewController@showManageSurvey');
-    Route::post('/admin/manage-survey', 'SurveyOverviewController@createSurvey');
+    Route::get('/admin/survey', 'SurveyOverviewController@showManageSurvey');
+    Route::post('/admin/survey', 'SurveyOverviewController@createSurvey');
 
-    Route::get('/admin/manage-survey/{id}', 'SurveyController@showSurvey');
-    Route::post('/admin/manage-survey/{id}', 'SurveyController@addProposition');
+    Route::get('/admin/survey/{id}', 'SurveyController@showSurvey');
+    Route::post('/admin/survey/{id}', 'SurveyController@addProposition');
 });
 
 
