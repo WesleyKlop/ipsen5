@@ -7,7 +7,7 @@ $base-font: 'Helvetica', sans-serif;
 $base-font-size: 1rem;
 $base-line-height: 1.6;
 
-// Colors
+// Colors (With very dunglish names, sorry.)
 $primary-font-color: rgba(0, 0, 0, .78);
 $city-council-color: #522871;
 $second-house-color: #c7da31;
@@ -22,10 +22,15 @@ $european-parliament-color: #e22948;
 $primary-color: #20436f;
 $background-color: linear-gradient(to bottom, #1a1a29, #4e4e59, #0f0f1e);
 $admin-background-color: #e5e5e5;
-$admin-login-text-color: #00bcd4;
-$admin-subtitle-color: #757575;
 
 :root {
+    // Used for progress bar on proposition pages
     --second-house-color: #{$second-house-color};
     --accent-color: #{$accent-color-light};
 }
+
+// Configure MDC
+$mdc-theme-primary: $water-schappen-color;
+$mdc-theme-secondary: $accent-color;
+$mdc-theme-on-primary: rgba(255, 255, 255, 0.87);
+$mdc-theme-on-secondary: rgba(0, 0, 0, .87);

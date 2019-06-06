@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+@extends('admin.layout')
+@section('content')
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,4 +56,4 @@
     </div>
 </div>
 </body>
-</html>
+@endsection
