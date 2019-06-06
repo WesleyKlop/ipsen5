@@ -30,6 +30,7 @@
         "@material/list": "^2.1.1",
         "@material/drawer": "^2.1.1",
         "@material/icon-button": "^2.3.0",
+        "@material/menu": "^2.3.0",
         "@material/textfield": "^2.1.1",
         "@material/top-app-bar": "^2.1.1",
         "@material/theme": "^1.1.0",
@@ -37,6 +38,7 @@
         "classnames": "^2.2.6",
         "normalize-scss": "^7.0.1",
         "react-icons": "^3.7.0",
-        "react-router-dom": "^5.0.0"
+        "react-router-dom": "^5.0.0",
+        "repl": "^0.1.3"
     }
 }
