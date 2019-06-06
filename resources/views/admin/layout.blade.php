@@ -57,9 +57,9 @@
             <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
                 <span class="mdc-top-app-bar__title">Europese Peiling</span>
                 <div style="flex: 1;"></div>
-                <div class="mdc-text-field mdc-text-field--with-leading-icon mdc-text-field--outlined mdc-text-field--no-label" data-mdc-auto-init="MDCTextField">
+                <div class="mdc-text-field mdc-text-field--with-leading-icon mdc-text-field--outlined mdc-text-field--no-label search-field" data-mdc-auto-init="MDCTextField">
                     <i class="material-icons mdc-text-field__icon hide-button" id="pw-eye" tabindex="0" role="button">search</i>
-                    <input class="mdc-text-field__input" placeholder="Zoek...">
+                    <input class="mdc-text-field__input" placeholder="Zoek Peiling...">
                     <div class="mdc-notched-outline">
                         <div class="mdc-notched-outline__leading"></div>
                         <div class="mdc-notched-outline__trailing"></div>
@@ -73,6 +73,7 @@
     </header>
 
     <div class="page-content">
+        <div class="mdc-top-app-bar--fixed-adjust"></div>
         @section('content')
         @show
     </div>
