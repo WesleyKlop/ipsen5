@@ -26,15 +26,20 @@
                 <i class="material-icons mdc-text-field__icon" tabindex="0" role="button">more_vert</i>
             </div>
         @endforeach
-        <div class="proposition-row">
-            <div class="mdc-text-field  new-proposition-input">
-                <input class="mdc-text-field__input"
-                       type="text">
-                <label for="my-input" class="mdc-floating-label">Nieuwe Stelling</label>
-                <div class="mdc-line-ripple"></div>
+        //TODO deze action uitwerken
+        <form method="post" action="ManageSurveyController@addProposition">
+            @csrf
+            <div class="proposition-row">
+                <div class="mdc-text-field  new-proposition-input">
+                    <input class="mdc-text-field__input" type="text" name="proposition_name">
+                    <label for="my-input" class="mdc-floating-label">Nieuwe Stelling</label>
+                    <div class="mdc-line-ripple"></div>
+                </div>
+                <button type="submit">
+                    <i class="material-icons mdc-text-field__icon add-survey-icon" tabindex="0" role="button" >add_circle</i>
+                </button>
             </div>
-            <i class="material-icons mdc-text-field__icon add-survey-icon" tabindex="0" role="button" >add_circle</i>
-        </div>
+        </form>
     </div>
 </div>
 

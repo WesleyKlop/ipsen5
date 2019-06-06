@@ -22,16 +22,19 @@ class ManageSurveyController extends Controller{
 
     public function createSurvey(Request $request) {
 
-//        $validated = $request->validate([
-//            'newSurveyName' => 'required|string|unique:posts|min:5|max:100'
-//        ]);
+        $validated = $request->validate([
+            'name' => 'required|string|unique:surveys|min:5|max:255',
+        ]);
 
-        if(true) {
+        if($validated) {
+            print('validated');
             $survey = new Survey();
-            $survey->name = $request->input('newSurveyName');
+            $survey->name = $request->input('name');
             $survey->id = Str::uuid($survey->name);
-            $survey->save();
+//            $survey->save();
             return Redirect::to(url()->current().'/'.$survey->id) ->with('survey', $survey);
+        } else {
+            print('validation failed');
         }
     }
 
