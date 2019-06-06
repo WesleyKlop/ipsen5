@@ -13,6 +13,7 @@ class VoterResult extends Mailable
     use Queueable, SerializesModels;
 
     public $voter;
+    public $answers;
     /**
      * Create a new message instance.
      *
@@ -21,6 +22,8 @@ class VoterResult extends Mailable
     public function __construct(Voter $voter)
     {
             $this->voter = $voter;
+
+
     }
 
     /**
