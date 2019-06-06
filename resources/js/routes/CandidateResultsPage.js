@@ -5,8 +5,9 @@ import ApiClient from '../ApiClient'
 import Spacer from "../components/Spacer";
 import LinkButton from "../components/LinkButton";
 import EmailPage from "./EmailPage";
+import CardBody from "../components/card/CardBody";
 
-class VoterResultsPage extends React.Component {
+class CandidateResultsPage extends React.Component {
     state = {
         results: [],
     }
@@ -17,42 +18,43 @@ class VoterResultsPage extends React.Component {
                 <Spacer/>
                 <Card style={{background: 'transparent', boxShadow: 'none'}}>
                     <CardHeader>
-                        <h1>Top 5 politici</h1>
+                        <h1>Resultaten</h1>
                     </CardHeader>
-                    {this.state.results.map(candidate =>
-                        <div>
-                            <Card>
-                                <div className="voter-result-page__container">
-                                    <div className="voter-result-page__picture"
-                                         style={{backgroundImage: 'URL(' + candidate.image + ')'}}/>
-                                    <span className="voter-result-page__name">
-                                        {candidate.profile.first_name} {candidate.profile.last_name}
-                                    </span>
-                                    <span className="voter-result-page__percentage">{candidate.percentage} %</span>
-                                    <span className="voter-result-page__function"> {candidate.profile.function} {candidate.profile.party}</span>
-                                </div>
-                            </Card>
-                            <br/>
-                        </div>
+                    {this.state.results.map(result =>
+                        <>
+                            <span>{result.name}</span>
+                            {result.propositions.map(proposition =>
+                                <>
+                                    <Card>
+                                        <CardBody>
+                                            {proposition.proposition}
+                                        </CardBody>
+                                    </Card>
+                                    <br/>
+                                </>
+                            )}
+                        </>
                     )}
                 </Card>
                 <LinkButton to={'/email'}>Resultaten E-mailen</LinkButton>
+                <LinkButton to={'/email'}>Profiel aanpassen</LinkButton>
                 <Spacer/>
             </>
         )
     }
 
     componentDidMount() {
-        ApiClient.request('voter/results')
+        ApiClient.request('answer')
             .then(result => this.setResults(result))
-            .catch(error => console.log(error));
+            .catch(error => console.log(error))
     }
 
     setResults = (results) => {
+        console.log(results)
         this.setState({
             results
-        });
+        })
     }
 }
 
-export default VoterResultsPage
+export default CandidateResultsPage

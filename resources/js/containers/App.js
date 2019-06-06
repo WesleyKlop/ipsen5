@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import VoterMainPage from '../routes/VoterMainPage'
 import InfoPage from '../routes/InfoPage'
 import PropositionPage from '../routes/PropositionPage'
