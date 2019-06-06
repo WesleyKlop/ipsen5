@@ -20,7 +20,7 @@ class VoterResultsPage extends React.Component {
                         <h1>Top 5 politici</h1>
                     </CardHeader>
                     {this.state.results.map(candidate =>
-                        <div>
+                        <div key={candidate.candidate_id}>
                             <Card>
                                 <div className="voter-result-page__container">
                                     <div className="voter-result-page__picture"
