@@ -23,7 +23,7 @@ class VoterResult extends Mailable
     {
             $this->voter = $voter;
 
-
+            //$this->answers = $this->voter->answersWithQuestions();
     }
 
     /**

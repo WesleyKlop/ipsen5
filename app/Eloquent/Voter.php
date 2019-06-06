@@ -37,6 +37,14 @@ class Voter extends AppUser
         return $this->hasOneThrough(Survey::class, SurveyCode::class, 'code', 'id', 'code', 'survey_id');
     }
 
+    public function answersWithQuestions() {
+        $survey =  $this->survey()  ;
+
+        return $this->answers()->get()->map(function ($answer) use ($survey) {
+            return $survey->propositions()->where('proposition_id', $answer->proposition_id)->firstOrFail();
+        });
+    }
+
     public function getMatches()
     {
         /*
