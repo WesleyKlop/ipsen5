@@ -49,7 +49,6 @@
                 </button>
             </div>
         </form>
-        <p>TOTO set this in upper right corner of input field ->{{$surveys -> count()}} / 50</p>
         <div>
 
         </div>
