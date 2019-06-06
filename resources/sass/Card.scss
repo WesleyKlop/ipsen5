@@ -101,4 +101,22 @@
             text-decoration: none;
         }
     }
+
+    & .footer {
+        width: 100%;
+        display: block;
+        text-transform: capitalize;
+
+        & p {
+            padding: 5px 15px;
+        }
+
+        &.agree {
+            background: $second-house-color;
+        }
+
+        &.disagree {
+            background: $european-parliament-color;
+        }
+    }
 }

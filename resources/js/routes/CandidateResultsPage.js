@@ -7,6 +7,7 @@ import LinkButton from "../components/LinkButton";
 import EmailPage from "./EmailPage";
 import CardBody from "../components/card/CardBody";
 import Auth from "../Auth";
+import CardFooter from "../components/card/CardFooter";
 
 class CandidateResultsPage extends React.Component {
     state = {
@@ -30,6 +31,9 @@ class CandidateResultsPage extends React.Component {
                                         <CardBody>
                                             {proposition.proposition}
                                         </CardBody>
+                                        <CardFooter className={proposition.answers.answer ? 'agree' : 'disagree'}>
+                                            <p>{proposition.answers.answer ? 'eens' : 'oneens'}</p>
+                                        </CardFooter>
                                     </Card>
                                     <br/>
                                 </div>
@@ -37,8 +41,8 @@ class CandidateResultsPage extends React.Component {
                         </div>
                     )}
                 </Card>
-                <LinkButton to={'/email'}>Resultaten E-mailen</LinkButton>
-                <LinkButton to={'/email'}>Profiel aanpassen</LinkButton>
+                <LinkButton to={'/email'}>Resultaten E-mailen</LinkButton><br/>
+                <LinkButton to={'/profile'}>Profiel aanpassen</LinkButton>
                 <Spacer/>
             </>
         )
