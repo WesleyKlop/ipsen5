@@ -15,9 +15,13 @@
 Route::get('/admin/login', 'AdminLoginController@showLoginForm');
 Route::post('/admin/login', 'AdminLoginController@login');
 
-Route::get('/admin/manage-survey', 'ManageSurveyController@showManageSurvey');
-Route::post('/admin/manage-survey', 'ManageSurveyController@createSurvey');
-Route::get('/admin/manage-survey/{id}', 'ManageSurveyController@showSurvey');
+
+Route::get('/admin/manage-survey', 'SurveyOverviewController@showManageSurvey');
+Route::post('/admin/manage-survey', 'SurveyOverviewController@createSurvey');
+
+Route::get('/admin/manage-survey/{id}', 'SurveyController@showSurvey');
+Route::post('/admin/manage-survey/{id}', 'SurveyController@addProposition');
+
 
 // Fallback route for react routing
 Route::view('/{path?}', 'app')->where('path', '.*');

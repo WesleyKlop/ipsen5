@@ -2,23 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Eloquent\Proposition;
 use Illuminate\Http\Request;
 use App\Eloquent\Survey;
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 
-class ManageSurveyController extends Controller{
+class SurveyOverviewController extends Controller{
 
-    public function showManageSurvey() {
+    public function showManageSurvey()
+    {
         $surveys = Survey::get();
         return view('manage-survey') -> with('surveys', $surveys);
     }
 
-    public function showSurvey($id) {
-        $survey = Survey::find($id);
-        return view('survey') ->with('survey', $survey);
-    }
 
     public function createSurvey(Request $request) {
 
@@ -27,11 +25,10 @@ class ManageSurveyController extends Controller{
         ]);
 
         if($validated) {
-            print('validated');
             $survey = new Survey();
             $survey->name = $request->input('name');
-            $survey->id = Str::uuid($survey->name);
-//            $survey->save();
+            $survey->id = Str::uuid();
+            $survey->save();
             return Redirect::to(url()->current().'/'.$survey->id) ->with('survey', $survey);
         } else {
             print('validation failed');
