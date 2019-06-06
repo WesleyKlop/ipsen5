@@ -64,6 +64,7 @@
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "@php artisan ide-helper:generate"
-        ]
+        ],
+        "fix": "php-cs-fixer fix"
     }
 }
