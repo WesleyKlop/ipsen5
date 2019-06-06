@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>StemApp 2.0 - Login</title>
+    <title>StemApp 2.0 - @yield('title')</title>
     <!-- Styles -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
@@ -55,7 +55,7 @@
     <header class="mdc-top-app-bar" data-mdc-auto-init="MDCTopAppBar">
         <div class="mdc-top-app-bar__row">
             <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-                <span class="mdc-top-app-bar__title">Europese Peiling</span>
+                <span class="mdc-top-app-bar__title">@yield('title')</span>
                 <div style="flex: 1;"></div>
                 <div class="mdc-text-field mdc-text-field--with-leading-icon mdc-text-field--outlined mdc-text-field--no-label search-field" data-mdc-auto-init="MDCTextField">
                     <i class="material-icons mdc-text-field__icon hide-button" id="pw-eye" tabindex="0" role="button">search</i>
@@ -71,12 +71,11 @@
             </section>
         </div>
     </header>
-
+    <div class="mdc-top-app-bar--fixed-adjust"></div>
     <div class="page-content">
-        <div class="mdc-top-app-bar--fixed-adjust"></div>
         <div style="height: 16px;"></div>
-        @section('content')
-        @show
+
+        @yield('content')
     </div>
 </div>
 </body>

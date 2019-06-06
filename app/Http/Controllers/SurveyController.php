@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Eloquent\Proposition;
 use App\Eloquent\Survey;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class SurveyController extends Controller
 {
@@ -14,26 +17,28 @@ class SurveyController extends Controller
         return $request->user()->survey;
     }
 
-    public function showSurvey($id)
+    public function showSurvey(Survey $survey)
     {
-        $survey = Survey::find($id);
         return view('admin.survey')->with('survey', $survey);
     }
 
-    public function addProposition(Request $request)
+    /**
+     * @param Survey $survey
+     * @param Request $request
+     * @return RedirectResponse|Redirector
+     * @throws ValidationException
+     */
+    public function addProposition(Survey $survey, Request $request)
     {
-
-        $validated = $request->validate([
+        Validator::make($request->all(), [
             'proposition' => 'required|string|min:3|max:255',
+        ])->validate();
+
+        $survey->propositions()->create([
+            'id' => Str::uuid(),
+            'proposition' => $request->input('proposition'),
         ]);
 
-        if ($validated) {
-            Proposition::create([
-                'id' => Str::uuid(),
-                'proposition' => $request->input('proposition_name'),
-                'survey_id' => $request->segment(3),
-            ]);
-        }
-        return redirect($request->url());
+        return view('admin.survey')->with(['survey' => $survey]);
     }
 }

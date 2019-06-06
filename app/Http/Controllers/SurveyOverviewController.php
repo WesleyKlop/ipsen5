@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Eloquent\Survey;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class SurveyOverviewController extends Controller
 {
@@ -17,20 +20,21 @@ class SurveyOverviewController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws ValidationException
+     */
     public function createSurvey(Request $request)
     {
-        $validated = $request->validate([
+        Validator::make($request->only('name'), [
             'name' => 'required|string|unique:surveys|min:5|max:255',
-        ]);
+        ])->validate();
 
-        if ($validated) {
-            $survey = Survey::create([
-                'id' => Str::uuid(),
-                'name' => $request->input('name'),
-            ]);
-            return Redirect::to(url()->current() . '/' . $survey->id)->with('survey', $survey);
-        } else {
-            print('validation failed');
-        }
+        $survey = Survey::create([
+            'id' => Str::uuid(),
+            'name' => $request->input('name'),
+        ]);
+        return Redirect::action('SurveyController@showSurvey', ['survey' => $survey->id]);
     }
 }

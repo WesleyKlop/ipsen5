@@ -104,6 +104,8 @@ body {
 
 .page-content {
     padding: 0 18px;
+    height: calc(100vh - 64px);
+    overflow-y: scroll;
 }
 
 .card__title {
@@ -130,4 +132,8 @@ body {
         width: $size + 24px;
         height: $size + 24px;
     }
+}
+
+.mdc-card + .mdc-card {
+    margin-top: 16px;
 }

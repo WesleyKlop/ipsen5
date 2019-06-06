@@ -1,5 +1,10 @@
 @extends('admin.layout')
 
+
+@section('title')
+    Recente peilingen
+@endsection
+
 @section('content')
     <div class="mdc-card">
         <h2 class="card__title">Peilingen</h2>
