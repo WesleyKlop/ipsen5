@@ -11,7 +11,11 @@ const TextArea = ({ onChange, className, ...props }) => {
     }
     return (
         <div className={classnames('input__wrapper', className)}>
-            <textarea className={classnames('textarea', { dirty })} {...props} onChange={onValueChange}/>
+      <textarea
+          className={classnames('textarea', { dirty })}
+          {...props}
+          onChange={onValueChange}
+      />
             <div className="input__underline"/>
         </div>
     )

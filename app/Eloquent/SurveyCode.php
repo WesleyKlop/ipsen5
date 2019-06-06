@@ -41,7 +41,8 @@ class SurveyCode extends Model
         return $this->hasMany(Voter::class, 'code');
     }
 
-    public function expired() {
+    public function expired()
+    {
         return $this->expire < Carbon::now();
     }
 }

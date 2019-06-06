@@ -13,11 +13,13 @@ const CandidateMainPage = ({ match }) => {
     useEffect(() => {
         fetch(`/api/candidate/${match.params.loginCode}`, {
             headers: {
-                'Accept': 'application/json',
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
         })
-            .then(result => result.ok ? result.json() : Promise.reject('invalid url'))
+            .then(result =>
+                result.ok ? result.json() : Promise.reject('invalid url'),
+            )
             .then(result => {
                 Auth.authenticate(result)
                 setAuthenticated(true)
@@ -33,13 +35,16 @@ const CandidateMainPage = ({ match }) => {
                 <CardBody>
                     <h2>Alvast bedankt!</h2>
                     <p>
-                        Dank u wel voor het meewerken aan deze peiling,
-                        samen met uw gegevens zullen velen jongeren onderwezen worden.
-                        Uw profiel is al aangemaakt, u hoeft alleen nog maar wat info over uzelf toe te voegen.
+                        Dank u wel voor het meewerken aan deze peiling, samen met uw
+                        gegevens zullen velen jongeren onderwezen worden. Uw profiel is al
+                        aangemaakt, u hoeft alleen nog maar wat info over uzelf toe te
+                        voegen.
                     </p>
                     <CardButtons>
                         <Link to="/profile" className="block">
-                            <Button disabled={!authenticated} className="block">Profiel aanvullen</Button>
+                            <Button disabled={!authenticated} className="block">
+                                Profiel aanvullen
+                            </Button>
                         </Link>
                     </CardButtons>
                 </CardBody>

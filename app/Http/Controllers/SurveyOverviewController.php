@@ -12,7 +12,6 @@ use Illuminate\Validation\ValidationException;
 
 class SurveyOverviewController extends Controller
 {
-
     public function showManageSurvey()
     {
         $surveys = Survey::all();

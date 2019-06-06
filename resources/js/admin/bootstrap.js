@@ -10,4 +10,3 @@ mdcAutoInit.register('MDCList', MDCList)
 mdcAutoInit.register('MDCTopAppBar', MDCTopAppBar)
 
 mdcAutoInit()
-

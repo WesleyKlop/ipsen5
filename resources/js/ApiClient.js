@@ -11,10 +11,8 @@ class ApiClient {
                 Authorization: `Bearer ${Auth.getJWT()}`,
             },
             body,
-        })
-            .then(res => res.ok ? res.json() : Promise.reject(res.json()))
+        }).then(res => (res.ok ? res.json() : Promise.reject(res.json())))
     }
-
 }
 
 const apiClient = new ApiClient()

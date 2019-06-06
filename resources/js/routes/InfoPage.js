@@ -6,23 +6,24 @@ import Card from '../components/card/Card'
 import LinkButton from '../components/LinkButton'
 import Spacer from '../components/Spacer'
 
-
 class InfoPage extends React.Component {
-
     render() {
         return (
             <>
                 <Spacer/>
                 <Card>
-                    <CardHeader>
-                        Uitleg
-                    </CardHeader>
+                    <CardHeader>Uitleg</CardHeader>
                     <CardBody>
                         <h2>Over de peiling</h2>
-                        <p>U zult een aantal stellingen krijgen die met eens of oneens te beantwoorden zijn.
-                            Zodra u een optie kiest gaat u door naar de volgende stelling. Veel succes!</p>
+                        <p>
+                            U zult een aantal stellingen krijgen die met eens of oneens te
+                            beantwoorden zijn. Zodra u een optie kiest gaat u door naar de
+                            volgende stelling. Veel succes!
+                        </p>
                         <CardButtons>
-                            <LinkButton block to="/proposition/0">Begin</LinkButton>
+                            <LinkButton block to="/proposition/0">
+                                Begin
+                            </LinkButton>
                         </CardButtons>
                     </CardBody>
                 </Card>
@@ -30,8 +31,6 @@ class InfoPage extends React.Component {
             </>
         )
     }
-
-
 }
 
 export default InfoPage

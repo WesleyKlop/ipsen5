@@ -9,7 +9,13 @@ const EmailInput = ({ value, onChange }) => {
     }
     return (
         <div className="input__wrapper">
-            <input className={classnames('input', { dirty })} type="email" placeholder="Je E-mailadres" value={value} onChange={onValueChange}/>
+            <input
+                className={classnames('input', { dirty })}
+                type="email"
+                placeholder="Je E-mailadres"
+                value={value}
+                onChange={onValueChange}
+            />
             <div className="input__underline"/>
         </div>
     )
