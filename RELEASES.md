@@ -7,7 +7,7 @@ This bot will update the dependencies of both the back- and frontend once a week
 ## Backend
 - Added Trial
 - WIP mailing
-    - Mail can be send, except little work has been done to the layout of the mail being send.
+    - Mail can be sent, except little work has been done to the layout of the mail being send.
 
 - Migrations
     - Added a few migrations
