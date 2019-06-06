@@ -18,4 +18,36 @@ class Admin extends AppUser
         'password',
         'type',
     ];
+
+    public function isTeacher()
+    {
+        return $this->type == 'teacher';
+    }
+
+    public function isInTrial()
+    {
+        if (! $this->isTeacher()) {
+            return false;
+        }
+
+        return Trial::where('teacher_id', $this->user_id)->exists();
+    }
+
+    public function removeFromTrial()
+    {
+        if (! $this->isTeacher()) {
+            return;
+        }
+
+        Trial::where('teacher_id', $this->user_id)->delete();
+    }
+
+    public function addToTrial()
+    {
+        if (!$this->isTeacher()) {
+            return;
+        }
+
+        Trial::create(['teacher_id' => $this->user_id]);
+    }
 }

@@ -11,6 +11,8 @@ import CandidateMainPage from '../routes/CandidateMainPage'
 import PageNotFoundPage from '../routes/PageNotFoundPage'
 import PrivateRoute from '../components/PrivateRoute'
 import CandidateProfilePage from '../routes/CandidateProfilePage'
+import CandidateResultsPage from '../routes/CandidateResultsPage'
+import Auth from '../Auth'
 
 const App = () => (
     <>
@@ -19,9 +21,17 @@ const App = () => (
             <Switch>
                 <PrivateRoute path="/info" component={InfoPage}/>
                 <PrivateRoute path="/profile" component={CandidateProfilePage}/>
-                <PrivateRoute path="/proposition/:propositionNr" component={PropositionPage}/>
+                <PrivateRoute
+                    path="/proposition/:propositionNr"
+                    component={PropositionPage}
+                />
                 <PrivateRoute path="/feedback" component={FeedbackPage}/>
-                <PrivateRoute path="/results" component={VoterResultsPage}/>
+                <PrivateRoute
+                    path="/results"
+                    component={
+                        Auth.isAuthorized('voter') ? VoterResultsPage : CandidateResultsPage
+                    }
+                />
                 <PrivateRoute path="/email" component={EmailPage}/>
                 <Route path="/candidate/:loginCode" component={CandidateMainPage}/>
                 <Route path="/" exact component={VoterMainPage}/>

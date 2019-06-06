@@ -12,8 +12,24 @@
 */
 
 // Admin routes
-Route::get('/admin/login', 'AdminLoginController@showLoginForm');
+Route::get('/admin/login', 'AdminLoginController@showLoginForm')->name('login');
 Route::post('/admin/login', 'AdminLoginController@login');
+Route::get('/admin/register', 'AdminRegisterController@showRegistrationForm');
+Route::post('/admin/register', 'AdminRegisterController@register');
+
+
+Route::middleware('auth:web')->group(function () {
+    Route::get('/admin/', function () {
+        return view('admin.content');
+    });
+
+    Route::get('/admin/survey', 'SurveyOverviewController@showManageSurvey');
+    Route::post('/admin/survey', 'SurveyOverviewController@createSurvey');
+
+    Route::get('/admin/survey/{survey}', 'SurveyController@showSurvey');
+    Route::post('/admin/survey/{survey}', 'SurveyController@addProposition');
+});
+
 
 // Fallback route for react routing
-Route::view('/{path?}', 'app')->where('path', '.*');
+Route::view('/{path?}', 'app')->where('path', '^(?!admin).*$');

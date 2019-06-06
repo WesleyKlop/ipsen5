@@ -2,6 +2,7 @@
 
 namespace App\Eloquent;
 
+use Carbon\Carbon;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,5 +39,10 @@ class SurveyCode extends Model
     public function voters()
     {
         return $this->hasMany(Voter::class, 'code');
+    }
+
+    public function expired()
+    {
+        return $this->expire < Carbon::now();
     }
 }

@@ -1,7 +1,5 @@
 import React from 'react'
 
-const FeedbackPage = () => (
-    <div/>
-)
+const FeedbackPage = () => <div/>
 
 export default FeedbackPage

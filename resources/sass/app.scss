@@ -12,6 +12,7 @@
 @import 'Spinner';
 @import 'ImageInput';
 @import 'ProfilePage';
+@import 'VoterResultsPage';
 
 // Global styles
 * {
@@ -38,7 +39,7 @@ html, body {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .block {
