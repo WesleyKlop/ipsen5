@@ -3,7 +3,6 @@
 
 namespace App\Eloquent;
 
-
 use App\Exceptions\AlreadyAnsweredException;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
