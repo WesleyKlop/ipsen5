@@ -26,6 +26,5 @@ class VoterTableSeeder extends Seeder
                 ]));
             });
         });
-
     }
 }

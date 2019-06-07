@@ -7,6 +7,12 @@ branches:
     - master
     - develop
 
+cache:
+  yarn: true
+  directories:
+    - node_modules
+    - $HOME/.composer/cache/files
+
 services:
   - postgresql
 

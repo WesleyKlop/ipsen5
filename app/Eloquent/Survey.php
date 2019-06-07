@@ -42,8 +42,8 @@ class Survey extends Model
         return $this->hasMany(Proposition::class);
     }
 
-    public function addTeacher(Admin $teacher) {
-
+    public function addTeacher(Admin $teacher)
+    {
         $teacher->removeFromTrial();
 
         SurveyCode::create([

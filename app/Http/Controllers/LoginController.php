@@ -14,7 +14,6 @@ use Ramsey\Uuid\Uuid;
 
 class LoginController extends Controller
 {
-
     public function loginCandidate(?string $candidateId)
     {
         $candidate = Candidate::where('url', $candidateId)->firstOrFail();

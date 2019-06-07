@@ -853,6 +853,48 @@
     "@material/typography" "^1.0.0"
     tslib "^1.9.3"
 
+"@material/list@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@material/list/-/list-2.3.0.tgz#07f8d7194495f487d440bbe9fd09a2d3a68cee06"
+  integrity sha512-uuHWXpaXvPuOaQtQXwrgNc+WTTwBSwU/es65KJJcGrpc/o8Q3mYwMepotMN7E7/L75Wxz2w6uejnoM3zGZfvqg==
+  dependencies:
+    "@material/base" "^1.0.0"
+    "@material/dom" "^1.1.0"
+    "@material/feature-targeting" "^0.44.1"
+    "@material/ripple" "^2.3.0"
+    "@material/rtl" "^0.42.0"
+    "@material/shape" "^1.1.1"
+    "@material/theme" "^1.1.0"
+    "@material/typography" "^2.3.0"
+    tslib "^1.9.3"
+
+"@material/menu-surface@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@material/menu-surface/-/menu-surface-2.3.0.tgz#5d82b4ed7b7124000a2e1fe76034e94f0a433b83"
+  integrity sha512-jJ1MyeJnEJUO0Z7kNxvqN0xruWbTT2XKHCiApQcJHHkeibWfbWJdhXcx5aO4FMf/TVcy3ADSxDTdvc6AYrBX0g==
+  dependencies:
+    "@material/animation" "^1.0.0"
+    "@material/base" "^1.0.0"
+    "@material/elevation" "^1.1.0"
+    "@material/feature-targeting" "^0.44.1"
+    "@material/rtl" "^0.42.0"
+    "@material/shape" "^1.1.1"
+    "@material/theme" "^1.1.0"
+    tslib "^1.9.3"
+
+"@material/menu@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@material/menu/-/menu-2.3.0.tgz#29d7b3557efcf627796cfaf532754f5c6f2d120b"
+  integrity sha512-XPI6w4x5c9ACwKBdujcTskBlisWlEgrb09Sa+s0vjhqBJVZVAUJT1j0OpG8tArNUqQiFssXBa/JuJIe6sMAK1A==
+  dependencies:
+    "@material/base" "^1.0.0"
+    "@material/feature-targeting" "^0.44.1"
+    "@material/list" "^2.3.0"
+    "@material/menu-surface" "^2.3.0"
+    "@material/ripple" "^2.3.0"
+    "@material/rtl" "^0.42.0"
+    tslib "^1.9.3"
+
 "@material/notched-outline@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@material/notched-outline/-/notched-outline-1.1.1.tgz#a79c8aa3c5662b676bb46741658f434afa38f0da"
@@ -867,18 +909,6 @@
     tslib "^1.9.3"
 
 "@material/ripple@^2.1.1", "@material/ripple@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@material/ripple/-/ripple-2.3.0.tgz#4701b2cfecddc4c83ae62c777ae2bf9607988705"
-  integrity sha512-ejXR0nstERofFhssRyFlwOLgebwm2uGbarHtWZ2/+7QY2Th/Z1wOqNb2h/WRoShsJXK11RUsochb6BJrg30u7w==
-  dependencies:
-    "@material/animation" "^1.0.0"
-    "@material/base" "^1.0.0"
-    "@material/dom" "^1.1.0"
-    "@material/feature-targeting" "^0.44.1"
-    "@material/theme" "^1.1.0"
-    tslib "^1.9.3"
-
-"@material/ripple@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@material/ripple/-/ripple-2.3.0.tgz#4701b2cfecddc4c83ae62c777ae2bf9607988705"
   integrity sha512-ejXR0nstERofFhssRyFlwOLgebwm2uGbarHtWZ2/+7QY2Th/Z1wOqNb2h/WRoShsJXK11RUsochb6BJrg30u7w==
@@ -3995,6 +4025,11 @@ jsonfile@^4.0.0:
   integrity sha1-h3Gq4HmbZAdrdmQPygWPnBDjPss=
   optionalDependencies:
     graceful-fs "^4.1.6"
+
+jwt-decode@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-2.2.0.tgz#7d86bd56679f58ce6a84704a657dd392bba81a79"
+  integrity sha1-fYa9VmefWM5qhHBKZX3TkruoGnk=
 
 killable@^1.0.1:
   version "1.0.1"

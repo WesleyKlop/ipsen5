@@ -2,7 +2,6 @@
 
 namespace App\Eloquent;
 
-
 use Exception;
 use Storage;
 
@@ -62,8 +61,7 @@ class Voter extends AppUser
                 $candidate_answers = $candidate->answers->all();
 
                 $number_of_matches = $user_answers
-                    ->map(function ($answer) use($candidate_answers) {
-
+                    ->map(function ($answer) use ($candidate_answers) {
                         return [
                             "voter_answer" => $answer,
                             "candidate_answer" => $candidate_answers[array_search($answer->proposition_id, array_column($candidate_answers, 'proposition_id'))]
@@ -95,6 +93,7 @@ class Voter extends AppUser
                 ];
             })
             ->sortByDesc('matched')
+            ->values()
             ->take(5);
     }
 }

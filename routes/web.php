@@ -22,8 +22,12 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/admin/', function () {
         return view('admin.content');
     });
-    Route::get('/admin/manage-survey', 'ManageSurveyController@showManageSurvey');
-    Route::get('/admin/manage-survey/{id}', 'ManageSurveyController@showSurvey');
+
+    Route::get('/admin/survey', 'SurveyOverviewController@showManageSurvey');
+    Route::post('/admin/survey', 'SurveyOverviewController@createSurvey');
+
+    Route::get('/admin/survey/{survey}', 'SurveyController@showSurvey');
+    Route::post('/admin/survey/{survey}', 'SurveyController@addProposition');
 });
 
 

@@ -1,14 +1,18 @@
-import React from "react";
-import {Route, Redirect} from "react-router-dom";
-import Auth from "../Auth";
+import React from 'react'
+import { Redirect, Route } from 'react-router-dom'
+import Auth from '../Auth'
 
-
-const PrivateRoute = ({component: Component, ...rest}) => (
-    <Route {...rest} render={(props) => (
-        Auth.isAuthenticated() === true
-            ? <Component {...props}/>
-            : <Redirect to='/'/>
-    )}/>
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      Auth.isAuthenticated() === true ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/" />
+      )
+    }
+  />
 )
 
 export default PrivateRoute
