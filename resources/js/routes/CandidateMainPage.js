@@ -1,28 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import Card from '../components/card/Card'
 import CardHeader from '../components/card/CardHeader'
 import CardBody from '../components/card/CardBody'
 import CardButtons from '../components/card/CardButtons'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import Button from '../components/Button'
 import Auth from '../Auth'
 import ApiClient from "../ApiClient";
+import Spacer from "../components/Spacer";
 
-const CandidateMainPage = ({ match }) => {
+const CandidateMainPage = ({match}) => {
     const [authenticated, setAuthenticated] = useState(false)
+
+    const authenticate = (result) => {
+        Auth.authenticate(result)
+        setAuthenticated(true)
+    }
 
     useEffect(() => {
         ApiClient.request(`candidate/${match.params.loginCode}`)
-            .then(result => {
-                Auth.authenticate(result)
-                setAuthenticated(true)
-            })
+            .then(result => authenticate(result))
             .catch(() => this.history.push('/'))
     }, [authenticated])
 
     return (
         <>
-            <div style={{ flex: '1' }}/>
+            <Spacer/>
             <Card>
                 <CardHeader>Welkom</CardHeader>
                 <CardBody>
@@ -42,7 +45,7 @@ const CandidateMainPage = ({ match }) => {
                     </CardButtons>
                 </CardBody>
             </Card>
-            <div style={{ flex: '2' }}/>
+            <Spacer size={2}/>
         </>
     )
 }
