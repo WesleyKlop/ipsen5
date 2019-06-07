@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Card from '../components/card/Card'
 import CardHeader from '../components/card/CardHeader'
 import CardBody from '../components/card/CardBody'
@@ -16,22 +16,22 @@ class CandidateProfilePage extends Component {
         isLoading: false,
     }
 
+    setLoading = (loading, res = null) => {
+        this.setState({isLoading: loading})
+        return res
+    }
+
     handleSubmit = e => {
         e.preventDefault()
-        this.setState({ isLoading: true })
+        this.setLoading(true)
         ApiClient.request('profile', 'POST', new FormData(e.currentTarget))
-            .then(res => {
-                this.setState({ isLoading: false })
-                return res
-            })
-            .then(() => {
-                this.props.history.push('/proposition/0')
-            })
+            .then(res => this.setLoading(false, res))
+            .then(() => this.props.history.push('/proposition/0'))
             .catch(err => console.error(err))
     }
 
     render() {
-        const { isLoading } = this.state
+        const {isLoading} = this.state
         return (
             <>
                 <Spacer/>
@@ -39,7 +39,7 @@ class CandidateProfilePage extends Component {
                     <CardHeader>Profiel</CardHeader>
                     <CardBody>
                         {isLoading ? (
-                            <div style={{ margin: 'auto' }}>
+                            <div style={{margin: 'auto'}}>
                                 <Spinner/>
                             </div>
                         ) : (
