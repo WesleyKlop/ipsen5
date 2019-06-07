@@ -80,6 +80,11 @@ body {
 .mdc-drawer__header {
     background-image: url('/images/logo_background_admin_panel.svg');
 }
+.mdc-drawer__content {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
 .drawer-header__info {
     display: grid;
     grid-template-columns: auto 48px;
@@ -156,7 +161,6 @@ body {
     .card__content {
         display: flex;
         flex-flow: column nowrap;
-        justify-content: flex-start;
         align-items: flex-start;
     }
 }

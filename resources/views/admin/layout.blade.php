@@ -48,6 +48,12 @@
                 <span class="mdc-list-item__text">Feedback Peiling</span>
             </a>
         </nav>
+        <nav class="mdc-list" data-mdc-auto-init="MDCList">
+            <a class="mdc-list-item" href="{{ action('SettingsController@show') }}">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">settings</i>
+                <span class="mdc-list-item__text">Instellingen</span>
+            </a>
+        </nav>
     </div>
 </div>
 
