@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
 {
-    public function send(Request $request) {
+    public function mail(Request $request) {
+        $user = $request->user();
+
         $emailaddress = $request->mail;
 
         return Mail::to($emailaddress)->send(new VoterResult($request->user()));

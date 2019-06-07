@@ -17,4 +17,8 @@ abstract class AppUser extends Authenticatable
     {
         return $this->hasOne(User::class, 'id');
     }
+
+    public function isUser(string $usertype) {
+        return strpos(strtolower(get_class($this)), $usertype) !== false;
+    }
 }

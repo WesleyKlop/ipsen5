@@ -22,18 +22,21 @@
             @endforeach
         </ul>
         <br><br>
-        Hieronder zie je een lijst van de top 5 politici waar je het meest mee overeen kwam:<br>
-        <ul>
-            @foreach($voter->getMatches() as $match)
-                <li>
-                    {{$match['profile']->first_name}}
-                    {{$match['profile']->last_name}}
-                    {{$match['profile']->party}}
-                    :
-                    {{$match['percentage']}}%
-                </li>
-            @endforeach
-        </ul>
+
+        @if($user->isUser('voter'))
+            Hieronder zie je een lijst van de top 5 politici waar je het meest mee overeen kwam:<br>
+            <ul>
+                @foreach($user->getMatches() as $match)
+                    <li>
+                        {{$match['profile']->first_name}}
+                        {{$match['profile']->last_name}}
+                        {{$match['profile']->party}}
+                        :
+                        {{$match['percentage']}}%
+                    </li>
+                @endforeach
+            </ul>
+        @endif
 
         We hopen dat je het leuk vond om de stemapp in te vullen, en zien je graag terug bij een volgende peiling!<br><br>
 

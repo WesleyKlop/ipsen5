@@ -13,18 +13,20 @@ class VoterResult extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $voter;
+    public $user;
     public $answers;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($voter)
+    public function __construct($user)
     {
-            $controller = new AnswerController();
-            $this->voter = $voter;
-            $this->answers = $controller->getPropositionsWithAnswers($voter)[0]['propositions'];
+            $this->user = $user;
+            if ($this->user->isUser('voter')) {
+                $controller = new AnswerController();
+                $this->answers = $controller->getPropositionsWithAnswers($user)[0]['propositions'];
+            }
     }
 
     /**
