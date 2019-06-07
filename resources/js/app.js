@@ -9,8 +9,8 @@ import { render } from 'react-dom'
 import App from './containers/App'
 
 // Kick-start the page!
-render(<App/>, document.getElementById('app'))
+render(<App />, document.getElementById('app'))
 
 if ('hot' in module) {
-    module.hot.accept()
+  module.hot.accept()
 }
