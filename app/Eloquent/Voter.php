@@ -93,6 +93,7 @@ class Voter extends AppUser
                 ];
             })
             ->sortByDesc('matched')
+            ->values()
             ->take(5);
     }
 }
