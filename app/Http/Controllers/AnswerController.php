@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class AnswerController extends Controller
 {
-    function submit(Request $request)
+    public function submit(Request $request)
     {
         $answers = collect($request->json()->all());
 
