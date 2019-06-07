@@ -19,6 +19,6 @@ class User extends Model
     public const TYPE_ADMIN = 'admin';
     public const TYPE_TEACHER = 'teacher';
 
-    protected $fillable = ['id', 'type'];
+    protected $fillable = ['id'];
     protected $keyType = 'uuid';
 }
