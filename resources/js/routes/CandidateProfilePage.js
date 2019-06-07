@@ -98,7 +98,7 @@ class CandidateProfilePage extends Component {
                         )}
                     </CardBody>
                 </Card>
-                <Spacer/>
+                <Spacer size={2}/>
             </>
         )
     }
