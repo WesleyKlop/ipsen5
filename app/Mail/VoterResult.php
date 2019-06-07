@@ -20,7 +20,7 @@ class VoterResult extends Mailable
      *
      * @return void
      */
-    public function __construct(Voter $voter)
+    public function __construct($voter)
     {
             $controller = new AnswerController();
             $this->voter = $voter;
