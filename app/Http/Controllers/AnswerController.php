@@ -20,7 +20,7 @@ class AnswerController extends Controller
     }
 
     /** @var Candidate $user */
-    function show(Request $request)
+    public function show(Request $request)
     {
         $user = $request->user();
         return $this->getPropositionsWithAnswers($user);
