@@ -11,6 +11,7 @@
 @import "~@material/icon-button/mdc-icon-button";
 @import "~@material/menu/mdc-menu";
 @import "~@material/menu-surface/mdc-menu-surface";
+@import "~@material/select/mdc-select";
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
 
@@ -110,12 +111,20 @@ body {
 .page-content {
     padding: 0 18px;
     height: calc(100vh - 64px);
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .card__title {
     padding: 16px;
     margin: 0;
+}
+
+.card__content {
+    padding: 0 16px 16px;
+
+    p {
+        margin: 8px 0;
+    }
 }
 
 .card__actions {
@@ -141,4 +150,13 @@ body {
 
 .mdc-card + .mdc-card {
     margin-top: 16px;
+}
+
+.settings-page {
+    .card__content {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
 }

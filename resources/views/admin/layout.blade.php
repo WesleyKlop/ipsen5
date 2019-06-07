@@ -27,19 +27,19 @@
     </div>
     <div class="mdc-drawer__content">
         <nav class="mdc-list" data-mdc-auto-init="MDCList">
-            <a class="mdc-list-item mdc-list-item--activated" href="#" aria-current="page">
+            <a class="mdc-list-item mdc-list-item--activated" href="{{ action('SurveyOverviewController@showManageSurvey') }}" aria-current="page">
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">history</i>
                 <span class="mdc-list-item__text">Recente Peilingen</span>
             </a>
-            <a class="mdc-list-item" href="#">
+            <a class="mdc-list-item" href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['european-survey']->value ]) }}">
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">public</i>
                 <span class="mdc-list-item__text">Europese Peiling</span>
             </a>
-            <a class="mdc-list-item" href="#">
+            <a class="mdc-list-item" href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['country-survey']->value ]) }}">
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">flag</i>
                 <span class="mdc-list-item__text">Landelijke Peiling</span>
             </a>
-            <a class="mdc-list-item" href="#">
+            <a class="mdc-list-item" href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['trial-survey']->value ]) }}">
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">how_to_vote</i>
                 <span class="mdc-list-item__text">Lokale Peiling</span>
             </a>
