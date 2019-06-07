@@ -14,11 +14,23 @@ import ApiClient from '../ApiClient'
 class CandidateProfilePage extends Component {
   state = {
     isLoading: false,
+    profile: [],
   }
 
   setLoading = (loading, res = null) => {
     this.setState({ isLoading: loading })
     return res
+  }
+
+  setProfile = (result) => {
+    this.setState({ profile: result.profile })
+    this.setLoading(false)
+  }
+
+  componentDidMount() {
+    ApiClient.request('me')
+      .then(result => this.setProfile(result))
+      .catch(error => console.error(error))
   }
 
   handleSubmit = e => {
@@ -30,8 +42,22 @@ class CandidateProfilePage extends Component {
       .catch(err => console.error(err))
   }
 
+  handleInputChange = (event) => {
+    const target = event.target;
+    const name = target.name;
+
+    this.setState({
+      profile: {
+        ...this.state.profile,
+        [name]: target.value
+      }
+    });
+
+    console.log(target.value)
+  }
+
   render() {
-    const { isLoading } = this.state
+    const { isLoading, profile } = this.state
     return (
       <>
         <Spacer />
@@ -52,7 +78,8 @@ class CandidateProfilePage extends Component {
                   name="profile_picture"
                   className="profile-page__pf"
                   required
-                  capture
+                  onChange={this.handleInputChange}
+                  placeholderUrl={profile.profile_picture ? profile.profile_picture : `/storage/profiles/${profile.user_id}.${profile.image_extension}`}
                 />
                 <Input
                   name="first_name"
@@ -60,6 +87,8 @@ class CandidateProfilePage extends Component {
                   className="profile-page__fn"
                   autoComplete="given-name"
                   required
+                  value={profile.first_name}
+                  onChange={this.handleInputChange}
                 />
                 <Input
                   name="last_name"
@@ -67,6 +96,8 @@ class CandidateProfilePage extends Component {
                   className="profile-page__ln"
                   autoComplete="family-name"
                   required
+                  value={profile.last_name}
+                  onChange={this.handleInputChange}
                 />
                 <Input
                   name="party"
@@ -74,6 +105,8 @@ class CandidateProfilePage extends Component {
                   className="profile-page__prt"
                   autoComplete="off"
                   required
+                  value={profile.party}
+                  onChange={this.handleInputChange}
                 />
                 <Input
                   name="function"
@@ -81,6 +114,8 @@ class CandidateProfilePage extends Component {
                   className="profile-page__fct"
                   autoComplete="off"
                   required
+                  value={profile.function}
+                  onChange={this.handleInputChange}
                 />
                 <TextArea
                   name="bio"
@@ -90,6 +125,8 @@ class CandidateProfilePage extends Component {
                   minLength={2}
                   maxLength={255}
                   required
+                  value={profile.bio}
+                  onChange={this.handleInputChange}
                 />
                 <CardButtons>
                   <Button className="block">Opslaan</Button>
