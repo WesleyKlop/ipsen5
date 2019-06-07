@@ -23,10 +23,8 @@ class VoterResult extends Mailable
     public function __construct($user)
     {
             $this->user = $user;
-            if ($this->user->isUser('voter')) {
                 $controller = new AnswerController();
                 $this->answers = $controller->getPropositionsWithAnswers($user)[0]['propositions'];
-            }
     }
 
     /**

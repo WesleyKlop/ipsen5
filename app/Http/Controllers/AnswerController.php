@@ -26,7 +26,7 @@ class AnswerController extends Controller
         return $this->getPropositionsWithAnswers($user);
     }
 
-    function getPropositionsWithAnswers(Voter $user) {
+    function getPropositionsWithAnswers($user) {
         return $user->survey()->with([
             'propositions',
             'propositions.answers' => function (HasMany $q) use ($user) {

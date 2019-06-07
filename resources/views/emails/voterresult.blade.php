@@ -1,7 +1,10 @@
 <html>
     <body>
-        Beste stemmer,<br><br>
-
+        @if($user->isUser('voter'))
+            Beste stemmer,<br><br>
+        @else
+            Geachte {{$user->profile->first_name}},<br><br>
+        @endif
         Bedankt voor het invullen van de stemapp!<br>
 
         Hieronder zie je een lijst van de door jouw beantwoorde stellingen:<br>
