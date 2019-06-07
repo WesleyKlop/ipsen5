@@ -1,3 +1,11 @@
+# Version 0.2.1 (07-06-2019)
+
+## Bugfixes
+* Fixed entire application not working when not signed in (#96)
+* Remove an unused dependency (#99)
+* Fixed results page sometimes not working (#100)
+* Run prettier again (#101)
+
 # Version 0.2 (06-06-2019)
 
 ## General
