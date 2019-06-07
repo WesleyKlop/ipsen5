@@ -63,7 +63,7 @@ class CandidateResultsPage extends React.Component {
     componentDidMount() {
         ApiClient.request('answer')
             .then(result => this.setResults(result))
-            .catch(error => console.log(error))
+            .catch(error => console.error(error))
     }
 
     setResults = results => {
