@@ -24,8 +24,7 @@ class VoterResult extends Mailable
     {
             $controller = new AnswerController();
             $this->voter = $voter;
-            $this->answers = $controller->getPropositionWithAnswers($voter)[0]['propositions'];
-            //$this->answers = $this->voter->answersWithQuestions();
+            $this->answers = $controller->getPropositionsWithAnswers($voter)[0]['propositions'];
     }
 
     /**
