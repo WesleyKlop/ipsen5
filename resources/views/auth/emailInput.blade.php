@@ -1,4 +1,4 @@
-<div class="mdc-text-field textfield-username">
+<div class="mdc-text-field textfield-username" data-mdc-auto-init="MDCTextField">
     <label class="mdc-floating-label" for="email">Email</label>
     <input type="email" name="username" autocomplete="email" class="mdc-text-field__input" id="email" autofocus required/>
     <div class="mdc-line-ripple"></div>

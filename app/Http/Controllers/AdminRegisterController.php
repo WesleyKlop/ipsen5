@@ -49,11 +49,11 @@ class AdminRegisterController extends Controller
     protected function create(array $data)
     {
         $user = User::create([
-            "id" => Str::uuid(),
+            'id' => Str::uuid(),
         ]);
 
         return Admin::create([
-            "user_id" => $user->id,
+            'user_id' => $user->id,
             'type' => 'teacher',
             'username' => $data['username'],
             'password' => Hash::make($data['password']),
@@ -65,6 +65,6 @@ class AdminRegisterController extends Controller
      */
     protected function registered(Request $request, Admin $user)
     {
-        // Should create some kind of hook to initialize trial and stuff, but should we do that here?
+        $user->addToTrial();
     }
 }

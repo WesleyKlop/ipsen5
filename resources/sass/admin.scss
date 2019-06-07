@@ -5,6 +5,10 @@
 @import "~@material/textfield/mdc-text-field";
 @import "~@material/typography/mdc-typography";
 @import "~@material/textfield/icon/mdc-text-field-icon";
+@import "~@material/drawer/mdc-drawer";
+@import "~@material/list/mdc-list";
+@import "~@material/top-app-bar/mdc-top-app-bar";
+@import "~@material/icon-button/mdc-icon-button";
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
 
@@ -18,21 +22,21 @@ body {
     background: $admin-background-color;
     height: 100vh;
     display: flex;
-    justify-content: center;
-    overflow: hidden;
+    margin: 0;
 }
 
-.content-wrapper {
+.login-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    height: 100vh;
 }
 
 .logo {
-    max-width: 200px;
-    max-height: 100px;
-    padding: 15px;
+    margin: 16px auto;
+    max-width: 100%;
 }
 
 .login-container {
@@ -49,3 +53,53 @@ body {
     outline: 0;
 }
 
+.content-frame {
+    position: relative;
+    flex: 1;
+
+    .mdc-top-app-bar {
+        position: absolute;
+    }
+
+    .mdc-top-app-bar__navigation-icon {
+        color: rgba(0, 0, 0, .54);
+    }
+}
+
+.mdc-top-app-bar {
+    background-color: #ffffff;
+}
+.mdc-drawer__header {
+    background-image: url('/images/logo_background_admin_panel.svg');
+}
+.drawer-header__info {
+    display: grid;
+    grid-template-columns: auto 48px;
+    grid-template-rows: 12px 24px 24px;
+    grid-template-areas: 'name .' 'name btn' 'email btn';
+    color: #ffffff;
+    padding-bottom: 8px;
+
+    .mdc-drawer__title {
+        grid-area: name;
+        color: inherit;
+        line-height: 36px;
+    }
+    .mdc-drawer__subtitle {
+        grid-area: email;
+        color: inherit;
+        align-self: start;
+    }
+    .mdc-icon-button {
+        grid-area: btn;
+        align-self: end;
+    }
+}
+
+.search-field {
+    flex: 1 1 350px;
+}
+
+.page-content {
+    padding: 0 18px;
+}
