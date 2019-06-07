@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import Card from '../components/card/Card'
 import CardHeader from '../components/card/CardHeader'
 import CardBody from '../components/card/CardBody'
@@ -17,7 +17,7 @@ class CandidateProfilePage extends Component {
     }
 
     setLoading = (loading, res = null) => {
-        this.setState({isLoading: loading})
+        this.setState({ isLoading: loading });
         return res
     }
 
@@ -31,7 +31,7 @@ class CandidateProfilePage extends Component {
     }
 
     render() {
-        const {isLoading} = this.state
+        const { isLoading } = this.state;
         return (
             <>
                 <Spacer/>
@@ -39,7 +39,7 @@ class CandidateProfilePage extends Component {
                     <CardHeader>Profiel</CardHeader>
                     <CardBody>
                         {isLoading ? (
-                            <div style={{margin: 'auto'}}>
+                            <div style={{ margin: 'auto' }}>
                                 <Spinner/>
                             </div>
                         ) : (

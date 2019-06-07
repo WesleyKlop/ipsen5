@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from '../components/card/Card'
 import CardHeader from '../components/card/CardHeader'
 import CardBody from '../components/card/CardBody'
 import CardButtons from '../components/card/CardButtons'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Button from '../components/Button'
 import Auth from '../Auth'
 import ApiClient from "../ApiClient";
 import Spacer from "../components/Spacer";
 
-const CandidateMainPage = ({match}) => {
+const CandidateMainPage = ({ match }) => {
     const [authenticated, setAuthenticated] = useState(false)
 
     const authenticate = (result) => {
