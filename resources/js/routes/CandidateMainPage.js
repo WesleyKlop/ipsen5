@@ -6,20 +6,13 @@ import CardButtons from '../components/card/CardButtons'
 import { Link } from 'react-router-dom'
 import Button from '../components/Button'
 import Auth from '../Auth'
+import ApiClient from "../ApiClient";
 
 const CandidateMainPage = ({ match }) => {
     const [authenticated, setAuthenticated] = useState(false)
 
     useEffect(() => {
-        fetch(`/api/candidate/${match.params.loginCode}`, {
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(result =>
-                result.ok ? result.json() : Promise.reject('invalid url'),
-            )
+        ApiClient.request(`candidate/${match.params.loginCode}`)
             .then(result => {
                 Auth.authenticate(result)
                 setAuthenticated(true)
