@@ -5,6 +5,7 @@ import CardBody from '../components/card/CardBody'
 import CardButtons from '../components/card/CardButtons'
 import EmailInput from '../components/EmailInput'
 import Button from '../components/Button'
+import Spacer from "../components/Spacer";
 
 class EmailPage extends React.Component {
     state = {
@@ -16,7 +17,7 @@ class EmailPage extends React.Component {
     render() {
         return (
             <>
-                <div style={{ flex: '1' }}/>
+                <Spacer/>
                 <Card>
                     <CardHeader
                         message={this.state.errorMessage}
@@ -37,24 +38,24 @@ class EmailPage extends React.Component {
                         </CardButtons>
                     </CardBody>
                 </Card>
-                <div style={{ flex: '2' }}/>
+                <Spacer size={2}/>
             </>
         )
     }
 
-    handleChange = event => {
-        event.preventDefault()
+    handleChange = e => {
+        e.preventDefault()
         this.setState({
-            email: event.currentTarget.value,
+            email: e.currentTarget.value,
             emailValid:
-                event.currentTarget.value.match(
+                e.currentTarget.value.match(
                     /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i,
                 ) !== null,
         })
     }
 
-    sendEmail = event => {
-        event.preventDefault()
+    sendEmail = e => {
+        e.preventDefault()
         console.log(this.state.email)
     }
 }
