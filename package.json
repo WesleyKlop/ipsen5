@@ -39,6 +39,6 @@
         "jwt-decode": "^2.2.0",
         "normalize-scss": "^7.0.1",
         "react-icons": "^3.7.0",
-        "react-router-dom": "^5.0.0"
+        "react-router-dom": "^5.0.1"
     }
 }
