@@ -66,6 +66,6 @@
             "@php artisan ide-helper:generate"
         ],
         "fix": "php-cs-fixer fix",
-        "test": "php-cs-fixer fix --stop-on-violation --dry-run"
+        "test": "php-cs-fixer fix --stop-on-violation --dry-run && phpunit"
     }
 }
