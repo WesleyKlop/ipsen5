@@ -14,6 +14,7 @@
 // Admin routes
 Route::get('/admin/login', 'AdminLoginController@showLoginForm')->name('login');
 Route::post('/admin/login', 'AdminLoginController@login');
+Route::get('/admin/logout', 'AdminLoginController@logout');
 Route::get('/admin/register', 'AdminRegisterController@showRegistrationForm');
 Route::post('/admin/register', 'AdminRegisterController@register');
 
