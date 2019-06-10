@@ -838,22 +838,7 @@
     "@material/theme" "^1.1.0"
     tslib "^1.9.3"
 
-"@material/list@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@material/list/-/list-2.1.1.tgz#fac8fc886d72c33ffb0f91abbc2483570cda4674"
-  integrity sha512-yZFNLQ6+nTGTJsVuqbYh9gSC+aUh3hC/0aJZzAjVCCY0qSi1vWDHcYdgmgDr4THznlcPr9TxAi6IBiJ/fHXjZg==
-  dependencies:
-    "@material/base" "^1.0.0"
-    "@material/dom" "^1.1.0"
-    "@material/feature-targeting" "^0.44.1"
-    "@material/ripple" "^2.1.1"
-    "@material/rtl" "^0.42.0"
-    "@material/shape" "^1.1.1"
-    "@material/theme" "^1.1.0"
-    "@material/typography" "^1.0.0"
-    tslib "^1.9.3"
-
-"@material/list@^2.3.0":
+"@material/list@^2.1.1", "@material/list@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@material/list/-/list-2.3.0.tgz#07f8d7194495f487d440bbe9fd09a2d3a68cee06"
   integrity sha512-uuHWXpaXvPuOaQtQXwrgNc+WTTwBSwU/es65KJJcGrpc/o8Q3mYwMepotMN7E7/L75Wxz2w6uejnoM3zGZfvqg==
