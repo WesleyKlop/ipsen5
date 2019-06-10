@@ -34,7 +34,7 @@
         "@material/textfield": "^2.1.1",
         "@material/theme": "^1.1.0",
         "@material/top-app-bar": "^2.1.1",
-        "@material/typography": "^1.0.0",
+        "@material/typography": "^2.3.0",
         "classnames": "^2.2.6",
         "jwt-decode": "^2.2.0",
         "normalize-scss": "^7.0.1",
