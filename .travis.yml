@@ -1,5 +1,5 @@
 language: php
-php: 7.1.8
+php: "7.1"
 sudo: required
 
 branches:
@@ -19,14 +19,13 @@ services:
 before_script:
   - cp .env.travis .env
 
-  - composer self-update
-  - composer install --no-interaction
+  - composer install --no-interaction --no-suggest
 
   - php artisan key:generate
   - psql -c 'create database travis_ci_test;' -U postgres
 
   - yarn install
-  - yarn dev
+  - yarn prod
 
 script:
   - php artisan migrate:fresh --seed
