@@ -17,16 +17,14 @@ export default class SearchField {
     this.fillResults()
   }
 
-  fetchResults = async (searchTerm) => {
+  fetchResults = async searchTerm => {
     return fetch(`/admin/survey/search?q=${encodeURIComponent(searchTerm)}`, {
       credentials: 'include',
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
       },
-    })
-      .then(res => res.json())
+    }).then(res => res.json())
   }
-
 
   addListeners = () => {
     this.searchEl.addEventListener('keyup', () => {
@@ -39,10 +37,10 @@ export default class SearchField {
     document.addEventListener('click', this.hideResults)
   }
 
-  hideResults = (e) => {
-    if(typeof e !== 'undefined') {
+  hideResults = e => {
+    if (typeof e !== 'undefined') {
       // Check if we're clicking inside of the results element
-      if(this.resultEl.parentNode.contains(e.target)) {
+      if (this.resultEl.parentNode.contains(e.target)) {
         return
       }
     }
@@ -54,8 +52,11 @@ export default class SearchField {
   }
 
   fillResults = () => {
-    this.resultEl.innerHTML = this._results.map(survey => `
-      <li class="mdc-list-item"><a href="/admin/survey/${survey.id}">${survey.name}</a></li>
-    `).join('')
+    this.resultEl.innerHTML = this._results
+      .map(
+        survey =>
+          `<li class="mdc-list-item"><a href="/admin/survey/${survey.id}">${survey.name}</a></li>`,
+      )
+      .join('')
   }
 }
