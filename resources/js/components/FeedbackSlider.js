@@ -1,14 +1,21 @@
 import React, { Component, createRef } from 'react'
 
+const angleDifference = (angle1, angle2) => {
+  const diff = (angle2 - angle1 + Math.PI) % (Math.PI * 2) - Math.PI
+  return diff < -Math.PI ? diff + Math.PI * 2 : diff
+}
+
+const angleDifference2Percentage = (difference) => {
+  return (difference / Math.PI * 100) + 50
+}
+
 class FeedbackSlider extends Component {
+  static CENTER = 75
   static defaultProps = {
-    min: 0,
-    max: 100,
-    value: 0,
     onChange: null,
   }
 
-  canvas = createRef()
+  thumb = createRef()
   state = {
     isActive: false,
   }
@@ -16,69 +23,61 @@ class FeedbackSlider extends Component {
   setActive = () => this.setState({ isActive: true })
   setInactive = () => this.setState({ isActive: false })
 
-  handleMouseMove = e => {
+  handleChange = e => {
     if (this.state.isActive === false) {
       return
     }
-    // FIXME: convert mouse coordinates to value
-    this.props.onChange && this.props.onChange(100)
+    const { clientX, clientY } = e
+    const thumb = this.thumb.current
+    const [x, y] = this.getRelativePosition(thumb.parentNode, clientX, clientY)
+
+    const angle = Math.atan2(x - FeedbackSlider.CENTER, y - FeedbackSlider.CENTER)
+    const newX = FeedbackSlider.CENTER + 50 * Math.sin(angle)
+    const newY = FeedbackSlider.CENTER + 50 * Math.cos(angle)
+
+    thumb.style.transform = `translate(${newX}px, ${newY}px)`
+
+    const percentage = angleDifference2Percentage(angleDifference(angle, Math.PI))
+    this.props.onChange && this.props.onChange(percentage)
   }
 
   componentDidMount() {
-    this.draw()
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.value !== prevProps.value) {
-      this.draw()
-    }
   }
 
   render() {
     return (
-      <canvas
-        ref={this.canvas}
-        onMouseDown={this.setActive}
-        onMouseUp={this.setInactive}
+      <svg
+        viewBox="0 0 150 75"
+        style={{ width: 150, height: 75, margin: 'auto' }}
         onMouseLeave={this.setInactive}
-        onMouseMove={this.handleMouseMove}
-        width={300}
-        height={150}
-      />
+        onMouseUp={this.setInactive}
+        onClick={this.handleChange}
+        onMouseDown={this.setActive}
+        onMouseMove={this.handleChange}
+      >
+        <defs>
+          <linearGradient id="gradient">
+            <stop stopColor="#ff42ab" offset="0%"/>
+            <stop stopColor="#c7da31" offset="100%"/>
+          </linearGradient>
+        </defs>
+        <path
+          d="M25 75 a1,1 0 0,1 100,0"
+          stroke="url(#gradient)"
+          fill="transparent"
+          strokeWidth="3"
+        />
+        <circle ref={this.thumb} r="10" cx="0" cy="0"/>
+      </svg>
     )
   }
 
-  draw = () => {
-    const cvs = this.canvas.current
-    const ctx = cvs.getContext('2d')
-    ctx.clearRect(0, 0, 300, 150)
-    this.drawBar(ctx)
-    this.drawThumb(ctx)
-  }
-
-  drawBar = ctx => {
-    const grd = ctx.createLinearGradient(0, 0, 300, 0)
-    grd.addColorStop(0, '#ff42ab')
-    grd.addColorStop(1, '#c7da31')
-
-    ctx.lineWidth = 7
-    ctx.strokeStyle = grd
-    ctx.beginPath()
-    ctx.arc(150, 150, 100, Math.PI, 0)
-    ctx.stroke()
-    ctx.closePath()
-  }
-
-  drawThumb = ctx => {
-    const { value, min, max } = this.props
-    const percentage = (value / (max - min)) * 100
-    // FIXME Find some way to convert that percentage to coordinates
-
-    ctx.fillStyle = '#522871'
-    ctx.beginPath()
-    ctx.arc(50, 140, 10, 0, 2 * Math.PI)
-    ctx.fill()
-    ctx.closePath()
+  getRelativePosition = (container, clientX, clientY) => {
+    const { top, left } = container.getBoundingClientRect()
+    return [clientX - left, clientY - top]
   }
 }
 
