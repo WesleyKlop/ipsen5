@@ -24,10 +24,14 @@ Route::middleware('auth:web')->group(function () {
     });
 
     Route::get('/admin/survey', 'SurveyOverviewController@showManageSurvey');
-    Route::post('/admin/survey', 'SurveyOverviewController@createSurvey');
+    Route::post('/admin/survey','SurveyOverviewController@createSurvey');
+    Route::delete('/admin/survey', 'SurveyOverviewController@deleteSurvey');
+
+    Route::post('/admin/suvey/candidate', 'SurveyOverviewController@linkCandidateToSurvey');
 
     Route::get('/admin/survey/{survey}', 'SurveyController@showSurvey');
     Route::post('/admin/survey/{survey}', 'SurveyController@addProposition');
+    Route::delete('/admin/survey/{survey}', 'SurveyController@deleteProposition');
 });
 
 

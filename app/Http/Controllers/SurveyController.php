@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Eloquent\Proposition;
 use App\Eloquent\Survey;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -39,6 +40,17 @@ class SurveyController extends Controller
             'proposition' => $request->input('proposition'),
         ]);
 
-        return view('admin.survey')->with(['survey' => $survey]);
+        return redirect('admin/survey/'.$survey->id);
+    }
+
+    public function deleteProposition(Request $request) {
+        $proposition = Proposition::find($request->input('proposition-id'));
+        $survey = Survey::find($proposition->survey_id);
+        $proposition->delete();
+        return redirect('admin/survey/'.$survey->id);
+//        return $this->showSurvey($survey);
+
+
+
     }
 }

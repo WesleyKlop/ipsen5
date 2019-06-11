@@ -142,3 +142,12 @@ body {
 .mdc-card + .mdc-card {
     margin-top: 16px;
 }
+
+.page-content {
+    a{
+        color: black;
+        font-family: $base-font;
+        text-decoration: none;
+
+    }
+}
