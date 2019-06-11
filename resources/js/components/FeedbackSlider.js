@@ -1,12 +1,12 @@
 import React, { Component, createRef } from 'react'
 
 const angleDifference = (angle1, angle2) => {
-  const diff = (angle2 - angle1 + Math.PI) % (Math.PI * 2) - Math.PI
+  const diff = ((angle2 - angle1 + Math.PI) % (Math.PI * 2)) - Math.PI
   return diff < -Math.PI ? diff + Math.PI * 2 : diff
 }
 
-const angleDifference2Percentage = (difference) => {
-  return (difference / Math.PI * 100) + 50
+const angleDifference2Percentage = difference => {
+  return (difference / Math.PI) * 100 + 50
 }
 
 class FeedbackSlider extends Component {
@@ -31,21 +31,24 @@ class FeedbackSlider extends Component {
     const thumb = this.thumb.current
     const [x, y] = this.getRelativePosition(thumb.parentNode, clientX, clientY)
 
-    const angle = Math.atan2(x - FeedbackSlider.CENTER, y - FeedbackSlider.CENTER)
+    const angle = Math.atan2(
+      x - FeedbackSlider.CENTER,
+      y - FeedbackSlider.CENTER,
+    )
     const newX = FeedbackSlider.CENTER + 50 * Math.sin(angle)
     const newY = FeedbackSlider.CENTER + 50 * Math.cos(angle)
 
     thumb.style.transform = `translate(${newX}px, ${newY}px)`
 
-    const percentage = angleDifference2Percentage(angleDifference(angle, Math.PI))
+    const percentage = angleDifference2Percentage(
+      angleDifference(angle, Math.PI),
+    )
     this.props.onChange && this.props.onChange(percentage)
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
-  componentDidUpdate(prevProps) {
-  }
+  componentDidUpdate(prevProps) {}
 
   render() {
     return (
@@ -60,8 +63,8 @@ class FeedbackSlider extends Component {
       >
         <defs>
           <linearGradient id="gradient">
-            <stop stopColor="#ff42ab" offset="0%"/>
-            <stop stopColor="#c7da31" offset="100%"/>
+            <stop stopColor="#ff42ab" offset="0%" />
+            <stop stopColor="#c7da31" offset="100%" />
           </linearGradient>
         </defs>
         <path
@@ -70,7 +73,7 @@ class FeedbackSlider extends Component {
           fill="transparent"
           strokeWidth="3"
         />
-        <circle ref={this.thumb} r="10" cx="0" cy="0"/>
+        <circle ref={this.thumb} r="10" cx="0" cy="0" />
       </svg>
     )
   }
