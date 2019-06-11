@@ -17,12 +17,11 @@ services:
   - postgresql
 
 before_script:
-  - cp .env.travis .env
-
-  - composer install --no-interaction --no-suggest
-
-  - php artisan key:generate
   - psql -c 'create database travis_ci_test;' -U postgres
+
+  - cp .env.travis .env
+  - composer install --no-interaction --no-suggest
+  - php artisan key:generate
 
   - yarn install
   - yarn prod
