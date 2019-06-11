@@ -65,6 +65,7 @@
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "@php artisan ide-helper:generate"
         ],
-        "fix": "php-cs-fixer fix"
+        "fix": "php-cs-fixer fix",
+        "test": "php-cs-fixer fix --stop-on-violation --dry-run && phpunit"
     }
 }
