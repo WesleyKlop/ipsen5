@@ -43,14 +43,12 @@ class SurveyController extends Controller
         return redirect('admin/survey/'.$survey->id);
     }
 
-    public function deleteProposition(Request $request) {
+    public function deleteProposition(Request $request)
+    {
         $proposition = Proposition::find($request->input('proposition-id'));
         $survey = Survey::find($proposition->survey_id);
         $proposition->delete();
+
         return redirect('admin/survey/'.$survey->id);
-//        return $this->showSurvey($survey);
-
-
-
     }
 }
