@@ -25,6 +25,7 @@ Route::middleware('auth:web')->group(function () {
 
     Route::get('/admin/survey', 'SurveyOverviewController@showManageSurvey');
     Route::post('/admin/survey', 'SurveyOverviewController@createSurvey');
+    Route::get('/admin/survey/search', 'SurveyController@search');
 
     Route::get('/admin/survey/{survey}', 'SurveyController@showSurvey');
     Route::post('/admin/survey/{survey}', 'SurveyController@addProposition');

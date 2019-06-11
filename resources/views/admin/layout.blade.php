@@ -58,12 +58,13 @@
                 <span class="mdc-top-app-bar__title">@yield('title')</span>
                 <div style="flex: 1;"></div>
                 <div class="mdc-text-field mdc-text-field--with-leading-icon mdc-text-field--outlined mdc-text-field--no-label search-field" data-mdc-auto-init="MDCTextField">
-                    <i class="material-icons mdc-text-field__icon hide-button" id="pw-eye" tabindex="0" role="button">search</i>
-                    <input class="mdc-text-field__input" placeholder="Zoek Peiling...">
+                    <label for="search-field" class="material-icons mdc-text-field__icon hide-button" tabindex="0">search</label>
+                    <input class="mdc-text-field__input" placeholder="Zoek Peiling..." id="search-field">
                     <div class="mdc-notched-outline">
                         <div class="mdc-notched-outline__leading"></div>
                         <div class="mdc-notched-outline__trailing"></div>
                     </div>
+                    <ul class="mdc-list search-results mdc-card" data-mdc-auto-init="MDCList"></ul>
                 </div>
                 <div style="flex: 1;"></div>
                 <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">sort</a>

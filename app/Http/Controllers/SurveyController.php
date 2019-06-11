@@ -22,6 +22,15 @@ class SurveyController extends Controller
         return view('admin.survey')->with('survey', $survey);
     }
 
+    public function search(Request $request)
+    {
+        $q = $request->query('q');
+        return Survey
+            ::where('name', 'ILIKE', '%' . $q . '%')
+            ->limit(5)
+            ->get();
+    }
+
     /**
      * @param Survey $survey
      * @param Request $request
