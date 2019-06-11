@@ -8,12 +8,14 @@
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --disable-host-check --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "yarn production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "prettier": "prettier --write \"resources/js/**/*.js\" "
+        "prettier": "prettier --write \"resources/js/**/*.js\"",
+        "test": "prettier --check \"resources/js/**/*.js\""
     },
     "devDependencies": {
         "@babel/plugin-proposal-class-properties": "^7.4.4",
         "@babel/preset-react": "^7.0.0",
         "cross-env": "^5.1",
+        "husky": "^2.4.0",
         "laravel-mix": "^4.0.16",
         "prettier": "^1.18.2",
         "react": "^16.2.0",
@@ -41,5 +43,11 @@
         "normalize-scss": "^7.0.1",
         "react-icons": "^3.7.0",
         "react-router-dom": "^5.0.1"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "yarn prettier && composer fix",
+            "pre-push": "yarn test && composer test"
+        }
     }
 }
