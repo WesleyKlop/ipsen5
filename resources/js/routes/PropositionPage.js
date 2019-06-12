@@ -4,6 +4,7 @@ import Spinner from '../components/Spinner'
 import Spacer from '../components/Spacer'
 import Auth from '../Auth'
 import Proposition from '../components/Proposition'
+import ApiClient from '../ApiClient'
 
 class PropositionPage extends React.Component {
   state = {
@@ -23,24 +24,8 @@ class PropositionPage extends React.Component {
   }
 
   getSurvey = () =>
-    fetch('/api/survey', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + Auth.getJWT(),
-      },
-    })
-      .then(result =>
-        result.ok ? result.json() : Promise.reject('Onjuiste gebruiker'),
-      )
-      .then(result =>
-        this.setState({
-          survey: result.name,
-          propositions: result.propositions,
-          isLoaded: true,
-        }),
-      )
+    ApiClient.request('survey')
+      .then(result => this.setPropositions(result))
       .catch(errorMessage => this.setState({ errorMessage, isLoaded: true }))
 
   onChoose = e => {
@@ -110,6 +95,14 @@ class PropositionPage extends React.Component {
         <ProgressBar progress={this.state.progressBar} />
       </>
     )
+  }
+
+  setPropositions(result) {
+    this.setState({
+      survey: result.name,
+      propositions: result.propositions,
+      isLoaded: true,
+    })
   }
 }
 
