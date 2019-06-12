@@ -25,7 +25,6 @@ class CandidateProfilePage extends Component {
   setProfile = (result) => {
     this.setState({ profile: result.profile })
     this.setLoading(false)
-    console.log(result)
   }
 
   componentDidMount() {
