@@ -24,7 +24,7 @@ class VoterResultsPage extends React.Component {
                 <div className="voter-result-page__container">
                   <div
                     className="voter-result-page__picture"
-                    style={{ backgroundImage: 'URL(' + candidate.image + ')' }}
+                    style={{ backgroundImage: `URL(${candidate.image})` }}
                   />
                   <span className="voter-result-page__name">
                     {candidate.profile.first_name} {candidate.profile.last_name}
@@ -33,7 +33,6 @@ class VoterResultsPage extends React.Component {
                     {candidate.percentage} %
                   </span>
                   <span className="voter-result-page__function">
-                    {' '}
                     {candidate.profile.function} {candidate.profile.party}
                   </span>
                 </div>
