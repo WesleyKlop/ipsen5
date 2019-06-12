@@ -76,7 +76,7 @@ class CandidateProfilePage extends Component {
                 <ImageInput
                   name="profile_picture"
                   className="profile-page__pf"
-                  required={typeof profile.image_extention === "undefined"}
+                  required={profile.image_extension === null}
                   onChange={this.handleInputChange}
                   placeholderUrl={profile.image_extension === null
                     ? null
