@@ -23,8 +23,7 @@ class VoterResult extends Mailable
     public function __construct($user)
     {
         $this->user = $user;
-        $controller = new AnswerController();
-        $this->answers = $controller->getPropositionsWithAnswers($user)[0]['propositions'];
+        $this->answers = $user->getPropositionsWithAnswers()[0]['propositions'];
     }
 
     /**

@@ -23,16 +23,6 @@ class AnswerController extends Controller
     public function show(Request $request)
     {
         $user = $request->user();
-        return $this->getPropositionsWithAnswers($user);
-    }
-
-    function getPropositionsWithAnswers($user) {
-        return $user->survey()->with([
-            'propositions',
-            'propositions.answers' => function (HasMany $q) use ($user) {
-                $q
-                    ->where('user_id', $user->user_id);
-            }
-        ])->get();
+        return $user->getPropositionsWithAnswers();
     }
 }

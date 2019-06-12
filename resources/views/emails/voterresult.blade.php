@@ -8,22 +8,27 @@
         Bedankt voor het invullen van de stemapp!<br>
 
         Hieronder zie je een lijst van de door jouw beantwoorde stellingen:<br>
-        <ul>
-            @foreach($answers as $answer)
-                <li>
-                    <ul>
-                        <li style="list-style: None">{{$answer->proposition}}</li>
-                        <li style="list-style: None">Jouw antwoord:
-                            @if($answer->answers[0]->answer)
-                                Eens
-                            @else
-                                Oneens
-                            @endif
-                        </li>
-                    </ul>
-                </li>
-            @endforeach
-        </ul>
+
+        @if(isset($answers))
+            <ul>
+                @foreach($answers as $answer)
+                    <li>
+                        <ul>
+                            <li style="list-style: None">{{$answer->proposition}}</li>
+                            <li style="list-style: None">Jouw antwoord:
+                                @if($answer->answers[0]->answer)
+                                    Eens
+                                @else
+                                    Oneens
+                                @endif
+                            </li>
+                        </ul>
+                    </li>
+                @endforeach
+            </ul>
+        @else
+            Geen antwoorden.
+        @endif
         <br><br>
 
         @if($user->isUser('voter'))
