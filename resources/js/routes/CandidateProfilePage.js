@@ -25,6 +25,7 @@ class CandidateProfilePage extends Component {
   setProfile = (result) => {
     this.setState({ profile: result.profile })
     this.setLoading(false)
+    console.log(result)
   }
 
   componentDidMount() {
@@ -75,9 +76,11 @@ class CandidateProfilePage extends Component {
                 <ImageInput
                   name="profile_picture"
                   className="profile-page__pf"
-                  required={profile.profile_picture !== "undifined"}
+                  required={typeof profile.image_extention === "undefined"}
                   onChange={this.handleInputChange}
-                  placeholderUrl={typeof profile.profile_picture !== "undefined" ? profile.profile_picture : `/storage/profiles/${profile.user_id}.${profile.image_extension}`}
+                  placeholderUrl={profile.image_extension === null
+                    ? null
+                    : `/storage/profiles/${profile.user_id}.${profile.image_extension}`}
                 />
                 <Input
                   name="first_name"
