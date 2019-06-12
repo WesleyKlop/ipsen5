@@ -1,5 +1,9 @@
 import React, { Component, createRef } from 'react'
-import { calculatePercentage, getClientCoordinates, getRelativePosition } from '../helpers/helpers'
+import {
+  calculatePercentage,
+  getClientCoordinates,
+  getRelativePosition,
+} from '../helpers/helpers'
 
 class FeedbackSlider extends Component {
   static defaultProps = {
@@ -75,8 +79,8 @@ class FeedbackSlider extends Component {
       >
         <defs>
           <linearGradient id="gradient">
-            <stop stopColor="#ff42ab" offset="0%"/>
-            <stop stopColor="#c7da31" offset="100%"/>
+            <stop stopColor="#ff42ab" offset="0%" />
+            <stop stopColor="#c7da31" offset="100%" />
           </linearGradient>
         </defs>
         <text
