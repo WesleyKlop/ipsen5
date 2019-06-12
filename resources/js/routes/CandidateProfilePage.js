@@ -22,7 +22,7 @@ class CandidateProfilePage extends Component {
     return res
   }
 
-  setProfile = (result) => {
+  setProfile = result => {
     this.setState({ profile: result.profile })
     this.setLoading(false)
   }
@@ -42,16 +42,16 @@ class CandidateProfilePage extends Component {
       .catch(err => console.error(err))
   }
 
-  handleInputChange = (event) => {
-    const target = event.target;
-    const name = target.name;
+  handleInputChange = event => {
+    const target = event.target
+    const name = target.name
 
     this.setState({
       profile: {
         ...this.state.profile,
-        [name]: target.value
-      }
-    });
+        [name]: target.value,
+      },
+    })
   }
 
   render() {
@@ -77,9 +77,13 @@ class CandidateProfilePage extends Component {
                   className="profile-page__pf"
                   required={profile.image_extension === null}
                   onChange={this.handleInputChange}
-                  placeholderUrl={profile.image_extension === null
-                    ? null
-                    : `/storage/profiles/${profile.user_id}.${profile.image_extension}`}
+                  placeholderUrl={
+                    profile.image_extension === null
+                      ? null
+                      : `/storage/profiles/${profile.user_id}.${
+                          profile.image_extension
+                        }`
+                  }
                 />
                 <Input
                   name="first_name"
