@@ -14,9 +14,12 @@ class FeedbackSlider extends Component {
   }
 
   setActive = e => {
-    this.setState({ isActive: true })
-    this.handleChange(e)
+    e.persist()
+    this.setState({ isActive: true }, () => {
+      this.handleChange(e)
+    })
   }
+
   setInactive = () => {
     this.setState({ isActive: false })
   }
@@ -72,8 +75,8 @@ class FeedbackSlider extends Component {
       >
         <defs>
           <linearGradient id="gradient">
-            <stop stopColor="#ff42ab" offset="0%" />
-            <stop stopColor="#c7da31" offset="100%" />
+            <stop stopColor="#ff42ab" offset="0%"/>
+            <stop stopColor="#c7da31" offset="100%"/>
           </linearGradient>
         </defs>
         <text
