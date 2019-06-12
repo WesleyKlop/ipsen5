@@ -28,7 +28,7 @@ class AdminTest extends TestCase
         ]);
     }
 
-
+    //Admin creation technically happens in the setUp, so here it is checked that was actually created
     public function testThatAnAdminCanBeCreated()
     {
         $this->assertEquals($this->user->id, Admin::all()->last()['user_id']);
