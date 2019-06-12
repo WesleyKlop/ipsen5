@@ -12,12 +12,15 @@ class AdminTest extends TestCase
 
     protected $user;
     protected $admin;
+    protected $id;
 
     public function setUp(): void
     {
+        $this->id = Str::uuid();
+
         parent::setUp();
         $this->user = User::create([
-            'id' => Str::uuid(),
+            'id' => $this->id,
         ]);
 
         $this->admin = Admin::create([
@@ -37,11 +40,18 @@ class AdminTest extends TestCase
         $this->assertEquals('testpassword', Admin::all()->last()['password']);
     }
 
+    public function testThatATrialCanBeAssigned()
+    {
+        $this->admin->addToTrial();
+        $this->assertTrue($this->admin->isInTrial());
+        $this->admin->removeFromTrial();
+    }
+
     public function tearDown(): void
     {
         //Cleanup from database
-        Admin::all()->last()->delete();
-        User::all()->last()->delete();
+        Admin::all()->where('user_id', '=', $this->id)->first()->delete();
+        User::all()->where('id', '=', $this->id)->first()->delete();
 
         parent::tearDown();
     }
