@@ -20,12 +20,16 @@ class AdminTest extends TestCase
             'user_id' => $user->id,
             'type' => 'teacher',
             'username' => 'admin@UnitTests.com',
-            'password' => 'TESTPWpleaseignore',
+            'password' => 'testpassword',
         ]);
 
-        $this->assertEquals($user->id, $testadmin->user_id);
+        //Retrieve the last entry from the list of all admins
+        $this->assertEquals($user->id, Admin::all()->last()['user_id']);
+        $this->assertEquals('teacher', Admin::all()->last()['type']);
+        $this->assertEquals('admin@UnitTests.com', Admin::all()->last()['username']);
+        $this->assertEquals('testpassword', Admin::all()->last()['password']);
 
-        //Cleanup
+        //Cleanup from database
         $testadmin->delete();
         $user->delete();
     }
