@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Eloquent\Candidate;
+use App\Eloquent\Proposition;
 use Illuminate\Http\Request;
 use Storage;
 
@@ -23,9 +24,14 @@ class ProfileController extends Controller
 
         // Handle Uploaded file. Saved as /profile/$userId.$extension
         $imageFile = $request->file('profile_picture');
-        $extension = $imageFile->guessExtension() ?? '.jpg';
-        $imageFileName = $candidate->user_id . '.' . ($extension);
-        $result = $imageFile->storeAs('public/profiles', $imageFileName);
+        // Check if a new file has been giver or use the old extension.
+        if ($imageFile) {
+            $extension = $imageFile->guessExtension() ?? '.jpg';
+            $imageFileName = $candidate->user_id . '.' . ($extension);
+            $result = $imageFile->storeAs('public/profiles', $imageFileName);
+        } else {
+            $extension = $candidate->profile->image_extension;
+        }
 
         // Update User profile
         $candidate->profile->update([
@@ -36,6 +42,6 @@ class ProfileController extends Controller
             'function' => $profile['function'],
             'image_extension' => $extension,
         ]);
-        return ['candidate' => $candidate, 'fileResult' => $result];
+        return $imageFile ? ['candidate' => $candidate, 'fileResult' => $result] : ['candidate' => $candidate];
     }
 }
