@@ -52,8 +52,6 @@ class CandidateProfilePage extends Component {
         [name]: target.value
       }
     });
-
-    console.log(target.value)
   }
 
   render() {
@@ -77,9 +75,9 @@ class CandidateProfilePage extends Component {
                 <ImageInput
                   name="profile_picture"
                   className="profile-page__pf"
-                  required
+                  required={profile.profile_picture !== "undifined"}
                   onChange={this.handleInputChange}
-                  placeholderUrl={profile.profile_picture ? profile.profile_picture : `/storage/profiles/${profile.user_id}.${profile.image_extension}`}
+                  placeholderUrl={typeof profile.profile_picture !== "undefined" ? profile.profile_picture : `/storage/profiles/${profile.user_id}.${profile.image_extension}`}
                 />
                 <Input
                   name="first_name"
