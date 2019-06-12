@@ -1,16 +1,7 @@
 import React, { Component, createRef } from 'react'
-
-const angleDifference = (angle1, angle2) => {
-  const diff = ((angle2 - angle1 + Math.PI) % (Math.PI * 2)) - Math.PI
-  return diff < -Math.PI ? diff + Math.PI * 2 : diff
-}
-
-const angleDifference2Percentage = difference => {
-  return (difference / Math.PI) * 100 + 50
-}
+import { calculatePercentage, getClientCoordinates, getRelativePosition } from '../helpers/helpers'
 
 class FeedbackSlider extends Component {
-  static CENTER = 75
   static defaultProps = {
     onChange: null,
   }
@@ -18,48 +9,66 @@ class FeedbackSlider extends Component {
   thumb = createRef()
   state = {
     isActive: false,
+    x: 35,
+    y: 115,
   }
 
-  setActive = () => this.setState({ isActive: true })
-  setInactive = () => this.setState({ isActive: false })
+  setActive = e => {
+    this.setState({ isActive: true })
+    this.handleChange(e)
+  }
+  setInactive = () => {
+    this.setState({ isActive: false })
+  }
 
   handleChange = e => {
     if (this.state.isActive === false) {
       return
     }
-    const { clientX, clientY } = e
+    const { clientX, clientY } = getClientCoordinates(e)
     const thumb = this.thumb.current
-    const [x, y] = this.getRelativePosition(thumb.parentNode, clientX, clientY)
-
-    const angle = Math.atan2(
-      x - FeedbackSlider.CENTER,
-      y - FeedbackSlider.CENTER,
+    const [x, y, width] = getRelativePosition(
+      thumb.parentNode,
+      clientX,
+      clientY,
     )
-    const newX = FeedbackSlider.CENTER + 50 * Math.sin(angle)
-    const newY = FeedbackSlider.CENTER + 50 * Math.cos(angle)
+    const CENTERX = width / 2
+    const CENTERY = 115
 
-    thumb.style.transform = `translate(${newX}px, ${newY}px)`
+    const angle = Math.atan2(x - CENTERX, y - CENTERY)
 
-    const percentage = angleDifference2Percentage(
-      angleDifference(angle, Math.PI),
-    )
+    const percentage = calculatePercentage(angle, Math.PI)
+
+    if (percentage < 0 || percentage > 100) {
+      return
+    }
+
+    this.setState({
+      x: CENTERX + 100 * Math.sin(angle),
+      y: CENTERY + 100 * Math.cos(angle),
+    })
+
     this.props.onChange && this.props.onChange(percentage)
   }
 
-  componentDidMount() {}
-
-  componentDidUpdate(prevProps) {}
+  componentDidMount() {
+    //
+  }
 
   render() {
+    const { x, y } = this.state
     return (
       <svg
-        viewBox="0 0 150 75"
-        style={{ width: 150, height: 75, margin: 'auto' }}
+        viewBox="0 0 270 150"
         onMouseLeave={this.setInactive}
+        onTouchCancel={this.setInactive}
         onMouseUp={this.setInactive}
-        onClick={this.handleChange}
+        onTouchEnd={this.setInactive}
         onMouseDown={this.setActive}
+        onTouchStart={this.setActive}
         onMouseMove={this.handleChange}
+        onTouchMove={this.handleChange}
+        className="feedback-slider"
       >
         <defs>
           <linearGradient id="gradient">
@@ -67,20 +76,38 @@ class FeedbackSlider extends Component {
             <stop stopColor="#c7da31" offset="100%" />
           </linearGradient>
         </defs>
+        <text
+          x={0}
+          y={140}
+          textAnchor="start"
+          className="feedback-slider__text"
+        >
+          Ontevreden
+        </text>
+        <text
+          x={270}
+          y={140}
+          textAnchor="end"
+          className="feedback-slider__text"
+        >
+          Tevreden
+        </text>
         <path
-          d="M25 75 a1,1 0 0,1 100,0"
+          d="M35 115 a1,1 0 0,1 200,0"
           stroke="url(#gradient)"
           fill="transparent"
-          strokeWidth="3"
+          strokeWidth="5"
         />
-        <circle ref={this.thumb} r="10" cx="0" cy="0" />
+        <circle
+          ref={this.thumb}
+          r="10"
+          cx="0"
+          cy="0"
+          fill="#522871"
+          style={{ transform: `translate(${x}px, ${y}px)` }}
+        />
       </svg>
     )
-  }
-
-  getRelativePosition = (container, clientX, clientY) => {
-    const { top, left } = container.getBoundingClientRect()
-    return [clientX - left, clientY - top]
   }
 }
 

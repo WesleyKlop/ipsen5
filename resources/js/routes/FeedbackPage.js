@@ -3,12 +3,17 @@ import Spacer from '../components/Spacer'
 import CardHeader from '../components/card/CardHeader'
 import CardBody from '../components/card/CardBody'
 import CardButtons from '../components/card/CardButtons'
-import LinkButton from '../components/LinkButton'
 import Card from '../components/card/Card'
 import FeedbackSlider from '../components/FeedbackSlider'
+import ApiClient from '../ApiClient'
+import Button from '../components/Button'
 
-const FeedbackPage = () => {
-  const [value, setValue] = useState(50)
+const FeedbackPage = ({ history }) => {
+  const [value, setValue] = useState(0)
+  const handleClick = async () => {
+    await ApiClient.request('feedback', 'POST', { value })
+    history.push('/results')
+  }
   return (
     <>
       <Spacer />
@@ -16,14 +21,14 @@ const FeedbackPage = () => {
         <CardHeader>Klaar!</CardHeader>
         <CardBody>
           <p>
-            U bent klaar met de peiling! Geef de peiling en beoordeling om uw
+            U bent klaar met de peiling! Geef de peiling een beoordeling om uw
             resultaat te zien.
           </p>
           <FeedbackSlider value={value} onChange={setValue} />
           <CardButtons>
-            <LinkButton block to={'/results'}>
+            <Button block onClick={handleClick}>
               Resultaten bekijken
-            </LinkButton>
+            </Button>
           </CardButtons>
         </CardBody>
       </Card>
