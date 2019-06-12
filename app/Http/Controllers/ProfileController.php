@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Eloquent\Candidate;
-use App\Eloquent\Proposition;
 use Illuminate\Http\Request;
-use Storage;
 
 class ProfileController extends Controller
 {
@@ -21,27 +19,27 @@ class ProfileController extends Controller
             'function' => 'max:255',
             'profile_picture' => 'image',
         ]);
+        unset($profile['profile_picture']);
 
         // Handle Uploaded file. Saved as /profile/$userId.$extension
         $imageFile = $request->file('profile_picture');
-        // Check if a new file has been giver or use the old extension.
+
         if ($imageFile) {
             $extension = $imageFile->guessExtension() ?? '.jpg';
             $imageFileName = $candidate->user_id . '.' . ($extension);
             $result = $imageFile->storeAs('public/profiles', $imageFileName);
-        } else {
-            $extension = $candidate->profile->image_extension;
+
+            $profile['image_extension'] = $extension;
         }
 
         // Update User profile
-        $candidate->profile->update([
-            'first_name' => $profile['first_name'],
-            'last_name' => $profile['last_name'],
-            'bio' => $profile['bio'],
-            'party' => $profile['party'],
-            'function' => $profile['function'],
-            'image_extension' => $extension,
-        ]);
-        return $imageFile ? ['candidate' => $candidate, 'fileResult' => $result] : ['candidate' => $candidate];
+        $candidate->profile->update($profile);
+
+        $response = ['candidate' => $candidate];
+        if ($imageFile) {
+            $response['fileResult'] = $result;
+        }
+
+        return $response;
     }
 }
