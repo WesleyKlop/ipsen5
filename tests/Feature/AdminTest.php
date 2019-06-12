@@ -10,27 +10,39 @@ use Illuminate\Support\Str;
 class AdminTest extends TestCase
 {
 
-    public function testThatAnAdminCanBeCreated()
+    protected $user;
+    protected $admin;
+
+    public function setUp(): void
     {
-        $user = User::create([
+        parent::setUp();
+        $this->user = User::create([
             'id' => Str::uuid(),
         ]);
 
-        $testadmin = Admin::create([
-            'user_id' => $user->id,
+        $this->admin = Admin::create([
+            'user_id' => $this->user->id,
             'type' => 'teacher',
             'username' => 'admin@UnitTests.com',
             'password' => 'testpassword',
         ]);
+    }
 
-        //Retrieve the last entry from the list of all admins
-        $this->assertEquals($user->id, Admin::all()->last()['user_id']);
+
+    public function testThatAnAdminCanBeCreated()
+    {
+        $this->assertEquals($this->user->id, Admin::all()->last()['user_id']);
         $this->assertEquals('teacher', Admin::all()->last()['type']);
         $this->assertEquals('admin@UnitTests.com', Admin::all()->last()['username']);
         $this->assertEquals('testpassword', Admin::all()->last()['password']);
+    }
 
+    public function tearDown(): void
+    {
         //Cleanup from database
-        $testadmin->delete();
-        $user->delete();
+        Admin::all()->last()->delete();
+        User::all()->last()->delete();
+
+        parent::tearDown();
     }
 }
