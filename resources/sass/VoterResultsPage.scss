@@ -1,10 +1,24 @@
 @import 'variables';
 
+.open {
+    .voter-result-page__bio {
+        height: 100px;
+    }
+}
+
+.voter-result-page__bio {
+    height: 0;
+    grid-area: bio;
+    padding: 5px;
+    overflow-y: hidden;
+    transition: height 0.5s ease-out;
+}
+
 .voter-result-page__container {
     display: grid;
     grid-template-columns: 75px 1fr;
-    grid-template-rows: 20px 35px 20px;
-    grid-template-areas: 'picture name' 'picture percentage' 'picture function';
+    grid-template-rows: 20px 35px 10px;
+    grid-template-areas: 'picture name' 'picture percentage' 'picture function' 'bio bio';
     grid-column-gap: 5px;
     font-size: 12px;
 }

@@ -18,7 +18,7 @@ class VoterResultsPage extends React.Component {
         <Spacer />
         <Card style={{ background: 'transparent', boxShadow: 'none' }}>
           <CardHeader>
-            <h1>Top 5 politici</h1>
+            <h1>Top {results.length} politici</h1>
           </CardHeader>
           {results.map(candidate => (
             <CandidateCard key={candidate.candidate_id} {...candidate} />
