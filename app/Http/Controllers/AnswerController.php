@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Eloquent\Candidate;
 use App\Eloquent\Proposition;
+use App\Eloquent\Voter;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -18,16 +19,10 @@ class AnswerController extends Controller
         return $request->user()->submitAnswers($answers);
     }
 
+    /** @var Candidate $user */
     public function show(Request $request)
     {
-        /** @var Candidate $user */
         $user = $request->user();
-        return $user->survey()->with([
-            'propositions',
-            'propositions.answers' => function (HasMany $q) use ($user) {
-                $q
-                    ->where('user_id', $user->user_id);
-            }
-        ])->get();
+        return $user->getPropositionsWithAnswers();
     }
 }
