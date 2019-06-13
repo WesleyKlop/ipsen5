@@ -21,7 +21,7 @@ class VoterResultsPage extends React.Component {
             <h1>Top 5 politici</h1>
           </CardHeader>
           {results.map(candidate => (
-            <CandidateCard {...candidate} />
+            <CandidateCard key={candidate.candidate_id} {...candidate} />
           ))}
         </Card>
         <LinkButton to={'/email'}>Resultaten E-mailen</LinkButton>
