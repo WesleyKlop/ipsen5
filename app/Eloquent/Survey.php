@@ -40,9 +40,6 @@ class Survey extends Model
 
     public function addTeacher(Admin $teacher)
     {
-
-
-
     }
 
     public function propositions()
