@@ -24,9 +24,8 @@ const ImageInput = ({
         required={required}
         name={name}
       />
-      <img
-        src={url}
-        alt="Profile picture"
+      <div
+        style={{ backgroundImage: `URL(${url})` }}
         onClick={() => fileInput.current.click()}
         className={classnames('image-input', className)}
       />
