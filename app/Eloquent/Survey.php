@@ -4,6 +4,7 @@ namespace App\Eloquent;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -35,6 +36,13 @@ class Survey extends Model
     public function surveyCodes()
     {
         return $this->hasMany(SurveyCode::class);
+    }
+
+    public function addTeacher(Admin $teacher)
+    {
+
+
+
     }
 
     public function propositions()

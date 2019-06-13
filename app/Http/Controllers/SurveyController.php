@@ -6,6 +6,8 @@ use App\Eloquent\Proposition;
 use App\Eloquent\Survey;
 use App\Eloquent\Answer;
 use App\Eloquent\Admin;
+use App\Eloquent\SurveyCode;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
@@ -58,11 +60,21 @@ class SurveyController extends Controller
     public function addTeacher(Survey $survey, Request $request)
     {
         $teacher = Admin::where('username', '=', $request->input('teacher'))->first();
+        dd($survey, $teacher);
         if ($teacher->type = 'teacher') {
-            $survey->surveyCodes()->create([
-                'user_id' => $teacher->user_id,
-                'survey_id' => $survey,
-            ]);
+            $teacher->removeFromTrial();
+
+//            SurveyCode::create([
+//                "code" => Str::uuid(6),
+//                "user_id" => $teacher->user_id,
+//                "survey_id" => $survey,
+//                "expire" => Carbon::now()->addMonth(),
+//            ]);
+
         }
+
+
+
+        return redirect('admin/survey/'.$survey->id);
     }
 }
