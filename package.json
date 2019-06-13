@@ -46,7 +46,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "yarn prettier && composer fix",
+            "pre-commit": "yarn prettier && composer fix && git add .",
             "pre-push": "yarn test && composer test"
         }
     }
