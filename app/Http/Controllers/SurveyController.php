@@ -58,7 +58,7 @@ class SurveyController extends Controller
     public function addTeacher(Survey $survey, Request $request)
     {
         $teacher = Admin::where('username', '=', $request->input('teacher'))->first();
-        if($teacher->type = 'teacher') {
+        if ($teacher->type = 'teacher') {
             $survey->surveyCodes()->create([
                 'user_id' => $teacher->user_id,
                 'survey_id' => $survey,
