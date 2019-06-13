@@ -12,8 +12,6 @@ namespace App\Eloquent;
  */
 class Admin extends AppUser
 {
-    use AnswersPropositions;
-
     protected $fillable = [
         'user_id',
         'username',
