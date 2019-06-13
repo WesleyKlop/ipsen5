@@ -1,12 +1,7 @@
 import classnames from 'classnames'
 import React, { useEffect, useRef, useState } from 'react'
 
-const ImageInput = ({
-  required = false,
-  name,
-  className,
-  previewUrl = '/images/profile-placeholder.svg',
-}) => {
+const ImageInput = ({ required = false, name, className, previewUrl }) => {
   const fileInput = useRef(null)
   const [image, setImage] = useState(null)
   const [preview, setPreview] = useState(previewUrl)
@@ -16,7 +11,7 @@ const ImageInput = ({
       URL.revokeObjectURL(previewUrl)
       setPreview(URL.createObjectURL(fileInput.current.files[0]))
     } else {
-      setPreview(previewUrl)
+      setPreview(previewUrl || '/images/profile-placeholder.svg')
     }
   }, [image, previewUrl])
 

@@ -78,9 +78,8 @@ class CandidateProfilePage extends Component {
                   required={profile.image_extension === null}
                   onChange={this.handleInputChange}
                   previewUrl={
-                    profile.image_extension === null
-                      ? null
-                      : `/storage/profiles/${profile.user_id}.${profile.image_extension}`
+                    profile.image_extension &&
+                    `/storage/profiles/${profile.user_id}.${profile.image_extension}`
                   }
                 />
                 <Input
