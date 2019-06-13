@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
 {
-    public function mail(Request $request) {
+    public function mail(Request $request)
+    {
         $user = $request->user();
 
         $emailaddress = $request->mail;

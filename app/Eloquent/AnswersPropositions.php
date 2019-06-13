@@ -55,7 +55,8 @@ trait AnswersPropositions
         }));
     }
 
-    public function getPropositionsWithAnswers() {
+    public function getPropositionsWithAnswers()
+    {
         return $this->survey->with([
             'propositions',
             'propositions.answers' => function (HasMany $q) {
