@@ -40,7 +40,7 @@ class SurveyOverviewController extends Controller
     public function deleteSurvey(Request $request)
     {
         $survey = Survey::find($request->input('survey-id'));
-        Proposition::all()->where('survey_id','=', $survey->id)->each->delete();
+        Proposition::all()->where('survey_id', '=', $survey->id)->each->delete();
         Survey::destroy($survey->id);
 
         return $this->showManageSurvey();
