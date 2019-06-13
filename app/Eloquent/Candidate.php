@@ -2,12 +2,18 @@
 
 namespace App\Eloquent;
 
+use Illuminate\Database\Eloquent\Collection;
+
 /**
  * Class Candidate
  * @package App\Eloquent
  * @property string $url
  * @property string $survey_id
  * @property string $user_id
+ * @property Survey $survey
+ * @property Feedback $feedback
+ * @property Profile $profile
+ * @property Collection $answers
  */
 class Candidate extends AppUser
 {
@@ -36,5 +42,10 @@ class Candidate extends AppUser
         return $this
             ->hasMany(Answer::class, 'user_id')
             ->where('survey_id', $this->survey_id);
+    }
+
+    public function feedback()
+    {
+        return $this->hasOne(Feedback::class, 'user_id');
     }
 }

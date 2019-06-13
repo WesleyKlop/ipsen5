@@ -10,8 +10,13 @@
         <ul class="mdc-list mdc-list--two-line mdc-list--non-interactive" data-mdc-auto-init="MDCList">
             @foreach($survey->propositions as $proposition)
                 <li class="mdc-list-item ">
-                    <span>{{$proposition->proposition}}</span>
-                    <button class="material-icons mdc-list-item__meta mdc-icon-button" tabindex="-1">more_vert</button>
+                    <span style="width: 100%;">{{$proposition->proposition}}</span>
+                    <form method="POST" action="{{ action('SurveyController@deleteProposition', $survey->id) }}">
+                        @csrf
+                        {{method_field('DELETE')}}
+                        <input type="hidden" name="proposition-id" value="{{$proposition->id}}">
+                        <button class="material-icons mdc-list-item__meta mdc-icon-button" tabindex="-1" type="submit">clear</button>
+                    </form>
                 </li>
             @endforeach
         </ul>

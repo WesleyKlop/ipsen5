@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Eloquent\Proposition;
 use App\Eloquent\Survey;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,7 +18,6 @@ class SurveyOverviewController extends Controller
         $surveys = Survey::all();
         return view('admin.manage-survey')->with('surveys', $surveys);
     }
-
 
     /**
      * @param Request $request
@@ -35,5 +35,14 @@ class SurveyOverviewController extends Controller
             'name' => $request->input('name'),
         ]);
         return Redirect::action('SurveyController@showSurvey', ['survey' => $survey->id]);
+    }
+
+    public function deleteSurvey(Request $request)
+    {
+        $survey = Survey::find($request->input('survey-id'));
+        Proposition::all()->where('survey_id', '=', $survey->id)->each->delete();
+        Survey::destroy($survey->id);
+
+        return $this->showManageSurvey();
     }
 }

@@ -6,30 +6,26 @@ import CardButtons from '../components/card/CardButtons'
 import { Link } from 'react-router-dom'
 import Button from '../components/Button'
 import Auth from '../Auth'
+import ApiClient from '../ApiClient'
+import Spacer from '../components/Spacer'
 
 const CandidateMainPage = ({ match }) => {
   const [authenticated, setAuthenticated] = useState(false)
 
+  const authenticate = result => {
+    Auth.authenticate(result)
+    setAuthenticated(true)
+  }
+
   useEffect(() => {
-    fetch(`/api/candidate/${match.params.loginCode}`, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(result =>
-        result.ok ? result.json() : Promise.reject('invalid url'),
-      )
-      .then(result => {
-        Auth.authenticate(result)
-        setAuthenticated(true)
-      })
+    ApiClient.request(`candidate/${match.params.loginCode}`)
+      .then(result => authenticate(result))
       .catch(() => this.history.push('/'))
   }, [authenticated])
 
   return (
     <>
-      <div style={{ flex: '1' }} />
+      <Spacer />
       <Card>
         <CardHeader>Welkom</CardHeader>
         <CardBody>
@@ -49,7 +45,7 @@ const CandidateMainPage = ({ match }) => {
           </CardButtons>
         </CardBody>
       </Card>
-      <div style={{ flex: '2' }} />
+      <Spacer size={2} />
     </>
   )
 }
