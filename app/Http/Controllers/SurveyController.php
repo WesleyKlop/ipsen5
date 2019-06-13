@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Eloquent\Proposition;
 use App\Eloquent\Survey;
+use App\Eloquent\Answer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
@@ -47,8 +48,16 @@ class SurveyController extends Controller
     {
         $proposition = Proposition::find($request->input('proposition-id'));
         $survey = Survey::find($proposition->survey_id);
+        Answer::where('proposition_id', '=', $proposition->id)->delete();
         $proposition->delete();
 
         return redirect('admin/survey/'.$survey->id);
+    }
+
+    public function addTeacher(Request $request)
+    {
+        $teacher = Admin::where('username', '=', $request->input('teacher'));
+        dd($request);
+
     }
 }

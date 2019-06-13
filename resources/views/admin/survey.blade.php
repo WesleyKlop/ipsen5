@@ -50,6 +50,7 @@
                 </li>
             @endforeach
         </ul>
+
         <form method="POST" action="TODO" class="mdc-card__actions card__actions">
             @csrf
             <div class="input-row">
@@ -71,17 +72,18 @@
                 <li class="mdc-list-item">
                     <span class="mdc-list-item__text">
                         <span class="mdc-list-item__primary-text">{{ $surveyCode->admin->username }}</span>
-                        <span class="mdc-list-item__secondary-text">{{ $surveyCode->code }} | Nog (iets met die expire date)</span>
+                        <span class="mdc-list-item__secondary-text">{{ $surveyCode->code }} | expires at:  {{$surveyCode->expire}}</span>
                     </span>
                     <button class="material-icons mdc-list-item__meta mdc-icon-button" tabindex="-1">more_vert</button>
                 </li>
             @endforeach
         </ul>
-        <form method="POST" action="TODO" class="mdc-card__actions card__actions">
+
+        <form method="post" action="{{url('survey/teacher')}}" class="mdc-card__actions card__actions">
             @csrf
             <div class="input-row">
                 <div class="mdc-text-field new-teacher-input" data-mdc-auto-init="MDCTextField">
-                    <input class="mdc-text-field__input" type="text" name="name" required id="teacher-name" autocomplete="off">
+                    <input class="mdc-text-field__input" type="text" name="teacher" required id="teacher" autocomplete="off">
                     <label for="teacher-name" class="mdc-floating-label">Nieuwe docent</label>
                     <div class="mdc-line-ripple"></div>
                 </div>

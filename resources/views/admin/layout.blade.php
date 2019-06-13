@@ -32,21 +32,21 @@
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">history</i>
                 <span class="mdc-list-item__text">Recente Peilingen</span>
             </a>
-            <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['european-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
-               href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['european-survey']->value ]) }}">
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">public</i>
-                <span class="mdc-list-item__text">Europese Peiling</span>
-            </a>
-            <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['country-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
-               href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['country-survey']->value ]) }}">
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">flag</i>
-                <span class="mdc-list-item__text">Landelijke Peiling</span>
-            </a>
-            <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['trial-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
-               href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['trial-survey']->value ]) }}">
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">how_to_vote</i>
-                <span class="mdc-list-item__text">Lokale Peiling</span>
-            </a>
+{{--            <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['european-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"--}}
+{{--               href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['european-survey']->value ]) }}">--}}
+{{--                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">public</i>--}}
+{{--                <span class="mdc-list-item__text">Europese Peiling</span>--}}
+{{--            </a>--}}
+{{--            <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['country-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"--}}
+{{--               href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['country-survey']->value ]) }}">--}}
+{{--                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">flag</i>--}}
+{{--                <span class="mdc-list-item__text">Landelijke Peiling</span>--}}
+{{--            </a>--}}
+{{--            <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['trial-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"--}}
+{{--               href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['trial-survey']->value ]) }}">--}}
+{{--                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">how_to_vote</i>--}}
+{{--                <span class="mdc-list-item__text">Lokale Peiling</span>--}}
+{{--            </a>--}}
             <a class="mdc-list-item" href="#">
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">question_answer</i>
                 <span class="mdc-list-item__text">Feedback Peiling</span>

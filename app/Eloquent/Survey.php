@@ -42,18 +42,6 @@ class Survey extends Model
         return $this->hasMany(Proposition::class);
     }
 
-    public function addTeacher(Admin $teacher)
-    {
-        $teacher->removeFromTrial();
-
-        SurveyCode::create([
-            "code" => Uuid::uuid4(),
-            "username" => $teacher->username,
-            "survey_id" => $this->id,
-            "expire" => Carbon::new()->addMonth()->timestamp,
-        ]);
-    }
-
     public function answers()
     {
         return $this->hasMany(Answer::class);
