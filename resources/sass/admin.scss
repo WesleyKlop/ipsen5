@@ -1,167 +1,167 @@
 @import 'variables';
 // Material design components
-@import "~@material/button/mdc-button";
-@import "~@material/card/mdc-card";
-@import "~@material/textfield/mdc-text-field";
-@import "~@material/typography/mdc-typography";
-@import "~@material/textfield/icon/mdc-text-field-icon";
-@import "~@material/drawer/mdc-drawer";
-@import "~@material/list/mdc-list";
-@import "~@material/top-app-bar/mdc-top-app-bar";
-@import "~@material/icon-button/mdc-icon-button";
-@import "~@material/menu/mdc-menu";
-@import "~@material/menu-surface/mdc-menu-surface";
-@import "~@material/select/mdc-select";
+@import '~@material/button/mdc-button';
+@import '~@material/card/mdc-card';
+@import '~@material/textfield/mdc-text-field';
+@import '~@material/typography/mdc-typography';
+@import '~@material/textfield/icon/mdc-text-field-icon';
+@import '~@material/drawer/mdc-drawer';
+@import '~@material/list/mdc-list';
+@import '~@material/top-app-bar/mdc-top-app-bar';
+@import '~@material/icon-button/mdc-icon-button';
+@import '~@material/menu/mdc-menu';
+@import '~@material/menu-surface/mdc-menu-surface';
+@import '~@material/select/mdc-select';
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
 
 // Global styles
 body {
-    font-family: $base-font;
-    font-size: $base-font-size;
-    line-height: $base-line-height;
-    font-weight: 300;
-    color: $primary-font-color;
-    background: $admin-background-color;
-    height: 100vh;
-    display: flex;
-    margin: 0;
+  font-family: $base-font;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  font-weight: 300;
+  color: $primary-font-color;
+  background: $admin-background-color;
+  height: 100vh;
+  display: flex;
+  margin: 0;
 }
 
 .login-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
 }
 
 .logo {
-    margin: 16px auto;
-    max-width: 100%;
+  margin: 16px auto;
+  max-width: 100%;
 }
 
 .login-logo {
-    width: 350px;
-    max-width: 100vw;
+  width: 350px;
+  max-width: 100vw;
 }
 
 .login-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 250px;
-    width: 350px;
-    max-width: 100vw;
-    padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 250px;
+  width: 350px;
+  max-width: 100vw;
+  padding: 20px;
 }
 
 .hide-button:focus {
-    outline: 0;
+  outline: 0;
 }
 
 .content-frame {
-    position: relative;
-    flex: 1;
+  position: relative;
+  flex: 1;
 
-    .mdc-top-app-bar {
-        position: absolute;
-    }
+  .mdc-top-app-bar {
+    position: absolute;
+  }
 
-    .mdc-top-app-bar__navigation-icon {
-        color: rgba(0, 0, 0, .54);
-    }
+  .mdc-top-app-bar__navigation-icon {
+    color: rgba(0, 0, 0, 0.54);
+  }
 }
 
 .mdc-top-app-bar {
-    background-color: #ffffff;
+  background-color: #ffffff;
 }
 .mdc-drawer__header {
-    background-image: url('/images/logo_background_admin_panel.svg');
+  background-image: url('/images/logo_background_admin_panel.svg');
 }
 .mdc-drawer__content {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    padding: 8px 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  padding: 8px 0;
 }
 .drawer-header__info {
-    display: grid;
-    grid-template-columns: auto 48px;
-    grid-template-rows: 12px 24px 24px;
-    grid-template-areas: 'name .' 'name btn' 'email btn';
-    color: #ffffff;
-    padding-bottom: 8px;
+  display: grid;
+  grid-template-columns: auto 48px;
+  grid-template-rows: 12px 24px 24px;
+  grid-template-areas: 'name .' 'name btn' 'email btn';
+  color: #ffffff;
+  padding-bottom: 8px;
 
-    .mdc-drawer__title {
-        grid-area: name;
-        color: inherit;
-        line-height: 36px;
-    }
-    .mdc-drawer__subtitle {
-        grid-area: email;
-        color: inherit;
-        align-self: start;
-    }
-    .mdc-icon-button {
-        grid-area: btn;
-        align-self: end;
-    }
+  .mdc-drawer__title {
+    grid-area: name;
+    color: inherit;
+    line-height: 36px;
+  }
+  .mdc-drawer__subtitle {
+    grid-area: email;
+    color: inherit;
+    align-self: start;
+  }
+  .mdc-icon-button {
+    grid-area: btn;
+    align-self: end;
+  }
 }
 
 .search-field {
-    flex: 1 1 350px;
+  flex: 1 1 350px;
 }
 
 .page-content {
-    padding: 0 18px;
-    height: calc(100vh - 64px);
-    overflow-y: auto;
+  padding: 0 18px;
+  height: calc(100vh - 64px);
+  overflow-y: auto;
 }
 
 .card__title {
-    padding: 16px;
-    margin: 0;
+  padding: 16px;
+  margin: 0;
 }
 
 .card__content {
-    padding: 0 16px 16px;
+  padding: 0 16px 16px;
 
-    p {
-        margin: 8px 0;
-    }
+  p {
+    margin: 8px 0;
+  }
 }
 
 .card__actions {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 
-    .input-row {
-        flex: 1;
-    }
-    .mdc-text-field {
-        width: 100%;
-    }
-    .mdc-icon-button {
-        $size: 36px;
-        align-self: flex-start;
-        font-size: $size;
-        // 12px padding
-        width: $size + 24px;
-        height: $size + 24px;
-    }
+  .input-row {
+    flex: 1;
+  }
+  .mdc-text-field {
+    width: 100%;
+  }
+  .mdc-icon-button {
+    $size: 36px;
+    align-self: flex-start;
+    font-size: $size;
+    // 12px padding
+    width: $size + 24px;
+    height: $size + 24px;
+  }
 }
 
 .mdc-card + .mdc-card {
-    margin-top: 16px;
+  margin-top: 16px;
 }
 
 .settings-page {
-    .card__content {
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: flex-start;
-    }
+  .card__content {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+  }
 }
