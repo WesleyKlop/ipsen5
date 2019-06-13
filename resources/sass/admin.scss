@@ -163,13 +163,14 @@ body {
         color: black;
         font-family: $base-font;
         text-decoration: none;
-
-        .settings-page {
-            .card__content {
-                display: flex;
-                flex-flow: column nowrap;
-                align-items: flex-start;
-            }
-        }
     }
 }
+
+.settings-page {
+    .card__content {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: flex-start;
+    }
+}
+
