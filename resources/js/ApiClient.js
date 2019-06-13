@@ -5,7 +5,9 @@ class ApiClient {
 
   request(url, method = 'GET', body = null) {
     const payload =
-      typeof body === 'string' || body === null ? body : JSON.stringify(body)
+      typeof body === 'string' || body === null || body instanceof FormData
+        ? body
+        : JSON.stringify(body)
     return fetch(`${ApiClient.PREFIX}/${url}`, {
       method,
       headers: {
