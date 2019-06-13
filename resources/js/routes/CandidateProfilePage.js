@@ -80,9 +80,7 @@ class CandidateProfilePage extends Component {
                   placeholderUrl={
                     profile.image_extension === null
                       ? null
-                      : `/storage/profiles/${profile.user_id}.${
-                          profile.image_extension
-                        }`
+                      : `/storage/profiles/${profile.user_id}.${profile.image_extension}`
                   }
                 />
                 <Input
