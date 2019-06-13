@@ -60,18 +60,26 @@ class SurveyController extends Controller
     public function addTeacher(Request $request)
     {
         $teacher = Admin::where('username', '=', $request->input('teacher'))->first();
+        $surveyId = $request->input('survey-id');
+        $surveyCode = mt_rand(100000, 999999);
 
         if ($teacher->type = 'teacher') {
             $teacher->removeFromTrial();
 
             SurveyCode::create([
-                "code" => mt_rand(100000, 999999),
+                "code" => $surveyCode,
                 "user_id" => $teacher->user_id,
-                "survey_id" => $request->input('survey-id'),
+                "survey_id" => $surveyId,
                 "expire" => Carbon::now()->addMonth(),
             ]);
         }
 
-//        return redirect('admin/survey/'.$survey->id);
+        return redirect('admin/survey/'.$surveyId);
+    }
+
+    public function addCandidate(Request $request)
+    {
+        $candidateProfile = Profile::where('email', '=', $request->input('email'));
+
     }
 }

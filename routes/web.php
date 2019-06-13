@@ -27,7 +27,7 @@ Route::middleware('auth:web')->prefix('admin')->group(function () {
     Route::post('survey', 'SurveyOverviewController@createSurvey');
     Route::delete('survey', 'SurveyOverviewController@deleteSurvey');
 
-    Route::post('survey/candidate', 'SurveyOverviewController@linkCandidateToSurvey');
+    Route::post('survey/candidate', 'SurveyController@addCandidate');
 
     Route::post('survey/teacher', 'SurveyController@addTeacher');
 

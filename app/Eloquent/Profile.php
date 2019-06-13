@@ -24,7 +24,8 @@ class Profile extends Model
         'function',
         'party',
         'bio',
-        'image_extension'
+        'image_extension',
+        'email',
     ];
 
     public function user()

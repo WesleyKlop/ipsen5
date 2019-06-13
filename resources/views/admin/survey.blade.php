@@ -24,7 +24,7 @@
             @csrf
             <div class="input-row">
                 <div class="mdc-text-field new-proposition-input" data-mdc-auto-init="MDCTextField">
-                    <input class="mdc-text-field__input" type="text" name="proposition" maxlength="50" required id="proposition-name" autocomplete="off">
+                    <input class="mdc-text-field__input" type="text" name="proposition" maxlength="50" id="proposition-name" autocomplete="off">
                     <label for="proposition-name" class="mdc-floating-label">Nieuwe stelling</label>
                     <div class="mdc-line-ripple"></div>
                 </div>
@@ -55,7 +55,7 @@
             @csrf
             <div class="input-row">
                 <div class="mdc-text-field new-candidate-input" data-mdc-auto-init="MDCTextField">
-                    <input class="mdc-text-field__input" type="text" name="name" required id="candidate-name" autocomplete="off">
+                    <input class="mdc-text-field__input" type="text" name="name" id="candidate-name" autocomplete="off">
                     <label for="candidate-name" class="mdc-floating-label">Nieuwe kandidaat</label>
                     <div class="mdc-line-ripple"></div>
                 </div>
@@ -78,13 +78,11 @@
                 </li>
             @endforeach
         </ul>
-
-{{--        <form method="post" action="{{url('survey/teacher')}}" class="mdc-card__actions card__actions">--}}
         <form method="post" action="{{ action('SurveyController@addTeacher') }}" class="mdc-card__actions card__actions">
             @csrf
             <div class="input-row">
                 <div class="mdc-text-field new-teacher-input" data-mdc-auto-init="MDCTextField">
-                    <input class="mdc-text-field__input" type="text" name="teacher" required id="teacher" autocomplete="off">
+                    <input class="mdc-text-field__input" type="text" name="teacher" id="teacher" autocomplete="off">
                     <input type="hidden" name="survey-id" value="{{$survey->id}}">
                     <label for="teacher-name" class="mdc-floating-label">Nieuwe docent</label>
                     <div class="mdc-line-ripple"></div>
