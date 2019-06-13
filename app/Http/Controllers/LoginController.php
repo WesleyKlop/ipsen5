@@ -25,7 +25,7 @@ class LoginController extends Controller
         $code = SurveyCode::findOrFail($request->code);
 
         if ($code->expired()) {
-            throw new SurveyExpiredException("This survey expired.");
+            //throw new SurveyExpiredException("This survey expired.");
         }
 
         $user = User::create(["id" => Uuid::uuid4()]);

@@ -90,7 +90,6 @@
     <div class="mdc-top-app-bar--fixed-adjust"></div>
     <div class="page-content">
         <div style="height: 16px;"></div>
-
         @yield('content')
     </div>
 </div>

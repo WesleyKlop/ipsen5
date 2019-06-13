@@ -158,6 +158,14 @@ body {
   margin-top: 16px;
 }
 
+.page-content {
+    a {
+        color: black;
+        font-family: $base-font;
+        text-decoration: none;
+    }
+}
+
 .settings-page {
   .card__content {
     display: flex;
@@ -165,3 +173,4 @@ body {
     align-items: flex-start;
   }
 }
+
