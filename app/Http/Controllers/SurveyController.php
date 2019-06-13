@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Eloquent\Proposition;
 use App\Eloquent\Survey;
 use App\Eloquent\Answer;
+use App\Eloquent\Admin;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
@@ -54,10 +55,14 @@ class SurveyController extends Controller
         return redirect('admin/survey/'.$survey->id);
     }
 
-    public function addTeacher(Request $request)
+    public function addTeacher(Survey $survey, Request $request)
     {
-        $teacher = Admin::where('username', '=', $request->input('teacher'));
-        dd($request);
-
+        $teacher = Admin::where('username', '=', $request->input('teacher'))->first();
+        if($teacher->type = 'teacher') {
+            $survey->surveyCodes()->create([
+                'user_id' => $teacher->user_id,
+                'survey_id' => $survey,
+            ]);
+        }
     }
 }

@@ -79,7 +79,8 @@
             @endforeach
         </ul>
 
-        <form method="post" action="{{url('survey/teacher')}}" class="mdc-card__actions card__actions">
+{{--        <form method="post" action="{{url('survey/teacher')}}" class="mdc-card__actions card__actions">--}}
+        <form method="post" action="{{ action('SurveyController@addTeacher', $survey->id) }}" class="mdc-card__actions card__actions">
             @csrf
             <div class="input-row">
                 <div class="mdc-text-field new-teacher-input" data-mdc-auto-init="MDCTextField">
