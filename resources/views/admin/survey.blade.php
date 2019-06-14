@@ -54,7 +54,8 @@
             @csrf
             <div class="input-row">
                 <div class="mdc-text-field new-candidate-input" data-mdc-auto-init="MDCTextField">
-                    <input class="mdc-text-field__input" type="text" name="email" id="candidate-email" autocomplete="off">
+                    <input class="mdc-text-field__input" type="text" name="email" id="email" autocomplete="off">
+                    <input type="hidden" name="survey-id" value="{{$survey->id}}">
                     <label for="candidate-name" class="mdc-floating-label">Nieuwe kandidaat (email)</label>
                     <div class="mdc-line-ripple"></div>
                 </div>

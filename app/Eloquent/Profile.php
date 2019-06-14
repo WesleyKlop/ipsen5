@@ -11,6 +11,7 @@ use Storage;
  * @property string $user_id
  * @property string $name
  * @property string $bio
+ * @property string $email
  */
 class Profile extends Model
 {

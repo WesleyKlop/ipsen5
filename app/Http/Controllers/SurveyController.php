@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Eloquent\Candidate;
 use App\Eloquent\Proposition;
 use App\Eloquent\Survey;
 use App\Eloquent\Answer;
+use App\Eloquent\Profile;
 use App\Eloquent\Admin;
 use App\Eloquent\SurveyCode;
 use Carbon\Carbon;
@@ -64,7 +66,7 @@ class SurveyController extends Controller
         $teacher = Admin::where('username', '=', $request->input('teacher'))->first();
         $surveyCode = mt_rand(100000, 999999);
 
-        if(is_null($teacher)) {
+        if (is_null($teacher)) {
             return redirect('admin/survey/'.$surveyId);
         }
 
@@ -85,8 +87,20 @@ class SurveyController extends Controller
 
     public function addCandidate(Request $request)
     {
-//        $profile = Profile::where('email', '=', $request->input('email'));
-//        $candidate = $profile->user->candidate;
-//        dd($candidate, $profile);
+        $surveyId = $request->input('survey-id');
+        $email = $request->input('email');
+        $profile = Profile::where('email', '=', $email)->first();
+        if(is_null($profile)) {
+            return redirect('admin/survey/'.$surveyId);
+        }
+        $user_id = $profile->user_id;
+
+        Candidate::create([
+            'url'=> Str::uuid(),
+            'survey_id' => $surveyId,
+            'user_id' => $user_id,
+        ]);
+
+        return redirect('admin/survey/'.$surveyId);
     }
 }
