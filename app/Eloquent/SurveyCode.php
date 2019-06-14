@@ -69,4 +69,9 @@ class SurveyCode extends Model
     {
         return $this->started_at->diff($this->expire);
     }
+
+    public function timeLeft()
+    {
+        return Carbon::now()->diff($this->expire);
+    }
 }

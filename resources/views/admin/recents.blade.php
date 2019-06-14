@@ -43,9 +43,9 @@
                         <span
                             class="mdc-list-item__primary-text">{{ $surveyCode->survey->name }}</span>
                         <span class="mdc-list-item__secondary-text">
-                            Gestart op {{ $surveyCode->started_at->format('d m Y h:i') }}
+                            Gestart op {{ $surveyCode->started_at->format('d-m-Y h:i') }}
                             &middot;
-                            {{ $surveyCode->interval()->format('Nog %a dagen, %h uur en %i minuten') }}
+                            {{ $surveyCode->timeLeft()->format('Nog %a dagen, %h uur en %i minuten') }}
                         </span>
                     </span>
                     <div class="mdc-list-item__meta recent-survey__meta">
@@ -72,7 +72,7 @@
                         <span
                             class="mdc-list-item__primary-text">{{ $surveyCode->survey->name }}</span>
                         <span
-                            class="mdc-list-item__secondary-text">Gestart op {{ $surveyCode->started_at->format('d m Y h:i') }}</span>
+                            class="mdc-list-item__secondary-text">Gestart op {{ $surveyCode->started_at->format('d-m-Y h:i') }}</span>
                     </span>
                     <div class="mdc-list-item__meta recent-survey__meta">
                         <span class="recent-survey__user-info">

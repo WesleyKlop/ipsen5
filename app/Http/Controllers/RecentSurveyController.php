@@ -19,13 +19,14 @@ class RecentSurveyController extends Controller
             ->get();
         $activeSurveys = $user
             ->surveyCodes()
-            ->whereDate('expire', '>=', Carbon::now())
+            ->where('expire', '>=', Carbon::now())
             ->whereNotNull('started_at')
             ->with('survey')
             ->get();
         $expiredSurveys = $user
             ->surveyCodes()
-            ->whereDate('expire', '<', Carbon::now())
+            ->where('expire', '<', Carbon::now())
+            ->whereNotNull('started_at')
             ->with('survey')
             ->get();
 
