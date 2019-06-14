@@ -14,7 +14,7 @@ class AddSurveyCodeStartDateColumn extends Migration
     public function up()
     {
         Schema::table('survey_codes', function (Blueprint $table) {
-            $table->timestamp('started_at')->nullable();
+            $table->timestamp('started_at');
         });
     }
 

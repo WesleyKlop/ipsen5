@@ -7,24 +7,16 @@
 @section('content')
     <div class="mdc-card">
         <h2 class="card__title">Beschikbaar</h2>
-        <ul class="mdc-list mdc-list--two-line mdc-list--non-interactive"
+        <ul class="mdc-list mdc-list--non-interactive"
             data-mdc-auto-init="MDCList">
-            @foreach($startableSurveys as $surveyCode)
+            @foreach($startableSurveys as $survey)
                 <li class="mdc-list-item">
                     <span class="mdc-list-item__text">
-                        <span
-                            class="mdc-list-item__primary-text">{{ $surveyCode->survey->name }}</span>
-                        <span class="mdc-list-item__secondary-text">
-
-                        </span>
+                      {{ $survey->name }}
                     </span>
                     <div class="mdc-list-item__meta recent-survey__meta">
-                        <span class="recent-survey__user-info">
-                            {{ $surveyCode->survey->voters()->count() }} stemmers<br />
-                            {{ $surveyCode->survey->candidates()->count() }} kandidaten
-                        </span>
                         <a class="mdc-button recent-survey__action"
-                           href="{{ '#'/* TODO add action to start a survey */ }}">
+                           href="{{ action('RecentSurveyController@startSurvey', $survey) }}">
                             Start
                         </a>
                     </div>
@@ -50,7 +42,7 @@
                     </span>
                     <div class="mdc-list-item__meta recent-survey__meta">
                         <span class="recent-survey__user-info">
-                            {{ $surveyCode->survey->voters()->count() }} stemmers<br />
+                            {{ $surveyCode->voters()->count() }} stemmers<br />
                             {{ $surveyCode->survey->candidates()->count() }} kandidaten
                         </span>
                         <span

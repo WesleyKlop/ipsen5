@@ -58,4 +58,16 @@ class Admin extends AppUser
     {
         return $this->hasMany(SurveyCode::class, 'user_id', 'user_id');
     }
+
+    public function surveys()
+    {
+        return $this->hasManyThrough(
+            Survey::class,
+            Teacher::class,
+            'user_id',
+            'id',
+            'user_id',
+            'survey_id'
+        );
+    }
 }

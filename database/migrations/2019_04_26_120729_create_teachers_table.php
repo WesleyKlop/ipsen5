@@ -17,7 +17,7 @@ class CreateTeachersTable extends Migration
             $table->uuid('user_id');
             $table->uuid('survey_id');
 
-            $table->primary('user_id');
+            $table->primary(['user_id', 'survey_id']);
             $table->foreign('user_id')->references('user_id')->on('admins');
             $table->foreign('survey_id')->references('id')->on('surveys');
         });

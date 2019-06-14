@@ -17,7 +17,7 @@ class CreateSurveyCodesTable extends Migration
             $table->string('code', 6)->primary();
             $table->uuid('user_id');
             $table->uuid('survey_id');
-            $table->timestamp('expire')->nullable();
+            $table->timestamp('expire');
 
             $table->foreign(['user_id'])->references(['user_id'])->on('admins');
             $table->foreign('survey_id')->references('id')->on('surveys');
