@@ -60,12 +60,17 @@ class SurveyController extends Controller
 
     public function addTeacher(Request $request)
     {
-        $teacher = Admin::where('username', '=', $request->input('teacher'))->first();
         $surveyId = $request->input('survey-id');
+        $teacher = Admin::where('username', '=', $request->input('teacher'))->first();
         $surveyCode = mt_rand(100000, 999999);
-        $hasExistingCode = SurveyCode::where('survey_id', '=', $surveyId)->where('user_id', '=', $teacher->user_id)->get();
 
-        if ($teacher->type = 'teacher' && !$hasExistingCode) {
+        if(is_null($teacher)) {
+            return redirect('admin/survey/'.$surveyId);
+        }
+
+        $hasExistingSurveyCode = SurveyCode::where('survey_id', '=', $surveyId)->where('user_id', '=', $teacher->user_id)->exists();
+
+        if ($teacher->type = 'teacher' && !$hasExistingSurveyCode) {
             $teacher->removeFromTrial();
 
             SurveyCode::create([
@@ -75,7 +80,6 @@ class SurveyController extends Controller
                 "expire" => Carbon::now()->addMonth(),
             ]);
         }
-
         return redirect('admin/survey/'.$surveyId);
     }
 
