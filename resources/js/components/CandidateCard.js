@@ -20,9 +20,7 @@ const CandidateCard = ({ profile, candidate_id, percentage, image }) => {
           <span className="voter-result-page__function">
             {profile.function} {profile.party}
           </span>
-          <span className="voter-result-page__bio">
-            {profile.bio}
-          </span>
+          <span className="voter-result-page__bio">{profile.bio}</span>
         </div>
       </Card>
       <br />
