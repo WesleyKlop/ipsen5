@@ -15,9 +15,11 @@ class ApiClient {
         Authorization: `Bearer ${Auth.getJWT()}`,
       },
       body: payload,
-    }).then(res =>
-      res.ok ? res.json() : res.json().then(res => Promise.reject(res)),
-    )
+    }).then(res => {
+      if (res.headers.get('content-type') === 'application/json')
+        return res.ok ? res.json() : res.json().then(res => Promise.reject(res))
+      else return Promise.resolve()
+    })
   }
 }
 

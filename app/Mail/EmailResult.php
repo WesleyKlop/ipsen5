@@ -9,7 +9,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Eloquent\Voter;
 
-class VoterResult extends Mailable
+class EmailResult extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -33,6 +33,9 @@ class VoterResult extends Mailable
      */
     public function build()
     {
-        return $this->from('stemapp@outlook.com')->view('emails.voterresult');
+        return $this
+            ->subject('Resultaten van de Stem!App')
+            ->from('stemapp@outlook.com')
+            ->view('emails.emailResult');
     }
 }
