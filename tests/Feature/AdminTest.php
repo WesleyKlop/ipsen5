@@ -4,11 +4,15 @@ namespace Tests\Feature;
 
 use App\Eloquent\Admin;
 use App\Eloquent\User;
+use App\Eloquent\Trial;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Illuminate\Support\Str;
 
 class AdminTest extends TestCase
 {
+    //This trait makes sure the database remains unaffected by the tests.
+    use DatabaseTransactions;
 
     protected $user;
     protected $admin;
@@ -16,9 +20,9 @@ class AdminTest extends TestCase
 
     public function setUp(): void
     {
-        $this->id = Str::uuid();
-
         parent::setUp();
+
+        $this->id = Str::uuid();
         $this->user = User::create([
             'id' => $this->id,
         ]);
@@ -34,25 +38,18 @@ class AdminTest extends TestCase
     //Admin creation technically happens in the setUp, so here it is checked that was actually created
     public function testThatAnAdminCanBeCreated()
     {
-        $this->assertEquals($this->user->id, Admin::all()->last()['user_id']);
-        $this->assertEquals('teacher', Admin::all()->last()['type']);
-        $this->assertEquals('admin@UnitTests.com', Admin::all()->last()['username']);
-        $this->assertEquals('testpassword', Admin::all()->last()['password']);
+        $this->assertEquals($this->user->id, Admin::find($this->admin->user_id)['user_id']);
+        $this->assertEquals('teacher', Admin::find($this->admin->user_id)['type']);
+        $this->assertEquals('admin@UnitTests.com', Admin::find($this->admin->user_id)['username']);
+        $this->assertEquals('testpassword', Admin::find($this->admin->user_id)['password']);
     }
 
-    public function testThatATrialCanBeAssigned()
-    {
-        $this->admin->addToTrial();
-        $this->assertTrue($this->admin->isInTrial());
-        $this->admin->removeFromTrial();
-    }
-
-    public function tearDown(): void
-    {
-        //Cleanup from database
-        Admin::all()->where('user_id', '=', $this->id)->first()->delete();
-        User::all()->where('id', '=', $this->id)->first()->delete();
-
-        parent::tearDown();
-    }
+//    public function testThatATrialCanBeAssigned()
+//    {
+//        $this->admin->addToTrial();
+//        $this->assertTrue($this->admin->isInTrial());
+////        var_dump(Trial::find($this->user->id)->first()->teacher_id);
+////        $this->assertEquals($this->user->id, Trial::find($this->user->id)->first()->teacher_id);
+//        $this->admin->removeFromTrial();
+//    }
 }
