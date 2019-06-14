@@ -102,7 +102,7 @@ class SurveyController extends Controller
         }
         $user_id = $profile->user_id;
 
-        if(Candidate::where('survey_id', '=', $surveyId)->where('user_id', '=', $user_id)->exists()) {
+        if (Candidate::where('survey_id', '=', $surveyId)->where('user_id', '=', $user_id)->exists()) {
             //candidate is already added to survey.
             return redirect('admin/survey/'.$surveyId);
         }
