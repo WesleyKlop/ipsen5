@@ -173,3 +173,28 @@ body {
     align-items: flex-start;
   }
 }
+
+.recent-survey__meta {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.recent-survey__pie {
+  width: 48px;
+  height: 48px;
+}
+
+.recent-survey__code {
+  font-size: 1.4rem;
+  padding: 0 8px;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.recent-survey__results {
+  margin: 0 16px;
+}
+
+.recent-survey__user-info {
+  text-align: right;
+}

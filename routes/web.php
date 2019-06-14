@@ -19,9 +19,7 @@ Route::get('/admin/register', 'AdminRegisterController@showRegistrationForm');
 Route::post('/admin/register', 'AdminRegisterController@register');
 
 Route::middleware('auth:web')->prefix('admin')->group(function () {
-    Route::get('/', function () {
-        return view('admin.content');
-    });
+    Route::get('/', 'RecentSurveyController@show');
 
     Route::get('survey', 'SurveyOverviewController@showManageSurvey');
     Route::post('survey', 'SurveyOverviewController@createSurvey');

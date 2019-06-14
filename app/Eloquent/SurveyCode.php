@@ -19,13 +19,16 @@ class SurveyCode extends Model
 {
     protected $primaryKey = 'code';
     public $timestamps = false;
+    protected $dateFormat = 'Y-m-d H:i:sO';
     protected $fillable = [
         'code',
         'user_id',
         'survey_id',
         'expire',
     ];
-
+    protected $dates = [
+        'expire',
+    ];
     public function survey()
     {
         return $this->belongsTo(Survey::class);
