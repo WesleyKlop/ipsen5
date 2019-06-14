@@ -43,8 +43,8 @@
             @foreach($survey->candidates as $candidate)
                 <li class="mdc-list-item ">
                     <span class="mdc-list-item__text">
-                        <span class="mdc-list-item__primary-text">{{$candidate->profile->first_name}} {{ $candidate->profile->last_name }}  |  {{$candidate->profile->email}}</span>
-                        <span class="mdc-list-item__secondary-text">{{ $candidate->profile->party }} ({{ $candidate->profile->function }}) | </span>
+                        <span class="mdc-list-item__primary-text">{{$candidate->profile->first_name ?? 'niet ingevuld'}} {{ $candidate->profile->last_name ?? 'niet ingevuld'}}  |  {{$candidate->profile->email ?? 'niet ingevuld'}}</span>
+                        <span class="mdc-list-item__secondary-text">{{ $candidate->profile->party ?? 'niet ingevuld'}} ({{ $candidate->profile->function ?? 'niet ingevuld'}}) | </span>
                     </span>
                     <button class="material-icons mdc-list-item__meta mdc-icon-button" tabindex="-1">more_vert</button>
                 </li>
