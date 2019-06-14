@@ -9,6 +9,8 @@ use App\Eloquent\Answer;
 use App\Eloquent\Profile;
 use App\Eloquent\Admin;
 use App\Eloquent\SurveyCode;
+use App\Eloquent\User;
+use App\Http\Controllers\ProfileController;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -85,15 +87,25 @@ class SurveyController extends Controller
         return redirect('admin/survey/'.$surveyId);
     }
 
-    public function addCandidate(Request $request)
+    public function addCandidate(Request $request, ProfileController $profileController)
     {
         $surveyId = $request->input('survey-id');
         $email = $request->input('email');
         $profile = Profile::where('email', '=', $email)->first();
-        if(is_null($profile)) {
-            return redirect('admin/survey/'.$surveyId);
+
+        if (is_null($profile)) {
+            //Profile does not exist, create user and profile.
+            $user = User::create([
+                'id' => Str::uuid()
+            ]);
+            $profile = $profileController->createNewProfile($user->id, $email);
         }
         $user_id = $profile->user_id;
+
+        if(Candidate::where('survey_id', '=', $surveyId)->where('user_id', '=', $user_id)->exists()) {
+            //candidate is already added to survey.
+            return redirect('admin/survey/'.$surveyId);
+        }
 
         Candidate::create([
             'url'=> Str::uuid(),

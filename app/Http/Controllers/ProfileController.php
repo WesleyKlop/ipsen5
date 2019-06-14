@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Eloquent\Candidate;
+use App\Eloquent\Profile;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -41,5 +42,21 @@ class ProfileController extends Controller
         }
 
         return $response;
+    }
+
+    public function createNewProfile(string $userId, string $email) {
+
+        $emptyProfile = Profile::create([
+            'user_id' => $userId,
+            'first_name' => '',
+            'last_name' => '',
+            'function' => '',
+            'party' => '',
+            'bio' => '',
+            'image_extension' => '',
+            'email'=> $email,
+        ]);
+        return $emptyProfile;
+
     }
 }
