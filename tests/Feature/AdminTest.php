@@ -44,12 +44,11 @@ class AdminTest extends TestCase
         $this->assertEquals('testpassword', Admin::find($this->admin->user_id)['password']);
     }
 
-//    public function testThatATrialCanBeAssigned()
-//    {
-//        $this->admin->addToTrial();
-//        $this->assertTrue($this->admin->isInTrial());
-////        var_dump(Trial::find($this->user->id)->first()->teacher_id);
-////        $this->assertEquals($this->user->id, Trial::find($this->user->id)->first()->teacher_id);
-//        $this->admin->removeFromTrial();
-//    }
+    public function testThatATrialCanBeAssigned()
+    {
+        $this->admin->addToTrial();
+        $this->assertTrue($this->admin->isInTrial());
+        $this->assertEquals($this->user->id, Trial::find($this->user->id)['teacher_id']);
+        $this->admin->removeFromTrial();
+    }
 }
