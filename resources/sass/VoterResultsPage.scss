@@ -15,13 +15,17 @@
 
 .voter-result-page__container {
     display: grid;
-    grid-template-columns: 75px 1fr;
+    grid-template-columns: 75px 1fr 17px;
     grid-template-rows: 20px 35px 20px 0;
-    grid-template-areas: 'picture name' 'picture percentage' 'picture function' 'bio bio';
+    grid-template-areas: 'picture name name' 'picture percentage percantage' 'picture function arrow' 'bio bio bio';
     grid-column-gap: 5px;
     font-size: 12px;
     overflow-y: hidden;
-    transition: grid 0.5s ease-out;
+    transition: grid 0.3s ease-out;
+}
+
+.voter-result-page__arrow {
+    grid-area: arrow;
 }
 
 .voter-result-page__picture {
