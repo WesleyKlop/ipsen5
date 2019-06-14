@@ -12,9 +12,15 @@ class RecentSurveyController extends Controller
     {
         /** @var Admin $user */
         $user = $request->user();
+        $startableSurveys = $user
+            ->surveyCodes()
+            ->whereNull('started_at')
+            ->with('survey')
+            ->get();
         $activeSurveys = $user
             ->surveyCodes()
             ->whereDate('expire', '>=', Carbon::now())
+            ->whereNotNull('started_at')
             ->with('survey')
             ->get();
         $expiredSurveys = $user
@@ -24,6 +30,7 @@ class RecentSurveyController extends Controller
             ->get();
 
         return view('admin.recents', [
+            'startableSurveys' => $startableSurveys,
             'activeSurveys' => $activeSurveys,
             'expiredSurveys' => $expiredSurveys,
         ]);

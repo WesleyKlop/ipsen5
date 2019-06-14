@@ -6,6 +6,34 @@
 
 @section('content')
     <div class="mdc-card">
+        <h2 class="card__title">Beschikbaar</h2>
+        <ul class="mdc-list mdc-list--two-line mdc-list--non-interactive"
+            data-mdc-auto-init="MDCList">
+            @foreach($startableSurveys as $surveyCode)
+                <li class="mdc-list-item">
+                    <span class="mdc-list-item__text">
+                        <span
+                            class="mdc-list-item__primary-text">{{ $surveyCode->survey->name }}</span>
+                        <span class="mdc-list-item__secondary-text">
+
+                        </span>
+                    </span>
+                    <div class="mdc-list-item__meta recent-survey__meta">
+                        <span class="recent-survey__user-info">
+                            {{ $surveyCode->survey->voters()->count() }} stemmers<br />
+                            {{ $surveyCode->survey->candidates()->count() }} kandidaten
+                        </span>
+                        <a class="mdc-button recent-survey__action"
+                           href="{{ '#'/* TODO add action to start a survey */ }}">
+                            Start
+                        </a>
+                    </div>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+
+    <div class="mdc-card">
         <h2 class="card__title">Actief</h2>
         <ul class="mdc-list mdc-list--two-line mdc-list--non-interactive"
             data-mdc-auto-init="MDCList">
@@ -14,8 +42,11 @@
                     <span class="mdc-list-item__text">
                         <span
                             class="mdc-list-item__primary-text">{{ $surveyCode->survey->name }}</span>
-                        <span
-                            class="mdc-list-item__secondary-text">Loopt af op {{ $surveyCode->expire->format('d F Y h:m') }}</span>
+                        <span class="mdc-list-item__secondary-text">
+                            Gestart op {{ $surveyCode->started_at->format('d m Y h:i') }}
+                            &middot;
+                            {{ $surveyCode->interval()->format('Nog %a dagen, %h uur en %i minuten') }}
+                        </span>
                     </span>
                     <div class="mdc-list-item__meta recent-survey__meta">
                         <span class="recent-survey__user-info">
@@ -41,14 +72,14 @@
                         <span
                             class="mdc-list-item__primary-text">{{ $surveyCode->survey->name }}</span>
                         <span
-                            class="mdc-list-item__secondary-text">Loopt af op {{ $surveyCode->expire->format('d F Y h:m') }}</span>
+                            class="mdc-list-item__secondary-text">Gestart op {{ $surveyCode->started_at->format('d m Y h:i') }}</span>
                     </span>
                     <div class="mdc-list-item__meta recent-survey__meta">
                         <span class="recent-survey__user-info">
                             {{ $surveyCode->survey->voters()->count() }} stemmers<br />
                             {{ $surveyCode->survey->candidates()->count() }} kandidaten
                         </span>
-                        <a class="mdc-button recent-survey__results"
+                        <a class="mdc-button recent-survey__action"
                            href="{{ '#'/* TODO add action to go to results page */ }}">
                             Resultaten
                         </a>

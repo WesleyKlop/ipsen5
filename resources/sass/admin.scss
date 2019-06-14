@@ -183,16 +183,17 @@ body {
 .recent-survey__pie {
   width: 48px;
   height: 48px;
+  display: none; // FIXME: Should one day implement this part
 }
 
 .recent-survey__code {
   font-size: 1.4rem;
-  padding: 0 8px;
+  margin-left: 8px;
   font-family: 'Roboto Mono', monospace;
 }
 
-.recent-survey__results {
-  margin: 0 16px;
+.recent-survey__action {
+  margin-left: 8px;
 }
 
 .recent-survey__user-info {
