@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\In;
 use Illuminate\Validation\ValidationException;
 
 class SurveyController extends Controller
@@ -62,8 +63,9 @@ class SurveyController extends Controller
         $teacher = Admin::where('username', '=', $request->input('teacher'))->first();
         $surveyId = $request->input('survey-id');
         $surveyCode = mt_rand(100000, 999999);
+        $hasExistingCode = SurveyCode::where('survey_id', '=', $surveyId)->where('user_id', '=', $teacher->user_id)->get();
 
-        if ($teacher->type = 'teacher') {
+        if ($teacher->type = 'teacher' && !$hasExistingCode) {
             $teacher->removeFromTrial();
 
             SurveyCode::create([
@@ -79,7 +81,8 @@ class SurveyController extends Controller
 
     public function addCandidate(Request $request)
     {
-        $candidateProfile = Profile::where('email', '=', $request->input('email'));
-
+//        $profile = Profile::where('email', '=', $request->input('email'));
+//        $candidate = $profile->user->candidate;
+//        dd($candidate, $profile);
     }
 }

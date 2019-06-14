@@ -43,20 +43,19 @@
             @foreach($survey->candidates as $candidate)
                 <li class="mdc-list-item ">
                     <span class="mdc-list-item__text">
-                        <span class="mdc-list-item__primary-text">{{$candidate->profile->first_name}} {{ $candidate->profile->last_name }}</span>
+                        <span class="mdc-list-item__primary-text">{{$candidate->profile->first_name}} {{ $candidate->profile->last_name }}  |  {{$candidate->profile->email}}</span>
                         <span class="mdc-list-item__secondary-text">{{ $candidate->profile->party }} ({{ $candidate->profile->function }})</span>
                     </span>
                     <button class="material-icons mdc-list-item__meta mdc-icon-button" tabindex="-1">more_vert</button>
                 </li>
             @endforeach
         </ul>
-
-        <form method="POST" action="TODO" class="mdc-card__actions card__actions">
+        <form method="POST" action="{{ action('SurveyController@addCandidate') }}" class="mdc-card__actions card__actions">
             @csrf
             <div class="input-row">
                 <div class="mdc-text-field new-candidate-input" data-mdc-auto-init="MDCTextField">
-                    <input class="mdc-text-field__input" type="text" name="name" id="candidate-name" autocomplete="off">
-                    <label for="candidate-name" class="mdc-floating-label">Nieuwe kandidaat</label>
+                    <input class="mdc-text-field__input" type="text" name="email" id="candidate-email" autocomplete="off">
+                    <label for="candidate-name" class="mdc-floating-label">Nieuwe kandidaat (email)</label>
                     <div class="mdc-line-ripple"></div>
                 </div>
             </div>
@@ -72,7 +71,7 @@
                 <li class="mdc-list-item">
                     <span class="mdc-list-item__text">
                         <span class="mdc-list-item__primary-text">{{ $surveyCode->admin->username }}</span>
-                        <span class="mdc-list-item__secondary-text">{{ $surveyCode->code }} | expires at:  {{$surveyCode->expire}}</span>
+                        <span class="mdc-list-item__secondary-text">code: {{ $surveyCode->code }} | expires at:  {{$surveyCode->expire}}</span>
                     </span>
                     <button class="material-icons mdc-list-item__meta mdc-icon-button" tabindex="-1">more_vert</button>
                 </li>
