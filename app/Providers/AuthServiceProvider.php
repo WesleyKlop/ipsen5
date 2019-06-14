@@ -46,9 +46,14 @@ class AuthServiceProvider extends ServiceProvider
     {
         switch ($sub->type) {
             case User::TYPE_VOTER:
-                return Voter::where('user_id', $sub->uid)->first();
+                return Voter
+                    ::where('user_id', $sub->uid)
+                    ->first();
             case User::TYPE_CANDIDATE:
-                return Candidate::where('user_id', $sub->uid)->first();
+                return Candidate
+                    ::where('user_id', $sub->uid)
+                    ->where('survey_id', $sub->survey_id)
+                    ->first();
         }
     }
 }
