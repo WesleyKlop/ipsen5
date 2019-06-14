@@ -12,7 +12,6 @@
     <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
     <script defer src="{{ mix('js/admin.js') }}"></script>
     <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
 <div class="login-wrapper">
