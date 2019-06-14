@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import classnames from 'classnames'
 import Card from './card/Card'
-import { FaAngleDoubleDown, FaAngleDoubleUp } from "react-icons/fa";
+import { FaAngleDoubleDown, FaAngleDoubleUp } from 'react-icons/fa'
 
 const CandidateCard = ({ profile, candidate_id, percentage, image }) => {
   const [open, setOpen] = useState(false)
@@ -23,11 +23,7 @@ const CandidateCard = ({ profile, candidate_id, percentage, image }) => {
           </span>
           <span className="voter-result-page__bio">{profile.bio}</span>
           <span className="voter-result-page__arrow">
-          {open ? (
-            <FaAngleDoubleUp/>
-          ) : (
-            <FaAngleDoubleDown/>
-          )}
+            {open ? <FaAngleDoubleUp /> : <FaAngleDoubleDown />}
           </span>
         </div>
       </Card>
