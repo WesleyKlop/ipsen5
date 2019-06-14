@@ -17,6 +17,7 @@ class AdminTest extends TestCase
     protected $user;
     protected $admin;
     protected $id;
+    protected $testvalues;
 
     public function setUp(): void
     {
@@ -27,21 +28,20 @@ class AdminTest extends TestCase
             'id' => $this->id,
         ]);
 
-        $this->admin = Admin::create([
+        $this->testvalues = [
             'user_id' => $this->user->id,
             'type' => 'teacher',
             'username' => 'admin@UnitTests.com',
             'password' => 'testpassword',
-        ]);
+        ];
+
+        $this->admin = Admin::create($this->testvalues);
     }
 
     //Admin creation technically happens in the setUp, so here it is checked that was actually created
     public function testThatAnAdminCanBeCreated()
     {
-        $this->assertEquals($this->user->id, Admin::find($this->admin->user_id)['user_id']);
-        $this->assertEquals('teacher', Admin::find($this->admin->user_id)['type']);
-        $this->assertEquals('admin@UnitTests.com', Admin::find($this->admin->user_id)['username']);
-        $this->assertEquals('testpassword', Admin::find($this->admin->user_id)['password']);
+        $this->assertDatabaseHas('admins', $this->testvalues);
     }
 
     public function testThatATrialCanBeAssigned()
@@ -50,5 +50,6 @@ class AdminTest extends TestCase
         $this->assertTrue($this->admin->isInTrial());
         $this->assertEquals($this->user->id, Trial::find($this->user->id)['teacher_id']);
         $this->admin->removeFromTrial();
+        $this->assertNotTrue($this->admin->isInTrial());
     }
 }
