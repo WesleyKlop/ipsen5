@@ -1,4 +1,4 @@
-<html>
+<html lang="nl">
     <body>
         @if($user->isUser('voter'))
             Beste stemmer,<br><br>
