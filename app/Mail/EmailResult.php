@@ -33,6 +33,9 @@ class EmailResult extends Mailable
      */
     public function build()
     {
-        return $this->from('stemapp@outlook.com')->view('emails.emailResult');
+        return $this
+            ->subject('Resultaten van de Stem!App')
+            ->from('stemapp@outlook.com')
+            ->view('emails.emailResult');
     }
 }
