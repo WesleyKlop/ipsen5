@@ -34,6 +34,7 @@ Route::middleware('auth:web')->prefix('admin')->group(function () {
 
     Route::get('settings', 'SettingsController@show');
     Route::post('settings', 'SettingsController@submit');
+    Route::post('password', 'SettingsController@updatePassword');
 });
 
 // Fallback route for react routing
