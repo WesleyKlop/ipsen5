@@ -58,7 +58,7 @@ class VoterTest extends TestCase
             'code' => Uuid::uuid4(),
             'user_id' => $this->teacher->user_id,
             'survey_id' => $survey->id,
-            'expire' => Carbon::new()->addMonth()->timestamp,
+            'expire' => Carbon::now()->addMonth(),
         ]);
 
         $response = $this->withHeaders([
