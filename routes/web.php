@@ -36,6 +36,8 @@ Route::middleware('auth:web')->prefix('admin')->group(function () {
 
     Route::get('survey/{survey}/start', 'RecentSurveyController@startSurvey');
 
+    Route::get('survey/{code}/results', 'SurveyResultsController@show');
+
     Route::get('settings', 'SettingsController@show');
     Route::post('settings', 'SettingsController@submit');
     Route::post('password', 'SettingsController@updatePassword');

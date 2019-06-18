@@ -28,6 +28,11 @@ body {
   margin: 0;
 }
 
+a,
+a * {
+  text-decoration: none;
+}
+
 .login-wrapper {
   display: flex;
   flex-direction: column;
@@ -173,6 +178,10 @@ body {
     flex-flow: column nowrap;
     align-items: flex-start;
   }
+
+  .mdc-select {
+    min-width: 300px;
+  }
 }
 
 .recent-survey__meta {
@@ -199,4 +208,30 @@ body {
 
 .recent-survey__user-info {
   text-align: right;
+}
+
+.results-table {
+  margin: auto;
+
+  &__row {
+    td,
+    th {
+      padding: 8px;
+    }
+
+    td:not(:first-child) {
+      text-align: center;
+    }
+
+    &--header {
+      th {
+        width: 100px;
+      }
+    }
+  }
+  &__cell--proposition {
+    max-width: 500px;
+    min-width: 300px;
+    width: 50vw;
+  }
 }

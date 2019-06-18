@@ -84,6 +84,7 @@
                 <input type="password" name="password_confirmation" autocomplete="new-password" class="mdc-text-field__input" id="pw-confirm-field" required minlength="8" />
                 <div class="mdc-line-ripple"></div>
             </div>
+            <div style="flex: 0 0 16px"></div>
             <button class="mdc-button" type="submit">
                 <span class="mdc-button__label">Opslaan</span>
             </button>

@@ -68,11 +68,10 @@
                     </span>
                     <div class="mdc-list-item__meta recent-survey__meta">
                         <span class="recent-survey__user-info">
-                            {{ $surveyCode->survey->voters()->count() }} stemmers<br />
+                            {{ $surveyCode->voters()->count() }} stemmers<br />
                             {{ $surveyCode->survey->candidates()->count() }} kandidaten
                         </span>
-                        <a class="mdc-button recent-survey__action"
-                           href="{{ '#'/* TODO add action to go to results page */ }}">
+                        <a class="mdc-button recent-survey__action" href="{{ action('SurveyResultsController@show', $surveyCode)  }}">
                             Resultaten
                         </a>
                     </div>
