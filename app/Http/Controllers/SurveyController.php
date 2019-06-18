@@ -81,6 +81,7 @@ class SurveyController extends Controller
                 "code" => $surveyCode,
                 "user_id" => $teacher->user_id,
                 "survey_id" => $surveyId,
+                "started_at" => Carbon::now(),
                 "expire" => Carbon::now()->addMonth(),
             ]);
         }
