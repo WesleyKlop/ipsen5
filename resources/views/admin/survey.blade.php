@@ -7,6 +7,17 @@
 @section('content')
     <div class="mdc-card">
         <h2 class="card__title">Stellingen</h2>
+
+        <div class="mdc-switch" data-mdc-auto-init="MDCSwitch">
+            <div class="mdc-switch__track"></div>
+            <div class="mdc-switch__thumb-underlay">
+                <div class="mdc-switch__thumb">
+                    <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch">
+                </div>
+            </div>
+        </div>
+        <label for="basic-switch">Algemeen</label>
+
         <ul class="mdc-list mdc-list--two-line mdc-list--non-interactive" data-mdc-auto-init="MDCList">
             @foreach($survey->propositions as $proposition)
                 <li class="mdc-list-item ">

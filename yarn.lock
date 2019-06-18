@@ -936,6 +936,21 @@
   dependencies:
     "@material/feature-targeting" "^0.44.1"
 
+"@material/switch@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@material/switch/-/switch-2.3.0.tgz#3ea7acc35d645d83a718e40d27e72ccca083e271"
+  integrity sha512-c21j5VJFUAoey1fPGZaQaRcFeXZcP6dPYewUgFdGURtHnbVHqVVf5GEAcnFsk2NuBN2mDqKLQ3AKbozIAi65hw==
+  dependencies:
+    "@material/animation" "^1.0.0"
+    "@material/base" "^1.0.0"
+    "@material/dom" "^1.1.0"
+    "@material/elevation" "^1.1.0"
+    "@material/feature-targeting" "^0.44.1"
+    "@material/ripple" "^2.3.0"
+    "@material/rtl" "^0.42.0"
+    "@material/theme" "^1.1.0"
+    tslib "^1.9.3"
+
 "@material/textfield@^2.1.1":
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/@material/textfield/-/textfield-2.3.1.tgz#893183f86b3c6f5913247f56f8516dcbf83a1cd8"
