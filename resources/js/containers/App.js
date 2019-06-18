@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import VoterMainPage from '../routes/VoterMainPage'
 import InfoPage from '../routes/InfoPage'
@@ -14,31 +14,39 @@ import CandidateProfilePage from '../routes/CandidateProfilePage'
 import CandidateResultsPage from '../routes/CandidateResultsPage'
 import Auth from '../Auth'
 
-const App = () => (
-  <>
-    <Header />
-    <BrowserRouter>
-      <Switch>
-        <PrivateRoute path="/info" component={InfoPage} />
-        <PrivateRoute path="/profile" component={CandidateProfilePage} />
-        <PrivateRoute
-          path="/proposition/:propositionNr"
-          component={PropositionPage}
-        />
-        <PrivateRoute path="/feedback" component={FeedbackPage} />
-        <PrivateRoute
-          path="/results"
-          component={
-            Auth.isAuthorized('voter') ? VoterResultsPage : CandidateResultsPage
-          }
-        />
-        <PrivateRoute path="/email" component={EmailPage} />
-        <Route path="/candidate/:loginCode" component={CandidateMainPage} />
-        <Route path="/" exact component={VoterMainPage} />
-        <Route component={PageNotFoundPage} status={404} />
-      </Switch>
-    </BrowserRouter>
-  </>
-)
+const App = () => {
+  const [role, setRole] = useState(null)
+
+  useEffect(() => {
+    setRole(Auth.getRole())
+  }, [])
+
+  return (
+    <>
+      <Header />
+      <BrowserRouter>
+        <Switch>
+          <PrivateRoute path="/info" component={InfoPage} />
+          <PrivateRoute path="/profile" component={CandidateProfilePage} />
+          <PrivateRoute
+            path="/proposition/:propositionNr"
+            component={PropositionPage}
+          />
+          <PrivateRoute path="/feedback" component={FeedbackPage} />
+          <PrivateRoute
+            path="/results"
+            component={
+              role === 'voter' ? VoterResultsPage : CandidateResultsPage
+            }
+          />
+          <PrivateRoute path="/email" component={EmailPage} />
+          <Route path="/candidate/:loginCode" component={CandidateMainPage} />
+          <Route path="/" exact component={VoterMainPage} />
+          <Route component={PageNotFoundPage} status={404} />
+        </Switch>
+      </BrowserRouter>
+    </>
+  )
+}
 
 export default App

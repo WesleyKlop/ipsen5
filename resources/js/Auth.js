@@ -1,10 +1,10 @@
-import jwtDecode from 'jwt-decode'
+import { decode } from 'jsonwebtoken'
 
 const Auth = {
   getJWT: () => sessionStorage.getItem('jwt'),
-  isAuthenticated: () => Auth.getJWT() !== null,
-  isAuthorized: type =>
-    Auth.isAuthenticated() ? jwtDecode(Auth.getJWT()).sub.type === type : false,
+  isAuthenticated: () => decode(Auth.getJWT()) !== null,
+  getRole: () => (Auth.getJWT() ? decode(Auth.getJWT()).sub.type : false),
+  isAuthorized: type => Auth.getRole() === type,
   authenticate: jwt => sessionStorage.setItem('jwt', jwt['jwt']),
   signout: () => sessionStorage.removeItem('jwt'),
 }
