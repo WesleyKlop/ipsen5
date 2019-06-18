@@ -58,12 +58,11 @@ trait AnswersPropositions
 
     public function getPropositionsWithAnswers()
     {
-        return $this->survey->with([
+        return $this->survey()->with([
             'propositions',
             'propositions.answers' => function (HasMany $q) {
-                $q
-                    ->where('user_id', $this->user_id);
-            }
+                $q->where('user_id', $this->user_id);
+            },
         ])->get();
     }
 }

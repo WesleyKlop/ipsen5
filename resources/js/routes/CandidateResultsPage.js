@@ -4,9 +4,7 @@ import Card from '../components/card/Card'
 import ApiClient from '../ApiClient'
 import Spacer from '../components/Spacer'
 import LinkButton from '../components/LinkButton'
-import CardBody from '../components/card/CardBody'
-import CardFooter from '../components/card/CardFooter'
-import { FaCheck, FaTimes } from 'react-icons/fa'
+import ResultCard from '../components/ResultCard'
 
 class CandidateResultsPage extends React.Component {
   state = {
@@ -25,29 +23,11 @@ class CandidateResultsPage extends React.Component {
             <div key={result.id}>
               <span>{result.name}</span>
               {result.propositions.map(proposition => (
-                <div key={proposition.id}>
-                  <Card>
-                    <CardBody>{proposition.proposition}</CardBody>
-                    <CardFooter
-                      className={
-                        proposition.answers[0].answer ? 'agree' : 'disagree'
-                      }
-                    >
-                      <p>
-                        {proposition.answers[0].answer ? (
-                          <>
-                            <FaCheck /> eens
-                          </>
-                        ) : (
-                          <>
-                            <FaTimes /> oneens
-                          </>
-                        )}
-                      </p>
-                    </CardFooter>
-                  </Card>
-                  <br />
-                </div>
+                <ResultCard
+                  key={proposition.id}
+                  proposition={proposition.proposition}
+                  answer={proposition.answers[0].answer}
+                />
               ))}
             </div>
           ))}

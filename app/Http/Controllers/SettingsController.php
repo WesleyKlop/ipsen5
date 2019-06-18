@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Eloquent\Admin;
 use App\Eloquent\Setting;
 use App\Eloquent\Survey;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class SettingsController extends Controller
 {
@@ -21,7 +23,7 @@ class SettingsController extends Controller
                 ->update(['value' => $id]);
         }
 
-        redirect()->intended('.');
+        return redirect()->intended(action('SettingsController@show'));
     }
 
     public function show()
@@ -31,5 +33,19 @@ class SettingsController extends Controller
         return view('admin.settings', [
             'surveys' => $surveys,
         ]);
+    }
+
+    public function updatePassword(Request $request)
+    {
+        /** @var Admin $user */
+        $user = $request->user();
+        $data = $request->validate([
+            'password' => 'required|confirmed|min:8',
+        ]);
+        $user->update([
+            'password' => Hash::make($data['password']),
+        ]);
+
+        return redirect(action('AdminLoginController@logout'));
     }
 }

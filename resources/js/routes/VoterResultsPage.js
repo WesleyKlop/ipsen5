@@ -4,6 +4,7 @@ import Card from '../components/card/Card'
 import ApiClient from '../ApiClient'
 import Spacer from '../components/Spacer'
 import LinkButton from '../components/LinkButton'
+import CandidateCard from '../components/CandidateCard'
 
 class VoterResultsPage extends React.Component {
   state = {
@@ -11,34 +12,16 @@ class VoterResultsPage extends React.Component {
   }
 
   render() {
+    const { results } = this.state
     return (
       <>
         <Spacer />
         <Card style={{ background: 'transparent', boxShadow: 'none' }}>
           <CardHeader>
-            <h1>Top 5 politici</h1>
+            <h1>Top {results.length} politici</h1>
           </CardHeader>
-          {this.state.results.map(candidate => (
-            <div key={candidate.candidate_id}>
-              <Card>
-                <div className="voter-result-page__container">
-                  <div
-                    className="voter-result-page__picture"
-                    style={{ backgroundImage: `URL(${candidate.image})` }}
-                  />
-                  <span className="voter-result-page__name">
-                    {candidate.profile.first_name} {candidate.profile.last_name}
-                  </span>
-                  <span className="voter-result-page__percentage">
-                    {candidate.percentage} %
-                  </span>
-                  <span className="voter-result-page__function">
-                    {candidate.profile.function} {candidate.profile.party}
-                  </span>
-                </div>
-              </Card>
-              <br />
-            </div>
+          {results.map(candidate => (
+            <CandidateCard key={candidate.candidate_id} {...candidate} />
           ))}
         </Card>
         <LinkButton to={'/email'}>Resultaten E-mailen</LinkButton>

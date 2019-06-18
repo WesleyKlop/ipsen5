@@ -1,11 +1,11 @@
-<html>
+<html lang="nl">
     <body>
         @if($user->isUser('voter'))
             Beste stemmer,<br><br>
         @else
             Geachte {{$user->profile->first_name}},<br><br>
         @endif
-        Bedankt voor het invullen van de stemapp!<br>
+        Bedankt voor het invullen van de Stem!App<br>
 
         Hieronder zie je een lijst van de door jouw beantwoorde stellingen:<br>
 
@@ -14,8 +14,8 @@
                 @foreach($answers as $answer)
                     <li>
                         <ul>
-                            <li style="list-style: None">{{$answer->proposition}}</li>
-                            <li style="list-style: None">Jouw antwoord:
+                            <li style="list-style: none">{{$answer->proposition}}</li>
+                            <li style="list-style: none">Jouw antwoord:
                                 @if($answer->answers[0]->answer)
                                     Eens
                                 @else
@@ -32,7 +32,7 @@
         <br><br>
 
         @if($user->isUser('voter'))
-            Hieronder zie je een lijst van de top 5 politici waar je het meest mee overeen kwam:<br>
+            Hieronder zie je een lijst van de top {{$user->getMatches()->count()}} politici waar je het meest mee overeen kwam:<br>
             <ul>
                 @foreach($user->getMatches() as $match)
                     <li>
@@ -46,7 +46,7 @@
             </ul>
         @endif
 
-        We hopen dat je het leuk vond om de stemapp in te vullen, en zien je graag terug bij een volgende peiling!<br><br>
+        We hopen dat je het leuk vond om de Stem!App in te vullen, en zien je graag terug bij een volgende peiling!<br><br>
 
         Met vriendelijke groet,<br>
 

@@ -154,7 +154,8 @@ body {
   }
 }
 
-.mdc-card + .mdc-card {
+.mdc-card + .mdc-card,
+.mdc-text-field + .mdc-text-field {
   margin-top: 16px;
 }
 
@@ -172,4 +173,30 @@ body {
     flex-flow: column nowrap;
     align-items: flex-start;
   }
+}
+
+.recent-survey__meta {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.recent-survey__pie {
+  width: 48px;
+  height: 48px;
+  display: none; // FIXME: Should one day implement this part
+}
+
+.recent-survey__code {
+  font-size: 1.4rem;
+  margin-left: 8px;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.recent-survey__action {
+  margin-left: 8px;
+}
+
+.recent-survey__user-info {
+  text-align: right;
 }

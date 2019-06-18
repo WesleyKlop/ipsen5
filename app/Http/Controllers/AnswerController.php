@@ -3,11 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Eloquent\Candidate;
-use App\Eloquent\Proposition;
-use App\Eloquent\Voter;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Http\Request;
 
 class AnswerController extends Controller
@@ -19,9 +14,9 @@ class AnswerController extends Controller
         return $request->user()->submitAnswers($answers);
     }
 
-    /** @var Candidate $user */
     public function show(Request $request)
     {
+        /** @var Candidate $user */
         $user = $request->user();
         return $user->getPropositionsWithAnswers();
     }
