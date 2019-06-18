@@ -8,14 +8,16 @@
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --disable-host-check --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "yarn production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "prettier": "prettier --write \"resources/js/**/*.js\" "
+        "prettier": "prettier --write \"resources/**/*.{scss,js}\"",
+        "test": "prettier --check \"resources/**/*.{scss,js}\""
     },
     "devDependencies": {
         "@babel/plugin-proposal-class-properties": "^7.4.4",
         "@babel/preset-react": "^7.0.0",
         "cross-env": "^5.1",
+        "husky": "^2.4.0",
         "laravel-mix": "^4.0.16",
-        "prettier": "^1.17.1",
+        "prettier": "^1.18.2",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
         "resolve-url-loader": "^2.3.1",
@@ -29,16 +31,23 @@
         "@material/card": "^2.3.0",
         "@material/drawer": "^2.1.1",
         "@material/icon-button": "^2.3.0",
-        "@material/list": "^2.1.1",
+        "@material/list": "^2.3.0",
         "@material/menu": "^2.3.0",
+        "@material/select": "^2.3.0",
         "@material/textfield": "^2.1.1",
         "@material/theme": "^1.1.0",
         "@material/top-app-bar": "^2.1.1",
-        "@material/typography": "^1.0.0",
+        "@material/typography": "^2.3.0",
         "classnames": "^2.2.6",
         "jwt-decode": "^2.2.0",
         "normalize-scss": "^7.0.1",
         "react-icons": "^3.7.0",
-        "react-router-dom": "^5.0.0"
+        "react-router-dom": "^5.0.1"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "yarn prettier && composer fix && git add .",
+            "pre-push": "yarn test && composer test"
+        }
     }
 }

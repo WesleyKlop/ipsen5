@@ -1,17 +1,19 @@
-import React, { useRef, useState } from 'react'
 import classnames from 'classnames'
+import React, { useEffect, useRef, useState } from 'react'
 
-const ImageInput = ({
-  placeholderUrl = null,
-  required = false,
-  name,
-  className,
-}) => {
+const ImageInput = ({ required = false, name, className, previewUrl }) => {
   const fileInput = useRef(null)
   const [image, setImage] = useState(null)
-  const url = image
-    ? URL.createObjectURL(fileInput.current.files[0])
-    : placeholderUrl || '/images/profile-placeholder.svg'
+  const [preview, setPreview] = useState(previewUrl)
+
+  useEffect(() => {
+    if (fileInput.current.files.length === 1) {
+      URL.revokeObjectURL(previewUrl)
+      setPreview(URL.createObjectURL(fileInput.current.files[0]))
+    } else {
+      setPreview(previewUrl || '/images/profile-placeholder.svg')
+    }
+  }, [image, previewUrl])
 
   return (
     <>
@@ -24,9 +26,8 @@ const ImageInput = ({
         required={required}
         name={name}
       />
-      <img
-        src={url}
-        alt="Profile picture"
+      <div
+        style={{ backgroundImage: `URL(${preview})` }}
         onClick={() => fileInput.current.click()}
         className={classnames('image-input', className)}
       />

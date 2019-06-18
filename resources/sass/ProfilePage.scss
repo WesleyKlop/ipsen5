@@ -1,33 +1,33 @@
 .profile-page__container {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas: 'pf fn' 'pf ln' 'prt fct' 'bio bio' 'bio bio' 'buttons buttons';
-    grid-column-gap: 8px;
-    grid-row-gap: 8px;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: 'pf fn' 'pf ln' 'prt fct' 'bio bio' 'bio bio' 'buttons buttons';
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
 }
 
 .profile-page__fn {
-    grid-area: fn;
+  grid-area: fn;
 }
 
 .profile-page__pf {
-    grid-area: pf;
-    width: 78px;
-    height: 78px;
+  grid-area: pf;
+  width: 78px;
+  height: 78px;
 }
 .profile-page__ln {
-    grid-area: ln;
+  grid-area: ln;
 }
 
 .profile-page__prt {
-    grid-area: prt;
+  grid-area: prt;
 }
 
 .profile-page__bio {
-    grid-area: bio
+  grid-area: bio;
 }
 
 .profile-page-fct {
-    grid-area: fct;
+  grid-area: fct;
 }

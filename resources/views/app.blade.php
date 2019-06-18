@@ -9,12 +9,7 @@
     <title>StemApp 2.0</title>
     <!-- Styles -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    @if( Str::contains(mix('css/app.css'), '8080') === false)
-        {{-- Only include this file when not using hot reloading.
-          -- Otherwise we would get duplicate styles :(
-          --}}
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    @endif
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link rel="manifest" href="/manifest.json">
 </head>
 <body>
