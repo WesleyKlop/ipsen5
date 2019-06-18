@@ -50,19 +50,18 @@ trait AnswersPropositions
                 'id' => Uuid::uuid4(),
                 'proposition_id' => $answer['proposition_id'],
                 'survey_id' => $this->survey->id,
-                'answer' => $answer['answer']
+                'answer' => $answer['answer'],
             ]);
         }));
     }
 
     public function getPropositionsWithAnswers()
     {
-        return $this->survey->with([
+        return $this->survey()->with([
             'propositions',
             'propositions.answers' => function (HasMany $q) {
-                $q
-                    ->where('user_id', $this->user_id);
-            }
+                $q->where('user_id', $this->user_id);
+            },
         ])->get();
     }
 }
