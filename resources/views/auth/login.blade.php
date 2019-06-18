@@ -12,8 +12,12 @@
                 <span class="mdc-button__label">Inloggen</span>
             </button>
 
-            <a class="mdc-button" href="{{ action('AdminRegisterController@showRegistrationForm') }}">
+            <a class="mdc-button mdc-button--outlined" href="{{ action('AdminRegisterController@showRegistrationForm') }}">
                 <span class="mdc-button__label">Registreren</span>
+            </a>
+
+            <a style="text-align:center" href="{{  action('AdminPasswordController@forgotPassword')  }}">>
+                <span>Wachtwoord vergeten?</span>
             </a>
         </form>
     </div>

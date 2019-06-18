@@ -13,4 +13,9 @@ class Setting extends Model
         'name',
         'value',
     ];
+
+    public static function trial()
+    {
+        return Setting::all()->where('name', 'trial-survey')->first();
+    }
 }

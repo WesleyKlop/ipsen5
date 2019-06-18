@@ -17,6 +17,7 @@ Route::post('/admin/login', 'AdminLoginController@login');
 Route::get('/admin/logout', 'AdminLoginController@logout');
 Route::get('/admin/register', 'AdminRegisterController@showRegistrationForm');
 Route::post('/admin/register', 'AdminRegisterController@register');
+Route::get('admin/login/recover', 'AdminPasswordController@forgotPassword');
 
 Route::middleware('auth:web')->prefix('admin')->group(function () {
     Route::get('/', function () {
