@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Eloquent\Admin;
+use App\Eloquent\Answer;
 use App\Eloquent\Candidate;
+use App\Eloquent\Profile;
 use App\Eloquent\Proposition;
 use App\Eloquent\Survey;
-use App\Eloquent\Answer;
-use App\Eloquent\Profile;
-use App\Eloquent\Admin;
 use App\Eloquent\SurveyCode;
 use App\Eloquent\User;
-use App\Http\Controllers\ProfileController;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rules\In;
 use Illuminate\Validation\ValidationException;
 
 class SurveyController extends Controller
@@ -30,6 +28,20 @@ class SurveyController extends Controller
     public function showSurvey(Survey $survey)
     {
         return view('admin.survey')->with('survey', $survey);
+    }
+
+    public function search(Request $request)
+    {
+        $q = $request->query('q');
+        /** @var Admin $user */
+        $user = $request->user();
+        $query = $user->isTeacher()
+            ? $user->surveys()
+            : Survey::query();
+        return $query
+            ->where('name', 'ILIKE', '%' . $q . '%')
+            ->limit(5)
+            ->get();
     }
 
     /**
@@ -49,7 +61,7 @@ class SurveyController extends Controller
             'proposition' => $request->input('proposition'),
         ]);
 
-        return redirect('admin/survey/'.$survey->id);
+        return redirect('admin/survey/' . $survey->id);
     }
 
     public function deleteProposition(Request $request)
@@ -59,22 +71,25 @@ class SurveyController extends Controller
         Answer::where('proposition_id', '=', $proposition->id)->delete();
         $proposition->delete();
 
-        return redirect('admin/survey/'.$survey->id);
+        return redirect('admin/survey/' . $survey->id);
     }
 
     public function addTeacher(Request $request)
     {
         $surveyId = $request->input('survey-id');
-        $teacher = Admin::where('username', '=', $request->input('teacher'))->first();
+        $teacher = Admin::where('username', '=', $request->input('teacher'))
+            ->first();
         $surveyCode = mt_rand(100000, 999999);
 
         if (is_null($teacher)) {
-            return redirect('admin/survey/'.$surveyId);
+            return redirect('admin/survey/' . $surveyId);
         }
 
-        $hasExistingSurveyCode = SurveyCode::where('survey_id', '=', $surveyId)->where('user_id', '=', $teacher->user_id)->exists();
+        $hasExistingSurveyCode = SurveyCode::where('survey_id', '=', $surveyId)
+            ->where('user_id', '=', $teacher->user_id)
+            ->exists();
 
-        if ($teacher->type = 'teacher' && !$hasExistingSurveyCode) {
+        if ($teacher->type = 'teacher' && ! $hasExistingSurveyCode) {
             $teacher->removeFromTrial();
 
             SurveyCode::create([
@@ -85,7 +100,7 @@ class SurveyController extends Controller
                 "expire" => Carbon::now()->addMonth(),
             ]);
         }
-        return redirect('admin/survey/'.$surveyId);
+        return redirect('admin/survey/' . $surveyId);
     }
 
     public function removeTeacher(Request $request)
@@ -95,11 +110,13 @@ class SurveyController extends Controller
 
         SurveyCode::where('code', '=', $code)->delete();
 
-        return redirect('admin/survey/'.$surveyId);
+        return redirect('admin/survey/' . $surveyId);
     }
 
-    public function addCandidate(Request $request, ProfileController $profileController)
-    {
+    public function addCandidate(
+        Request $request,
+        ProfileController $profileController
+    ) {
         $surveyId = $request->input('survey-id');
         $email = $request->input('email');
         $profile = Profile::where('email', '=', $email)->first();
@@ -107,23 +124,25 @@ class SurveyController extends Controller
         if (is_null($profile)) {
             //Profile does not exist, create user and profile.
             $user = User::create([
-                'id' => Str::uuid()
+                'id' => Str::uuid(),
             ]);
             $profile = $profileController->createNewProfile($user->id, $email);
         }
         $user_id = $profile->user_id;
 
-        if (Candidate::where('survey_id', '=', $surveyId)->where('user_id', '=', $user_id)->exists()) {
+        if (Candidate::where('survey_id', '=', $surveyId)
+            ->where('user_id', '=', $user_id)
+            ->exists()) {
             //candidate is already added to survey.
-            return redirect('admin/survey/'.$surveyId);
+            return redirect('admin/survey/' . $surveyId);
         }
 
         Candidate::create([
-            'url'=> Str::uuid(),
+            'url' => Str::uuid(),
             'survey_id' => $surveyId,
             'user_id' => $user_id,
         ]);
 
-        return redirect('admin/survey/'.$surveyId);
+        return redirect('admin/survey/' . $surveyId);
     }
 }
