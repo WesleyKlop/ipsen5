@@ -178,6 +178,10 @@ a * {
     flex-flow: column nowrap;
     align-items: flex-start;
   }
+
+  .mdc-select {
+    min-width: 300px;
+  }
 }
 
 .recent-survey__meta {
