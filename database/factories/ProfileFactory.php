@@ -13,5 +13,6 @@ $factory->define(Profile::class, function (Faker $faker) {
         'party' => $faker->colorName,
         'function' => $faker->creditCardNumber,
         'bio' => $faker->realText(),
+        'email' => $faker->email,
     ];
 });

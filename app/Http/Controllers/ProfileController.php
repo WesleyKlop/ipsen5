@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Eloquent\Candidate;
+use App\Eloquent\Profile;
 use Illuminate\Http\Request;
-use Storage;
 
 class ProfileController extends Controller
 {
@@ -20,22 +20,41 @@ class ProfileController extends Controller
             'function' => 'max:255',
             'profile_picture' => 'image',
         ]);
+        unset($profile['profile_picture']);
 
         // Handle Uploaded file. Saved as /profile/$userId.$extension
         $imageFile = $request->file('profile_picture');
-        $extension = $imageFile->guessExtension() ?? '.jpg';
-        $imageFileName = $candidate->user_id . '.' . ($extension);
-        $result = $imageFile->storeAs('public/profiles', $imageFileName);
+
+        if ($imageFile) {
+            $extension = $imageFile->guessExtension() ?? '.jpg';
+            $imageFileName = $candidate->user_id . '.' . ($extension);
+            $result = $imageFile->storeAs('public/profiles', $imageFileName);
+
+            $profile['image_extension'] = $extension;
+        }
 
         // Update User profile
-        $candidate->profile->update([
-            'first_name' => $profile['first_name'],
-            'last_name' => $profile['last_name'],
-            'bio' => $profile['bio'],
-            'party' => $profile['party'],
-            'function' => $profile['function'],
-            'image_extension' => $extension,
+        $candidate->profile->update($profile);
+
+        $response = ['candidate' => $candidate];
+        if ($imageFile) {
+            $response['fileResult'] = $result;
+        }
+
+        return $response;
+    }
+
+    public function createNewProfile(string $userId, string $email)
+    {
+        return Profile::create([
+            'user_id' => $userId,
+            'first_name' => '',
+            'last_name' => '',
+            'function' => '',
+            'party' => '',
+            'bio' => '',
+            'image_extension' => '',
+            'email'=> $email,
         ]);
-        return ['candidate' => $candidate, 'fileResult' => $result];
     }
 }

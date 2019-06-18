@@ -1,24 +1,36 @@
 import React, { Component } from 'react'
+import ApiClient from '../ApiClient'
+import Button from '../components/Button'
 import Card from '../components/card/Card'
-import CardHeader from '../components/card/CardHeader'
 import CardBody from '../components/card/CardBody'
 import CardButtons from '../components/card/CardButtons'
-import Button from '../components/Button'
-import Input from '../components/Input'
+import CardHeader from '../components/card/CardHeader'
 import ImageInput from '../components/ImageInput'
-import TextArea from '../components/TextArea'
+import Input from '../components/Input'
 import Spacer from '../components/Spacer'
 import Spinner from '../components/Spinner'
-import ApiClient from '../ApiClient'
+import TextArea from '../components/TextArea'
 
 class CandidateProfilePage extends Component {
   state = {
     isLoading: false,
+    profile: [],
   }
 
   setLoading = (loading, res = null) => {
     this.setState({ isLoading: loading })
     return res
+  }
+
+  setProfile = result => {
+    this.setState({ profile: result.profile })
+    this.setLoading(false)
+  }
+
+  componentDidMount() {
+    ApiClient.request('me')
+      .then(result => this.setProfile(result))
+      .catch(error => console.error(error))
   }
 
   handleSubmit = e => {
@@ -30,8 +42,20 @@ class CandidateProfilePage extends Component {
       .catch(err => console.error(err))
   }
 
+  handleInputChange = event => {
+    const target = event.target
+    const name = target.name
+
+    this.setState({
+      profile: {
+        ...this.state.profile,
+        [name]: target.value,
+      },
+    })
+  }
+
   render() {
-    const { isLoading } = this.state
+    const { isLoading, profile } = this.state
     return (
       <>
         <Spacer />
@@ -51,8 +75,12 @@ class CandidateProfilePage extends Component {
                 <ImageInput
                   name="profile_picture"
                   className="profile-page__pf"
-                  required
-                  capture
+                  required={profile.image_extension === null}
+                  onChange={this.handleInputChange}
+                  previewUrl={
+                    profile.image_extension &&
+                    `/storage/profiles/${profile.user_id}.${profile.image_extension}`
+                  }
                 />
                 <Input
                   name="first_name"
@@ -60,6 +88,8 @@ class CandidateProfilePage extends Component {
                   className="profile-page__fn"
                   autoComplete="given-name"
                   required
+                  value={profile.first_name}
+                  onChange={this.handleInputChange}
                 />
                 <Input
                   name="last_name"
@@ -67,6 +97,8 @@ class CandidateProfilePage extends Component {
                   className="profile-page__ln"
                   autoComplete="family-name"
                   required
+                  value={profile.last_name}
+                  onChange={this.handleInputChange}
                 />
                 <Input
                   name="party"
@@ -74,6 +106,8 @@ class CandidateProfilePage extends Component {
                   className="profile-page__prt"
                   autoComplete="off"
                   required
+                  value={profile.party}
+                  onChange={this.handleInputChange}
                 />
                 <Input
                   name="function"
@@ -81,6 +115,8 @@ class CandidateProfilePage extends Component {
                   className="profile-page__fct"
                   autoComplete="off"
                   required
+                  value={profile.function}
+                  onChange={this.handleInputChange}
                 />
                 <TextArea
                   name="bio"
@@ -90,6 +126,8 @@ class CandidateProfilePage extends Component {
                   minLength={2}
                   maxLength={255}
                   required
+                  value={profile.bio}
+                  onChange={this.handleInputChange}
                 />
                 <CardButtons>
                   <Button className="block">Opslaan</Button>

@@ -10,8 +10,13 @@
         <ul class="mdc-list mdc-list--two-line mdc-list--non-interactive" data-mdc-auto-init="MDCList">
             @foreach($survey->propositions as $proposition)
                 <li class="mdc-list-item ">
-                    <span>{{$proposition->proposition}}</span>
-                    <button class="material-icons mdc-list-item__meta mdc-icon-button" tabindex="-1">more_vert</button>
+                    <span style="width: 100%;">{{$proposition->proposition}}</span>
+                    <form method="POST" action="{{ action('SurveyController@deleteProposition', $survey->id) }}">
+                        @csrf
+                        {{method_field('DELETE')}}
+                        <input type="hidden" name="proposition-id" value="{{$proposition->id}}">
+                        <button class="material-icons mdc-list-item__meta mdc-icon-button" tabindex="-1" type="submit">clear</button>
+                    </form>
                 </li>
             @endforeach
         </ul>
@@ -19,7 +24,7 @@
             @csrf
             <div class="input-row">
                 <div class="mdc-text-field new-proposition-input" data-mdc-auto-init="MDCTextField">
-                    <input class="mdc-text-field__input" type="text" name="proposition" maxlength="50" required id="proposition-name" autocomplete="off">
+                    <input class="mdc-text-field__input" type="text" name="proposition" maxlength="50" id="proposition-name" autocomplete="off">
                     <label for="proposition-name" class="mdc-floating-label">Nieuwe stelling</label>
                     <div class="mdc-line-ripple"></div>
                 </div>
@@ -38,19 +43,32 @@
             @foreach($survey->candidates as $candidate)
                 <li class="mdc-list-item ">
                     <span class="mdc-list-item__text">
-                        <span class="mdc-list-item__primary-text">{{$candidate->profile->first_name}} {{ $candidate->profile->last_name }}</span>
-                        <span class="mdc-list-item__secondary-text">{{ $candidate->profile->party }} ({{ $candidate->profile->function }})</span>
+                        <span class="mdc-list-item__primary-text">
+                            {{ $candidate->profile->first_name ?? 'niet ingevuld' }}
+                            {{ $candidate->profile->last_name ?? 'niet ingevuld' }}  |
+                            {{ $candidate->profile->email ?? 'niet ingevuld' }}
+                        </span>
+                        <span class="mdc-list-item__secondary-text">
+                            {{ $candidate->profile->party ?? 'niet ingevuld' }}
+                            {{ $candidate->profile->function ?? 'niet ingevuld' }} |
+                            @if($candidate->answers->count() < $survey->propositions()->count())
+                                Niet alle stellingen zijn beantwoord
+                            @else
+                                Alle stellingen zijn beantwoord
+                            @endif
+                        </span>
                     </span>
                     <button class="material-icons mdc-list-item__meta mdc-icon-button" tabindex="-1">more_vert</button>
                 </li>
             @endforeach
         </ul>
-        <form method="POST" action="TODO" class="mdc-card__actions card__actions">
+        <form method="POST" action="{{ action('SurveyController@addCandidate', $survey->id) }}" class="mdc-card__actions card__actions">
             @csrf
             <div class="input-row">
                 <div class="mdc-text-field new-candidate-input" data-mdc-auto-init="MDCTextField">
-                    <input class="mdc-text-field__input" type="text" name="name" required id="candidate-name" autocomplete="off">
-                    <label for="candidate-name" class="mdc-floating-label">Nieuwe kandidaat</label>
+                    <input class="mdc-text-field__input" type="text" name="email" id="email" autocomplete="off">
+                    <input type="hidden" name="survey-id" value="{{$survey->id}}">
+                    <label for="candidate-name" class="mdc-floating-label">Nieuwe kandidaat (email)</label>
                     <div class="mdc-line-ripple"></div>
                 </div>
             </div>
@@ -64,19 +82,26 @@
         <ul class="mdc-list mdc-list--two-line mdc-list--non-interactive" data-mdc-auto-init="MDCList">
             @foreach($survey->surveyCodes as $surveyCode)
                 <li class="mdc-list-item">
-                    <span class="mdc-list-item__text">
+                    <span class="mdc-list-item__text" style="width: 100%;">
                         <span class="mdc-list-item__primary-text">{{ $surveyCode->admin->username }}</span>
-                        <span class="mdc-list-item__secondary-text">{{ $surveyCode->code }} | Nog (iets met die expire date)</span>
+                        <span class="mdc-list-item__secondary-text">code: {{ $surveyCode->code }} | expires at:  {{$surveyCode->expire}}</span>
                     </span>
-                    <button class="material-icons mdc-list-item__meta mdc-icon-button" tabindex="-1">more_vert</button>
+                    <form method="POST" action="{{ action('SurveyController@removeTeacher', $survey->id) }}">
+                        @csrf
+                        {{method_field('DELETE')}}
+                        <input type="hidden" name="code" value="{{$surveyCode->code}}">
+                        <input type="hidden" name="surveyId" value="{{$surveyCode->survey_id}}">
+                        <button class="material-icons mdc-list-item__meta mdc-icon-button" tabindex="-1" type="submit">clear</button>
+                    </form>
                 </li>
             @endforeach
         </ul>
-        <form method="POST" action="TODO" class="mdc-card__actions card__actions">
+        <form method="post" action="{{ action('SurveyController@addTeacher', $survey->id) }}" class="mdc-card__actions card__actions">
             @csrf
             <div class="input-row">
                 <div class="mdc-text-field new-teacher-input" data-mdc-auto-init="MDCTextField">
-                    <input class="mdc-text-field__input" type="text" name="name" required id="teacher-name" autocomplete="off">
+                    <input class="mdc-text-field__input" type="text" name="teacher" id="teacher" autocomplete="off">
+                    <input type="hidden" name="survey-id" value="{{$survey->id}}">
                     <label for="teacher-name" class="mdc-floating-label">Nieuwe docent</label>
                     <div class="mdc-line-ripple"></div>
                 </div>

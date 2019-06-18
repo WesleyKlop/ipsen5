@@ -3,6 +3,7 @@
 namespace App\Eloquent;
 
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Storage;
 
 /**
@@ -10,6 +11,10 @@ use Storage;
  * @package App\Eloquent
  * @property string $code
  * @property string $user_id
+ * @property Survey $survey
+ * @property Feedback $feedback
+ * @property SurveyCode $surveyCode
+ * @property Collection $answers
  */
 class Voter extends AppUser
 {
@@ -33,7 +38,14 @@ class Voter extends AppUser
 
     public function survey()
     {
-        return $this->hasOneThrough(Survey::class, SurveyCode::class, 'code', 'id', 'code', 'survey_id');
+        return $this->hasOneThrough(
+            Survey::class,
+            SurveyCode::class,
+            'code',
+            'id',
+            'code',
+            'survey_id'
+        );
     }
 
     public function getMatches()
@@ -64,10 +76,16 @@ class Voter extends AppUser
                     ->map(function ($answer) use ($candidate_answers) {
                         return [
                             "voter_answer" => $answer,
-                            "candidate_answer" => $candidate_answers[array_search($answer->proposition_id, array_column($candidate_answers, 'proposition_id'))]
-                                //$candidate->answers
-                                //->where('proposition_id', $answer->proposition_id)
-                                //->first()
+                            "candidate_answer" => $candidate_answers[array_search(
+                                $answer->proposition_id,
+                                array_column(
+                                    $candidate_answers,
+                                    'proposition_id'
+                                )
+                            )]
+                            //$candidate->answers
+                            //->where('proposition_id', $answer->proposition_id)
+                            //->first()
                         ];
                     })
                     ->filter(function ($answers) {
@@ -89,11 +107,16 @@ class Voter extends AppUser
                     'percentage' => (($number_of_matches / $num_propositions) * 100),
                     'candidate_id' => $candidate->user_id,
                     'profile' => $profile,
-                    'image' => Storage::url('public/profiles/'. $candidate->user_id . '.' . $profile->image_extension) ?? null,
+                    'image' => Storage::url('public/profiles/' . $candidate->user_id . '.' . $profile->image_extension) ?? null,
                 ];
             })
             ->sortByDesc('matched')
             ->values()
             ->take(5);
+    }
+
+    public function feedback()
+    {
+        return $this->hasOne(Feedback::class, 'user_id');
     }
 }
