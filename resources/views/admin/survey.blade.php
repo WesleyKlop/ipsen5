@@ -62,7 +62,7 @@
                 </li>
             @endforeach
         </ul>
-        <form method="POST" action="{{ action('SurveyController@addCandidate') }}" class="mdc-card__actions card__actions">
+        <form method="POST" action="{{ action('SurveyController@addCandidate', $survey->id) }}" class="mdc-card__actions card__actions">
             @csrf
             <div class="input-row">
                 <div class="mdc-text-field new-candidate-input" data-mdc-auto-init="MDCTextField">
@@ -86,7 +86,7 @@
                         <span class="mdc-list-item__primary-text">{{ $surveyCode->admin->username }}</span>
                         <span class="mdc-list-item__secondary-text">code: {{ $surveyCode->code }} | expires at:  {{$surveyCode->expire}}</span>
                     </span>
-                    <form method="POST" action="{{ action('SurveyController@removeTeacher') }}">
+                    <form method="POST" action="{{ action('SurveyController@removeTeacher', $survey->id) }}">
                         @csrf
                         {{method_field('DELETE')}}
                         <input type="hidden" name="code" value="{{$surveyCode->code}}">
@@ -96,7 +96,7 @@
                 </li>
             @endforeach
         </ul>
-        <form method="post" action="{{ action('SurveyController@addTeacher') }}" class="mdc-card__actions card__actions">
+        <form method="post" action="{{ action('SurveyController@addTeacher', $survey->id) }}" class="mdc-card__actions card__actions">
             @csrf
             <div class="input-row">
                 <div class="mdc-text-field new-teacher-input" data-mdc-auto-init="MDCTextField">

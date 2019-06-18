@@ -90,8 +90,9 @@ class SurveyController extends Controller
     public function removeTeacher(Request $request)
     {
         $code = $request->input('code');
-        $surveyCode = SurveyCode::where('code', '=', $code)->delete();
         $surveyId = $request->input('surveyId');
+
+        SurveyCode::where('code', '=', $code)->delete();
 
         return redirect('admin/survey/'.$surveyId);
     }

@@ -46,7 +46,7 @@ class ProfileController extends Controller
 
     public function createNewProfile(string $userId, string $email)
     {
-        $emptyProfile = Profile::create([
+        return Profile::create([
             'user_id' => $userId,
             'first_name' => '',
             'last_name' => '',
@@ -56,6 +56,5 @@ class ProfileController extends Controller
             'image_extension' => '',
             'email'=> $email,
         ]);
-        return $emptyProfile;
     }
 }
