@@ -154,7 +154,8 @@ body {
   }
 }
 
-.mdc-card + .mdc-card {
+.mdc-card + .mdc-card,
+.mdc-text-field + .mdc-text-field {
   margin-top: 16px;
 }
 
