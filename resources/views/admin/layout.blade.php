@@ -16,14 +16,14 @@
 <body>
 
 <div class="mdc-drawer">
-    <div class="mdc-drawer__header">
+    <a class="mdc-drawer__header" href="{{ action('RecentSurveyController@show') }}">
         <img class="logo" src="/images/logo_shadow.png" alt="StemApp"/>
         <div class="drawer-header__info">
             <span class="mdc-drawer__title">Beheerder</span>
             <span class="mdc-drawer__subtitle">beheerder@fzes.nl</span>
             <button class="mdc-icon-button material-icons">arrow_drop_down</button>
         </div>
-    </div>
+    </a>
     <div class="mdc-drawer__content mdc-list-group">
         <nav class="mdc-list" data-mdc-auto-init="MDCList">
             <a class="mdc-list-item {{ request()->is('admin/survey') ? 'mdc-list-item--activated' : ''}}"

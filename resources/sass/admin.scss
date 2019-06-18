@@ -28,6 +28,11 @@ body {
   margin: 0;
 }
 
+a,
+a * {
+  text-decoration: none;
+}
+
 .login-wrapper {
   display: flex;
   flex-direction: column;
