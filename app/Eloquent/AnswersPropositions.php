@@ -49,7 +49,8 @@ trait AnswersPropositions
             return Answer::make([
                 'id' => Uuid::uuid4(),
                 'proposition_id' => $answer['proposition_id'],
-                'survey_id' => $this->survey->id,
+                //'survey_id' => $this->survey->id,
+                'survey_id' => Proposition::where('id', $answer['proposition_id'])->first()->survey->id,
                 'answer' => $answer['answer']
             ]);
         }));
