@@ -26,7 +26,7 @@ class PropositionPage extends React.Component {
   getSurvey = () =>
     ApiClient.request('survey')
       .then(result => this.setPropositions(result))
-      .catch(errorMessage => this.setState({ errorMessage, isLoaded: true }))
+      .catch(errorMessage => this.setState({ errorMessage, isLoaded: false }))
 
   onChoose = e => {
     const propositionNr = parseInt(this.props.match.params.propositionNr, 10)
@@ -67,11 +67,12 @@ class PropositionPage extends React.Component {
       },
       body: JSON.stringify(this.state.answers),
     })
-      .then(result => (result.ok ? result : Promise.reject('Er ging iets mis')))
+      .then(result => (result.ok ? result : Promise.reject(result.text())))
       .then(this.goToFeedback)
-      .catch(errorMessage => this.setState({ errorMessage }))
+      .catch(errorMessage => this.handleErrorMessage(errorMessage))
 
   goToFeedback = () => {
+    console.log(this.state.errorMessage)
     this.props.history.push('/feedback')
   }
 
@@ -103,6 +104,15 @@ class PropositionPage extends React.Component {
       propositions: result.propositions,
       isLoaded: true,
     })
+  }
+
+  handleErrorMessage(errorMessage) {
+    console.log(errorMessage)
+    if (
+      errorMessage.exception === 'App\\Exceptions\\AlreadyAnsweredException'
+    ) {
+      this.goToFeedback()
+    }
   }
 }
 
