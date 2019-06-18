@@ -25,6 +25,7 @@ Route::middleware('auth:web')->prefix('admin')->group(function () {
     Route::post('survey', 'SurveyOverviewController@createSurvey');
     Route::delete('survey', 'SurveyOverviewController@deleteSurvey');
 
+    Route::get('survey/search', 'SurveyController@search');
     Route::get('survey/{survey}', 'SurveyController@showSurvey');
 
     Route::post('survey/{survey}/proposition', 'SurveyController@addProposition');
@@ -37,7 +38,6 @@ Route::middleware('auth:web')->prefix('admin')->group(function () {
     Route::get('survey/{survey}/start', 'RecentSurveyController@startSurvey');
 
     Route::get('survey/{code}/results', 'SurveyResultsController@show');
-    Route::get('survey/search', 'SurveyController@search');
 
     Route::get('settings', 'SettingsController@show');
     Route::post('settings', 'SettingsController@submit');
