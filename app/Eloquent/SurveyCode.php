@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $survey_id
  * @property DateTimeInterface $expire
  * @property DateTimeInterface $started_at
+ * @property Survey $survey
  */
 class SurveyCode extends Model
 {
@@ -73,5 +74,11 @@ class SurveyCode extends Model
     public function timeLeft()
     {
         return Carbon::now()->diff($this->expire);
+    }
+
+    public function answers()
+    {
+        return $this
+            ->hasMany(Answer::class, 'survey_id', 'survey_id');
     }
 }

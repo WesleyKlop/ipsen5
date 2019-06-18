@@ -200,3 +200,29 @@ body {
 .recent-survey__user-info {
   text-align: right;
 }
+
+.results-table {
+  margin: auto;
+
+  &__row {
+    td,
+    th {
+      padding: 8px;
+    }
+
+    td:not(:first-child) {
+      text-align: center;
+    }
+
+    &--header {
+      th {
+        width: 100px;
+      }
+    }
+  }
+  &__cell--proposition {
+    max-width: 500px;
+    min-width: 300px;
+    width: 50vw;
+  }
+}
