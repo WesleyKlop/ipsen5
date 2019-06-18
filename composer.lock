@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6b9e269cedbd430cea06f5686103773b",
+    "content-hash": "20458f15d504b58fc583e2db8fa91a78",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1449,6 +1449,60 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "scopdrag/laravel-google-chart",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/scopdrag/laravel-google-chart.git",
+                "reference": "4a123a025a5ad372a5a9caf729280d992b7f1b7e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/scopdrag/laravel-google-chart/zipball/4a123a025a5ad372a5a9caf729280d992b7f1b7e",
+                "reference": "4a123a025a5ad372a5a9caf729280d992b7f1b7e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.0",
+                "php": "~5.3|~7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0||~5.0",
+                "scrutinizer/ocular": "~1.1",
+                "squizlabs/php_codesniffer": "~2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Scopdrag\\LaravelGoogleChart\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Scopdrag",
+                    "email": "codemonster34@gmail.com",
+                    "homepage": "http://scopdrag.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Makes Google chart integration simple and easy for laravel",
+            "homepage": "https://github.com/scopdrag/laravel-google-chart.git",
+            "keywords": [
+                "LaravelGoogleChart",
+                "Scopdrag"
+            ],
+            "time": "2016-09-08T17:35:50+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
