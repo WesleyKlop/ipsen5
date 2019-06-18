@@ -1,122 +1,122 @@
-@import "variables";
+@import 'variables';
 
 .card {
-    flex: 0 0 10px;
-    background: $water-schappen-color;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    max-width: 350px;
-    min-width: 300px;
-    width: 80vw;
+  flex: 0 0 10px;
+  background: $water-schappen-color;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  max-width: 350px;
+  min-width: 300px;
+  width: 80vw;
+  position: relative;
+  color: white;
+
+  & .header {
     position: relative;
+    font-family: $header-font;
+    background: $accent-color;
+    text-transform: uppercase;
+    padding: 5px;
+    font-size: 18px;
     color: white;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+  }
 
-    & .header {
-        position: relative;
-        font-family: $header-font;
-        background: $accent-color;
-        text-transform: uppercase;
-        padding: 5px;
-        font-size: 18px;
-        color: white;
-        font-weight: bold;
-        text-align: center;
-        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-        z-index: 10;
+  & .triangle {
+    display: inline-block;
+    z-index: 15;
+    background: #e03894;
+    transform: rotate(45deg);
+    position: relative;
+    width: 30px;
+    height: 30px;
+    left: 20px;
+    top: -15px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  & .header-message {
+    background-color: $european-parliament-color;
+    width: calc(100% - 35px);
+    height: 21px;
+    padding-left: 29px;
+    padding-right: 8px;
+    line-height: 21px;
+    font-size: 0.9rem;
+    position: absolute;
+    z-index: 5;
+    top: 38px;
+    right: 0;
+    transition: transform 250ms ease;
+    color: #ffffff;
+    transform: translateY(-100%);
+    display: flex;
+    justify-content: space-between;
+
+    &:first-letter {
+      text-transform: uppercase;
     }
 
-    & .triangle {
-        display: inline-block;
-        z-index: 15;
-        background: #e03894;
-        transform: rotate(45deg);
-        position: relative;
-        width: 30px;
-        height: 30px;
-        left: 20px;
-        top: -15px;
-        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    &.visible {
+      transform: translateY(0);
     }
 
-    & .header-message {
-        background-color: $european-parliament-color;
-        width: calc(100% - 35px);
-        height: 21px;
-        padding-left: 29px;
-        padding-right: 8px;
-        line-height: 21px;
-        font-size: 0.9rem;
-        position: absolute;
-        z-index: 5;
-        top: 38px;
-        right: 0;
-        transition: transform 250ms ease;
-        color: #ffffff;
-        transform: translateY(-100%);
-        display: flex;
-        justify-content: space-between;
+    &__close {
+      color: inherit;
+      height: 21px;
+      width: 21px;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      outline: none;
+    }
+  }
 
-        &:first-letter {
-            text-transform: uppercase;
-        }
+  & .body {
+    padding: 15px;
 
-        &.visible {
-            transform: translateY(0);
-        }
-
-        &__close {
-            color: inherit;
-            height: 21px;
-            width: 21px;
-            padding: 0;
-            background: transparent;
-            border: 0;
-            outline: none;
-        }
+    & .input {
+      width: 100%;
     }
 
-    & .body {
-        padding: 15px;
-
-        & .input {
-            width: 100%;
-        }
-
-        & p {
-            margin: 0;
-        }
-
-        &.flex {
-            display: flex;
-            flex-flow: column nowrap;
-        }
+    & p {
+      margin: 0;
     }
 
-    & .buttons {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 15px;
-        grid-area: buttons;
+    &.flex {
+      display: flex;
+      flex-flow: column nowrap;
+    }
+  }
 
-        & a {
-            text-decoration: none;
-        }
+  & .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    grid-area: buttons;
+
+    & a {
+      text-decoration: none;
+    }
+  }
+
+  & .footer {
+    width: 100%;
+    display: block;
+    text-transform: capitalize;
+
+    & p {
+      padding: 5px 15px;
     }
 
-    & .footer {
-        width: 100%;
-        display: block;
-        text-transform: capitalize;
-
-        & p {
-            padding: 5px 15px;
-        }
-
-        &.agree {
-            background: $second-house-color;
-        }
-
-        &.disagree {
-            background: $european-parliament-color;
-        }
+    &.agree {
+      background: $second-house-color;
     }
+
+    &.disagree {
+      background: $european-parliament-color;
+    }
+  }
 }

@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
+import ApiClient from '../ApiClient'
+import Button from '../components/Button'
 import Card from '../components/card/Card'
-import CardHeader from '../components/card/CardHeader'
 import CardBody from '../components/card/CardBody'
 import CardButtons from '../components/card/CardButtons'
-import Button from '../components/Button'
-import Input from '../components/Input'
+import CardHeader from '../components/card/CardHeader'
 import ImageInput from '../components/ImageInput'
-import TextArea from '../components/TextArea'
+import Input from '../components/Input'
 import Spacer from '../components/Spacer'
 import Spinner from '../components/Spinner'
-import ApiClient from '../ApiClient'
+import TextArea from '../components/TextArea'
 
 class CandidateProfilePage extends Component {
   state = {
@@ -77,10 +77,9 @@ class CandidateProfilePage extends Component {
                   className="profile-page__pf"
                   required={profile.image_extension === null}
                   onChange={this.handleInputChange}
-                  placeholderUrl={
-                    profile.image_extension === null
-                      ? null
-                      : `/storage/profiles/${profile.user_id}.${profile.image_extension}`
+                  previewUrl={
+                    profile.image_extension &&
+                    `/storage/profiles/${profile.user_id}.${profile.image_extension}`
                   }
                 />
                 <Input

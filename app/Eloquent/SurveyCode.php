@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $user_id
  * @property string $survey_id
  * @property DateTimeInterface $expire
+ * @property DateTimeInterface $started_at
  */
 class SurveyCode extends Model
 {
@@ -24,6 +25,11 @@ class SurveyCode extends Model
         'user_id',
         'survey_id',
         'expire',
+        'started_at',
+    ];
+    protected $dates = [
+        'expire',
+        'started_at',
     ];
 
     public function survey()
@@ -43,6 +49,29 @@ class SurveyCode extends Model
 
     public function expired()
     {
-        return $this->expire < Carbon::now();
+        return $this->expire !== null && Carbon::now()->isAfter($this->expire);
+    }
+
+    public function isStarted()
+    {
+        return $this->started_at !== null && Carbon::now()
+                ->isAfter($this->started_at);
+    }
+
+    public function isActive()
+    {
+        return $this->started_at !== null
+            && $this->expire !== null
+            && Carbon::now()->isBetween($this->started_at, $this->expire);
+    }
+
+    public function interval()
+    {
+        return $this->started_at->diff($this->expire);
+    }
+
+    public function timeLeft()
+    {
+        return Carbon::now()->diff($this->expire);
     }
 }

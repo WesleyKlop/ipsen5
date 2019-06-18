@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\VoterResult;
+use App\Mail\EmailResult;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use Mail;
 
 class EmailController extends Controller
 {
     public function mail(Request $request)
     {
         $user = $request->user();
+        $emailAddress = $request->json('email');
+        $emailResult = new EmailResult($user);
 
-        $emailaddress = $request->mail;
-
-        return Mail::to($emailaddress)->send(new VoterResult($request->user()));
+        return Mail::to($emailAddress)->send($emailResult);
     }
 }

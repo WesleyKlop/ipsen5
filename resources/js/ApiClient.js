@@ -5,7 +5,9 @@ class ApiClient {
 
   request(url, method = 'GET', body = null) {
     const payload =
-      typeof body === 'string' || body === null ? body : JSON.stringify(body)
+      typeof body === 'string' || body === null || body instanceof FormData
+        ? body
+        : JSON.stringify(body)
     return fetch(`${ApiClient.PREFIX}/${url}`, {
       method,
       headers: {
@@ -13,9 +15,11 @@ class ApiClient {
         Authorization: `Bearer ${Auth.getJWT()}`,
       },
       body: payload,
-    }).then(res =>
-      res.ok ? res.json() : res.json().then(res => Promise.reject(res)),
-    )
+    }).then(res => {
+      if (res.headers.get('content-type') === 'application/json')
+        return res.ok ? res.json() : res.json().then(res => Promise.reject(res))
+      else return Promise.resolve()
+    })
   }
 }
 
