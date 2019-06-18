@@ -87,6 +87,15 @@ class SurveyController extends Controller
         return redirect('admin/survey/'.$surveyId);
     }
 
+    public function removeTeacher(Request $request)
+    {
+        $code = $request->input('code');
+        $surveyCode = SurveyCode::where('code', '=', $code)->delete();
+        $surveyId = $request->input('surveyId');
+
+        return redirect('admin/survey/'.$surveyId);
+    }
+
     public function addCandidate(Request $request, ProfileController $profileController)
     {
         $surveyId = $request->input('survey-id');

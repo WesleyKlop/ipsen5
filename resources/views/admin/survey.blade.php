@@ -82,11 +82,17 @@
         <ul class="mdc-list mdc-list--two-line mdc-list--non-interactive" data-mdc-auto-init="MDCList">
             @foreach($survey->surveyCodes as $surveyCode)
                 <li class="mdc-list-item">
-                    <span class="mdc-list-item__text">
+                    <span class="mdc-list-item__text" style="width: 100%;">
                         <span class="mdc-list-item__primary-text">{{ $surveyCode->admin->username }}</span>
                         <span class="mdc-list-item__secondary-text">code: {{ $surveyCode->code }} | expires at:  {{$surveyCode->expire}}</span>
                     </span>
-                    <button class="material-icons mdc-list-item__meta mdc-icon-button" tabindex="-1">more_vert</button>
+                    <form method="POST" action="{{ action('SurveyController@removeTeacher') }}">
+                        @csrf
+                        {{method_field('DELETE')}}
+                        <input type="hidden" name="code" value="{{$surveyCode->code}}">
+                        <input type="hidden" name="surveyId" value="{{$surveyCode->survey_id}}">
+                        <button class="material-icons mdc-list-item__meta mdc-icon-button" tabindex="-1" type="submit">clear</button>
+                    </form>
                 </li>
             @endforeach
         </ul>

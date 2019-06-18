@@ -30,6 +30,8 @@ Route::middleware('auth:web')->prefix('admin')->group(function () {
     Route::post('survey/candidate', 'SurveyController@addCandidate');
 
     Route::post('survey/teacher', 'SurveyController@addTeacher');
+    Route::delete('survey/teacher', 'SurveyController@removeTeacher');
+
 
     Route::get('survey/{survey}', 'SurveyController@showSurvey');
     Route::post('survey/{survey}', 'SurveyController@addProposition');
