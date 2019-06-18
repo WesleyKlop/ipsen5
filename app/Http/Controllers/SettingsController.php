@@ -21,7 +21,7 @@ class SettingsController extends Controller
                 ->update(['value' => $id]);
         }
 
-        redirect()->intended('.');
+        return redirect()->intended(action('SettingsController@show'));
     }
 
     public function show()
