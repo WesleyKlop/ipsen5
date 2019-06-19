@@ -11,6 +11,8 @@ use App\Eloquent\Setting;
 use App\Eloquent\Survey;
 use App\Eloquent\SurveyCode;
 use App\Eloquent\User;
+use App\Mail\EmailCandidateRequest;
+use Mail;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -162,6 +164,28 @@ class SurveyController extends Controller
             'survey_id' => $surveyId,
             'user_id' => $user_id,
         ]);
+        return redirect('admin/survey/' . $surveyId);
+    }
+
+    public function removeCandidate(Request $request)
+    {
+        $surveyId = $request->input('surveyId');
+        $url = $request->input('url');
+
+        Candidate::where('url', '=', $url)->delete();
+
+        return redirect('admin/survey/' . $surveyId);
+    }
+    public function mailCandidate(Request $request)
+    {
+        $url = $request->input('url');
+        $candidate = Candidate::where('url', '=', $url)->first();
+        $emailAddress = $candidate->profile->email;
+        $surveyId = $candidate->survey_id;
+
+        $emailCandidateRequest = new EmailCandidateRequest($candidate);
+
+        Mail::to($emailAddress)->send($emailCandidateRequest);
 
         return redirect('admin/survey/' . $surveyId);
     }
