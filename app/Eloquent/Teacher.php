@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Teacher extends Model
 {
     protected $keyType = 'uuid';
+    protected $primaryKey = 'user_id';
     public $timestamps = false;
     protected $fillable = [
         'survey_id',

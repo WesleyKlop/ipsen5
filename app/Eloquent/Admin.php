@@ -55,7 +55,8 @@ class Admin extends AppUser
         Trial::create(['teacher_id' => $this->user_id]);
         Teacher::create([
             'user_id' => $this->user_id,
-            'survey_id' => Setting::where(['name' => 'trial-survey'])->firstOrFail()->id,
+            'survey_id' => Setting::where(['name' => 'trial-survey'])
+                ->firstOrFail()->value,
         ]);
     }
 

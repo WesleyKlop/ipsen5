@@ -57,13 +57,11 @@
         <div style="flex: 1"></div>
         <hr class="mdc-list-divider">
         <nav class="mdc-list" data-mdc-auto-init="MDCList">
-            @if(Auth::user()->type == "admin")
             <a class="mdc-list-item {{ request()->is("admin/settings") ? 'mdc-list-item--activated' : ''}}"
                href="{{ action('SettingsController@show') }}">
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">settings</i>
                 <span class="mdc-list-item__text">Instellingen</span>
             </a>
-            @endif
             <a class="mdc-list-item" href="{{ action('AdminLoginController@logout') }}">
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">lock</i>
                 <span class="mdc-list-item__text">Uitloggen</span>
