@@ -12,13 +12,11 @@ const PropositionPage = ({ history }) => {
   const [answers, setAnswers] = useState([])
 
   useEffect(() => {
-    ApiClient.request('survey')
-      .then(({ name, propositions }) => {
-        setSurvey(name)
-        setPropositions(propositions)
-        setIsLoaded(true)
-      })
-      .catch(errorMessage => this.setState({ errorMessage, isLoaded: false }))
+    ApiClient.request('survey').then(({ name, propositions }) => {
+      setSurvey(name)
+      setPropositions(propositions)
+      setIsLoaded(true)
+    })
   }, [])
 
   useEffect(() => {
