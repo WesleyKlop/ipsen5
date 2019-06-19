@@ -27,4 +27,9 @@ class Setting extends Model
     {
         return Setting::settingSurveyByName('country-survey');
     }
+
+    public static function feedbackSurvey()
+    {
+        return Setting::settingSurveyByName('feedback-survey');
+    }
 }

@@ -40,6 +40,7 @@ class AppServiceProvider extends ServiceProvider
             Setting::create(['id' => Str::uuid(), 'name' => 'trial-survey']);
             Setting::create(['id' => Str::uuid(), 'name' => 'european-survey']);
             Setting::create(['id' => Str::uuid(), 'name' => 'country-survey']);
+            Setting::create(['id' => Str::uuid(), 'name' => 'feedback-survey']);
         }
 
         $settings = Setting

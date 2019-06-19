@@ -59,6 +59,27 @@
                     <div class="mdc-line-ripple"></div>
                 </div>
 
+                <p>Hieronder kunt u de peiling instellen die gebruikt
+                    zal worden als feedback peiling.</p>
+                <div class="mdc-select" data-mdc-auto-init="MDCSelect">
+                    <i class="mdc-select__dropdown-icon"></i>
+                    <select class="mdc-select__native-control" id="feedback-select" required name="feedback-survey">
+                        <option disabled
+                                value="" {{ !isset($settings['feedback-survey']->value) ? 'selected' : '' }}></option>
+                        @foreach( $surveys as $survey )
+                            <option
+                                value="{{ $survey->id }}"
+                                {{ $settings['feedback-survey']->value === $survey->id ? ' selected' : '' }}>
+                                {{ $survey->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <label class="mdc-floating-label" for="feedback-select">
+                        Feedback Peiling
+                    </label>
+                    <div class="mdc-line-ripple"></div>
+                </div>
+
                 <div style="flex: 0 0 16px"></div>
 
                 <button class="mdc-button" type="submit">

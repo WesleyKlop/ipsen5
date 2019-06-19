@@ -16,6 +16,7 @@ class SettingsController extends Controller
             'trial-survey' => 'exists:surveys,id|required',
             'european-survey' => 'exists:surveys,id|required',
             'country-survey' => 'exists:surveys,id|required',
+            'feedback-survey' => 'exists:surveys,id|required',
         ]);
 
         foreach ($requestData as $name => $id) {
