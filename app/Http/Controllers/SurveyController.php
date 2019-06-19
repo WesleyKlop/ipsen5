@@ -13,6 +13,14 @@ use Illuminate\Validation\ValidationException;
 
 class SurveyController extends Controller
 {
+    public function toggleGeneralSurvey(Survey $survey)
+    {
+        $survey->use_general = !($survey->use_general);
+        $survey->save();
+
+        return view('admin.survey')->with('survey', $survey);
+    }
+
     public function show(Request $request)
     {
         return $request->user()->survey;
