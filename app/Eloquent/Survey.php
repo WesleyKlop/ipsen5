@@ -2,10 +2,7 @@
 
 namespace App\Eloquent;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
-use Ramsey\Uuid\Uuid;
 
 /**
  * Class Survey
@@ -52,5 +49,17 @@ class Survey extends Model
     public function answers()
     {
         return $this->hasMany(Answer::class);
+    }
+
+    public function teachers()
+    {
+        return $this->hasManyThrough(
+            Admin::class,
+            Teacher::class,
+            'survey_id',
+            'user_id',
+            'id',
+            'user_id'
+        );
     }
 }
