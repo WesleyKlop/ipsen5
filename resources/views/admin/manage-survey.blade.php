@@ -2,7 +2,7 @@
 
 
 @section('title')
-    Recente peilingen
+    Beheer peilingen
 @endsection
 
 @section('content')

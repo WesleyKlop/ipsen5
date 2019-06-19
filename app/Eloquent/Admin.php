@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Collection;
  * @property string $password
  * @property string $type
  * @property Collection<SurveyCode> $surveyCodes
+ * @property Collection<Survey> $surveys
  */
 class Admin extends AppUser
 {
@@ -52,6 +53,10 @@ class Admin extends AppUser
         }
 
         Trial::create(['teacher_id' => $this->user_id]);
+        Teacher::create([
+            'user_id' => $this->user_id,
+            'survey_id' => Setting::where(['name' => 'trial-survey'])->firstOrFail()->id,
+        ]);
     }
 
     public function surveyCodes()
