@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Eloquent\Admin;
+use App\Eloquent\Setting;
+use App\Eloquent\Teacher;
 use App\Eloquent\User;
 use Exception;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -52,6 +54,7 @@ class AdminRegisterController extends Controller
             'id' => Str::uuid(),
         ]);
 
+        /** @var Admin $teacher */
         return Admin::create([
             'user_id' => $user->id,
             'type' => 'teacher',
