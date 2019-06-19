@@ -74,7 +74,11 @@ class VoterTest extends TestCase
     public function testThatAUserCanJoinASurvey()
     {
         $surveycode = SurveyCode::create([
-            'code' => '000000',
+
+            //Technically not perfect since it is possible that
+            //it randomly generates an already existing code.
+            //The chance is astronomically small, though.
+            'code' => mt_rand(100000, 999999),
             'user_id' => $this->teacher->user_id,
             'survey_id' => $this->survey->id,
             'expire' => Carbon::now()->addMonth()->timestamp,
@@ -89,7 +93,7 @@ class VoterTest extends TestCase
         $response->assertStatus(200);
     }
 
-//    public function testThatAVoterCanReceivePropositions(){
-//
-//    }
+    public function testThatAVoterCanReceivePropositions()
+    {
+    }
 }
