@@ -14,7 +14,6 @@
     <link rel="manifest" href="/manifest.json">
 </head>
 <body>
-
 <div class="mdc-drawer">
     <a class="mdc-drawer__header" href="{{ action('RecentSurveyController@show') }}">
         <img class="logo" src="/images/logo_shadow.png" alt="StemApp"/>
@@ -31,11 +30,14 @@
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">history</i>
                 <span class="mdc-list-item__text">Recente Peilingen</span>
             </a>
+
+            @if(Auth::user()->type == "admin")
             <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['european-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
                href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['european-survey']->value ]) }}">
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">public</i>
                 <span class="mdc-list-item__text">Europese Peiling</span>
             </a>
+
             <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['country-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
                href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['country-survey']->value ]) }}">
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">flag</i>
@@ -50,15 +52,18 @@
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">question_answer</i>
                 <span class="mdc-list-item__text">Feedback Peiling</span>
             </a>
+            @endif
         </nav>
         <div style="flex: 1"></div>
         <hr class="mdc-list-divider">
         <nav class="mdc-list" data-mdc-auto-init="MDCList">
+            @if(Auth::user()->type == "admin")
             <a class="mdc-list-item {{ request()->is("admin/settings") ? 'mdc-list-item--activated' : ''}}"
                href="{{ action('SettingsController@show') }}">
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">settings</i>
                 <span class="mdc-list-item__text">Instellingen</span>
             </a>
+            @endif
             <a class="mdc-list-item" href="{{ action('AdminLoginController@logout') }}">
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">lock</i>
                 <span class="mdc-list-item__text">Uitloggen</span>
