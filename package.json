@@ -39,7 +39,7 @@
         "@material/top-app-bar": "^2.1.1",
         "@material/typography": "^2.3.0",
         "classnames": "^2.2.6",
-        "jwt-decode": "^2.2.0",
+        "jsonwebtoken": "^8.5.1",
         "normalize-scss": "^7.0.1",
         "react-icons": "^3.7.0",
         "react-router-dom": "^5.0.1"

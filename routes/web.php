@@ -25,12 +25,19 @@ Route::middleware('auth:web')->prefix('admin')->group(function () {
     Route::post('survey', 'SurveyOverviewController@createSurvey');
     Route::delete('survey', 'SurveyOverviewController@deleteSurvey');
 
-    Route::post('suvey/candidate', 'SurveyOverviewController@linkCandidateToSurvey');
-
+    Route::get('survey/search', 'SurveyController@search');
     Route::get('survey/{survey}', 'SurveyController@showSurvey');
-    Route::post('survey/{survey}', 'SurveyController@addProposition');
-    Route::delete('survey/{survey}', 'SurveyController@deleteProposition');
+
+    Route::post('survey/{survey}/proposition', 'SurveyController@addProposition');
+    Route::delete('survey/{survey}/proposition', 'SurveyController@deleteProposition');
+    Route::post('survey/{survey}/candidate', 'SurveyController@addCandidate');
+    Route::delete('survey/{survey}/candidate', 'SurveyController@removeCandidate');
+    Route::post('survey/{survey}/teacher', 'SurveyController@addTeacher');
+    Route::delete('survey/{survey}/teacher', 'SurveyController@removeTeacher');
+
     Route::get('survey/{survey}/start', 'RecentSurveyController@startSurvey');
+
+    Route::get('survey/{code}/results', 'SurveyResultsController@show');
 
     Route::get('settings', 'SettingsController@show');
     Route::post('settings', 'SettingsController@submit');
