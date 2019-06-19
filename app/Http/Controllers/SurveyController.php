@@ -9,9 +9,8 @@ use App\Eloquent\Profile;
 use App\Eloquent\Proposition;
 use App\Eloquent\Setting;
 use App\Eloquent\Survey;
-use App\Eloquent\SurveyCode;
+use App\Eloquent\Teacher;
 use App\Eloquent\User;
-use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
@@ -23,7 +22,7 @@ class SurveyController extends Controller
 {
     public function toggleGeneralSurvey(Survey $survey)
     {
-        $survey->use_general = !($survey->use_general);
+        $survey->use_general = ! ($survey->use_general);
         $survey->save();
 
         return view('admin.survey')->with('survey', $survey);
@@ -38,7 +37,8 @@ class SurveyController extends Controller
             return ([
                 'id' => $survey->id,
                 'name' => $survey->name,
-                'propositions' => Setting::europeanSurvey()->propositions->merge(Setting::countrySurvey()->propositions)->merge($survey->propositions)
+                'propositions' => Setting::europeanSurvey()->propositions->merge(Setting::countrySurvey()->propositions)
+                    ->merge($survey->propositions),
             ]);
         } else {
             return $survey;
@@ -94,43 +94,38 @@ class SurveyController extends Controller
         return redirect('admin/survey/' . $survey->id);
     }
 
-    public function addTeacher(Request $request)
+    public function addTeacher(Request $request, Survey $survey)
     {
-        $surveyId = $request->input('survey-id');
-        $teacher = Admin::where('username', '=', $request->input('teacher'))
-            ->first();
-        $surveyCode = mt_rand(100000, 999999);
+        /** @var Admin $teacher */
+        $teacher = Admin
+            ::where('username', '=', $request->input('teacher'))
+            ->firstOrFail();
 
-        if (is_null($teacher)) {
-            return redirect('admin/survey/' . $surveyId);
-        }
+        if ($teacher->isTeacher()) {
+            if ($teacher->isInTrial()) {
+                $teacher->removeFromTrial();
+            }
 
-        $hasExistingSurveyCode = SurveyCode::where('survey_id', '=', $surveyId)
-            ->where('user_id', '=', $teacher->user_id)
-            ->exists();
-
-        if ($teacher->type = 'teacher' && ! $hasExistingSurveyCode) {
-            $teacher->removeFromTrial();
-
-            SurveyCode::create([
-                "code" => $surveyCode,
+            Teacher::create([
                 "user_id" => $teacher->user_id,
-                "survey_id" => $surveyId,
-                "started_at" => Carbon::now(),
-                "expire" => Carbon::now()->addMonth(),
+                "survey_id" => $survey->id,
             ]);
         }
-        return redirect('admin/survey/' . $surveyId);
+
+        return redirect(action('SurveyController@showSurvey', $survey));
     }
 
-    public function removeTeacher(Request $request)
+    public function removeTeacher(Request $request, Survey $survey)
     {
-        $code = $request->input('code');
-        $surveyId = $request->input('surveyId');
+        $userId = $request->input('userId');
+        Teacher
+            ::where([
+                'survey_id' => $survey->id,
+                'user_id' => $userId,
+            ])
+            ->delete();
 
-        SurveyCode::where('code', '=', $code)->delete();
-
-        return redirect('admin/survey/' . $surveyId);
+        return redirect(action('SurveyController@showSurvey', $survey));
     }
 
     public function addCandidate(
