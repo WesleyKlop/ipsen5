@@ -8,9 +8,16 @@ const Results = () => {
 
   useEffect(() => {
     setRole(Auth.getRole())
-  }, [])
+  }, [role])
 
-  return role === 'voter' ? <VoterResultsPage /> : <CandidateResultsPage />
+  switch (role) {
+    case 'voter':
+      return <VoterResultsPage />
+    case 'candidate':
+      return <CandidateResultsPage />
+    default:
+      return null
+  }
 }
 
 export default Results
