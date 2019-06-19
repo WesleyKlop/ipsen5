@@ -59,7 +59,7 @@
         <h2 class="card__title">Kandidaten</h2>
         <ul class="mdc-list mdc-list--two-line mdc-list--non-interactive" data-mdc-auto-init="MDCList">
             @foreach($survey->candidates as $candidate)
-                <li class="mdc-list-item ">
+                <li class="mdc-list-item">
                     <span class="mdc-list-item__text">
                         <span class="mdc-list-item__primary-text">
                             {{ $candidate->profile->first_name ?? 'niet ingevuld' }}
@@ -76,9 +76,22 @@
                             @endif
                         </span>
                     </span>
-                    <button class="material-icons mdc-list-item__meta mdc-icon-button" tabindex="-1">
-                        more_vert
-                    </button>
+                    <span class="mdc-list-item__meta" style="display: inherit;">
+{{--                        <span style="display: inline-block;">--}}
+                            <form method="POST" action="{{ action('SurveyController@mailCandidate', $survey->id) }}">
+                                @csrf
+                                <input type="hidden" name="url" value="{{$candidate->url}}">
+                                <button class="material-icons mdc-icon-button" tabindex="-1" type="submit" style="color:black; display: flex; flex-direction: row">mail</button>
+                            </form>
+                            <form method="POST" action="{{ action('SurveyController@removeCandidate', $survey->id) }}">
+                                @csrf
+                                {{method_field('DELETE')}}
+                                <input type="hidden" name="url" value="{{$candidate->url}}">
+                                <input type="hidden" name="surveyId" value="{{$candidate->survey_id}}">
+                                <button class="material-icons mdc-icon-button" tabindex="-1" type="submit" style="color:black">clear
+                    </button></form>
+{{--                        </span>--}}
+                    </span>
                 </li>
             @endforeach
         </ul>
