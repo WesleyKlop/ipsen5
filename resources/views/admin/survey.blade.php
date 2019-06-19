@@ -61,7 +61,8 @@
                     <span class="mdc-list-item__meta">
                         <span style="display: inline-block;">
                             <form method="POST" action="{{ action('SurveyController@mailCandidate', $survey->id) }}">
-                                <input type="hidden" name="email" value="{{$candidate->profile->email}}">
+                                @csrf
+                                <input type="hidden" name="url" value="{{$candidate->url}}">
                                 <button class="material-icons mdc-icon-button" tabindex="-1" type="submit" style="color:black">mail</button>
                             </form>
                             <form method="POST" action="{{ action('SurveyController@removeCandidate', $survey->id) }}">

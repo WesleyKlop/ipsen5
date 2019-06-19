@@ -158,8 +158,9 @@ class SurveyController extends Controller
         Request $request,
         EmailController $emailController
     ) {
-        $email = $request->input('email');
-        $emailController->mail();
+        $url = $request->input('url');
+        $candidate = Candidate::where('url', '=', $url);
+//        $emailController->mail();
         return null;
     }
 }
