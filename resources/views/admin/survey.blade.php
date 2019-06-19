@@ -90,6 +90,7 @@
         </form>
     </div>
 
+    @if( ! Auth::user()->isTeacher() )
     <div class="mdc-card">
         <h2 class="card__title">Docenten</h2>
         <ul class="mdc-list mdc-list--two-line mdc-list--non-interactive" data-mdc-auto-init="MDCList">
@@ -123,4 +124,5 @@
             <button class="mdc-icon-button material-icons" type="submit">add_circle</button>
         </form>
     </div>
+    @endif
 @endsection
