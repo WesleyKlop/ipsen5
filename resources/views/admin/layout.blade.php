@@ -18,15 +18,15 @@
     <a class="mdc-drawer__header" href="{{ action('RecentSurveyController@show') }}">
         <img class="logo" src="/images/logo_shadow.png" alt="StemApp" />
         <div class="drawer-header__info">
-            <span class="mdc-drawer__title">Beheerder</span>
-            <span class="mdc-drawer__subtitle">beheerder@fzes.nl</span>
+            <span class="mdc-drawer__title">{{ Auth::user()->isTeacher() ? 'Docent' : 'Beheerder' }}</span>
+            <span class="mdc-drawer__subtitle">{{ Auth::user()->username }}</span>
             <button class="mdc-icon-button material-icons">arrow_drop_down
             </button>
         </div>
     </a>
     <div class="mdc-drawer__content mdc-list-group">
         <nav class="mdc-list" data-mdc-auto-init="MDCList">
-            <a class="mdc-list-item {{ request()->is('admin/') ? 'mdc-list-item--activated' : ''}}"
+            <a class="mdc-list-item {{ request()->is('admin') ? 'mdc-list-item--activated' : ''}}"
                href="{{ action('RecentSurveyController@show') }}" aria-current="page">
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">history</i>
                 <span class="mdc-list-item__text">Recente Peilingen</span>
