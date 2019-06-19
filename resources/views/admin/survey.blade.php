@@ -58,12 +58,12 @@
                             @endif
                         </span>
                     </span>
-                    <span class="mdc-list-item__meta">
-                        <span style="display: inline-block;">
+                    <span class="mdc-list-item__meta" style="display: inherit;">
+{{--                        <span style="display: inline-block;">--}}
                             <form method="POST" action="{{ action('SurveyController@mailCandidate', $survey->id) }}">
                                 @csrf
                                 <input type="hidden" name="url" value="{{$candidate->url}}">
-                                <button class="material-icons mdc-icon-button" tabindex="-1" type="submit" style="color:black">mail</button>
+                                <button class="material-icons mdc-icon-button" tabindex="-1" type="submit" style="color:black; display: flex; flex-direction: row">mail</button>
                             </form>
                             <form method="POST" action="{{ action('SurveyController@removeCandidate', $survey->id) }}">
                                 @csrf
@@ -72,7 +72,7 @@
                                 <input type="hidden" name="surveyId" value="{{$candidate->survey_id}}">
                                 <button class="material-icons mdc-icon-button" tabindex="-1" type="submit" style="color:black">clear</button>
                             </form>
-                        </span>
+{{--                        </span>--}}
                     </span>
                 </li>
             @endforeach
