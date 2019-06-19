@@ -13,4 +13,18 @@ class Setting extends Model
         'name',
         'value',
     ];
+
+    public static function settingSurveyByName(string $name)
+    {
+        return Survey::where('id', Setting::where('name', $name)->first()->value)->first();
+    }
+    public static function europeanSurvey()
+    {
+        return Setting::settingSurveyByName('european-survey');
+    }
+
+    public static function countrySurvey()
+    {
+        return Setting::settingSurveyByName('country-survey');
+    }
 }

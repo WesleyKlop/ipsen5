@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Eloquent\Proposition;
+use App\Eloquent\Setting;
 use App\Eloquent\Survey;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,7 +24,18 @@ class SurveyController extends Controller
 
     public function show(Request $request)
     {
-        return $request->user()->survey;
+        $survey = $request->user()->survey;
+
+        //return dd($request->user()->survey);
+        if ($survey->useGeneral()) {
+            return ([
+                'id' => $survey->id,
+                'name' => $survey->name,
+                'propositions' => Setting::europeanSurvey()->propositions->merge(Setting::countrySurvey()->propositions)->merge($survey->propositions)
+            ]);
+        } else {
+            return $survey;
+        }
     }
 
     public function showSurvey(Survey $survey)
