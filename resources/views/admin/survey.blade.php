@@ -41,7 +41,7 @@
         <h2 class="card__title">Kandidaten</h2>
         <ul class="mdc-list mdc-list--two-line mdc-list--non-interactive" data-mdc-auto-init="MDCList">
             @foreach($survey->candidates as $candidate)
-                <li class="mdc-list-item ">
+                <li class="mdc-list-item  ">
                     <span class="mdc-list-item__text">
                         <span class="mdc-list-item__primary-text">
                             {{ $candidate->profile->first_name ?? 'niet ingevuld' }}
@@ -58,7 +58,10 @@
                             @endif
                         </span>
                     </span>
-                    <button class="material-icons mdc-list-item__meta mdc-icon-button" tabindex="-1">more_vert</button>
+                    <span class="mdc-list-item__meta">
+                        <button class="material-icons mdc-icon-button" tabindex="-1" style="color:black">mail</button>
+                        <button class="material-icons mdc-icon-button" tabindex="-1" style="color:black">clear</button>
+                    </span>
                 </li>
             @endforeach
         </ul>
