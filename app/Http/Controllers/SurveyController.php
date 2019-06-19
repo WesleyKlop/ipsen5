@@ -156,17 +156,13 @@ class SurveyController extends Controller
 
         return redirect('admin/survey/' . $surveyId);
     }
-    public function mailCandidate(
-        Request $request,
-        EmailController $emailController
-    ) {
+    public function mailCandidate(Request $request)
+    {
         $url = $request->input('url');
-        $emailAddress = $request->input('email');
-        $candidate = Candidate::where('url', '=', $url);
+        $candidate = Candidate::where('url', '=', $url)->first();
+        $emailAddress = $candidate->profile->email;
 
         $emailCandidateRequest = new EmailCandidateRequest($candidate);
-
-//        dd($emailCandidateRequest);
 
         return Mail::to($emailAddress)->send($emailCandidateRequest);
     }
