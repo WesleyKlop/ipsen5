@@ -36,6 +36,7 @@ Route::middleware('auth:web')->prefix('admin')->group(function () {
     Route::delete('survey/{survey}/teacher', 'SurveyController@removeTeacher');
 
     Route::get('survey/{survey}/start', 'RecentSurveyController@startSurvey');
+    Route::post('survey/{survey}/general', 'SurveyController@toggleGeneralSurvey');
 
     Route::get('survey/{code}/results', 'SurveyResultsController@show');
 

@@ -61,16 +61,25 @@ class Voter extends AppUser
          * 3. Do a descending sort by the number of matches (highest number of matches comes up front)
          * 4 Return the first 5.
          */
-        $user_answers = $this->answers;
+
+        $european = Setting::europeanSurvey()->id;
+        $country = Setting::countrySurvey()->id;
+
+        $user_answers = $this
+            ->answers
+            ->filter(function (Answer $answer) {
+                return ! Setting::where('value', $answer->survey_id)->exists();
+            });
+
         $num_propositions = $this->survey->propositions->count();
         return $this
             ->survey
             ->candidates
-            ->map(function ($candidate) use ($user_answers, $num_propositions) {
+            ->map(function ($candidate) use ($user_answers, $num_propositions, $european, $country) {
                 // fetch all answers of the candidate,
                 // so they're in memory,
                 // and we don't have to fetch each answer from the db
-                $candidate_answers = $candidate->answers->all();
+                $candidate_answers = $candidate->answers->whereNotIn('survey_id', $country, $european)->all();
 
                 $number_of_matches = $user_answers
                     ->map(function ($answer) use ($candidate_answers) {

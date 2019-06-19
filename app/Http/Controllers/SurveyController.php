@@ -7,6 +7,7 @@ use App\Eloquent\Answer;
 use App\Eloquent\Candidate;
 use App\Eloquent\Profile;
 use App\Eloquent\Proposition;
+use App\Eloquent\Setting;
 use App\Eloquent\Survey;
 use App\Eloquent\SurveyCode;
 use App\Eloquent\User;
@@ -20,9 +21,28 @@ use Illuminate\Validation\ValidationException;
 
 class SurveyController extends Controller
 {
+    public function toggleGeneralSurvey(Survey $survey)
+    {
+        $survey->use_general = !($survey->use_general);
+        $survey->save();
+
+        return view('admin.survey')->with('survey', $survey);
+    }
+
     public function show(Request $request)
     {
-        return $request->user()->survey;
+        $survey = $request->user()->survey;
+
+        //return dd($request->user()->survey);
+        if ($survey->useGeneral()) {
+            return ([
+                'id' => $survey->id,
+                'name' => $survey->name,
+                'propositions' => Setting::europeanSurvey()->propositions->merge(Setting::countrySurvey()->propositions)->merge($survey->propositions)
+            ]);
+        } else {
+            return $survey;
+        }
     }
 
     public function showSurvey(Survey $survey)

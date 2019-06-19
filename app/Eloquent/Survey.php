@@ -21,7 +21,13 @@ class Survey extends Model
     protected $fillable = [
         'id',
         'name',
+        'use_general',
     ];
+
+    public function useGeneral()
+    {
+        return $this->use_general;
+    }
 
     public function candidates()
     {
