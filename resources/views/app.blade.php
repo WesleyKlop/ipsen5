@@ -11,6 +11,9 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link rel="manifest" href="/manifest.json">
+
+    <meta name="european-survey" content="{{ $settings['european-survey']->value }}" />
+    <meta name="country-survey" content="{{ $settings['country-survey']->value }}" />
 </head>
 <body>
 <div id="app"></div>

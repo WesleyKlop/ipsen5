@@ -16,6 +16,8 @@ use Illuminate\Database\Eloquent\Collection;
  */
 class Admin extends AppUser
 {
+    use HasTrials;
+
     protected $fillable = [
         'user_id',
         'username',
@@ -26,38 +28,6 @@ class Admin extends AppUser
     public function isTeacher()
     {
         return $this->type == 'teacher';
-    }
-
-    public function isInTrial()
-    {
-        if (! $this->isTeacher()) {
-            return false;
-        }
-
-        return Trial::where('teacher_id', $this->user_id)->exists();
-    }
-
-    public function removeFromTrial()
-    {
-        if (! $this->isTeacher()) {
-            return;
-        }
-
-        Trial::where('teacher_id', $this->user_id)->delete();
-    }
-
-    public function addToTrial()
-    {
-        if (!$this->isTeacher()) {
-            return;
-        }
-
-        Trial::create(['teacher_id' => $this->user_id]);
-        Teacher::create([
-            'user_id' => $this->user_id,
-            'survey_id' => Setting::where(['name' => 'trial-survey'])
-                ->firstOrFail()->value,
-        ]);
     }
 
     public function surveyCodes()
