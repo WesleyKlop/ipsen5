@@ -7,6 +7,7 @@ use App\Eloquent\Proposition;
 use App\Eloquent\Survey;
 use App\Eloquent\SurveyCode;
 use App\Eloquent\User;
+use App\Eloquent\Voter;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Str;
@@ -18,8 +19,8 @@ use Tests\TestCase;
  * Join a survey
  * Get propositions
  * Submit proposition answers
- * See Feedback after the last proposition
- * Get matched with a politician
+ * See Feedback form after the last proposition
+ * Get matched with a candidate
  *
  */
 class VoterTest extends TestCase
@@ -28,6 +29,7 @@ class VoterTest extends TestCase
     use DatabaseTransactions;
 
     protected $survey;
+    protected $surveycode;
     protected $user;
     protected $teacher;
     protected $propositions;
@@ -52,6 +54,18 @@ class VoterTest extends TestCase
             'name' => 'VoterTest Survey',
         ]);
 
+        $this->surveycode = SurveyCode::create([
+
+            //Technically not perfect since it is possible that
+            //it randomly generates an already existing code.
+            //The chance is astronomically small though.
+            'code' => mt_rand(100000, 999999),
+            'user_id' => $this->teacher->user_id,
+            'survey_id' => $this->survey->id,
+            'expire' => Carbon::now()->addMonth()->timestamp,
+            'started_at' => Carbon::now()->timestamp,
+        ]);
+
         $this->propositions = [
             Proposition::create([
                 'id' => Str::uuid(),
@@ -71,29 +85,45 @@ class VoterTest extends TestCase
         ];
     }
 
-    public function testThatAUserCanJoinASurvey()
+    public function testThatAVoterCanJoinASurvey()
     {
-        $surveycode = SurveyCode::create([
-
-            //Technically not perfect since it is possible that
-            //it randomly generates an already existing code.
-            //The chance is astronomically small, though.
-            'code' => mt_rand(100000, 999999),
-            'user_id' => $this->teacher->user_id,
-            'survey_id' => $this->survey->id,
-            'expire' => Carbon::now()->addMonth()->timestamp,
-            'started_at' => Carbon::now()->timestamp,
-        ]);
-
+        //The response to the request that is submitted when the voter submits the code.
         $response = $this->withHeaders([
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
-        ])->json('POST', 'http://localhost:8000/api/voter/login', ['code' => $surveycode->code]);
+        ])->json(
+            'POST',
+            'http://localhost:8000/api/voter/login',
+            ['code' => $this->surveycode->code]
+        );
 
         $response->assertStatus(200);
+
+        $this->assertDatabaseHas('voters', ['code' => $this->surveycode->code]);
     }
 
-    public function testThatAVoterCanReceivePropositions()
+    /* Testing that a voter is linked to propositions by requesting them via
+     * the user id. This shows there is a connection between the voter and
+     * the propositions, allowing us to view them on the voter screen.
+     * To test that a voter can view the propositions we will perform usability tests.
+     */
+    public function testThatAVoterIsLinkedToPropositions()
     {
+        $voter = Voter::create([
+            'code' => $this->surveycode->code,
+            'user_id' => $this->user->id,
+        ]);
+
+        $this->assertEquals(
+            'This is the second proposition',
+            Proposition::where(
+                'survey_id',
+                SurveyCode::where('code', $voter->code)
+                    ->first()->survey_id
+            )
+            ->where('proposition', 'This is the second proposition')
+            ->first()
+            ->proposition
+        );
     }
 }

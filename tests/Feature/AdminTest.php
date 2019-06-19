@@ -3,12 +3,24 @@
 namespace Tests\Feature;
 
 use App\Eloquent\Admin;
-use App\Eloquent\User;
 use App\Eloquent\Trial;
+use App\Eloquent\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Tests\TestCase;
 use Illuminate\Support\Str;
+use Tests\TestCase;
 
+/*
+ * Things an admin should be able to do:
+ *
+ * Log in
+ * Create Surveys
+ * Delete Surveys
+ * Create Propositions
+ * Remove Propositions
+ * Invite Candidates
+ * Invite Teachers
+ * Log out
+ */
 class AdminTest extends TestCase
 {
     //This trait makes sure the database remains unaffected by the tests.
