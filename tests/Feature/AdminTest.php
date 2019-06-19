@@ -44,7 +44,7 @@ class AdminTest extends TestCase
             'user_id' => $this->user->id,
             'type' => 'teacher',
             'username' => 'admin@UnitTests.com',
-            'password' => 'testpassword',
+            'password' => '$2y$10$8kioeuZKOlHkEAl6Gh5gpeYNoIOdj9gvFLLJesrcDBVySVMUxE86a', //"stemapp"
         ];
 
         $this->admin = Admin::create($this->testvalues);
@@ -54,6 +54,23 @@ class AdminTest extends TestCase
     public function testThatAnAdminCanBeCreated()
     {
         $this->assertDatabaseHas('admins', $this->testvalues);
+    }
+
+    public function testThatAnAdminCanLogin()
+    {
+        $response = $this->withHeaders([
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+        ])->json(
+            'POST',
+            'http://localhost:8000/admin/login',
+            [
+                'username' => $this->admin->username,
+                'password' => "stemapp",
+            ]
+        );
+
+        $response->assertStatus(302);
     }
 
     public function testThatATrialCanBeAssigned()

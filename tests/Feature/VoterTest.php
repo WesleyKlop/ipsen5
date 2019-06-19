@@ -19,9 +19,8 @@ use Tests\TestCase;
  * Join a survey
  * Get propositions
  * Submit proposition answers
- * See Feedback form after the last proposition
+ * Submit feedback
  * Get matched with a candidate
- *
  */
 class VoterTest extends TestCase
 {
