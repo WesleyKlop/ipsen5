@@ -20,7 +20,6 @@ Route::post('/admin/register', 'AdminRegisterController@register');
 
 Route::middleware('auth:web')->prefix('admin')->group(function () {
     Route::get('/', 'RecentSurveyController@show');
-    Route::post('survey/{survey}/candidate/mail', 'SurveyController@mailCandidate');
 
     Route::get('survey', 'SurveyOverviewController@showManageSurvey');
     Route::post('survey', 'SurveyOverviewController@createSurvey');
@@ -34,6 +33,7 @@ Route::middleware('auth:web')->prefix('admin')->group(function () {
 
     Route::post('survey/{survey}/candidate', 'SurveyController@addCandidate');
     Route::delete('survey/{survey}/candidate', 'SurveyController@removeCandidate');
+    Route::post('survey/{survey}/candidate/mail', 'SurveyController@mailCandidate');
 
     Route::post('survey/{survey}/teacher', 'SurveyController@addTeacher');
     Route::delete('survey/{survey}/teacher', 'SurveyController@removeTeacher');
