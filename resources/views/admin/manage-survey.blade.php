@@ -11,9 +11,11 @@
         <ul class="mdc-list" data-mdc-auto-init="MDCList">
             @foreach( $surveys as $survey )
                 <li class="mdc-list-item">
-                    <div class="survey-link-wrapper" style="width: 100%;">
-                        <a class="mdc-list-item__text " href="{{ url()->current().'/'.$survey->id }}">{{ $survey->name }}</a>
-                    </div>
+                    <a class="mdc-list-item__text " href="{{ url()->current().'/'.$survey->id }}" style="width: 100%;">
+                        <div class="survey-link-wrapper">
+                            <p>{{ $survey->name }}</p>
+                        </div>
+                    </a>
                     <form method="POST" action="{{ action('SurveyOverviewController@deleteSurvey') }}">
                         @csrf
                         {{method_field('DELETE')}}
