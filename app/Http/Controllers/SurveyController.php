@@ -161,9 +161,12 @@ class SurveyController extends Controller
         $url = $request->input('url');
         $candidate = Candidate::where('url', '=', $url)->first();
         $emailAddress = $candidate->profile->email;
+        $surveyId = $candidate->survey_id;
 
         $emailCandidateRequest = new EmailCandidateRequest($candidate);
 
-        return Mail::to($emailAddress)->send($emailCandidateRequest);
+        Mail::to($emailAddress)->send($emailCandidateRequest);
+
+        return redirect('admin/survey/' . $surveyId);
     }
 }
