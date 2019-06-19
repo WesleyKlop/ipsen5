@@ -7,8 +7,8 @@
 
         Hieronder staat een link naar de stellingen waar we graag uw antwoorden op hebben:<br>
 
-        {{url($candidate->url)}}<br><br>
-
+        {{url('candidate'.$candidate->url)}}<br><br>
+        
         We hopen dat je het leuk vond om de Stem!App in te vullen, en zien je graag terug bij een volgende peiling!<br><br>
 
         Met vriendelijke groet,<br>
