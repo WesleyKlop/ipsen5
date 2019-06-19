@@ -3,20 +3,21 @@
 namespace Tests\Feature;
 
 use App\Eloquent\Admin;
-use App\Eloquent\User;
+use App\Eloquent\Proposition;
 use App\Eloquent\Survey;
 use App\Eloquent\SurveyCode;
+use App\Eloquent\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Tests\TestCase;
 use Illuminate\Support\Str;
-use Ramsey\Uuid\Uuid;
+use Tests\TestCase;
 
 /*
  * Things a voter should be able to do:
  *
  * Join a survey
  * Get propositions
+ * Submit proposition answers
  * See Feedback after the last proposition
  * Get matched with a politician
  *
@@ -29,6 +30,7 @@ class VoterTest extends TestCase
     protected $survey;
     protected $user;
     protected $teacher;
+    protected $propositions;
 
     public function setUp(): void
     {
@@ -45,20 +47,38 @@ class VoterTest extends TestCase
             'password' => 'testpassword',
         ]);
 
-    }
-
-    public function testThatAUserCanJoinASurvey()
-    {
-        $survey = Survey::create([
+        $this->survey = Survey::create([
             'id' => Str::uuid(),
             'name' => 'VoterTest Survey',
         ]);
 
+        $this->propositions = [
+            Proposition::create([
+                'id' => Str::uuid(),
+                'survey_id' => $this->survey->id,
+                'proposition' => 'This is the first proposition',
+            ]),
+            Proposition::create([
+                'id' => Str::uuid(),
+                'survey_id' => $this->survey->id,
+                'proposition' => 'This is the second proposition',
+            ]),
+            Proposition::create([
+                'id' => Str::uuid(),
+                'survey_id' => $this->survey->id,
+                'proposition' => 'This is the third proposition',
+            ])
+        ];
+    }
+
+    public function testThatAUserCanJoinASurvey()
+    {
         $surveycode = SurveyCode::create([
-            'code' => Uuid::uuid4(),
+            'code' => '000000',
             'user_id' => $this->teacher->user_id,
-            'survey_id' => $survey->id,
-            'expire' => Carbon::now()->addMonth(),
+            'survey_id' => $this->survey->id,
+            'expire' => Carbon::now()->addMonth()->timestamp,
+            'started_at' => Carbon::now()->timestamp,
         ]);
 
         $response = $this->withHeaders([
@@ -68,4 +88,8 @@ class VoterTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+//    public function testThatAVoterCanReceivePropositions(){
+//
+//    }
 }
