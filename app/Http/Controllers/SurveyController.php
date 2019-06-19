@@ -142,7 +142,24 @@ class SurveyController extends Controller
             'survey_id' => $surveyId,
             'user_id' => $user_id,
         ]);
+        return redirect('admin/survey/' . $surveyId);
+    }
+
+    public function removeCandidate(Request $request)
+    {
+        $surveyId = $request->input('surveyId');
+        $url = $request->input('url');
+
+        Candidate::where('url', '=', $url)->delete();
 
         return redirect('admin/survey/' . $surveyId);
+    }
+    public function mailCandidate(
+        Request $request,
+        EmailController $emailController
+    ) {
+        $email = $request->input('email');
+        $emailController->mail();
+        return null;
     }
 }
