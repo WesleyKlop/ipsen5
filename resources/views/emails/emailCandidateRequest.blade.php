@@ -2,7 +2,7 @@
     <body>
         Geachte {{$candidate->profile->first_name}} {{$candidate->profile->last_name}},<br><br>
 
-        
+
         Bedankt voor het meedoen met de Stem!App<br>
 
         Hieronder staat een link naar de stellingen waar we graag uw antwoorden op hebben:<br>

@@ -10,6 +10,8 @@ use App\Eloquent\Proposition;
 use App\Eloquent\Survey;
 use App\Eloquent\SurveyCode;
 use App\Eloquent\User;
+use App\Mail\EmailCandidateRequest;
+use Mail;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -159,8 +161,13 @@ class SurveyController extends Controller
         EmailController $emailController
     ) {
         $url = $request->input('url');
+        $emailAddress = $request->input('email');
         $candidate = Candidate::where('url', '=', $url);
-//        $emailController->mail();
-        return null;
+
+        $emailCandidateRequest = new EmailCandidateRequest($candidate);
+
+//        dd($emailCandidateRequest);
+
+        return Mail::to($emailAddress)->send($emailCandidateRequest);
     }
 }
