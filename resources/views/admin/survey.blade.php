@@ -90,15 +90,10 @@
                             {{method_field('DELETE')}}
                             <input type="hidden" name="url" value="{{$candidate->url}}">
                             <input type="hidden" name="surveyId" value="{{$candidate->survey_id}}">
-                            <button class="material-icons mdc-icon-button" tabindex="-1" type="submit" style="color:black">clear</button>
+                            <button class="material-icons mdc-icon-button" tabindex="-1" type="submit"
+                                    style="color:black">
+                                clear</button>
                         </form>
-                            <form method="POST" action="{{ action('SurveyController@removeCandidate', $survey->id) }}">
-                                @csrf
-                                {{method_field('DELETE')}}
-                                <input type="hidden" name="url" value="{{$candidate->url}}">
-                                <input type="hidden" name="surveyId" value="{{$candidate->survey_id}}">
-                                <button class="material-icons mdc-icon-button" tabindex="-1" type="submit" style="color:black">clear
-                    </button></form>
                     </span>
                 </li>
             @endforeach
