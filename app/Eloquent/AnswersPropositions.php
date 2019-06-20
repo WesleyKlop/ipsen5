@@ -4,6 +4,7 @@
 namespace App\Eloquent;
 
 use App\Exceptions\AlreadyAnsweredException;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Ramsey\Uuid\Uuid;
@@ -48,9 +49,20 @@ trait AnswersPropositions
             return Answer::make([
                 'id' => Uuid::uuid4(),
                 'proposition_id' => $answer['proposition_id'],
-                'survey_id' => $this->survey->id,
+                //'survey_id' => $this->survey->id,
+                'survey_id' => Proposition::where('id', $answer['proposition_id'])->first()->survey->id,
                 'answer' => $answer['answer']
             ]);
         }));
+    }
+
+    public function getPropositionsWithAnswers()
+    {
+        return $this->survey()->with([
+            'propositions',
+            'propositions.answers' => function (HasMany $q) {
+                $q->where('user_id', $this->user_id);
+            },
+        ])->get();
     }
 }

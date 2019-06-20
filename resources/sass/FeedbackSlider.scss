@@ -1,0 +1,13 @@
+@import 'variables';
+
+.feedback-slider {
+  width: 270px;
+  height: 150px;
+  margin: auto;
+  display: block;
+}
+
+.feedback-slider__text {
+  user-select: none;
+  fill: $mdc-theme-on-primary;
+}

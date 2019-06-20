@@ -12,7 +12,8 @@
         "fideloper/proxy": "^4.0",
         "firebase/php-jwt": "^5.0",
         "laravel/framework": "5.8.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "scopdrag/laravel-google-chart": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
@@ -65,6 +66,7 @@
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "@php artisan ide-helper:generate"
         ],
-        "fix": "php-cs-fixer fix"
+        "fix": "php-cs-fixer fix",
+        "test": "php-cs-fixer fix --stop-on-violation --dry-run && phpunit"
     }
 }

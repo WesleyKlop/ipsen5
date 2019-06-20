@@ -14,22 +14,39 @@
 // Admin routes
 Route::get('/admin/login', 'AdminLoginController@showLoginForm')->name('login');
 Route::post('/admin/login', 'AdminLoginController@login');
+Route::get('/admin/logout', 'AdminLoginController@logout');
 Route::get('/admin/register', 'AdminRegisterController@showRegistrationForm');
 Route::post('/admin/register', 'AdminRegisterController@register');
 
+Route::middleware('auth:web')->prefix('admin')->group(function () {
+    Route::get('/', 'RecentSurveyController@show');
 
-Route::middleware('auth:web')->group(function () {
-    Route::get('/admin/', function () {
-        return view('admin.content');
-    });
+    Route::get('survey', 'SurveyOverviewController@showManageSurvey');
+    Route::post('survey', 'SurveyOverviewController@createSurvey');
+    Route::delete('survey', 'SurveyOverviewController@deleteSurvey');
 
-    Route::get('/admin/survey', 'SurveyOverviewController@showManageSurvey');
-    Route::post('/admin/survey', 'SurveyOverviewController@createSurvey');
+    Route::get('survey/search', 'SurveyController@search');
+    Route::get('survey/{survey}', 'SurveyController@showSurvey');
 
-    Route::get('/admin/survey/{survey}', 'SurveyController@showSurvey');
-    Route::post('/admin/survey/{survey}', 'SurveyController@addProposition');
+    Route::post('survey/{survey}/proposition', 'SurveyController@addProposition');
+    Route::delete('survey/{survey}/proposition', 'SurveyController@deleteProposition');
+
+    Route::post('survey/{survey}/candidate', 'SurveyController@addCandidate');
+    Route::delete('survey/{survey}/candidate', 'SurveyController@removeCandidate');
+    Route::post('survey/{survey}/candidate/mail', 'SurveyController@mailCandidate');
+
+    Route::post('survey/{survey}/teacher', 'SurveyController@addTeacher');
+    Route::delete('survey/{survey}/teacher', 'SurveyController@removeTeacher');
+
+    Route::get('survey/{survey}/start', 'RecentSurveyController@startSurvey');
+    Route::post('survey/{survey}/general', 'SurveyController@toggleGeneralSurvey');
+
+    Route::get('survey/{code}/results', 'SurveyResultsController@show');
+
+    Route::get('settings', 'SettingsController@show');
+    Route::post('settings', 'SettingsController@submit');
+    Route::post('password', 'SettingsController@updatePassword');
 });
-
 
 // Fallback route for react routing
 Route::view('/{path?}', 'app')->where('path', '^(?!admin).*$');

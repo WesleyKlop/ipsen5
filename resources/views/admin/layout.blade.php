@@ -12,40 +12,69 @@
     <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
     <script defer src="{{ mix('js/admin.js') }}"></script>
     <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-
 <div class="mdc-drawer">
-    <div class="mdc-drawer__header">
-        <img class="logo" src="/images/logo_shadow.png" alt="StemApp"/>
+    <a class="mdc-drawer__header" href="{{ action('RecentSurveyController@show') }}">
+        <img class="logo" src="/images/logo_shadow.png" alt="StemApp" />
         <div class="drawer-header__info">
-            <span class="mdc-drawer__title">Beheerder</span>
-            <span class="mdc-drawer__subtitle">beheerder@fzes.nl</span>
-            <button class="mdc-icon-button material-icons">arrow_drop_down</button>
+            <span class="mdc-drawer__title">{{ Auth::user()->isTeacher() ? 'Docent' : 'Beheerder' }}</span>
+            <span class="mdc-drawer__subtitle">{{ Auth::user()->username }}</span>
+            <button class="mdc-icon-button material-icons">arrow_drop_down
+            </button>
         </div>
-    </div>
-    <div class="mdc-drawer__content">
+    </a>
+    <div class="mdc-drawer__content mdc-list-group">
         <nav class="mdc-list" data-mdc-auto-init="MDCList">
-            <a class="mdc-list-item mdc-list-item--activated" href="#" aria-current="page">
+            <a class="mdc-list-item {{ request()->is('admin') ? 'mdc-list-item--activated' : ''}}"
+               href="{{ action('RecentSurveyController@show') }}" aria-current="page">
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">history</i>
                 <span class="mdc-list-item__text">Recente Peilingen</span>
             </a>
-            <a class="mdc-list-item" href="#">
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">public</i>
-                <span class="mdc-list-item__text">Europese Peiling</span>
+
+            @if( Auth::user()->isTeacher() && !Auth::user()->isInTrial())
+                <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings[Auth::user()->user_id]->value . "*") ? 'mdc-list-item--activated' : ''}}"
+                   href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings[Auth::user()->user_id]->value ]) }}">
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">class</i>
+                    <span class="mdc-list-item__text">{{ \App\Eloquent\Survey::find($settings[Auth::user()->user_id]->value)->name }}</span>
+                </a>
+            @endif
+
+            @if( Auth::user()->type == "admin" )
+                <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['european-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
+                   href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['european-survey']->value ]) }}">
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">public</i>
+                    <span class="mdc-list-item__text">Europese Peiling</span>
+                </a>
+
+                <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['country-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
+                   href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['country-survey']->value ]) }}">
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">flag</i>
+                    <span class="mdc-list-item__text">Landelijke Peiling</span>
+                </a>
+                <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['trial-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
+                   href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['trial-survey']->value ]) }}">
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">how_to_vote</i>
+                    <span class="mdc-list-item__text">Lokale Peiling</span>
+                </a>
+                <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['feedback-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
+                   href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['feedback-survey']->value ]) }}">
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">how_to_vote</i>
+                    <span class="mdc-list-item__text">Feedback Peiling</span>
+                </a>
+            @endif
+        </nav>
+        <div style="flex: 1"></div>
+        <hr class="mdc-list-divider">
+        <nav class="mdc-list" data-mdc-auto-init="MDCList">
+            <a class="mdc-list-item {{ request()->is("admin/settings") ? 'mdc-list-item--activated' : ''}}"
+               href="{{ action('SettingsController@show') }}">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">settings</i>
+                <span class="mdc-list-item__text">Instellingen</span>
             </a>
-            <a class="mdc-list-item" href="#">
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">flag</i>
-                <span class="mdc-list-item__text">Landelijke Peiling</span>
-            </a>
-            <a class="mdc-list-item" href="#">
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">how_to_vote</i>
-                <span class="mdc-list-item__text">Lokale Peiling</span>
-            </a>
-            <a class="mdc-list-item" href="#">
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">question_answer</i>
-                <span class="mdc-list-item__text">Feedback Peiling</span>
+            <a class="mdc-list-item" href="{{ action('AdminLoginController@logout') }}">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">lock</i>
+                <span class="mdc-list-item__text">Uitloggen</span>
             </a>
         </nav>
     </div>
@@ -58,12 +87,13 @@
                 <span class="mdc-top-app-bar__title">@yield('title')</span>
                 <div style="flex: 1;"></div>
                 <div class="mdc-text-field mdc-text-field--with-leading-icon mdc-text-field--outlined mdc-text-field--no-label search-field" data-mdc-auto-init="MDCTextField">
-                    <i class="material-icons mdc-text-field__icon hide-button" id="pw-eye" tabindex="0" role="button">search</i>
-                    <input class="mdc-text-field__input" placeholder="Zoek Peiling...">
+                    <label for="search-field" class="material-icons mdc-text-field__icon hide-button" tabindex="0">search</label>
+                    <input class="mdc-text-field__input" placeholder="Zoek Peiling..." id="search-field">
                     <div class="mdc-notched-outline">
                         <div class="mdc-notched-outline__leading"></div>
                         <div class="mdc-notched-outline__trailing"></div>
                     </div>
+                    <ul class="mdc-list search-results mdc-card" data-mdc-auto-init="MDCList"></ul>
                 </div>
                 <div style="flex: 1;"></div>
                 <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">sort</a>
@@ -74,7 +104,6 @@
     <div class="mdc-top-app-bar--fixed-adjust"></div>
     <div class="page-content">
         <div style="height: 16px;"></div>
-
         @yield('content')
     </div>
 </div>

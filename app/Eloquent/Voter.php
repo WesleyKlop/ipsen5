@@ -3,6 +3,7 @@
 namespace App\Eloquent;
 
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Storage;
 
 /**
@@ -10,6 +11,10 @@ use Storage;
  * @package App\Eloquent
  * @property string $code
  * @property string $user_id
+ * @property Survey $survey
+ * @property Feedback $feedback
+ * @property SurveyCode $surveyCode
+ * @property Collection $answers
  */
 class Voter extends AppUser
 {
@@ -33,7 +38,14 @@ class Voter extends AppUser
 
     public function survey()
     {
-        return $this->hasOneThrough(Survey::class, SurveyCode::class, 'code', 'id', 'code', 'survey_id');
+        return $this->hasOneThrough(
+            Survey::class,
+            SurveyCode::class,
+            'code',
+            'id',
+            'code',
+            'survey_id'
+        );
     }
 
     public function getMatches()
@@ -49,25 +61,40 @@ class Voter extends AppUser
          * 3. Do a descending sort by the number of matches (highest number of matches comes up front)
          * 4 Return the first 5.
          */
-        $user_answers = $this->answers;
+
+        $european = Setting::europeanSurvey()->id;
+        $country = Setting::countrySurvey()->id;
+
+        $user_answers = $this
+            ->answers
+            ->filter(function (Answer $answer) {
+                return ! Setting::where('value', $answer->survey_id)->exists();
+            });
+
         $num_propositions = $this->survey->propositions->count();
         return $this
             ->survey
             ->candidates
-            ->map(function ($candidate) use ($user_answers, $num_propositions) {
+            ->map(function ($candidate) use ($user_answers, $num_propositions, $european, $country) {
                 // fetch all answers of the candidate,
                 // so they're in memory,
                 // and we don't have to fetch each answer from the db
-                $candidate_answers = $candidate->answers->all();
+                $candidate_answers = $candidate->answers->whereNotIn('survey_id', $country, $european)->all();
 
                 $number_of_matches = $user_answers
                     ->map(function ($answer) use ($candidate_answers) {
                         return [
                             "voter_answer" => $answer,
-                            "candidate_answer" => $candidate_answers[array_search($answer->proposition_id, array_column($candidate_answers, 'proposition_id'))]
-                                //$candidate->answers
-                                //->where('proposition_id', $answer->proposition_id)
-                                //->first()
+                            "candidate_answer" => $candidate_answers[array_search(
+                                $answer->proposition_id,
+                                array_column(
+                                    $candidate_answers,
+                                    'proposition_id'
+                                )
+                            )]
+                            //$candidate->answers
+                            //->where('proposition_id', $answer->proposition_id)
+                            //->first()
                         ];
                     })
                     ->filter(function ($answers) {
@@ -89,11 +116,16 @@ class Voter extends AppUser
                     'percentage' => (($number_of_matches / $num_propositions) * 100),
                     'candidate_id' => $candidate->user_id,
                     'profile' => $profile,
-                    'image' => Storage::url('public/profiles/'. $candidate->user_id . '.' . $profile->image_extension) ?? null,
+                    'image' => Storage::url('public/profiles/' . $candidate->user_id . '.' . $profile->image_extension) ?? null,
                 ];
             })
             ->sortByDesc('matched')
             ->values()
             ->take(5);
+    }
+
+    public function feedback()
+    {
+        return $this->hasOne(Feedback::class, 'user_id');
     }
 }

@@ -1,36 +1,55 @@
 @import 'variables';
 
+.open {
+  .voter-result-page__container {
+    grid-template-rows: 20px 35px 20px 100px;
+  }
+}
+
+.voter-result-page__bio {
+  grid-area: bio;
+  padding: 5px;
+  background: linear-gradient(to bottom, $water-schappen-color, $primary-color);
+  font-size: 14px;
+}
+
 .voter-result-page__container {
-    display: grid;
-    grid-template-columns: 75px 1fr;
-    grid-template-rows: 20px 35px 20px;
-    grid-template-areas: 'picture name' 'picture percentage' 'picture function';
-    grid-column-gap: 5px;
-    font-size: 12px;
+  display: grid;
+  grid-template-columns: 75px 1fr 17px;
+  grid-template-rows: 20px 35px 20px 0;
+  grid-template-areas: 'picture name name' 'picture percentage percantage' 'picture function arrow' 'bio bio bio';
+  grid-column-gap: 5px;
+  font-size: 12px;
+  overflow-y: hidden;
+  transition: grid 0.3s ease-out;
+}
+
+.voter-result-page__arrow {
+  grid-area: arrow;
 }
 
 .voter-result-page__picture {
-    grid-area: picture;
-    width: 75px;
-    height: 75px;
-    background-size: 75px;
-    background-position: center center;
-    background-repeat: no-repeat;
+  grid-area: picture;
+  width: 75px;
+  height: 75px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .voter-result-page__name {
-    grid-area: name;
-    font-size: 18px;
-    font-weight: bold;
+  grid-area: name;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .voter-result-page__percentage {
-    grid-area: percentage;
-    color: $city-council-color;
-    font-size: 30px;
-    font-weight: bold;
+  grid-area: percentage;
+  color: $city-council-color;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .voter-result-page__function {
-    grid-area: function;
+  grid-area: function;
 }

@@ -2,9 +2,7 @@
 
 namespace App\Eloquent;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Ramsey\Uuid\Uuid;
 
 /**
  * Class Survey
@@ -20,7 +18,13 @@ class Survey extends Model
     protected $fillable = [
         'id',
         'name',
+        'use_general',
     ];
+
+    public function useGeneral()
+    {
+        return $this->use_general;
+    }
 
     public function candidates()
     {
@@ -42,20 +46,20 @@ class Survey extends Model
         return $this->hasMany(Proposition::class);
     }
 
-    public function addTeacher(Admin $teacher)
-    {
-        $teacher->removeFromTrial();
-
-        SurveyCode::create([
-            "code" => Uuid::uuid4(),
-            "username" => $teacher->username,
-            "survey_id" => $this->id,
-            "expire" => Carbon::new()->addMonth()->timestamp,
-        ]);
-    }
-
     public function answers()
     {
         return $this->hasMany(Answer::class);
+    }
+
+    public function teachers()
+    {
+        return $this->hasManyThrough(
+            Admin::class,
+            Teacher::class,
+            'survey_id',
+            'user_id',
+            'id',
+            'user_id'
+        );
     }
 }

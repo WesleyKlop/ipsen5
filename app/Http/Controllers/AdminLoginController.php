@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class AdminLoginController extends Controller
 {
@@ -23,5 +24,10 @@ class AdminLoginController extends Controller
     public function username()
     {
         return 'username';
+    }
+
+    public function loggedOut(Request $request)
+    {
+        return redirect('/admin/login');
     }
 }
