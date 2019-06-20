@@ -35,13 +35,14 @@ class SurveyController extends Controller
     {
         $survey = $request->user()->survey;
 
-        //return dd($request->user()->survey);
         if ($survey->useGeneral()) {
             return ([
                 'id' => $survey->id,
                 'name' => $survey->name,
-                'propositions' => Setting::europeanSurvey()->propositions->merge(Setting::countrySurvey()->propositions)
-                    ->merge($survey->propositions),
+                'propositions' => Setting::europeanSurvey()->propositions
+                    ->merge(Setting::countrySurvey()->propositions)
+                    ->merge($survey->propositions)
+                    ->merge(Setting::feedbackSurvey()->propositions),
             ]);
         } else {
             return $survey;
