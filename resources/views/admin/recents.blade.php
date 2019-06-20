@@ -7,8 +7,7 @@
 @section('content')
     <div class="mdc-card">
         <h2 class="card__title">Beschikbaar</h2>
-        <ul class="mdc-list mdc-list--non-interactive"
-            data-mdc-auto-init="MDCList">
+        <ul class="mdc-list mdc-list--non-interactive" data-mdc-auto-init="MDCList">
             @foreach($startableSurveys as $survey)
                 <li class="mdc-list-item">
                     <span class="mdc-list-item__text">

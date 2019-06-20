@@ -6,21 +6,19 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class EmailResult extends Mailable
+class EmailCandidateRequest extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
-    public $answers;
+    public $candidate;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($candidate)
     {
-        $this->user = $user;
-        $this->answers = $user->getPropositionsWithAnswers()[0]['propositions'];
+        $this->candidate = $candidate;
     }
 
     /**
@@ -31,8 +29,8 @@ class EmailResult extends Mailable
     public function build()
     {
         return $this
-            ->subject('Resultaten van de Stem!App')
+            ->subject('stemApp stellingen')
             ->from('stemapp@outlook.com')
-            ->view('emails.emailResult');
+            ->view('emails.emailCandidateRequest');
     }
 }
