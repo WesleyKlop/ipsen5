@@ -10,6 +10,7 @@
         <h2 class="card__title">Peilingen</h2>
         <ul class="mdc-list" data-mdc-auto-init="MDCList">
             @foreach( $surveys as $survey )
+                @if(!$survey->isClassRepSurvey())
                 <li class="mdc-list-item">
                     <a class="mdc-list-item__text " href="{{ url()->current().'/'.$survey->id }}" style="width: 100%;">{{ $survey->name }}</a>
                     <form method="POST" action="{{ action('SurveyOverviewController@deleteSurvey') }}">
@@ -21,6 +22,7 @@
                         </button>
                     </form>
                 </li>
+                @endif
             @endforeach
         </ul>
         <form method="POST" action="{{ action('SurveyOverviewController@createSurvey') }}" class="mdc-card__actions card__actions">

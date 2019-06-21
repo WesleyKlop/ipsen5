@@ -77,4 +77,20 @@ class Survey extends Model
     {
         return Setting::where('value', '=', $this->id)->where('name', '=', 'trial-survey')->exists();
     }
+
+    public function isFeedbackSurvey()
+    {
+        return Setting::where('value', '=', $this->id)->where('name', '=', 'feedback-survey')->exists();
+    }
+
+    public function isClassRepSurvey()
+    {
+        return Setting::where([
+            ['value', '=', $this->id],
+            ['name', '!=', 'trial-survey'],
+            ['name', '!=', 'european-survey'],
+            ['name', '!=', 'country-survey'],
+            ['name', '!=', 'feedback-survey'],
+        ])->exists();
+    }
 }
