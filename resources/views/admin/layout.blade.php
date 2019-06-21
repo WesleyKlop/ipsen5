@@ -44,13 +44,13 @@
                 <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['european-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
                    href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['european-survey']->value ]) }}">
                     <i class="material-icons mdc-list-item__graphic" aria-hidden="true">public</i>
-                    <span class="mdc-list-item__text">Europese Peiling</span>
+                    <span class="mdc-list-item__text">EU Peiling</span>
                 </a>
 
                 <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['country-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
                    href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['country-survey']->value ]) }}">
                     <i class="material-icons mdc-list-item__graphic" aria-hidden="true">flag</i>
-                    <span class="mdc-list-item__text">Landelijke Peiling</span>
+                    <span class="mdc-list-item__text">2e kamer Peiling</span>
                 </a>
                 <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['trial-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
                    href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['trial-survey']->value ]) }}">
