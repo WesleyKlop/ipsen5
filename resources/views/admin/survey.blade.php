@@ -8,20 +8,25 @@
     <div class="mdc-card">
         <h2 class="card__title">Stellingen</h2>
         @if(!$survey->isEuSurvey() && !$survey->isCountrySurvey())
-            <form action="{{ action("SurveyController@toggleGeneralSurvey",$survey) }}" method="POST">
-                @csrf
-                <label for="basic-switch">Algemeen</label>
-                <div class="mdc-switch {{ true ? 'mdc-switch--checked' : '' }}" data-mdc-auto-init="MDCSwitch">
-                    <div class="mdc-switch__track"></div>
-                    <div class="mdc-switch__thumb-underlay">
-                        <div class="mdc-switch__thumb">
-                            <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch"
-                                   name="useGeneralSurvey" onchange="this.form.submit()"
-                                    {{ $survey->useGeneral() ? 'checked' : '' }}/>
-                        </div>
-                    </div>
-                </div>
-            </form>
+            <ul class="mdc-list mdc-list--two-line mdc-list--non-interactive" data-mdc-auto-init="MDCList">
+                <li class="mdc-list-item ">
+                    <form action="{{ action("SurveyController@toggleGeneralSurvey",$survey) }}" method="POST">
+                        @csrf
+                        <span for="basic-switch" style="padding-right: 10px;">europese en 2e kamer stellingen      </span>
+                            <div class="mdc-switch {{ true ? 'mdc-switch--checked' : '' }}" data-mdc-auto-init="MDCSwitch">
+                                <div class="mdc-switch__track"></div>
+                                <div class="mdc-switch__thumb-underlay">
+                                    <div class="mdc-switch__thumb" >
+                                        <input type="checkbox" id="basic-switch"
+                                               class="mdc-switch__native-control"
+                                               role="switch"
+                                               name="useGeneralSurvey" onchange="this.form.submit()"
+                                                {{ $survey->useGeneral() ? 'checked' : '' }}/>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </li>
         @endif
 
         <ul class="mdc-list mdc-list--two-line mdc-list--non-interactive" data-mdc-auto-init="MDCList">
