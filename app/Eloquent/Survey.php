@@ -62,4 +62,19 @@ class Survey extends Model
             'user_id'
         );
     }
+
+    public function isEuSurvey()
+    {
+        return Setting::where('value', '=', $this->id)->where('name', '=', 'european-survey')->exists();
+    }
+
+    public function isCountrySurvey()
+    {
+        return Setting::where('value', '=', $this->id)->where('name', '=', 'country-survey')->exists();
+    }
+
+    public function isTrialSurvey()
+    {
+        return Setting::where('value', '=', $this->id)->where('name', '=', 'trial-survey')->exists();
+    }
 }

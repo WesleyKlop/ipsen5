@@ -186,4 +186,8 @@ class SurveyController extends Controller
 
         return redirect('admin/survey/' . $surveyId);
     }
+
+    public function isGeneralSurvey()
+    {
+    }
 }

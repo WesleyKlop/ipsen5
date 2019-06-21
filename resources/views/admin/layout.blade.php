@@ -55,7 +55,7 @@
                 <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['trial-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
                    href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['trial-survey']->value ]) }}">
                     <i class="material-icons mdc-list-item__graphic" aria-hidden="true">how_to_vote</i>
-                    <span class="mdc-list-item__text">Lokale Peiling</span>
+                    <span class="mdc-list-item__text">Proef Peiling</span>
                 </a>
                 <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['feedback-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
                    href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['feedback-survey']->value ]) }}">

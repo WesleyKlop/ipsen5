@@ -32,4 +32,9 @@ class Setting extends Model
     {
         return Setting::settingSurveyByName('feedback-survey');
     }
+
+    public static function trialSurvey()
+    {
+        return Setting::settingSurveyByName('trial-survey');
+    }
 }
