@@ -49,7 +49,7 @@
             @csrf
             <div class="input-row">
                 <div class="mdc-text-field new-proposition-input" data-mdc-auto-init="MDCTextField">
-                    <input class="mdc-text-field__input" type="text" name="proposition" maxlength="50" id="proposition-name" autocomplete="off">
+                    <input class="mdc-text-field__input" type="text" name="proposition" maxlength="250" id="proposition-name" autocomplete="off">
                     <label for="proposition-name" class="mdc-floating-label">Nieuwe
                         stelling</label>
                     <div class="mdc-line-ripple"></div>
