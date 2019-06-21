@@ -41,6 +41,12 @@
             @endif
 
             @if( Auth::user()->type == "admin" )
+                <a class="mdc-list-item {{ request()->is('admin/survey') ? 'mdc-list-item--activated' : ''}}"
+                   href="{{ action('SurveyOverviewController@showManageSurvey') }}" aria-current="page">
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">equalizer</i>
+                    <span class="mdc-list-item__text">Alle Peilingen</span>
+                </a>
+
                 <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['european-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
                    href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['european-survey']->value ]) }}">
                     <i class="material-icons mdc-list-item__graphic" aria-hidden="true">public</i>
