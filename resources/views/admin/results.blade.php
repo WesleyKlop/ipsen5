@@ -6,11 +6,10 @@
 
 @section('content')
     <div class="mdc-card">
-        <h2 class="card__title">Resultaten</h2>
+        <h2 class="card__title">Mijn Resultaten - {{ $survey->name }}</h2>
         <section class="card__content">
             <ul>
                 <li>Aantal stemmers: {{ $code->voters()->count() }}</li>
-                <li>Aantal kandidaten: {{ $survey->candidates()->count() }}</li>
             </ul>
             <h3>Stellingen</h3>
             <table class="results-table">
