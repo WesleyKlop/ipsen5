@@ -21,14 +21,14 @@
                         @endforeach
                     </select>
                     <label class="mdc-floating-label" for="trial-select">
-                        Trial Peiling
+                        Proef Peiling
                     </label>
                     <div class="mdc-line-ripple"></div>
                 </div>
 
                 <p>Hieronder kunt u de peiling instellen die gebruikt zal worden
                     als
-                    europese peiling.</p>
+                    Europese Unie peiling.</p>
                 <div class="mdc-select" data-mdc-auto-init="MDCSelect">
                     <i class="mdc-select__dropdown-icon"></i>
                     <select class="mdc-select__native-control" id="european-select" required name="european-survey">
@@ -38,13 +38,13 @@
                         @endforeach
                     </select>
                     <label class="mdc-floating-label" for="european-select">
-                        Europese Peiling
+                        EU Peiling
                     </label>
                     <div class="mdc-line-ripple"></div>
                 </div>
 
                 <p>Hieronder kunt u de peiling instellen die gebruikt
-                    zal worden als landelijke peiling.</p>
+                    zal worden als 2e kamer peiling.</p>
                 <div class="mdc-select" data-mdc-auto-init="MDCSelect">
                     <i class="mdc-select__dropdown-icon"></i>
                     <select class="mdc-select__native-control" id="country-select" required name="country-survey">
@@ -54,7 +54,7 @@
                         @endforeach
                     </select>
                     <label class="mdc-floating-label" for="country-select">
-                        Landelijke Peiling
+                        2e kamer Peiling
                     </label>
                     <div class="mdc-line-ripple"></div>
                 </div>
