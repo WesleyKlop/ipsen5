@@ -31,6 +31,11 @@ class SurveyTest extends TestCase
      */
     protected $admin;
 
+    /**
+     * @var SurveyCode
+     */
+    protected $surveyCode;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -82,10 +87,33 @@ class SurveyTest extends TestCase
         $response = $this
             ->getJson('/api/survey');
 
-        $response->assertUnauthorized();
+        $response
+            ->assertUnauthorized();
     }
 
-    public function testSurveyHasCode() {
-        $
+    public function testSurveyHasCode()
+    {
+        $surveyCodeExists = $this
+            ->survey
+            ->surveyCodes()
+            ->where('code', '=', $this->surveyCode->code)
+            ->exists();
+
+        self::assertTrue($surveyCodeExists, 'Survey does not have a code.');
+    }
+
+    public function testNewVoterCanLoginToSurvey()
+    {
+        $response = $this
+            ->postJson('/api/voter/login', [
+                'code' => $this->surveyCode->code,
+            ]);
+        $response
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                'jwt',
+            ]);
+
+        self::assertCount(2, $this->surveyCode->voters);
     }
 }
