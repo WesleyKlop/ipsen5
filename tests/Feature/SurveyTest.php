@@ -46,11 +46,6 @@ class SurveyTest extends TestCase
         $this->voter = factory(Voter::class)->create();
     }
 
-    protected function tearDown(): void
-    {
-        parent::tearDown();
-    }
-
     /**
      * A basic feature test example.
      *
