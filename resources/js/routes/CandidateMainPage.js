@@ -34,7 +34,7 @@ const CandidateMainPage = ({ match }) => {
             Dank u wel voor het meewerken aan deze peiling, samen met uw
             gegevens zullen velen jongeren onderwezen worden. Uw profiel is al
             aangemaakt, u hoeft alleen nog maar wat info over uzelf toe te
-            voegen.
+            voegen. Hierna krijgt u gelijk de stellingen.
           </p>
           <CardButtons>
             <Link to="/profile" className="block">
