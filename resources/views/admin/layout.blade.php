@@ -12,6 +12,7 @@
     <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
     <script defer src="{{ mix('js/admin.js') }}"></script>
     <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#e5e5e5">
 </head>
 <body>
 <div class="mdc-drawer">
