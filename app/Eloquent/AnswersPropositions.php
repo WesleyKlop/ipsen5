@@ -5,29 +5,11 @@ namespace App\Eloquent;
 
 use App\Exceptions\AlreadyAnsweredException;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Ramsey\Uuid\Uuid;
 
 trait AnswersPropositions
 {
-    public function getUnansweredProposition()
-    {
-        /** @var Survey $survey */
-        $survey = $this->survey;
-        return $survey
-            ->propositions()
-            ->whereNotIn('id', function (Builder $query) use ($survey) {
-                $query
-                    ->select('proposition_id')
-                    ->from('answers')
-                    ->where('survey_id', '=', $survey->id)
-                    ->where('user_id', '=', $this->user_id);
-            })
-//            ->orderByRaw('random()')Ø
-            ->first();
-    }
-
     public function getPropositions()
     {
         return $this->survey->propositions;
