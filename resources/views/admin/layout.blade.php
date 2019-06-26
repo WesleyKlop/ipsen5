@@ -65,7 +65,7 @@
                 </a>
                 <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['feedback-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
                    href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['feedback-survey']->value ]) }}">
-                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">how_to_vote</i>
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">feedback</i>
                     <span class="mdc-list-item__text">Feedback Peiling</span>
                 </a>
             @endif
