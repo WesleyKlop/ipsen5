@@ -11,6 +11,7 @@ use Storage;
  * @package App\Eloquent
  * @property string $code
  * @property string $user_id
+ * @property string $survey_id
  * @property Survey $survey
  * @property Feedback $feedback
  * @property SurveyCode $surveyCode
@@ -62,26 +63,40 @@ class Voter extends AppUser
          * 4 Return the first 5.
          */
 
-        $european = Setting::europeanSurvey()->id;
-        $country = Setting::countrySurvey()->id;
+        $euSurveyId = Setting::europeanSurvey()->id;
+        $countrySurveyId = Setting::countrySurvey()->id;
 
-        $user_answers = $this
+        // Filter out answers from european / parliament survey
+        $userAnswers = $this
             ->answers
             ->filter(function (Answer $answer) {
-                return ! Setting::where('value', $answer->survey_id)->exists();
+                return $answer->survey_id === $this->survey_id;
             });
 
-        $num_propositions = $this->survey->propositions->count();
+        // Get the total count of propositions to calculate the percentage against.
+        $propositionCount = $this
+            ->survey
+            ->propositions()
+            ->count();
+
         return $this
             ->survey
             ->candidates
-            ->map(function ($candidate) use ($user_answers, $num_propositions, $european, $country) {
+            ->map(function (Candidate $candidate) use (
+                $userAnswers,
+                $propositionCount,
+                $euSurveyId,
+                $countrySurveyId
+            ) {
                 // fetch all answers of the candidate,
                 // so they're in memory,
                 // and we don't have to fetch each answer from the db
-                $candidate_answers = $candidate->answers->whereNotIn('survey_id', $country, $european)->all();
+                $candidate_answers = $candidate
+                    ->answers
+                    ->whereNotIn('survey_id', [$countrySurveyId, $euSurveyId])
+                    ->all();
 
-                $number_of_matches = $user_answers
+                $number_of_matches = $userAnswers
                     ->map(function ($answer) use ($candidate_answers) {
                         return [
                             "voter_answer" => $answer,
@@ -113,7 +128,7 @@ class Voter extends AppUser
 
                 return [
                     'matched' => $number_of_matches,
-                    'percentage' => (($number_of_matches / $num_propositions) * 100),
+                    'percentage' => (($number_of_matches / $propositionCount) * 100),
                     'candidate_id' => $candidate->user_id,
                     'profile' => $profile,
                     'image' => Storage::url('public/profiles/' . $candidate->user_id . '.' . $profile->image_extension) ?? null,
