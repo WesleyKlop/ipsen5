@@ -19,7 +19,7 @@
     <a class="mdc-drawer__header" href="{{ action('RecentSurveyController@show') }}">
         <img class="logo" src="/images/logo_shadow.png" alt="StemApp" />
         <div class="drawer-header__info">
-            <span class="mdc-drawer__title">{{ Auth::user()->isTeacher() ? 'Docent' : 'Beheerder' }}</span>
+            <span class="mdc-drawer__title">{{ Auth::user()->isTeacher() ? 'Docent' : 'Beheerder' }}{{Auth::user()->isTeacher() && Auth::user()->isInTrial() ? ' - proef' : ''}}</span>
             <span class="mdc-drawer__subtitle">{{ Auth::user()->username }}</span>
             <button class="mdc-icon-button material-icons">arrow_drop_down
             </button>
