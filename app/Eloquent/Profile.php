@@ -3,7 +3,6 @@
 namespace App\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
-use Storage;
 
 /**
  * Class Profile
@@ -12,6 +11,11 @@ use Storage;
  * @property string $name
  * @property string $bio
  * @property string $email
+ * @property string $image_extension
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $function
+ * @property string $party
  */
 class Profile extends Model
 {

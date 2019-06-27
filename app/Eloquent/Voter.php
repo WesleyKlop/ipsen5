@@ -2,7 +2,6 @@
 
 namespace App\Eloquent;
 
-use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Storage;
 
@@ -84,51 +83,32 @@ class Voter extends AppUser
             ->candidates
             ->map(function (Candidate $candidate) use (
                 $userAnswers,
-                $propositionCount,
-                $euSurveyId,
-                $countrySurveyId
+                $propositionCount
             ) {
                 // fetch all answers of the candidate,
                 // so they're in memory,
                 // and we don't have to fetch each answer from the db
-                $candidate_answers = $candidate
-                    ->answers
-                    ->whereNotIn('survey_id', [$countrySurveyId, $euSurveyId])
-                    ->all();
+                $candidateAnswers = $candidate
+                    ->answers()
+                    ->where('survey_id', $candidate->survey_id)
+                    ->all()
+                    ->keyBy('proposition_id');
 
-                $number_of_matches = $userAnswers
-                    ->map(function ($answer) use ($candidate_answers) {
-                        return [
-                            "voter_answer" => $answer,
-                            "candidate_answer" => $candidate_answers[array_search(
-                                $answer->proposition_id,
-                                array_column(
-                                    $candidate_answers,
-                                    'proposition_id'
-                                )
-                            )]
-                            //$candidate->answers
-                            //->where('proposition_id', $answer->proposition_id)
-                            //->first()
-                        ];
-                    })
-                    ->filter(function ($answers) {
-                        //dd($answers);
-                        if ($answers['voter_answer'] == null || $answers['candidate_answer'] == null) {
-                            return false;
+                $matchCount = $userAnswers
+                    ->reduce(function (int $matched, Answer $answer) use (
+                        $candidateAnswers
+                    ) {
+                        if ($answer->answer === $candidateAnswers[$answer->proposition_id]->answer) {
+                            return $matched + 1;
                         }
-                        if ($answers['voter_answer']->proposition_id != $answers['candidate_answer']->proposition_id) {
-                            throw new Exception("Proposition id's did not match!");
-                        }
-                        return $answers['voter_answer'] == $answers['candidate_answer']->answer;
-                    })
-                    ->count();
+                        return $matched;
+                    }, 0);
 
                 $profile = $candidate->profile;
 
                 return [
-                    'matched' => $number_of_matches,
-                    'percentage' => (($number_of_matches / $propositionCount) * 100),
+                    'matched' => $matchCount,
+                    'percentage' => (($matchCount / $propositionCount) * 100),
                     'candidate_id' => $candidate->user_id,
                     'profile' => $profile,
                     'image' => Storage::url('public/profiles/' . $candidate->user_id . '.' . $profile->image_extension) ?? null,
