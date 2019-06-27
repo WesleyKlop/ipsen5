@@ -12,13 +12,14 @@
     <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
     <script defer src="{{ mix('js/admin.js') }}"></script>
     <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#e5e5e5">
 </head>
 <body>
 <div class="mdc-drawer">
     <a class="mdc-drawer__header" href="{{ action('RecentSurveyController@show') }}">
         <img class="logo" src="/images/logo_shadow.png" alt="StemApp" />
         <div class="drawer-header__info">
-            <span class="mdc-drawer__title">{{ Auth::user()->isTeacher() ? 'Docent' : 'Beheerder' }}</span>
+            <span class="mdc-drawer__title">{{ Auth::user()->isTeacher() ? 'Docent' : 'Beheerder' }}{{Auth::user()->isTeacher() && Auth::user()->isInTrial() ? ' - proef' : ''}}</span>
             <span class="mdc-drawer__subtitle">{{ Auth::user()->username }}</span>
             <button class="mdc-icon-button material-icons">arrow_drop_down
             </button>
@@ -41,25 +42,31 @@
             @endif
 
             @if( Auth::user()->type == "admin" )
+                <a class="mdc-list-item {{ request()->is('admin/survey') ? 'mdc-list-item--activated' : ''}}"
+                   href="{{ action('SurveyOverviewController@showManageSurvey') }}" aria-current="page">
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">equalizer</i>
+                    <span class="mdc-list-item__text">Alle Peilingen</span>
+                </a>
+
                 <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['european-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
                    href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['european-survey']->value ]) }}">
                     <i class="material-icons mdc-list-item__graphic" aria-hidden="true">public</i>
-                    <span class="mdc-list-item__text">Europese Peiling</span>
+                    <span class="mdc-list-item__text">EU Peiling</span>
                 </a>
 
                 <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['country-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
                    href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['country-survey']->value ]) }}">
                     <i class="material-icons mdc-list-item__graphic" aria-hidden="true">flag</i>
-                    <span class="mdc-list-item__text">Landelijke Peiling</span>
+                    <span class="mdc-list-item__text">2e kamer Peiling</span>
                 </a>
                 <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['trial-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
                    href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['trial-survey']->value ]) }}">
                     <i class="material-icons mdc-list-item__graphic" aria-hidden="true">how_to_vote</i>
-                    <span class="mdc-list-item__text">Lokale Peiling</span>
+                    <span class="mdc-list-item__text">Proef Peiling</span>
                 </a>
                 <a class="mdc-list-item {{ request()->is("admin/survey/" . $settings['feedback-survey']->value . "*") ? 'mdc-list-item--activated' : ''}}"
                    href="{{ action('SurveyController@showSurvey', [ 'survey' => $settings['feedback-survey']->value ]) }}">
-                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">how_to_vote</i>
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">feedback</i>
                     <span class="mdc-list-item__text">Feedback Peiling</span>
                 </a>
             @endif

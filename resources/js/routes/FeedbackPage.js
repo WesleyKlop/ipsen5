@@ -21,8 +21,8 @@ const FeedbackPage = ({ history }) => {
         <CardHeader>Klaar!</CardHeader>
         <CardBody>
           <p>
-            U bent klaar met de peiling! Geef de peiling een beoordeling om uw
-            resultaat te zien.
+            Je bent nu klaar met de Stem!App. Geef de peiling een beoordeling
+            als je de resultaat wilt zien.
           </p>
           <FeedbackSlider value={value} onChange={setValue} />
           <CardButtons>

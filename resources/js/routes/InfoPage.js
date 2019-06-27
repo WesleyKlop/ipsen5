@@ -16,8 +16,8 @@ class InfoPage extends React.Component {
           <CardBody>
             <h2>Over de peiling</h2>
             <p>
-              U zult een aantal stellingen krijgen die met eens of oneens te
-              beantwoorden zijn. Zodra u een optie kiest gaat u door naar de
+              Je zult een aantal stellingen krijgen die met eens of oneens te
+              beantwoorden zijn. Zodra je een optie kiest gaat u door naar de
               volgende stelling. Veel succes!
             </p>
             <CardButtons>
