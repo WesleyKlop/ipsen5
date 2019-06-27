@@ -61,20 +61,15 @@ class Voter extends AppUser
          * 3. Do a descending sort by the number of matches (highest number of matches comes up front)
          * 4 Return the first 5.
          */
+        $survey = $this->survey;
 
-        $euSurveyId = Setting::europeanSurvey()->id;
-        $countrySurveyId = Setting::countrySurvey()->id;
-
-        // Filter out answers from european / parliament survey
         $userAnswers = $this
-            ->answers
-            ->filter(function (Answer $answer) {
-                return $answer->survey_id === $this->survey_id;
-            });
+            ->answers()
+            ->where('survey_id', '=', $survey->id)
+            ->get();
 
         // Get the total count of propositions to calculate the percentage against.
-        $propositionCount = $this
-            ->survey
+        $propositionCount = $survey
             ->propositions()
             ->count();
 
@@ -91,7 +86,7 @@ class Voter extends AppUser
                 $candidateAnswers = $candidate
                     ->answers()
                     ->where('survey_id', $candidate->survey_id)
-                    ->all()
+                    ->get()
                     ->keyBy('proposition_id');
 
                 $matchCount = $userAnswers
