@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Eloquent\Setting;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,6 +31,9 @@ class AppServiceProvider extends ServiceProvider
 
     private function initializeSettings()
     {
+        if (! Schema::hasTable('settings')) {
+            return;
+        }
         $settings = Setting
             ::all()
             ->keyBy('name');
