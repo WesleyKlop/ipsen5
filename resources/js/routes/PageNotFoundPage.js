@@ -13,8 +13,8 @@ const PageNotFoundPage = () => (
       <CardHeader>Pagina niet gevonden</CardHeader>
       <CardBody>
         <p>
-          De pagina die u probeert te zoeken is niet gevonden. Ga naar de
-          inlogpagina om de peiling te starten.
+          De pagina die je probeert te zoeken is niet gevonden. Ga naar de
+          inlogpagina om deel te nemen aan een peiling.
         </p>
         <CardButtons>
           <LinkButton block to="/">
