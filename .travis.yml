@@ -30,4 +30,4 @@ before_script:
 script:
   - composer test
   - yarn test
-  - phpunit
+  - vendor/bin/phpunit
