@@ -22,11 +22,11 @@ before_script:
   - cp .env.travis .env
   - composer install --no-interaction --no-suggest
   - php artisan key:generate
+  - php artisan migrate:fresh --seeder=BaseTableSeeder
 
   - yarn install
   - yarn prod
 
 script:
-  - php artisan migrate:fresh --seed
   - composer test
   - yarn test

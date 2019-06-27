@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             SurveyCodeTableSeeder::class,
             CandidateTableSeeder::class,
             VoterTableSeeder::class,
+            BaseTableSeeder::class,
         ]);
     }
 }
