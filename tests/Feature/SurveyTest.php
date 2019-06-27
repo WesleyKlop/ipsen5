@@ -7,12 +7,12 @@ use App\Eloquent\Candidate;
 use App\Eloquent\Survey;
 use App\Eloquent\SurveyCode;
 use App\Eloquent\Voter;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class SurveyTest extends TestCase
 {
-    use DatabaseTransactions;
+    use RefreshDatabase;
 
     /**
      * @var Candidate
