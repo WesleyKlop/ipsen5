@@ -29,6 +29,8 @@ class FeedbackSlider extends Component {
   }
 
   handleChange = e => {
+    e.preventDefault()
+
     if (this.state.isActive === false) {
       return
     }
