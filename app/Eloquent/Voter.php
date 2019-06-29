@@ -2,7 +2,6 @@
 
 namespace App\Eloquent;
 
-use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Storage;
 
@@ -11,6 +10,7 @@ use Storage;
  * @package App\Eloquent
  * @property string $code
  * @property string $user_id
+ * @property string $survey_id
  * @property Survey $survey
  * @property Feedback $feedback
  * @property SurveyCode $surveyCode
@@ -61,59 +61,49 @@ class Voter extends AppUser
          * 3. Do a descending sort by the number of matches (highest number of matches comes up front)
          * 4 Return the first 5.
          */
+        $survey = $this->survey;
 
-        $european = Setting::europeanSurvey()->id;
-        $country = Setting::countrySurvey()->id;
+        $userAnswers = $this
+            ->answers()
+            ->where('survey_id', '=', $survey->id)
+            ->get();
 
-        $user_answers = $this
-            ->answers
-            ->filter(function (Answer $answer) {
-                return ! Setting::where('value', $answer->survey_id)->exists();
-            });
+        // Get the total count of propositions to calculate the percentage against.
+        $propositionCount = $survey
+            ->propositions()
+            ->count();
 
-        $num_propositions = $this->survey->propositions->count();
         return $this
             ->survey
             ->candidates
-            ->map(function ($candidate) use ($user_answers, $num_propositions, $european, $country) {
+            ->map(function (Candidate $candidate) use (
+                $userAnswers,
+                $propositionCount
+            ) {
                 // fetch all answers of the candidate,
                 // so they're in memory,
                 // and we don't have to fetch each answer from the db
-                $candidate_answers = $candidate->answers->whereNotIn('survey_id', $country, $european)->all();
+                $candidateAnswers = $candidate
+                    ->answers()
+                    ->where('survey_id', $candidate->survey_id)
+                    ->get()
+                    ->keyBy('proposition_id');
 
-                $number_of_matches = $user_answers
-                    ->map(function ($answer) use ($candidate_answers) {
-                        return [
-                            "voter_answer" => $answer,
-                            "candidate_answer" => $candidate_answers[array_search(
-                                $answer->proposition_id,
-                                array_column(
-                                    $candidate_answers,
-                                    'proposition_id'
-                                )
-                            )]
-                            //$candidate->answers
-                            //->where('proposition_id', $answer->proposition_id)
-                            //->first()
-                        ];
-                    })
-                    ->filter(function ($answers) {
-                        //dd($answers);
-                        if ($answers['voter_answer'] == null || $answers['candidate_answer'] == null) {
-                            return false;
+                $matchCount = $userAnswers
+                    ->reduce(function (int $matched, Answer $answer) use (
+                        $candidateAnswers
+                    ) {
+                        if ($answer->answer === $candidateAnswers[$answer->proposition_id]->answer) {
+                            return $matched + 1;
                         }
-                        if ($answers['voter_answer']->proposition_id != $answers['candidate_answer']->proposition_id) {
-                            throw new Exception("Proposition id's did not match!");
-                        }
-                        return $answers['voter_answer'] == $answers['candidate_answer']->answer;
-                    })
-                    ->count();
+                        return $matched;
+                    }, 0);
 
                 $profile = $candidate->profile;
 
                 return [
-                    'matched' => $number_of_matches,
-                    'percentage' => (($number_of_matches / $num_propositions) * 100),
+                    'matched' => $matchCount,
+                    'percentage' => (($matchCount / $propositionCount) * 100),
                     'candidate_id' => $candidate->user_id,
                     'profile' => $profile,
                     'image' => Storage::url('public/profiles/' . $candidate->user_id . '.' . $profile->image_extension) ?? null,

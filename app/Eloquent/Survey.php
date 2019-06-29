@@ -2,6 +2,7 @@
 
 namespace App\Eloquent;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -9,6 +10,13 @@ use Illuminate\Database\Eloquent\Model;
  * @package App\Eloquent
  * @property string $id
  * @property string $name
+ * @property bool $use_general
+ * @property Collection<Candidate> $candidates
+ * @property Collection<Voter> $voters
+ * @property Collection<SurveyCode> $surveyCodes
+ * @property Collection<Answer> $answers
+ * @property Collection<Admin> $teachers
+ * @property Collection<Proposition> $propositions
  */
 class Survey extends Model
 {
