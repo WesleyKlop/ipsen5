@@ -37,7 +37,7 @@
         "@material/switch": "^2.3.0",
         "@material/textfield": "^2.1.1",
         "@material/theme": "^1.1.0",
-        "@material/top-app-bar": "^2.1.1",
+        "@material/top-app-bar": "^3.1.0",
         "@material/typography": "^2.3.0",
         "classnames": "^2.2.6",
         "jsonwebtoken": "^8.5.1",
