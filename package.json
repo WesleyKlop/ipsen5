@@ -36,7 +36,7 @@
         "@material/select": "^2.3.0",
         "@material/switch": "^2.3.0",
         "@material/textfield": "^2.1.1",
-        "@material/theme": "^1.1.0",
+        "@material/theme": "^3.1.0",
         "@material/top-app-bar": "^2.1.1",
         "@material/typography": "^2.3.0",
         "classnames": "^2.2.6",
